@@ -29,7 +29,7 @@ Nous allons construire le même écran que dans le TP Swift : un titre, un sous-
 - installer Flutter dans la dev-box, et le préparer pour iOS ;
 - créer un projet Flutter et lire sa structure ;
 - écrire un écran avec un état (`StatefulWidget`) ;
-- compiler l'application pour iOS sous Linux et l'installer sur votre iPhone.
+- compiler l'application pour iOS sous Linux et l'installer sur votre iPhone, avec `devbox-build.sh`.
 
 ## Installer Flutter
 
@@ -101,7 +101,7 @@ Votre code est **entièrement** dans `lib/`. Les dossiers `android/` et `ios/` s
 
 Question :
 
-- Dans le TP Swift, le bundle ID était dans `xtool.yml`. À votre avis, où est-il rangé dans un projet Flutter ?
+- Dans le TP Swift, le bundle ID était dans `project.yml` (`PRODUCT_BUNDLE_IDENTIFIER`). À votre avis, où est-il rangé dans un projet Flutter ?
 
 ::: details Réponse
 Il est dans le projet Xcode généré, `ios/Runner.xcodeproj` (réglage `PRODUCT_BUNDLE_IDENTIFIER`), et pour Android dans `android/app/build.gradle.kts` (`applicationId`). `flutter create --org` les a remplis tous les deux.
@@ -212,13 +212,27 @@ Une fois satisfait, place à l'iPhone.
 
 ## Compiler pour iOS et installer
 
-Branchez votre iPhone, déverrouillez-le, puis depuis le dossier du projet :
+Comme pour les autres TP, la compilation se lance depuis **votre machine**, avec le script `devbox-build.sh` (voir [le support de préparation](./introduction.md#le-script-devbox-build-sh)). Placez-le à la racine du projet, à côté de `pubspec.yaml`. Dans un terminal de votre machine :
 
 ```bash
-~/.local/share/omarchy-apple-dev/flutter/build.sh --install .
+cd ~/dev-box/data/projets/hello_flutter
+curl -fsSLO https://cours.brosseau.ovh/demo/ios/devbox-build.sh
+chmod +x devbox-build.sh
 ```
 
-Le script compile le code Dart, assemble l'application iOS, puis l'installe sur l'appareil avec `xtool install --usb`. Sans `--install`, il s'arrête après la compilation et laisse l'application (non signée) dans `build/ios-linux/Runner.ipa`.
+Rien à régler en tête du script : il reconnaît un projet Flutter à son `pubspec.yaml`, et appelle alors le script `flutter/build.sh` d'omarchy-apple-dev dans la dev-box (et non `devbox ios xcode`, qui ne sait pas construire un projet Flutter).
+
+Branchez votre iPhone, déverrouillez-le, puis :
+
+```bash
+./devbox-build.sh
+```
+
+Le script compile le code Dart, assemble l'application iOS, puis l'installe sur l'appareil avec `xtool install --usb`. Avec `./devbox-build.sh build`, il s'arrête après la compilation et laisse l'application (non signée) dans `build/ios-linux/Runner.ipa`.
+
+::: warning Pas de Wi-Fi pour Flutter
+Pour un projet Flutter, le script ne connaît que `run`, `install` et `build`, et l'installation passe **uniquement par le câble** : `--wifi` n'est pas disponible.
+:::
 
 Comme pour le TP Swift, la première ouverture demande de faire confiance à votre compte : **Réglages, Général, VPN et gestion de l'appareil**, votre identifiant Apple, **Faire confiance**.
 
@@ -328,7 +342,7 @@ Dans ce TP, vous avez :
 - installé Flutter, et compilé le compilateur Dart pour iOS sous Linux (une fois pour toutes) ;
 - créé un projet Flutter qui vise Android et iOS ;
 - découvert les widgets, `StatefulWidget` et `setState` ;
-- mis au point l'interface dans le navigateur, puis compilé et installé l'application sur l'iPhone avec `flutter/build.sh --install`.
+- mis au point l'interface dans le navigateur, puis compilé et installé l'application sur l'iPhone avec `./devbox-build.sh`, qui appelle `flutter/build.sh` dans la dev-box.
 
 Pensez à versionner votre projet (`git init`, le `.gitignore` est fourni par `flutter create`).
 

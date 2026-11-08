@@ -24,7 +24,7 @@ Ce premier support prépare le terrain : une fois la dev-box prête, les trois T
 
 ## Prérequis
 
-- Une [dev-box](/cheatsheets/dev-box/) installée, qui tourne sur un **PC x86_64** (Intel ou AMD). L'environnement iOS ne fonctionne pas sur un Raspberry Pi ni sur un Mac à puce Apple (avec un Mac, utilisez directement Xcode).
+- Une [dev-box](/cheatsheets/dev-box/) installée et à jour (version 1.61 ou plus, voir [Comment mettre à jour ?](/cheatsheets/dev-box/#comment-mettre-a-jour)), qui tourne sur un **PC x86_64** (Intel ou AMD). L'environnement iOS ne fonctionne pas sur un Raspberry Pi ni sur un Mac à puce Apple (avec un Mac, utilisez directement Xcode).
 - Un **iPhone ou un iPad**, avec son câble, sous iOS 17 au minimum.
 - Un **identifiant Apple** (gratuit). Nous verrons plus bas lequel utiliser.
 - Environ **20 Go** de libre : Xcode à télécharger pèse plusieurs Go, et le SDK construit à partir de lui aussi.
@@ -42,6 +42,7 @@ Pas de panique : vous pouvez suivre toute la série et compiler les applications
 - construire le SDK iOS à partir de Xcode ;
 - connecter la dev-box à votre compte Apple ;
 - relier votre iPhone à la dev-box, avec le câble ou en Wi-Fi ;
+- compiler et installer vos applications depuis votre machine, avec le script `devbox-build.sh` ;
 - ce qu'est un identifiant d'application (bundle ID) et une signature.
 
 ## Pourquoi faut-il un Mac, normalement ?
@@ -149,13 +150,13 @@ Elle enchaîne, dans l'ordre :
 
 | | Identifiant Apple gratuit (mode `1`, mot de passe) | Programme développeur payant (mode `0`, clé d'API) |
 |---|---|---|
-| Installer avec `xtool dev` (TP Swift) | ✅ | ✅ |
+| Compiler les applications des trois TP | ✅ | ✅ |
 | Installer une application Flutter | ✅ | ✅ |
-| Installer avec `devbox ios xcode` (TP Kotlin Multiplateforme) | ❌ (compilation seulement) | ✅ |
+| Installer avec `devbox ios xcode` (TP Swift et Kotlin Multiplateforme) | ❌ (compilation seulement) | ✅ |
 | Durée de la signature | **7 jours** | 1 an |
 | Publier sur l'App Store / TestFlight | ❌ | ✅ |
 
-Pour ces TP, un identifiant Apple gratuit suffit pour l'essentiel. Votre enseignant vous dira si une clé d'API de la classe est disponible.
+Avec un identifiant Apple gratuit, vous pouvez suivre les trois TP et tout compiler, mais seule l'application Flutter s'installera sur l'iPhone. Votre enseignant vous dira si une clé d'API de la classe est disponible.
 
 ::: danger Un identifiant Apple dédié
 Avec le mode mot de passe, xtool se connecte à Apple par des interfaces privées (celles qu'utilise Xcode). Ça fonctionne, mais Apple ne le garantit pas. xtool conseille donc d'utiliser **un identifiant Apple créé pour l'occasion**, plutôt que celui de votre téléphone personnel (avec vos photos, vos achats, etc.).
@@ -200,6 +201,64 @@ Au premier envoi d'une application, l'iPhone peut vous demander d'activer le **m
 
 C'est d'ailleurs comme ça que les captures de ces TP ont été faites : la dev-box sur un PC, l'iPhone posé sur le bureau, sans câble.
 
+## Le script devbox-build.sh
+
+Dans les TP, vous écrirez votre code **sur votre machine**, dans VSCode, et c'est la dev-box qui le compilera. Plutôt que de jongler entre deux terminaux, un petit script fait le lien : `devbox-build.sh`. Vous le posez dans le dossier de votre projet, et vous le lancez **depuis un terminal de votre machine** :
+
+```bash
+./devbox-build.sh            # compile, signe, installe et lance l'application
+./devbox-build.sh build      # compile seulement
+./devbox-build.sh logs       # les logs de l'application (Ctrl-C pour arrêter)
+```
+
+<a href="/demo/ios/devbox-build.sh" download="devbox-build.sh">Télécharger devbox-build.sh</a> (chaque TP vous dit où le placer).
+
+![Le script devbox-build.sh, lancé sur votre machine, fait travailler la dev-box par docker exec, puis l'application part sur l'iPhone, par USB ou en Wi-Fi](./res/introduction_devbox_build.svg)
+
+Le script ne compile rien lui-même. Voici ce qu'il fait, dans l'ordre :
+
+1. il refuse de se lancer **dans** la dev-box : sa place est sur votre machine ;
+2. il vérifie que votre dev-box tourne (le conteneur `dev-box`), et que l'environnement iOS est prêt : SDK, connexion à Apple. Sinon, il vous dit quoi faire (`docker compose up -d`, `devbox dev-env ios`, etc.) ;
+3. il traduit le chemin du projet : `~/dev-box/data/projets/Hello` sur votre machine, c'est `/home/dev/projets/Hello` dans la dev-box ;
+4. il demande à la dev-box, avec `docker exec`, de lancer la commande `devbox ios xcode` dans ce dossier, avec les réglages de votre application (écrits en tête du script). C'est elle qui fait tout le travail : le projet Xcode généré par XcodeGen, la compilation, la signature, l'installation sur l'iPhone.
+
+Question :
+
+- Pourquoi ne pas tout simplement taper `devbox ios xcode` dans un terminal de la dev-box ?
+
+::: details Réponse
+Vous pouvez ! Le script n'est qu'un raccourci, mais il a trois avantages :
+
+- vous restez dans votre éditeur et son terminal, sur votre machine : pas besoin de vous connecter à la dev-box à chaque modification ;
+- les réglages propres à l'application (le module Kotlin, la configuration, etc.) sont écrits **une fois** dans le script, versionné avec le projet. Toute l'équipe lance la même commande, sans rien retenir ;
+- la même commande sert aux trois TP : seules quelques lignes en tête du fichier changent.
+:::
+
+::: tip Que se passe-t-il derrière ?
+`docker exec` lance une commande dans un conteneur qui tourne déjà, comme si vous l'aviez tapée dedans. Le script la lance en `root` dans la dev-box (avec vos outils, votre SDK et votre connexion Apple) : avec Docker « rootless », `root` dans le conteneur correspond à votre utilisateur sur la machine, et les fichiers créés dans le projet vous appartiennent. Avec Docker classique, le script rend à la fin les fichiers créés (le dossier `build/`, etc.) au propriétaire du projet.
+:::
+
+Ses étapes et ses réglages :
+
+| Étape | Rôle |
+|---|---|
+| `run` (par défaut) | Compile, signe, installe sur l'iPhone et lance l'application |
+| `build` | Compile seulement, sans signer |
+| `project`, `install`, `launch` | Une seule étape : le projet, l'installation, le lancement |
+| `logs` | Les logs de l'application sur l'iPhone |
+| `status` | L'état de la dev-box (SDK, compte Apple, appareils) |
+| `pair` | Associe l'iPhone pour le Wi-Fi (iOS 27), une seule fois |
+| `shell` | Un terminal dans la dev-box, dans le dossier du projet |
+| `key <AuthKey_XXXX.p8>` | Copie votre clé d'API App Store Connect dans la dev-box |
+
+- `--wifi 100.x.y.z` (ou la variable `IOS_WIFI`) installe en Wi-Fi plutôt que par le câble ;
+- `DEVBOX_CONTAINER` change le nom du conteneur, `DEVBOX_PROJECTS` le dossier des projets sur votre machine (par défaut, celui que Docker indique pour la dev-box) ;
+- `./devbox-build.sh --help` affiche toute l'aide, celle du script puis celle de `devbox ios xcode`.
+
+::: warning Sous Windows
+Le script est écrit en bash : lancez-le depuis le terminal Ubuntu (WSL), dans `~/dev-box/data/projets`, comme vos autres commandes Docker.
+:::
+
 ## Point de contrôle
 
 ```bash
@@ -220,7 +279,7 @@ Vous devez voir :
 - `Apple signed in`, la dev-box est connectée à votre compte ;
 - votre appareil dans `xtool devices`.
 
-Il vous manque quelque chose ? `devbox help ios` reprend chaque étape, avec les erreurs courantes.
+Le même état s'affiche depuis votre machine, avec `./devbox-build.sh status`. Il vous manque quelque chose ? `devbox help ios` reprend chaque étape, avec les erreurs courantes.
 :::
 
 ## Conclusion
@@ -230,7 +289,8 @@ Votre dev-box est maintenant une machine de développement iOS :
 - le compilateur Swift tourne sous Linux ;
 - le SDK iOS a été extrait de Xcode, une fois pour toutes ;
 - xtool signe vos applications avec votre compte Apple ;
-- l'iPhone est relié à la dev-box, par câble ou en Wi-Fi.
+- l'iPhone est relié à la dev-box, par câble ou en Wi-Fi ;
+- `devbox-build.sh` compile et installe vos applications depuis votre machine.
 
 Place au code ! Je vous conseille de commencer par [le hello world en Swift](./swift.md) : c'est le plus rapide à compiler, et il vous permettra de vérifier que toute la chaîne fonctionne avant de passer à [Flutter](./flutter.md) et à [Kotlin Multiplateforme](./kmp.md).
 

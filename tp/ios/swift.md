@@ -1,5 +1,5 @@
 ---
-description: "Un hello world iPhone en Swift et SwiftUI, compilé et installé depuis la dev-box (Linux) avec xtool, sans Mac."
+description: "Un hello world iPhone en Swift et SwiftUI, décrit par un project.yml (XcodeGen), compilé et installé depuis la dev-box (Linux) avec devbox-build.sh, sans Mac."
 ---
 
 # iOS sans Mac : hello world en Swift
@@ -20,81 +20,101 @@ Voici ce que nous allons construire :
 
 ## Prérequis
 
-- La dev-box prête pour iOS : le [support précédent](./introduction.md) doit être terminé, `devbox ios status` doit afficher `SDK registered` et `Apple signed in`.
+- La dev-box prête pour iOS (version 1.61 ou plus) : le [support précédent](./introduction.md) doit être terminé, `./devbox-build.sh status` doit afficher `SDK registered` et `Apple signed in`.
+- Pour **installer** l'application sur l'iPhone, une connexion à Apple avec une **clé d'API** (programme développeur payant, voir [votre compte Apple](./introduction.md#votre-compte-apple)). Avec un identifiant Apple gratuit, vous pourrez suivre tout le TP et compiler l'application, mais pas l'installer.
 - Avoir déjà écrit une interface avec Compose (par exemple dans [Découverte des bases d'Android](/tp/android/compose/android-base.md)) : ce n'est pas obligatoire, mais les comparaisons vous parleront davantage.
 
 ## Objectifs
 
 À la fin de ce TP vous saurez :
 
-- créer un projet iOS avec xtool ;
+- décrire un projet iOS dans un simple fichier texte, `project.yml` (XcodeGen) ;
 - lire la structure d'un projet SwiftUI ;
 - écrire une vue avec un état (`@State`) ;
-- compiler, signer et installer l'application sur votre iPhone, depuis Linux.
+- compiler, signer et installer l'application sur votre iPhone depuis Linux, avec `devbox-build.sh`.
 
 ## Créer le projet
 
-Dans la dev-box, placez-vous dans votre dossier de projets, puis créez l'application :
+Sur un Mac, Xcode crée un dossier `Hello.xcodeproj` rempli de fichiers illisibles, qu'on ne modifie qu'à travers Xcode. Nous allons faire autrement : décrire le projet dans un **fichier texte**, `project.yml`, que l'outil Open Source [XcodeGen](https://github.com/yonaskolb/XcodeGen) transforme en projet Xcode au moment de compiler. La dev-box s'en charge, vous n'avez rien à installer.
+
+### Le dossier du projet
+
+Tout se passe **sur votre machine**, dans le dossier des projets de la dev-box (voir [Où sont les fichiers ?](/cheatsheets/dev-box/#ou-sont-les-fichiers)). Dans un terminal de votre machine :
 
 ```bash
-cd ~/projets
-xtool new Hello
+cd ~/dev-box/data/projets
+mkdir -p Hello/Sources
+cd Hello
+curl -fsSLO https://cours.brosseau.ovh/demo/ios/devbox-build.sh
+chmod +x devbox-build.sh
 ```
 
-```
-Creating package: Hello
-Creating Package.swift
-Creating xtool.yml
-Creating .gitignore
-Creating Sources/Hello/HelloApp.swift
-Creating Sources/Hello/ContentView.swift
-
-Finished generating project Hello. Next steps:
-- Enter the directory with `cd Hello`
-- Build and run with `xtool dev`
-```
-
-Et voilà, le projet est créé. Ouvrez le dossier `~/dev-box/data/projets/Hello` dans VSCode (ou restez dans Neovim, dans la dev-box) : c'est le même dossier, vu des deux côtés.
+Vous venez de récupérer le script `devbox-build.sh` présenté dans [le support de préparation](./introduction.md#le-script-devbox-build-sh). Ouvrez maintenant le dossier `Hello` dans VSCode : vous allez y créer trois fichiers.
 
 ### La structure du projet
 
 ```
 Hello/
-├── Package.swift          La description du projet (Swift Package Manager)
-├── xtool.yml              Le bundle ID de l'application
+├── project.yml            La description du projet (XcodeGen)
+├── devbox-build.sh        Le script qui compile et installe l'application
 └── Sources/
-    └── Hello/
-        ├── HelloApp.swift     Le point d'entrée de l'application
-        └── ContentView.swift  Le premier (et seul) écran
+    ├── HelloApp.swift     Le point d'entrée de l'application
+    └── ContentView.swift  Le premier (et seul) écran
 ```
 
-Sur un Mac, Xcode aurait créé un dossier `Hello.xcodeproj` plein de fichiers illisibles. Ici, tout est en texte simple : un avantage énorme pour Git.
+Tout est en texte simple : un avantage énorme pour Git, et le même `project.yml` fonctionne sur un Mac (`xcodegen generate`, puis le projet s'ouvre dans Xcode).
+
+### Le fichier project.yml
+
+Créez `project.yml` à la racine du dossier `Hello` :
+
+```yaml
+name: Hello
+options:
+  bundleIdPrefix: fr.prenom.nom
+  deploymentTarget:
+    iOS: "17.0"
+targets:
+  Hello:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: Hello
+        UILaunchScreen: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: fr.prenom.nom.hello
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+```
+
+Comme expliqué dans [le support précédent](./introduction.md#le-bundle-id), le bundle ID doit être unique chez Apple : remplacez `fr.prenom.nom` par vos vrais prénom et nom, aux deux endroits.
+
+Prenez le temps de lire ce fichier :
+
+| Clé | Rôle | Sur Android |
+|---|---|---|
+| `name` | Le nom du projet | `rootProject.name` |
+| `deploymentTarget` | La version minimale d'iOS | `minSdk` |
+| `targets` | Les « cibles » à construire, ici une seule application, `Hello` | Le module `app` |
+| `sources` | Le dossier du code | `src/main/java` |
+| `info` | Le fichier `Info.plist` (nom affiché, écran de lancement, etc.), généré par XcodeGen | `AndroidManifest.xml` |
+| `PRODUCT_BUNDLE_IDENTIFIER` | Le bundle ID | `applicationId` |
+| `MARKETING_VERSION`, `CURRENT_PROJECT_VERSION` | La version affichée et le numéro de build | `versionName`, `versionCode` |
 
 ::: tip Que se passe-t-il derrière ?
-`Package.swift` est l'équivalent du `build.gradle.kts` d'Android : il décrit le projet, la version minimale d'iOS (`.iOS(.v17)`) et les dépendances. C'est le format de **Swift Package Manager**, l'outil officiel de Swift, qui fonctionne aussi bien sur Mac que sous Linux.
+À chaque compilation, la dev-box lance XcodeGen, qui écrit le projet Xcode dans `build/devbox-ios/xcodegen` (jamais à côté de votre code). Puis `devbox ios xcode` le transforme en paquet Swift (`build/devbox-ios/xtool`), que xtool sait compiler sous Linux. Vous ne modifiez que `project.yml` et `Sources/` ; tout ce qui est dans `build/` est régénéré, ne le versionnez pas.
 :::
-
-### Le bundle ID
-
-Ouvrez `xtool.yml` :
-
-```yaml
-version: 1
-bundleID: com.example.Hello
-```
-
-Comme expliqué dans [le support précédent](./introduction.md#le-bundle-id), `com.example.Hello` sera refusé par Apple dès qu'une deuxième personne l'utilisera. Remplacez-le par le vôtre :
-
-```yaml
-version: 1
-bundleID: fr.prenom.nom.hello
-```
 
 ## Le code
 
 ### Le point d'entrée
 
-Ouvrez `Sources/Hello/HelloApp.swift` :
+Créez `Sources/HelloApp.swift` :
 
 ```swift
 import SwiftUI
@@ -112,11 +132,9 @@ struct HelloApp: App {
 - `@main` indique **où démarre l'application**, comme le `MainActivity` déclaré dans le `AndroidManifest.xml`.
 - `WindowGroup` est la fenêtre de l'application ; elle affiche `ContentView`, notre écran.
 
-Rien à modifier ici.
-
 ### L'écran
 
-Ouvrez `Sources/Hello/ContentView.swift` et remplacez son contenu par :
+Créez `Sources/ContentView.swift` :
 
 ```swift
 import SwiftUI
@@ -181,27 +199,30 @@ Sans `@State`, le code ne compile même pas : une `struct` SwiftUI ne peut pas m
 
 ## Compiler
 
-Avant d'envoyer l'application sur l'iPhone, vérifions qu'elle compile :
+Avant d'envoyer l'application sur l'iPhone, vérifions qu'elle compile. Dans le terminal **de votre machine**, dans le dossier `Hello` :
 
 ```bash
-cd ~/projets/Hello
-xtool dev build
+./devbox-build.sh build
 ```
 
 ```
-[86 / 98] Hello
-[94 / 98] Hello
-[97 / 98] Hello-App-product
-Build complete! (4.92 secs)
-Wrote to /home/dev/projets/Hello/xtool/Hello.app
+[dev-box-ios] project.yml: Xcode project generated (XcodeGen)
+[dev-box-ios] xtool package from Hello.xcodeproj (Debug)
+…
+[dev-box-ios] Hello (debug, ship.sh --device; the first build fetches and builds every package, minutes)
+Building for debugging...
+[3 / 3] Hello-App-product
+Build complete! (0.71 secs)
+…
+[dev-box-ios] app: /home/dev/projets/Hello/build/devbox-ios/xtool/xtool/Hello.app (unsigned)
 ```
 
-La première compilation prend quelques minutes (Swift compile tout ce dont l'application a besoin), les suivantes quelques secondes.
+La première compilation prend quelques minutes (Swift compile tout ce dont l'application a besoin), les suivantes quelques secondes. Les lignes `warning:` qui peuvent s'afficher au passage ne sont pas des erreurs.
 
 ::: tip Point de contrôle
-Vous devez obtenir `Build complete!` et un dossier `xtool/Hello.app`.
+Vous devez obtenir `Build complete!` et un dossier `build/devbox-ios/xtool/xtool/Hello.app`.
 
-Une erreur ? Lisez-la attentivement : le compilateur Swift indique le fichier, la ligne, et souvent la correction à apporter.
+Une erreur ? Lisez-la attentivement : le compilateur Swift indique le fichier, la ligne, et souvent la correction à apporter. Et si le script vous dit que la dev-box n'est pas prête, il vous dit aussi quoi faire.
 :::
 
 Question :
@@ -209,7 +230,7 @@ Question :
 - `Hello.app` est un **dossier**, pas un fichier. À votre avis, que contient-il ?
 
 ::: details Réponse
-Une application iOS est un « bundle » : un dossier qui contient le programme compilé (pour le processeur ARM de l'iPhone), le fichier `Info.plist` (le bundle ID, la version, le nom affiché, etc.) et les ressources (images, traductions). Allez voir avec `ls xtool/Hello.app` ou dans `yazi`.
+Une application iOS est un « bundle » : un dossier qui contient le programme compilé (pour le processeur ARM de l'iPhone), le fichier `Info.plist` (le bundle ID, la version, le nom affiché, etc.) et les ressources (images, traductions). Allez voir avec `ls build/devbox-ios/xtool/xtool/Hello.app`.
 
 Pour l'installer, ce dossier est signé puis compressé dans un fichier `.ipa`, l'équivalent du `.apk` d'Android.
 :::
@@ -219,12 +240,21 @@ Pour l'installer, ce dossier est signé puis compressé dans un fichier `.ipa`, 
 Branchez votre iPhone, déverrouillez-le, puis :
 
 ```bash
-xtool dev
+./devbox-build.sh
 ```
 
-Cette seule commande compile, **signe** l'application avec votre compte Apple, puis l'installe sur l'appareil. L'icône « Hello » apparaît sur l'écran d'accueil.
+Sans étape, le script fait tout (`run`) : il compile, **signe** l'application avec votre compte Apple, l'installe sur l'appareil, puis la lance. L'icône « Hello » apparaît sur l'écran d'accueil :
 
-La première fois, l'iPhone refuse d'ouvrir l'application (« Développeur non approuvé ») : il ne connaît pas encore votre compte. Allez dans **Réglages, Général, VPN et gestion de l'appareil**, choisissez votre identifiant Apple, puis **Faire confiance**. Lancez l'application : votre hello world s'affiche 🎉
+```
+[dev-box-ios] app: /home/dev/projets/Hello/build/devbox-ios/xtool/xtool/Hello.app (unsigned)
+[dev-box-ios] development profile for XTL-….fr.prenom.nom.hello on 00008110-…
+[dev-box-ios] signed (rcodesign)
+[dev-box-ios] installed on 00008110-…
+[dev-box-ios] launching XTL-….fr.prenom.nom.hello
+Process launched with pid 2992
+```
+
+Si l'iPhone refuse d'ouvrir l'application (« Développeur non approuvé »), c'est qu'il ne connaît pas encore votre compte : allez dans **Réglages, Général, VPN et gestion de l'appareil**, choisissez votre compte, puis **Faire confiance**. Votre hello world s'affiche 🎉
 
 ![L'application Swift sur l'iPhone, au lancement puis après trois clics](./res/swift_app.png)
 
@@ -232,15 +262,29 @@ La première fois, l'iPhone refuse d'ouvrir l'application (« Développeur non a
 L'application s'ouvre sur l'iPhone, et le compteur augmente à chaque clic.
 :::
 
-::: warning Une signature de 7 jours
-Avec un identifiant Apple gratuit, la signature ne dure que **7 jours** : passé ce délai, l'application ne s'ouvre plus. Pas de panique, il suffit de relancer `xtool dev` pour la renouveler.
+::: tip Que veut dire XTL-… devant le bundle ID ?
+L'application est signée sous un identifiant préfixé, `XTL-<équipe>.fr.prenom.nom.hello`, comme le fait xtool. Ainsi, votre version de développement ne remplace jamais la vraie application si elle est un jour publiée sur l'App Store sous `fr.prenom.nom.hello`.
+:::
+
+::: details Sans câble, en Wi-Fi
+Avec un iPhone sous iOS 27 associé à la dev-box (une fois, câble branché : `./devbox-build.sh pair`, voir `devbox help ios-wifi`), ajoutez simplement son adresse :
+
+```bash
+./devbox-build.sh run --wifi 100.x.y.z
+```
+
+C'est ainsi qu'ont été faites les captures de ce TP.
+:::
+
+::: details Identifiant Apple gratuit : compiler sans installer
+Sans clé d'API, la dev-box ne peut pas signer l'application pour `devbox ios xcode`. Vous pouvez tout de même vérifier que tout compile avec `./devbox-build.sh build`, et travailler en binôme avec un camarade qui a accès à une clé pour l'installation.
 :::
 
 ::: details Voir les logs de l'application
-`xtool dev` installe l'application, mais ne la lance pas. `device-run.sh` (fourni par omarchy-apple-dev) fait la même chose, puis lance l'application et affiche ses logs, comme le Logcat d'Android Studio :
+Le script affiche aussi les logs de l'application, comme le Logcat d'Android Studio (`Ctrl-C` pour arrêter) :
 
 ```bash
-device-run.sh
+./devbox-build.sh logs
 ```
 
 Un `print("Clic !")` dans l'action du bouton s'affichera ici à chaque clic.
@@ -259,6 +303,8 @@ Quelques pistes :
 - un champ de texte s'écrit `TextField("Votre prénom", text: $prenom)`. Le `$` donne au champ un **lien** vers l'état `prenom`, pour qu'il puisse le modifier (c'est le `value` / `onValueChange` de Compose, en une seule fois) ;
 - un bouton se grise avec `.disabled(condition)` ;
 - `Button("…", role: .destructive) { }` affiche un bouton en rouge, pour une action « dangereuse ».
+
+Relancez ensuite `./devbox-build.sh`.
 
 ![La solution de l'exercice sur l'iPhone](./res/swift_exercice.png)
 
@@ -305,16 +351,20 @@ struct ContentView: View {
 
 :::
 
+## Le projet complet
+
+[Le projet complet de ce TP est téléchargeable ici](/demo/ios/swift-hello.zip), avec la solution de l'exercice et son `devbox-build.sh`. Pensez à remplacer `fr.prenom.nom` dans `project.yml` avant de le lancer.
+
 ## Conclusion
 
 Dans ce TP, vous avez :
 
-- créé un projet iOS avec `xtool new`, sans Xcode ;
+- décrit un projet iOS dans un fichier texte, `project.yml`, sans Xcode ;
 - découvert SwiftUI, et ses nombreux points communs avec Compose (`VStack`, `@State`, etc.) ;
-- compilé l'application sous Linux avec `xtool dev build` ;
-- signé et installé l'application sur votre iPhone avec `xtool dev`.
+- compilé l'application sous Linux avec `./devbox-build.sh build` ;
+- signé, installé et lancé l'application sur votre iPhone avec `./devbox-build.sh`, depuis votre machine.
 
-Pensez à versionner votre projet : `git init`, puis un premier commit (le `.gitignore` est déjà fourni par xtool).
+Pensez à versionner votre projet : un fichier `.gitignore` qui contient `build/`, puis `git init` et un premier commit.
 
 La suite : le même hello world, cette fois avec [Flutter](./flutter.md), puis avec [Kotlin Multiplateforme](./kmp.md).
 

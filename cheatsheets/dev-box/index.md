@@ -405,14 +405,14 @@ Normalement, développer pour iPhone demande un Mac et Xcode. Avec la dev-box, v
 
 - **Pas de simulateur** : l'application tourne sur un vrai iPhone ou iPad.
 - **Une machine x86_64 uniquement** (un PC classique, Intel ou AMD) : l'environnement ne fonctionne pas sur un Raspberry Pi ni sur un Mac à puce Apple (M1, M2, etc.). Avec un Mac, utilisez plutôt Xcode directement.
-- **Un compte Apple** : un identifiant Apple gratuit suffit pour installer vos applications sur votre appareil. La connexion par mot de passe passe par des interfaces privées d'Apple : xtool conseille d'utiliser un identifiant Apple créé pour l'occasion plutôt que votre compte personnel.
+- **Un compte Apple** : un identifiant Apple gratuit suffit pour installer une application avec `xtool dev` ; `devbox ios xcode` (et le script `devbox-build.sh` des TP) demande une clé d'API du programme développeur payant. La connexion par mot de passe passe par des interfaces privées d'Apple : xtool conseille d'utiliser un identifiant Apple créé pour l'occasion plutôt que votre compte personnel.
 - **Du temps et de la place** : le fichier de Xcode à télécharger pèse plusieurs Go, et la première installation prend plusieurs minutes.
 
 :::
 
 À tout moment, `devbox help ios` réaffiche toutes les étapes ci-dessous, avec les cas particuliers.
 
-Pour mettre tout ça en pratique, la série de TP [iOS sans Mac](/tp/ios/introduction.md) déroule un hello world en Swift, en Flutter et en Kotlin Multiplateforme.
+Pour mettre tout ça en pratique, la série de TP [iOS sans Mac](/tp/ios/introduction.md) déroule un hello world en Swift, en Flutter et en Kotlin Multiplateforme, compilé et installé depuis votre machine avec le script [`devbox-build.sh`](/tp/ios/introduction.md#le-script-devbox-build-sh).
 
 ### 1. Installer l'environnement
 
@@ -500,6 +500,20 @@ Ajoutez la ligne `export` à votre `~/.zshrc` pour ne plus avoir à la taper. Av
 
 ### 4. Votre première application
 
+Les TP décrivent l'application dans un fichier `project.yml` ([XcodeGen](https://github.com/yonaskolb/XcodeGen)), à côté du code Swift, et la construisent avec `devbox ios xcode` : la dev-box génère le projet Xcode, compile, signe, installe et lance l'application. Le plus simple est de le faire **depuis votre machine**, avec le script <a href="/demo/ios/devbox-build.sh" download="devbox-build.sh"><code>devbox-build.sh</code></a> posé dans le dossier du projet (tout est expliqué dans [le support de préparation](/tp/ios/introduction.md#le-script-devbox-build-sh)) :
+
+```bash
+cd ~/dev-box/data/projets/Hello   # sur votre machine, à côté de project.yml
+./devbox-build.sh                 # compile, signe, installe et lance l'application
+./devbox-build.sh build           # compile seulement
+./devbox-build.sh logs            # les logs de l'application
+./devbox-build.sh --help          # toutes les étapes et options
+```
+
+Le script vérifie que la dev-box tourne et qu'elle est prête pour iOS, puis lance `devbox ios xcode` dans la dev-box (`docker exec`). Dans la dev-box, la même chose s'écrit `devbox ios xcode` (`devbox ios xcode --help`). Ces deux commandes demandent une connexion à xtool avec une **clé d'API** (programme développeur payant).
+
+Avec un identifiant Apple gratuit, xtool sait créer et installer un projet plus simple (un paquet Swift), dans la dev-box :
+
 ```bash
 cd ~/projets
 xtool new Hello
@@ -508,10 +522,10 @@ xtool dev        # compile, signe et installe l'application sur l'appareil
 device-run.sh    # la même chose, puis la lance et affiche ses logs
 ```
 
-La première compilation prend quelques minutes, les suivantes sont rapides. Le code est dans `Sources/`, en Swift et SwiftUI : vous pouvez l'ouvrir avec Neovim ou VSCode. Sur l'appareil, la première fois :
+La première compilation prend quelques minutes, les suivantes sont rapides. Sur l'appareil, la première fois :
 
-- s'il vous le demande, activez le **mode développeur** : Réglages, Confidentialité et sécurité, Mode développeur (l'appareil redémarre), puis relancez `xtool dev` ;
-- au premier lancement, l'application est bloquée (« Développeur non approuvé ») : Réglages, Général, VPN et gestion de l'appareil, votre identifiant Apple, puis « Faire confiance ».
+- s'il vous le demande, activez le **mode développeur** : Réglages, Confidentialité et sécurité, Mode développeur (l'appareil redémarre), puis relancez l'installation ;
+- si l'application est bloquée au premier lancement (« Développeur non approuvé ») : Réglages, Général, VPN et gestion de l'appareil, votre compte, puis « Faire confiance ».
 
 ::: tip Une signature de 7 jours
 
@@ -533,15 +547,17 @@ devbox ios xcode logs --wifi 100.x.y.z   # les logs
 export IOS_WIFI=100.x.y.z                # pour ne plus taper --wifi
 ```
 
-Attention : `xtool dev` et `device-run.sh` ont toujours besoin du câble, le Wi-Fi passe par `devbox ios xcode`. Les étapes et les pannes courantes sont dans `devbox help ios-wifi`.
+Ou, depuis votre machine, avec le script des TP : `./devbox-build.sh run --wifi 100.x.y.z` (`./devbox-build.sh pair` fait l'étape 1).
+
+Attention : `xtool dev`, `device-run.sh` et les projets Flutter ont toujours besoin du câble, le Wi-Fi passe par `devbox ios xcode`. Les étapes et les pannes courantes sont dans `devbox help ios-wifi`.
 
 ### Pour aller plus loin
 
 - **Un projet Xcode existant** (`.xcodeproj` ou `project.yml` de XcodeGen) : `devbox ios xcode` le compile sous Linux, le signe, l'installe et le lance. `devbox ios xcode --help` liste les options (`--configuration Release`, etc.). Cette commande demande une connexion à xtool avec une clé d'API (programme développeur payant).
-- **Kotlin Multiplatform** : `devbox ios kmp` construit la partie iOS d'un projet Kotlin Multiplatform, que Gradle ignore sous Linux (il faut aussi `devbox dev-env java`), et `devbox ios xcode --kmp :shared` construit l'application complète.
+- **Kotlin Multiplatform** : `devbox ios kmp` construit la partie iOS d'un projet Kotlin Multiplatform, que Gradle ignore sous Linux (il faut aussi `devbox dev-env java`), et `devbox ios xcode --kmp :shared` construit l'application complète (avec `devbox-build.sh` : la ligne `APP_KMP=":shared"` en tête du script, voir le [TP Kotlin Multiplateforme](/tp/ios/kmp.md)).
 - **Déboguer** : `device-run.sh --lldb` lance l'application avec le débogueur, `pymobiledevice3 syslog live` affiche les logs de l'appareil et `pymobiledevice3 crash pull ./crashes` récupère ses rapports de plantage.
 - **Publier** : `ship.sh` produit le `.ipa` pour l'App Store, `ship.sh --upload` l'envoie sur TestFlight (programme développeur payant).
-- **Flutter** : c'est possible aussi, voir `flutter/README.md` dans `~/.local/share/omarchy-apple-dev`.
+- **Flutter** : c'est possible aussi, voir `flutter/README.md` dans `~/.local/share/omarchy-apple-dev`, ou le [TP Flutter](/tp/ios/flutter.md) (`devbox-build.sh` reconnaît un projet Flutter et appelle `flutter/build.sh`, par USB uniquement).
 
 Une mise à jour de Swift demande de reconstruire le SDK : `devbox help ios` (étape 5) explique comment faire.
 

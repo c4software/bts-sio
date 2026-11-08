@@ -12,7 +12,7 @@ description: "Un hello world iPhone en Kotlin Multiplateforme et Compose Multipl
 
 Dernier épisode de la série : après [Swift](./swift.md) et [Flutter](./flutter.md), nous revenons en terrain connu avec **Kotlin**. Grâce à **Kotlin Multiplateforme** et **Compose Multiplatform**, le code Kotlin et les écrans Compose que vous écrivez pour Android peuvent aussi tourner sur iPhone.
 
-Vous avez sans doute déjà croisé ces outils dans [l'introduction à Kotlin Multiplateforme](/tp/android/compose-multiplateforme/introduction.md). Il y avait alors une limite de taille : **la partie iOS ne se compilait que sur un Mac**. Gradle (et plus précisément Kotlin/Native) refuse de construire pour iOS sous Linux. La dev-box lève cette limite avec deux commandes : `devbox ios kmp` et `devbox ios xcode`.
+Vous avez sans doute déjà croisé ces outils dans [l'introduction à Kotlin Multiplateforme](/tp/android/compose-multiplateforme/introduction.md). Il y avait alors une limite de taille : **la partie iOS ne se compilait que sur un Mac**. Gradle (et plus précisément Kotlin/Native) refuse de construire pour iOS sous Linux. La dev-box lève cette limite avec la commande `devbox ios xcode --kmp`, lancée depuis votre machine par le même script `devbox-build.sh` que dans le [TP Swift](./swift.md).
 
 Voici ce que nous allons construire :
 
@@ -20,7 +20,7 @@ Voici ce que nous allons construire :
 
 ## Prérequis
 
-- La dev-box prête pour iOS : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
+- La dev-box prête pour iOS (version 1.61 ou plus) : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
 - Les bases de Compose : `@Composable`, `Column`, `Button`, `remember { mutableStateOf() }` (voir [Découverte des bases d'Android](/tp/android/compose/android-base.md)).
 - Pour **installer** l'application sur l'iPhone, une connexion à Apple avec une **clé d'API** (programme développeur payant, voir [votre compte Apple](./introduction.md#votre-compte-apple)). Avec un identifiant Apple gratuit, vous pourrez suivre tout le TP et compiler l'application, mais pas l'installer.
 
@@ -32,7 +32,7 @@ Voici ce que nous allons construire :
 - lire l'organisation d'un projet multiplateforme (`shared`, `iosApp`) ;
 - partager du code et des écrans Compose avec iOS ;
 - utiliser `expect` / `actual` pour appeler l'API de l'iPhone depuis Kotlin ;
-- construire le framework iOS et l'application sous Linux, puis l'installer sur l'iPhone.
+- construire le framework iOS et l'application sous Linux, puis l'installer sur l'iPhone, avec `devbox-build.sh`.
 
 ## Java
 
@@ -289,17 +289,34 @@ iosApp/ (Swift) + Shared.framework
 iosApp.app ──► installée et lancée sur l'iPhone
 ```
 
-### C'est parti
+Tout ça est lancé, comme dans le TP Swift, par le script `devbox-build.sh`, depuis votre machine (voir [le support de préparation](./introduction.md#le-script-devbox-build-sh)).
 
-Branchez l'iPhone, déverrouillez-le, puis depuis le dossier `iosApp` :
+### Le script
+
+Le projet Xcode est dans le dossier `iosApp` : c'est là que le script va. Dans un terminal de votre machine :
 
 ```bash
-cd ~/projets/HelloKmp/iosApp
-devbox ios xcode --kmp :shared
+cd ~/dev-box/data/projets/HelloKmp/iosApp
+curl -fsSLO https://cours.brosseau.ovh/demo/ios/devbox-build.sh
+chmod +x devbox-build.sh
 ```
 
-- `devbox ios xcode` construit l'application du projet Xcode qu'il trouve dans le dossier, la signe, l'installe et la lance ;
-- `--kmp :shared` lui demande de construire d'abord le framework du module Gradle `:shared`, et de l'intégrer à l'application.
+Ouvrez `iosApp/devbox-build.sh` dans VSCode : en tête du fichier, une seule ligne est à adapter. Indiquez le module Gradle qui produit le framework iOS :
+
+```bash
+# Kotlin Multiplateforme : le module Gradle qui produit le framework iOS (par exemple :shared), vide sinon
+APP_KMP=":shared"
+```
+
+Avec ce réglage, le script ajoute `--kmp :shared` à `devbox ios xcode` : la dev-box construit d'abord le framework du module Gradle `:shared` (en remontant jusqu'au dossier qui contient `gradlew`), puis l'intègre à l'application.
+
+### C'est parti
+
+Branchez l'iPhone, déverrouillez-le, puis, toujours dans `iosApp` :
+
+```bash
+./devbox-build.sh
+```
 
 La première fois, soyez patient : la dev-box télécharge le nécessaire pour Kotlin/Native (environ 300 Mo) et toutes les dépendances Gradle. Comptez **5 à 10 minutes**, puis environ 3 minutes pour les suivantes. Voici les étapes principales qui s'affichent :
 
@@ -310,10 +327,10 @@ La première fois, soyez patient : la dev-box télécharge le nécessaire pour K
 [kmp] framework: /home/dev/projets/HelloKmp/iosApp/build/devbox-ios/kmp/Shared.framework
 [dev-box-ios] Shared.framework: a binary target of the package
 [dev-box-ios] iosApp (debug, ship.sh --device; the first build fetches and builds every package, minutes)
-Build complete! (5.09 secs)
+Build complete! (4.93 secs)
 [dev-box-ios] app: /home/dev/projets/HelloKmp/iosApp/build/devbox-ios/xtool/xtool/iosApp.app (unsigned)
 [dev-box-ios] signed (rcodesign)
-[dev-box-ios] installed on 00008110-… 
+[dev-box-ios] installed on 00008110-…
 [dev-box-ios] launching XTL-….fr.prenom.nom.HelloKmp
 ```
 
@@ -329,20 +346,20 @@ L'application s'ouvre sur l'iPhone, affiche la version d'iOS de votre appareil, 
 Sans clé d'API, `devbox ios xcode` ne peut pas signer l'application. Vous pouvez tout de même vérifier que tout compile, framework compris :
 
 ```bash
-devbox ios xcode build --kmp :shared
+./devbox-build.sh build
 ```
 
-L'application (non signée) est alors dans `build/devbox-ios/xtool/xtool/iosApp.app`.
+L'application (non signée) est alors dans `iosApp/build/devbox-ios/xtool/xtool/iosApp.app`.
 :::
 
 ::: details Sans câble, en Wi-Fi
-Avec un iPhone sous iOS 27 associé à la dev-box (`devbox help ios-wifi`), ajoutez simplement son adresse :
+Avec un iPhone sous iOS 27 associé à la dev-box (`./devbox-build.sh pair`, une fois, câble branché ; voir `devbox help ios-wifi`), ajoutez simplement son adresse :
 
 ```bash
-devbox ios xcode --kmp :shared --wifi 100.x.y.z
+./devbox-build.sh run --wifi 100.x.y.z
 ```
 
-C'est ainsi qu'ont été faites les captures de ce TP.
+Ou, pour ne plus la retaper : `export IOS_WIFI=100.x.y.z`. C'est ainsi qu'ont été faites les captures de ce TP.
 :::
 
 ::: tip Que veut dire XTL-… devant le bundle ID ?
@@ -355,7 +372,7 @@ C'est à vous de jouer ! Ajoutez, sous le bouton du compteur, un bouton « Remet
 
 Une piste : en Compose, `OutlinedButton` est un bouton plus discret, et tous les boutons acceptent un paramètre `enabled`.
 
-Relancez ensuite `devbox ios xcode --kmp :shared`.
+Relancez ensuite `./devbox-build.sh`.
 
 ![La solution de l'exercice sur l'iPhone](./res/kmp_exercice.png)
 
@@ -385,6 +402,10 @@ Question bonus :
 Uniquement `Platform.ios.kt`, le code spécifique à iOS : `UIDevice.currentDevice.model` donne le modèle. `App.kt` ne change pas, il ne connaît que l'interface `Platform`. C'est tout l'intérêt de `expect` / `actual` : le code commun ignore les détails de chaque plateforme.
 :::
 
+## Le projet complet
+
+[Le projet complet de ce TP est téléchargeable ici](/demo/ios/kmp-hello.zip), avec la solution de l'exercice et son `iosApp/devbox-build.sh` déjà réglé. Pensez à remplacer `fr.brosseau.tpios.kmp` par votre propre identifiant (dans `iosApp/Configuration/Config.xcconfig`) avant de le lancer.
+
 ## Conclusion
 
 Dans ce TP, vous avez :
@@ -392,7 +413,7 @@ Dans ce TP, vous avez :
 - généré un projet Compose Multiplatform avec le générateur de JetBrains ;
 - compris le lien entre le module `shared` (Kotlin) et l'application `iosApp` (Swift) ;
 - partagé un écran Compose avec iOS, et appelé une API d'iOS avec `expect` / `actual` ;
-- construit le framework et l'application iOS **sous Linux**, puis installé l'application sur l'iPhone avec `devbox ios xcode --kmp`.
+- construit le framework et l'application iOS **sous Linux**, puis installé l'application sur l'iPhone avec `devbox-build.sh` (et son réglage `APP_KMP`), depuis votre machine.
 
 Faisons le bilan des trois TP :
 
@@ -403,10 +424,11 @@ Faisons le bilan des trois TP :
 | Interface | SwiftUI, native | Widgets Flutter, dessinés par Flutter | Compose, dessiné par Compose (ou native, si on ne partage que la logique) |
 | Ce qui est partagé | Rien, c'est du natif | Tout | Au choix : la logique seule, ou aussi les écrans |
 | Préparation dans la dev-box | Aucune | Compilateur Dart pour iOS (15 min, 7 Go) | Java, et 300 Mo au premier build |
-| Signature pour installer | Identifiant Apple gratuit | Identifiant Apple gratuit | Clé d'API (compte payant) |
+| Construire et installer | `devbox-build.sh` (USB ou Wi-Fi) | `devbox-build.sh` (USB seulement) | `devbox-build.sh` (USB ou Wi-Fi) |
+| Signature pour installer | Clé d'API (compte payant) | Identifiant Apple gratuit | Clé d'API (compte payant) |
 
 Il n'y a pas de « meilleur » choix : tout dépend du projet et de l'équipe. Une équipe qui fait déjà de l'Android en Kotlin ira naturellement vers Kotlin Multiplateforme ; une application uniquement pour iPhone, qui doit s'intégrer parfaitement au système, sera souvent écrite en Swift.
 
-Pensez à versionner votre projet (`git init`, le `.gitignore` est fourni par le générateur).
+Pensez à versionner votre projet (`git init`, le `.gitignore` fourni par le générateur ignore déjà les dossiers `build/`).
 
 👋 Si vous avez des questions, n'hésitez pas.
