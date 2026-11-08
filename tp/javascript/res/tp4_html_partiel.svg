@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="470" viewBox="0 0 900 470" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="470" fill="#ffffff"/>
+  <!-- headers -->
+  <rect x="110" y="20" width="180" height="44" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="200" y="48" text-anchor="middle" font-weight="600" fill="#0f172a">Navigateur</text>
+  <rect x="630" y="20" width="180" height="44" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="720" y="48" text-anchor="middle" font-weight="600" fill="#0f172a">Serveur PHP</text>
+  <g stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4">
+    <line x1="200" y1="64" x2="200" y2="420"/>
+    <line x1="720" y1="64" x2="720" y2="420"/>
+  </g>
+  <!-- 1. la page -->
+  <line x1="200" y1="100" x2="718" y2="100" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="460" y="93" text-anchor="middle" fill="#0f172a">1. GET index.html</text>
+  <line x1="720" y1="135" x2="202" y2="135" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+  <text x="460" y="128" text-anchor="middle" fill="#2563eb">La page : le titre et « …Chargement en cours… »</text>
+  <!-- timer -->
+  <rect x="40" y="152" width="320" height="34" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="200" y="174" text-anchor="middle" fill="#0f172a">setTimeout : on attend 5 secondes</text>
+  <!-- 2. fetch -->
+  <line x1="200" y1="220" x2="718" y2="220" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="460" y="213" text-anchor="middle" fill="#0f172a">2. fetch("./monContenuAsynchrone.php")</text>
+  <rect x="560" y="234" width="320" height="34" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="720" y="256" text-anchor="middle" fill="#0f172a">la boucle for génère les 10 &lt;li&gt;</text>
+  <line x1="720" y1="300" x2="202" y2="300" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="460" y="293" text-anchor="middle" fill="#16a34a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">&lt;ul&gt;&lt;li&gt;Valeur 1&lt;/li&gt;…&lt;/ul&gt;<tspan font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14"> (un morceau de HTML)</tspan></text>
+  <!-- then -->
+  <rect x="20" y="318" width="360" height="34" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="200" y="340" text-anchor="middle" fill="#0f172a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">.then((response) =&gt; response.text())</text>
+  <rect x="20" y="364" width="360" height="50" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="200" y="385" text-anchor="middle" fill="#0f172a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">.then((content) =&gt; ...innerHTML = content)</text>
+  <text x="200" y="404" text-anchor="middle" fill="#475569" font-size="12">le texte reçu remplace le contenu de la div</text>
+  <text x="450" y="452" text-anchor="middle" fill="#475569" font-size="13">La page n'est jamais rechargée : seul l'intérieur de #contenuAsynchrone change.</text>
+</svg>

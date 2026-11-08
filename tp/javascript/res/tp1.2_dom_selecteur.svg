@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="400" viewBox="0 0 900 400" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="900" height="400" fill="#ffffff"/>
+  <text x="250" y="32" text-anchor="middle" font-weight="600" fill="#0f172a" font-size="17">L'arbre du DOM de la page</text>
+  <g stroke-width="2">
+    <rect x="190" y="55" width="120" height="44" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="20" y="170" width="140" height="56" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="180" y="170" width="140" height="56" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+    <rect x="340" y="170" width="140" height="56" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="180" y="300" width="140" height="44" rx="10" fill="#ffffff" stroke="#475569"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14">
+    <text x="250" y="82">body</text>
+    <text x="90" y="195">div</text>
+    <text x="90" y="214" font-size="12" fill="#475569">#monId</text>
+    <text x="250" y="195">div</text>
+    <text x="250" y="214" font-size="12" fill="#2563eb">#cacheMoi</text>
+    <text x="410" y="195">div</text>
+    <text x="410" y="214" font-size="12" fill="#475569">#redText</text>
+    <text x="250" y="327" font-size="12">"lorem ipsum…"</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none">
+    <path d="M250,99 V130 H90 V168"/>
+    <path d="M250,99 V168"/>
+    <path d="M250,130 H410 V168"/>
+    <path d="M250,226 V298"/>
+  </g>
+  <text x="240" y="268" font-size="12" fill="#475569" text-anchor="end">son texte</text>
+  <!-- JS side -->
+  <rect x="540" y="55" width="340" height="110" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="560" y="84" font-weight="600" fill="#0f172a">Votre JavaScript</text>
+  <text x="560" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#0f172a">document.querySelector("#cacheMoi")</text>
+  <text x="560" y="146" font-size="12" fill="#475569">Même syntaxe qu'un sélecteur CSS.</text>
+  <path d="M580,165 C 540,245 400,250 314,228" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowb)"/>
+  <text x="440" y="262" font-size="12" fill="#2563eb">trouve</text>
+  <rect x="560" y="255" width="320" height="130" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="580" y="283" font-weight="600" fill="#0f172a">Vous obtenez l'élément lui-même</text>
+  <g font-size="13" fill="#0f172a">
+    <text x="580" y="309">Tout ce que vous changez dessus</text>
+    <text x="580" y="329">(son style, son contenu, ses enfants)</text>
+    <text x="580" y="349">se voit immédiatement dans la page,</text>
+    <text x="580" y="369">sans recharger.</text>
+  </g>
+</svg>

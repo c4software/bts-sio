@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="470" viewBox="0 0 900 470" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="470" fill="#ffffff"/>
+  <!-- AVANT -->
+  <text x="20" y="30" font-weight="600" font-size="16" fill="#0f172a">Avant : le serveur fabrique toute la page</text>
+  <g stroke-width="2">
+    <rect x="20" y="48" width="230" height="90" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="600" y="48" width="280" height="90" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="135" y="98" font-weight="600">Navigateur</text>
+    <text x="740" y="80" font-weight="600">index.php + pages/home.php</text>
+    <text x="740" y="104" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">foreach ($videos as $id)</text>
+    <text x="740" y="124" font-size="12" fill="#475569">génère une carte par vidéo</text>
+  </g>
+  <line x1="250" y1="72" x2="598" y2="72" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="425" y="65" text-anchor="middle" fill="#0f172a">GET index.php</text>
+  <line x1="600" y1="112" x2="252" y2="112" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+  <text x="425" y="132" text-anchor="middle" fill="#2563eb">la page complète, avec les 8 cartes</text>
+  <line x1="20" y1="165" x2="880" y2="165" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+  <!-- APRES -->
+  <text x="20" y="195" font-weight="600" font-size="16" fill="#0f172a">Après : d'abord la page, puis la donnée en Ajax</text>
+  <g stroke-width="2">
+    <rect x="20" y="212" width="230" height="240" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="600" y="212" width="280" height="80" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="600" y="322" width="280" height="80" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="35" y="372" width="200" height="66" rx="10" fill="#fef3c7" stroke="#d97706"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="135" y="240" font-weight="600">Navigateur</text>
+    <text x="740" y="244" font-weight="600">index.php + pages/home.php</text>
+    <text x="740" y="268" font-size="12" fill="#475569">plus aucun PHP dans home.php</text>
+    <text x="740" y="354" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">api.php?page=videos</text>
+    <text x="740" y="378" font-size="12" fill="#475569">whitelist, puis api/videos.php</text>
+    <text x="135" y="396" font-size="13">3. forEach : une carte</text>
+    <text x="135" y="415" font-size="13">par vidéo dans #content</text>
+  </g>
+  <line x1="250" y1="236" x2="598" y2="236" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="425" y="229" text-anchor="middle" fill="#0f172a">1. GET index.php</text>
+  <line x1="600" y1="270" x2="252" y2="270" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+  <text x="425" y="290" text-anchor="middle" fill="#2563eb">la page avec #content vide, et le script</text>
+  <line x1="250" y1="346" x2="598" y2="346" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="425" y="339" text-anchor="middle" fill="#0f172a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">2. fetch("./api.php?page=videos")</text>
+  <line x1="600" y1="380" x2="252" y2="380" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="425" y="400" text-anchor="middle" fill="#16a34a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">["BcgsOgjHgWA","lcOxhH8N3Bo",…]</text>
+</svg>

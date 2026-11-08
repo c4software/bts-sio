@@ -1,0 +1,49 @@
+.brick {
+  height: 100%;
+  background: url("../images/bg.jpg");
+  background-size: 100%;
+}
+
+.frame {
+  height: 320px;
+  width: max-content;
+  margin: 80px auto auto;
+  border: 5px solid #000000;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 1px 0 20px 0 black;
+  /*animation: rainbow 20s infinite;*/
+}
+
+.stand {
+  width: 250px;
+  height: 15px;
+  background: #000000;
+  border-radius: 0 0 30px 30px;
+  color: white;
+  text-align: center;
+  font-size: 10px;
+  margin: 0 auto 0;
+}
+
+@keyframes rainbow {
+  from,
+  to {
+    box-shadow: 0 0 20px 0 red;
+  }
+  16% {
+    box-shadow: 0 0 30px 10px yellow;
+  }
+  32% {
+    box-shadow: 0 0 40px 15px green;
+  }
+  48% {
+    box-shadow: 0 0 30px 20px aqua;
+  }
+  64% {
+    box-shadow: 0 0 20px 15px blue;
+  }
+  80% {
+    box-shadow: 0 0 30px 10px fuchsia;
+  }
+}

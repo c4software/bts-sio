@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="330" viewBox="0 0 900 330" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="330" fill="#ffffff"/>
+  <!-- let -->
+  <rect x="20" y="20" width="420" height="290" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="230" y="52" text-anchor="middle" font-weight="600" fill="#0f172a" font-size="17">let : une variable</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#0f172a">
+    <text x="40" y="88">let message = "Bonjour à tous";</text>
+    <text x="40" y="112">message = "Bonsoir";</text>
+  </g>
+  <text x="40" y="160" font-size="13" fill="#475569">Une boîte avec une étiquette :</text>
+  <rect x="40" y="175" width="160" height="70" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="120" y="198" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">message</text>
+  <text x="120" y="226" text-anchor="middle" font-size="14" fill="#94a3b8" text-decoration="line-through">"Bonjour à tous"</text>
+  <rect x="260" y="175" width="160" height="70" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="340" y="198" text-anchor="middle" font-size="12" fill="#16a34a" font-weight="600">message</text>
+  <text x="340" y="226" text-anchor="middle" font-size="14" fill="#0f172a">"Bonsoir"</text>
+  <line x1="202" y1="210" x2="256" y2="210" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="230" y="285" text-anchor="middle" font-size="13" fill="#16a34a" font-weight="600">Le contenu peut être remplacé.</text>
+  <!-- const -->
+  <rect x="460" y="20" width="420" height="290" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="670" y="52" text-anchor="middle" font-weight="600" fill="#0f172a" font-size="17">const : une constante</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#0f172a">
+    <text x="480" y="88">const nom = "Brosseau";</text>
+    <text x="480" y="112">nom = "valentin";</text>
+  </g>
+  <text x="480" y="160" font-size="13" fill="#475569">Une boîte fermée une fois remplie :</text>
+  <rect x="480" y="175" width="160" height="70" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="560" y="198" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="600">nom (verrouillée)</text>
+  <text x="560" y="226" text-anchor="middle" font-size="14" fill="#0f172a">"Brosseau"</text>
+  <rect x="740" y="190" width="120" height="40" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="800" y="215" text-anchor="middle" font-size="14" fill="#0f172a">"valentin"</text>
+  <line x1="738" y1="210" x2="646" y2="210" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrowr)"/>
+  <text x="692" y="200" text-anchor="middle" font-size="18" fill="#dc2626" font-weight="700">✗</text>
+  <text x="670" y="275" text-anchor="middle" font-size="13" fill="#dc2626" font-weight="600">Refusé : le navigateur lève une erreur</text>
+  <text x="670" y="295" text-anchor="middle" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#dc2626">TypeError: Assignment to constant variable.</text>
+</svg>

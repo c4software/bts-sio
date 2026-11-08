@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="250" viewBox="0 0 900 250" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="250" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="20" y="40" width="180" height="110" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="260" y="40" width="180" height="110" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="500" y="40" width="160" height="110" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="720" y="40" width="160" height="110" rx="10" fill="#fef3c7" stroke="#d97706"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="110" y="72" font-weight="600">L'utilisateur tape</text>
+    <text x="110" y="110" font-size="22">10 puis 5</text>
+    <text x="350" y="72" font-weight="600">prompt() renvoie</text>
+    <text x="350" y="104" font-size="18" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">"10"  "5"</text>
+    <text x="350" y="132" font-size="12" fill="#475569">du texte (string)</text>
+    <text x="580" y="72" font-weight="600">Le calcul</text>
+    <text x="580" y="104" font-size="16" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">"10" + "5"</text>
+    <text x="580" y="132" font-size="12" fill="#475569">+ entre deux textes</text>
+    <text x="800" y="72" font-weight="600">Le résultat</text>
+    <text x="800" y="106" font-size="22" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">"105"</text>
+    <text x="800" y="132" font-size="12" fill="#475569">les textes sont collés</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="200" y1="95" x2="258" y2="95"/>
+    <line x1="440" y1="95" x2="498" y2="95"/>
+    <line x1="660" y1="95" x2="718" y2="95"/>
+  </g>
+  <rect x="20" y="180" width="860" height="50" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="450" y="211" text-anchor="middle" fill="#0f172a">Pour obtenir 15, il faut d'abord transformer chaque texte en nombre.</text>
+</svg>

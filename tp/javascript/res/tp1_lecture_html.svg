@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="380" viewBox="0 0 900 380" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="900" height="380" fill="#ffffff"/>
+  <text x="450" y="32" text-anchor="middle" font-weight="600" fill="#0f172a" font-size="17">Le navigateur lit votre page de haut en bas</text>
+  <!-- code -->
+  <rect x="20" y="60" width="330" height="290" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="40" y="88" font-weight="600" fill="#0f172a">index.html</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#0f172a">
+    <text x="70" y="128">&lt;body&gt;</text>
+    <text x="86" y="160">&lt;p&gt;Lorem Ipsum&lt;/p&gt;</text>
+    <rect x="78" y="180" width="262" height="76" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+    <text x="86" y="202">&lt;script&gt;</text>
+    <text x="102" y="224">alert("Bonjour à tous");</text>
+    <text x="86" y="246">&lt;/script&gt;</text>
+    <text x="86" y="288">&lt;p&gt;Lorem Ipsum suite&lt;/p&gt;</text>
+    <text x="70" y="320">&lt;/body&gt;</text>
+  </g>
+  <!-- reading arrow -->
+  <line x1="44" y1="110" x2="44" y2="330" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+  <!-- steps -->
+  <g stroke-width="2">
+    <rect x="410" y="60" width="470" height="80" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="410" y="160" width="470" height="100" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="410" y="280" width="470" height="70" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g fill="#0f172a">
+    <text x="430" y="90" font-weight="600">1. Le HTML est affiché au fur et à mesure</text>
+    <text x="430" y="116" font-size="13" fill="#475569">« Lorem Ipsum » apparaît dans la page.</text>
+    <text x="430" y="190" font-weight="600">2. Une balise script : le code est exécuté</text>
+    <text x="430" y="216" font-size="13" fill="#475569">L'alerte s'ouvre. Tant que vous n'avez pas cliqué sur OK,</text>
+    <text x="430" y="236" font-size="13" fill="#475569">le navigateur est en pause : la suite n'est pas encore lue.</text>
+    <text x="430" y="310" font-weight="600">3. La lecture reprend</text>
+    <text x="430" y="334" font-size="13" fill="#475569">« Lorem Ipsum suite » apparaît enfin.</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M235,155 C 320,150 350,100 408,100"/>
+    <path d="M340,218 L408,210"/>
+    <path d="M282,284 C 340,295 360,315 408,315"/>
+  </g>
+</svg>

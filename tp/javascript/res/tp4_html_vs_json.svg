@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="420" viewBox="0 0 900 420" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="420" fill="#ffffff"/>
+  <g text-anchor="middle" font-weight="600" font-size="16" fill="#0f172a">
+    <text x="225" y="34">Le serveur renvoie du HTML</text>
+    <text x="675" y="34">Le serveur renvoie la donnée (JSON)</text>
+  </g>
+  <line x1="450" y1="15" x2="450" y2="405" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+  <!-- server boxes -->
+  <g stroke-width="2">
+    <rect x="30" y="55" width="390" height="70" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="480" y="55" width="390" height="70" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="225" y="82" font-weight="600">Serveur PHP</text>
+    <text x="225" y="106" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">echo "&lt;li&gt;Valeur $i&lt;/li&gt;";</text>
+    <text x="675" y="82" font-weight="600">Serveur PHP</text>
+    <text x="675" y="106" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">echo json_encode($data);</text>
+  </g>
+  <!-- arrows -->
+  <g stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)">
+    <line x1="225" y1="125" x2="225" y2="203"/>
+    <line x1="675" y1="125" x2="675" y2="203"/>
+  </g>
+  <g fill="#16a34a" text-anchor="middle">
+    <rect x="60" y="146" width="330" height="36" rx="6" fill="#ffffff" stroke="#16a34a"/>
+    <text x="225" y="169" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">&lt;ul&gt;&lt;li&gt;Valeur 1&lt;/li&gt;…&lt;/ul&gt;</text>
+    <rect x="510" y="146" width="330" height="36" rx="6" fill="#ffffff" stroke="#16a34a"/>
+    <text x="675" y="169" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">["Valeur 1","Valeur 2",…]</text>
+  </g>
+  <!-- browser boxes -->
+  <g stroke-width="2">
+    <rect x="30" y="205" width="390" height="90" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="480" y="205" width="390" height="90" rx="10" fill="#f1f5f9" stroke="#475569"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="225" y="231" font-weight="600">Navigateur</text>
+    <text x="225" y="254" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">response.text()</text>
+    <text x="225" y="276" font-size="13" fill="#475569">le HTML reçu est collé tel quel (innerHTML)</text>
+    <text x="675" y="231" font-weight="600">Navigateur</text>
+    <text x="675" y="254" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">response.json()</text>
+    <text x="675" y="276" font-size="13" fill="#475569">un tableau JavaScript, forEach fabrique les &lt;li&gt;</text>
+  </g>
+  <!-- verdicts -->
+  <g stroke-width="2">
+    <rect x="30" y="320" width="390" height="80" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="480" y="320" width="390" height="80" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a" font-size="13">
+    <text x="225" y="347">Le serveur décide de l'affichage.</text>
+    <text x="225" y="369">Simple, mais le HTML reçu est inséré sans contrôle :</text>
+    <text x="225" y="389">attention aux XSS.</text>
+    <text x="675" y="347">Le JavaScript décide de l'affichage.</text>
+    <text x="675" y="369">La même donnée peut servir à un site,</text>
+    <text x="675" y="389">une application mobile… c'est une API.</text>
+  </g>
+</svg>

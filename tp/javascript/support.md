@@ -225,16 +225,16 @@ _Directement dans le code :_
 _Via un script externe :_
 
 ```html
-<script src="/public/js/votre_script.js"></script>
+<script src="./public/js/votre_script.js"></script>
 ```
 
 ::: tip Astuce de Pro
 Vous pouvez bien évidemment mettre **plusieurs** balises script. Un peu comme le PHP l'organisation est importante, n'hésitez pas à découper votre code (encore, et encore, et encore).
 
 ```html
-<script src="/public/js/votre_script1.js"></script>
-<script src="/public/js/votre_script2.js"></script>
-<script src="/public/js/votre_script3.js"></script>
+<script src="./public/js/votre_script1.js"></script>
+<script src="./public/js/votre_script2.js"></script>
+<script src="./public/js/votre_script3.js"></script>
 ```
 
 Vous pouvez également charger des scripts « externes » :
@@ -739,8 +739,9 @@ Nous allons créer une page fictive afin de tester un peu le fonctionnement :
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
+    <meta charset="UTF-8" />
     <title>Document</title>
   </head>
   <body>

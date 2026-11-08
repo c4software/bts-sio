@@ -1,13 +1,29 @@
 ---
-description: Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant.
+description: "Nous avons créé deux cas « de tests », je vous propose de les mettre en place dans un code existant : la page d'accueil de la BTS TV va charger sa liste de vidéos en Ajax, depuis une API PHP qui renvoie du JSON."
 ---
 
 # La BTS TV 2.0 (Ajax)
 
-Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant. Nous avons réalisé un site la BTS TV, ce site comportait **« deux pages »** :
+::: details Sommaire
+[[toc]]
+:::
+
+::: tip Pour les étudiants en avance
+Ce TP est un bonus : il reprend exactement les notions du [TP 4](./tp4.md), mais dans un vrai projet. Si vous n'avez pas terminé le TP 4, terminez-le d'abord.
+:::
+
+Nous avons créé deux cas « de tests » dans le [TP 4](./tp4.md), je vous propose de les mettre en place dans un code existant. Nous avons réalisé un site la BTS TV (dans le TP PHP [le passage de paramètres](/tp/php/tp-param.md)), ce site comportait **« deux pages »** :
 
 - Une page d'accueil `home.php`, qui affiche la liste des vidéos.
 - Une page `tv.php` ayant pour but l'affichage de la vidéo souhaitée.
+
+À la fin de ce TP, la page d'accueil aura exactement le même aspect qu'avant, mais sa liste de vidéos ne sera plus fabriquée par PHP : elle arrivera en Ajax, depuis une API.
+
+## Prérequis
+
+- Le [TP 4](./tp4.md) : `fetch`, `response.json()`, `json_encode`.
+- La BTS TV des TP PHP, ou le code source fourni juste en dessous.
+- XAMPP / WAMP démarré, ou le serveur intégré à PHP (`php -S localhost:9000` dans le dossier du projet, comme dans le [TP 4](./tp4.md#prerequis)).
 
 ::: tip Vous n'avez pas le code source ?
 Celui-ci est [disponible ici](/demo/php/bts-tv/refactor-structure.zip). Il pourra vous servir de base de travail. (c'est une version sans base de données, pour simplifier l'installation locale)
@@ -21,12 +37,26 @@ Celui-ci est [disponible ici](https://github.com/c4software/demo-structure-mvc-v
 **Attention**, la suite du TP repose sur la première version du code source. Les nommages sont différents, mais globalement le fonctionnement reste le même. Si vous voulez jouer, tentez la version MVC.
 :::
 
-Comment allons-nous procéder ?
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- Lire un projet existant pour repérer sa **source de données** et l'endroit où elle est affichée.
+- Créer une API PHP qui renvoie cette donnée en JSON, et la déclarer dans le point d'entrée des API (`api.php` et sa whitelist).
+- Vider une page de son PHP pour ne garder que sa structure.
+- Remplir cette page en Ajax avec `fetch`, en construisant le HTML en JavaScript.
+- Tester une API directement dans le navigateur (ou avec PostMan) avant de l'utiliser.
+
+## Comment allons-nous procéder ?
 
 - Dans un premier temps, nous allons regarder le fonctionnement du site actuel.
 - Puis, nous allons supprimer les parties PHP « qui affichent les vidéos ». Nous testerons que notre code fonctionne toujours, mais en n’affichant aucune vidéo.
 - Nous allons par la suite créer une API. Son but ? Retourner uniquement le contenu (au format JSON bien entendu)
 - Puis nous appellerons notre API en Ajax grâce à Fetch depuis notre page.
+
+Voici ce qui va changer entre le début et la fin du TP :
+
+![En haut, avant : le navigateur demande index.php, et le serveur, avec la boucle foreach de pages/home.php, renvoie la page complète avec les 8 cartes. En bas, après : 1. le navigateur demande index.php et reçoit la page avec #content vide et le script ; 2. le script fait fetch vers api.php?page=videos, qui passe par la whitelist puis api/videos.php et renvoie le tableau JSON des identifiants ; 3. un forEach construit une carte par vidéo dans #content](./res/tp41_avant_apres.svg)
 
 ## La page `home.php`
 
@@ -109,6 +139,16 @@ Vous avez une API de disponible dans le projet. Celle-ci contient du contenu fic
 - http://localhost/leDossierDeVotreProjet/api.php?page=sample
 
 🤓 Je vous laisse tester.
+
+![Le navigateur affiche la réponse de api.php?page=sample : le tableau JSON « Ceci est un exemple », « de », « tableau »](./res/tp41_api_sample.png)
+:::
+
+::: details Question : en lisant api.php, que fait-il de plus que index.php ?
+Il fonctionne exactement comme `index.php` (une `$whitelist`, puis un `include` du fichier demandé), avec deux différences :
+
+- il commence par `header("content-type: application/json")` : toutes les API du dossier `api/` répondent donc en JSON, sans avoir à le redire dans chaque fichier ;
+- si la page demandée n'est pas dans la whitelist, il ne renvoie pas l'accueil mais une erreur `401 Unauthorized`, avec une réponse vide.
+
 :::
 
 ### Créer l'API
@@ -149,20 +189,40 @@ Je vous aide ! Nous allons y mettre du code PHP… Et plus particulièrement le 
 Je vous aide :
 
 ```php
-    <?php
-        $videos = array("BcgsOgjHgWA","lcOxhH8N3Bo","jTuBnZrLbq0", "M2VtfZDOcHQ", "i1iIaSbK9bg", "MTaHw-S6IDo", "KfMCApWc5xE", "igtN49I1CtM");
-        echo json_encode($videos);
-    ?>
+<?php
+$videos = array("BcgsOgjHgWA","lcOxhH8N3Bo","jTuBnZrLbq0", "M2VtfZDOcHQ", "i1iIaSbK9bg", "MTaHw-S6IDo", "KfMCApWc5xE", "igtN49I1CtM");
+echo json_encode($videos);
 ```
 
 :::
 
+Dernière chose, et elle est importante : `api.php` n'inclut que les API **autorisées**. Votre nouvelle API doit donc être ajoutée à sa `$whitelist` :
+
+```php
+// API autorisées (configuration à sortir dans un autre fichier PHP)
+$whitelist = array('sample', 'videos');
+```
+
+::: tip Que se passe-t-il derrière ?
+Chaque appel à une API passe par `api.php`, qui vérifie la whitelist avant d'inclure le fichier :
+
+![Le navigateur appelle api.php avec ?page=videos ; api.php envoie l'en-tête JSON puis teste in_array($_GET['page'], $whitelist) : si oui, il inclut api/videos.php et renvoie le JSON des vidéos avec un code 200 ; si non, il répond HTTP/1.1 401 Unauthorized avec une réponse vide, et response.json() échoue côté JavaScript. Une nouvelle API, c'est donc un fichier dans api/ et son nom dans la whitelist](./res/tp41_api_whitelist.svg)
+:::
+
 Je vous laisse mettre en place l'API dans votre code. **N'oubliez pas de la tester !**
+
+::: tip Point de contrôle
+L'adresse `http://localhost/leDossierDeVotreProjet/api.php?page=videos` affiche dans votre navigateur le tableau JSON des 8 identifiants de vidéos, et rien d'autre (pas de HTML, pas de message d'erreur PHP) :
+
+![Le navigateur affiche la réponse de api.php?page=videos : un tableau JSON de 8 identifiants YouTube, de BcgsOgjHgWA à igtN49I1CtM](./res/tp41_api_videos.png)
+
+Une page blanche ? Ouvrez l'onglet Réseau des outils de développement (F12) : un code `401` veut dire que `videos` n'est pas dans la whitelist de `api.php`.
+:::
 
 ::: tip L'astuce du chef
 Pour tester votre API, vous avez la possibilité d’utiliser le logiciel PostMan. PostMan va vous permettre de tester vos API simplement avec une interface graphique.
 
-Téléchargez-le [ici](https://www.getpostman.com/)
+Téléchargez-le [ici](https://www.postman.com/downloads/)
 :::
 
 ### Modifier le code existant
@@ -171,10 +231,8 @@ Je vous laisse modifier le code PHP de la page `home.php` pour le vider de tout 
 
 ```html
 <div class="container">
-  <div class="container">
-    <div class="row pt-5" id="content">
-      <!-- Nous allons insérer ICI le contenu grace à l'AJAX -->
-    </div>
+  <div class="row pt-5" id="content">
+    <!-- Nous allons insérer ICI le contenu grace à l'AJAX -->
   </div>
 </div>
 
@@ -182,6 +240,12 @@ Je vous laisse modifier le code PHP de la page `home.php` pour le vider de tout 
   // Vous ajouterez ici prochainement le code JavaScript permettant de faire l'appel Ajax (avec fetch)
 </script>
 ```
+
+::: tip Point de contrôle
+La page d'accueil s'affiche toujours, sans erreur, avec sa barre « BTS TV »… mais plus aucune vidéo. C'est normal : plus rien ne fabrique les cartes. Le `id="content"` est l'endroit où votre JavaScript va les ajouter.
+
+![La page d'accueil de la BTS TV avec seulement la barre sombre « BTS TV » : la liste des vidéos a disparu](./res/tp41_home_vide.png)
+:::
 
 ### Appeler l'API en Ajax
 
@@ -203,6 +267,7 @@ NON ? Vous n'allez pas tricher comme ça… Non pas vous ?
 // À mettre dans le then
 let i = 0;
 datas.forEach((el) => {
+    i++;
     document.getElementById("content").insertAdjacentHTML(
     "beforeend",
     `
@@ -224,7 +289,17 @@ datas.forEach((el) => {
 
 🤓 Je vous laisse travailler à la mise en place du code en question. Tester ensuite que la page s'affiche comme précédemment.
 
-### Évolution de la page
+::: tip Point de contrôle
+La page d'accueil a retrouvé ses 8 cartes, de « Video 1 » à « Video 8 », exactement comme avant le TP, et chaque bouton ouvre toujours la bonne vidéo dans `tv.php`. La différence ne se voit pas à l'écran, mais dans l'onglet Réseau : un appel à `api.php?page=videos` part juste après le chargement de la page.
+
+![La page d'accueil de la BTS TV remplie en Ajax : la barre « BTS TV » puis 8 cartes sur deux lignes, avec les boutons Video 1 à Video 8](./res/tp41_home_ajax.png)
+:::
+
+::: details Question : la console affiche « Unexpected end of JSON input », que s'est-il passé ?
+`response.json()` a reçu une réponse **vide** et n'a donc rien pu transformer en JSON. Dans ce projet, c'est presque toujours la `401` de `api.php` : l'API n'est pas dans la `$whitelist`, ou le nom passé dans `?page=` ne correspond pas exactement au nom du fichier. Regardez l'onglet Réseau, la ligne `api.php?page=videos` est en rouge.
+:::
+
+### Un bouton pour rafraîchir la liste
 
 Ajouter un bouton rafraîchir dans la page. Le bouton rafraîchir doit permettre de récupérer à nouveau la liste des vidéos pour les mettre à jour dans la page.
 
@@ -235,6 +310,10 @@ Ajouter un bouton rafraîchir dans la page. Le bouton rafraîchir doit permettre
 Voilà la maquette :
 
 ![Maquette rendue](./res/maquette.png)
+
+::: tip Point de contrôle
+Un clic sur l'icône recharge la liste **sans recharger la page** : vous voyez un nouvel appel `api.php?page=videos` dans l'onglet Réseau à chaque clic. Attention, la liste ne doit pas se retrouver en double (16 cartes au deuxième clic…).
+:::
 
 ## Allons plus loin
 
@@ -291,3 +370,19 @@ header('Access-Control-Allow-Origin: https://www.example.com');
 ```
 
 :::
+
+[Le projet complet de ce TP est téléchargeable ici](/demo/javascript/bts-tv-ajax.zip) (la page d'accueil en Ajax et l'API `videos` ; le bouton rafraîchir, les thèmes et l'étape bonus restent à votre charge).
+
+## Conclusion
+
+Dans ce TP, vous avez :
+
+- Repéré dans un projet existant sa source de données (`$videos`) et l'endroit où elle était affichée.
+- Créé une API `api/videos.php` qui renvoie cette donnée en JSON avec `json_encode`, et l'avez déclarée dans la `$whitelist` de `api.php`.
+- Testé cette API seule, dans le navigateur, avant de vous en servir.
+- Vidé `home.php` de son PHP, puis reconstruit les cartes en JavaScript avec `fetch` : l'écran est identique, mais le serveur ne fabrique plus que la donnée.
+- Vu qu'une API peut servir à plusieurs clients, à condition de gérer le CORS quand ils sont hébergés ailleurs.
+
+La suite ? [Le point étape : mon catalogue de films](./eval1.md), où vous retrouverez le DOM, les événements et l'Ajax avec `fetch`.
+
+👋 Si vous avez des questions, n'hésitez pas.

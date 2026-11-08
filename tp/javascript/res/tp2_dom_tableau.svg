@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="420" viewBox="0 0 900 420" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="420" fill="#ffffff"/>
+  <text x="20" y="32" font-weight="600" font-size="15" fill="#0f172a">L'arbre du DOM de index.html (simplifié)</text>
+  <g stroke="#94a3b8" stroke-width="2" fill="none">
+    <path d="M140 76 V96 M140 96 H80 V116 M140 96 H220 V116"/>
+    <path d="M80 148 V168 H40 V188 M80 168 H120 V188"/>
+    <path d="M220 148 V188"/>
+  </g>
+  <g stroke-width="2">
+    <rect x="80" y="46" width="120" height="30" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="30" y="116" width="100" height="32" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="170" y="116" width="100" height="32" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="10" y="188" width="60" height="30" rx="8" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="90" y="188" width="60" height="30" rx="8" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="160" y="188" width="120" height="34" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a" font-family="ui-monospace, monospace" font-size="12">
+    <text x="140" y="66">html</text>
+    <text x="80" y="137">head</text>
+    <text x="220" y="137">body</text>
+    <text x="40" y="208">link</text>
+    <text x="120" y="208">script</text>
+    <text x="220" y="210" font-weight="600" fill="#2563eb">div#tableau</text>
+  </g>
+  <text x="20" y="262" font-size="12" fill="#475569">Chaque balise devient un nœud,</text>
+  <text x="20" y="280" font-size="12" fill="#475569">le JavaScript peut le retrouver</text>
+  <text x="20" y="298" font-size="12" fill="#475569">et le modifier.</text>
+
+  <rect x="330" y="160" width="250" height="84" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="455" y="184" text-anchor="middle" font-weight="600">Le sélecteur</text>
+  <text x="455" y="206" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11">getElementById('tableau')</text>
+  <text x="455" y="228" text-anchor="middle" font-size="12" fill="#2563eb">trouve la div grâce à son id</text>
+  <line x1="330" y1="205" x2="283" y2="205" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+
+  <rect x="330" y="268" width="250" height="92" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="455" y="292" text-anchor="middle" font-weight="600">La boucle, 50 tours</text>
+  <text x="455" y="316" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11">tableau.insertAdjacentHTML(</text>
+  <text x="455" y="334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11">"beforeend", phrase + "&lt;br /&gt;")</text>
+  <line x1="580" y1="314" x2="618" y2="314" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="620" y="32" font-weight="600" font-size="15" fill="#0f172a">div#tableau après la boucle</text>
+  <rect x="620" y="46" width="260" height="300" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <g font-size="12" fill="#0f172a">
+    <rect x="636" y="62" width="228" height="26" rx="6" fill="#ffffff" stroke="#94a3b8"/><text x="646" y="80">« Je ne recopierai pas… »</text>
+    <rect x="636" y="94" width="60" height="22" rx="6" fill="#ffffff" stroke="#94a3b8"/><text x="666" y="110" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11">br</text>
+    <rect x="636" y="122" width="228" height="26" rx="6" fill="#ffffff" stroke="#94a3b8"/><text x="646" y="140">« Je ne recopierai pas… »</text>
+    <rect x="636" y="154" width="60" height="22" rx="6" fill="#ffffff" stroke="#94a3b8"/><text x="666" y="170" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11">br</text>
+    <text x="750" y="204" text-anchor="middle" fill="#475569">… 50 fois …</text>
+    <rect x="636" y="222" width="228" height="26" rx="6" fill="#dcfce7" stroke="#16a34a"/><text x="646" y="240">« Je ne recopierai pas… »</text>
+    <rect x="636" y="254" width="60" height="22" rx="6" fill="#dcfce7" stroke="#16a34a"/><text x="666" y="270" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11">br</text>
+    <text x="750" y="306" text-anchor="middle" font-size="12" fill="#16a34a">beforeend : chaque tour ajoute</text>
+    <text x="750" y="324" text-anchor="middle" font-size="12" fill="#16a34a">à la fin, après le dernier enfant</text>
+  </g>
+  <text x="20" y="390" font-size="12" fill="#475569">Le navigateur redessine la page dès que le DOM change : pas besoin de recharger, la div se remplit sous vos yeux.</text>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="330" viewBox="0 0 900 330" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="900" height="330" fill="#ffffff"/>
+  <text x="20" y="32" font-weight="600" font-size="15" fill="#0f172a">La table (#myTable)</text>
+  <g font-size="12">
+    <rect x="20" y="48" width="420" height="34" fill="#f1f5f9" stroke="#475569"/>
+    <text x="34" y="70" font-weight="600">Titre</text><text x="170" y="70" font-weight="600">Date d'ajout</text><text x="360" y="70" font-weight="600">Action</text>
+    <rect x="20" y="82" width="420" height="34" fill="#ffffff" stroke="#475569"/>
+    <text x="34" y="104">Réviser le TP 2</text><text x="170" y="104" fill="#475569">Sun Nov 08 2026 …</text>
+    <rect x="20" y="116" width="420" height="34" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="34" y="138">Finir le TP 3</text><text x="170" y="138" fill="#475569">Sun Nov 08 2026 …</text>
+    <rect x="20" y="150" width="420" height="34" fill="#ffffff" stroke="#475569"/>
+    <text x="34" y="172">Lire le support</text><text x="170" y="172" fill="#475569">Sun Nov 08 2026 …</text>
+    <g fill="#dc2626"><rect x="355" y="88" width="56" height="22" rx="5"/><rect x="355" y="122" width="56" height="22" rx="5" stroke="#0f172a" stroke-width="2"/><rect x="355" y="156" width="56" height="22" rx="5"/></g>
+    <g fill="#ffffff" text-anchor="middle"><text x="383" y="103">Suppr</text><text x="383" y="137">Suppr</text><text x="383" y="171">Suppr</text></g>
+  </g>
+  <g font-size="12" fill="#475569" font-family="ui-monospace, monospace">
+    <text x="450" y="70">rowIndex 0</text><text x="450" y="104">rowIndex 1</text><text x="450" y="138" fill="#d97706" font-weight="600">rowIndex 2</text><text x="450" y="172">rowIndex 3</text>
+  </g>
+  <text x="20" y="214" font-size="12" fill="#475569">La ligne d'en-tête compte aussi : rowIndex et deleteRow() numérotent toutes les lignes de la table.</text>
+
+  <text x="580" y="32" font-weight="600" font-size="15" fill="#0f172a">deleteRow(this), clic sur Suppr</text>
+  <g stroke-width="2">
+    <rect x="580" y="48" width="300" height="34" rx="10" fill="#fee2e2" stroke="#dc2626"/>
+    <rect x="580" y="108" width="300" height="34" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="580" y="168" width="300" height="34" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="580" y="228" width="300" height="34" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g font-size="12" fill="#0f172a">
+    <text x="594" y="70"><tspan font-family="ui-monospace, monospace">btn</tspan> : le bouton cliqué (this)</text>
+    <text x="594" y="130"><tspan font-family="ui-monospace, monospace">btn.parentNode</tspan> : la cellule td</text>
+    <text x="594" y="190"><tspan font-family="ui-monospace, monospace">….parentNode</tspan> : la ligne tr</text>
+    <text x="594" y="250"><tspan font-family="ui-monospace, monospace">deleteRow(2)</tspan> : la ligne disparaît</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="730" y1="82" x2="730" y2="106"/>
+    <line x1="730" y1="142" x2="730" y2="166"/>
+    <line x1="730" y1="202" x2="730" y2="226"/>
+  </g>
+  <text x="580" y="292" font-size="12" fill="#475569">On remonte du bouton vers sa ligne,</text>
+  <text x="580" y="310" font-size="12" fill="#475569">puis on demande à la table de la supprimer.</text>
+</svg>

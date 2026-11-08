@@ -137,33 +137,48 @@ export default [
     text: "Le JavaScript",
     collapsed: true,
     items: [
+      { text: "Le parcours conseillé", link: "/pages/categories/les-tp-javascript.md" },
       {
-        text: "Le cours", collapsed: true, items: [
+        text: "Les cours", collapsed: true, items: [
           { text: "Slides JavaScript", link: "/cours/introduction_javascript" },
-          { text: "Complément cours JavaScript", link: "/tp/javascript/support.md" },
           { text: "Slides JavaScript avancé", link: "/cours/javascript_avances" },
           { text: "Slides Framework JavaScript", link: "/cours/framework_javascript" }
         ]
       },
       {
-        text: "Les TP basiques", collapsed: true, items: [
-          { text: "Hello World", link: "/tp/javascript/tp1.md" },
-          { text: "Des variables en veux tu en voilà !", link: "/tp/javascript/tp1.1.md" },
-          { text: "Une petite mise en bouche", link: "/tp/javascript/tp1.2.md" },
-          { text: "Le retour de Bart", link: "/tp/javascript/tp2.md" },
-          { text: "Contrôle de saisie & intéractivité", link: "/tp/javascript/tp3.md" },
-          { text: "Intéractivité", link: "/tp/javascript/tp3.1.md" },
-          { text: "Les librairies pour vous sauvez", link: "/tp/javascript/tp5.md" }
+        text: "En + du cours", collapsed: true, items: [
+          { text: "Complément cours JavaScript", link: "/tp/javascript/support.md" },
+          { text: "Aide-mémoire JavaScript et Ajax", link: "/cheatsheets/javascript/" }
         ]
       },
       {
-        text: "Javascript avancé", collapsed: true, items: [
-          { text: "Prise en main JavaScript Avancé", link: "/tp/javascript_avances/introduction.md" },
-          { text: "Questions complémentaires", link: "/tp/javascript_avances/revision.md" },
+        text: "TP les bases", collapsed: true, items: [
+          { text: "Hello World", link: "/tp/javascript/tp1.md" },
+          { text: "Des variables en veux-tu en voilà !", link: "/tp/javascript/tp1.1.md" },
+          { text: "Une petite mise en bouche", link: "/tp/javascript/tp1.2.md" }
+        ]
+      },
+      {
+        text: "TP le DOM et les événements", collapsed: true, items: [
+          { text: "Le retour de Bart", link: "/tp/javascript/tp2.md" },
+          { text: "Contrôle de saisie et interactivité", link: "/tp/javascript/tp3.md" },
+          { text: "Interactivité (si vous êtes en avance)", link: "/tp/javascript/tp3.1.md" }
+        ]
+      },
+      {
+        text: "TP l'Ajax", collapsed: true, items: [
           { text: "Pratiquer l'Ajax", link: "/tp/javascript/tp4.md" },
-          { text: "La BTS TV 2.0 (Ajax)", link: "/tp/javascript/tp4.1.md" },
-          { text: "Larablog 2.0 (Ajax & VueJS)", link: "/tp/javascript/tp6.md" },
-          { text: "Découverte de HTMX", link: "/tp/javascript/htmx.md" }
+          { text: "La BTS TV 2.0 (si vous êtes en avance)", link: "/tp/javascript/tp4.1.md" },
+          { text: "Évaluation : Mon catalogue de films", link: "/tp/javascript/eval1.md" }
+        ]
+      },
+      {
+        text: "Pour aller plus loin", collapsed: true, items: [
+          { text: "Les librairies pour vous sauver", link: "/tp/javascript/tp5.md" },
+          { text: "Prise en main JavaScript avancé", link: "/tp/javascript_avances/introduction.md" },
+          { text: "Questions complémentaires", link: "/tp/javascript_avances/revision.md" },
+          { text: "Découverte de HTMX", link: "/tp/javascript/htmx.md" },
+          { text: "Larablog 2.0 (Ajax et VueJS)", link: "/tp/javascript/tp6.md" }
         ]
       },
     ]

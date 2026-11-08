@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="330" viewBox="0 0 900 330" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="900" height="330" fill="#ffffff"/>
+  <!-- tree -->
+  <rect x="20" y="20" width="230" height="290" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="40" y="50" font-weight="600" fill="#0f172a">Le dossier du TP</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#0f172a">
+    <text x="40" y="90">hello/</text>
+    <text x="56" y="120">├── index.html</text>
+    <text x="56" y="150">└── public/</text>
+    <text x="72" y="180">    └── js/</text>
+    <text x="88" y="210">        └── script.js</text>
+  </g>
+  <!-- index.html -->
+  <rect x="300" y="20" width="580" height="130" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="320" y="50" font-weight="600" fill="#0f172a">index.html</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#0f172a">
+    <text x="320" y="80">&lt;p&gt;Lorem Ipsum&lt;/p&gt;</text>
+    <text x="320" y="104">&lt;script src="./public/js/script.js"&gt;&lt;/script&gt;</text>
+    <text x="320" y="128">&lt;p&gt;Lorem Ipsum suite&lt;/p&gt;</text>
+  </g>
+  <!-- script.js -->
+  <rect x="300" y="200" width="300" height="110" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="320" y="230" font-weight="600" fill="#0f172a">public/js/script.js</text>
+  <text x="320" y="265" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#0f172a">alert("Bonjour à tous");</text>
+  <text x="320" y="292" font-size="12" fill="#475569">Que du JavaScript, pas de balise script.</text>
+  <!-- arrow -->
+  <path d="M500,110 C 560,130 560,170 520,198" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowb)"/>
+  <!-- explanation -->
+  <rect x="630" y="200" width="250" height="110" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <g fill="#0f172a" font-size="13">
+    <text x="645" y="225" font-weight="600" font-size="14">Arrivé à la balise script</text>
+    <text x="645" y="250">1. le navigateur charge le fichier,</text>
+    <text x="645" y="272">2. il exécute son contenu,</text>
+    <text x="645" y="294">3. il reprend la lecture du HTML.</text>
+  </g>
+  <text x="560" y="182" font-size="12" fill="#2563eb">chemin depuis index.html</text>
+</svg>

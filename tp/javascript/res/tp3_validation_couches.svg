@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="300" viewBox="0 0 900 300" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="900" height="300" fill="#ffffff"/>
+  <text x="20" y="32" font-weight="600" font-size="15" fill="#0f172a">Trois contrôles successifs, chacun son rôle</text>
+  <g stroke-width="2">
+    <rect x="20" y="52" width="250" height="160" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="325" y="52" width="250" height="160" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="630" y="52" width="250" height="160" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="145" y="80" font-weight="600">1. Le navigateur (HTML)</text>
+    <text x="145" y="104" font-size="11" font-family="ui-monospace, monospace" fill="#2563eb">required, minlength,</text>
+    <text x="145" y="122" font-size="11" font-family="ui-monospace, monospace" fill="#2563eb">type="email"</text>
+    <text x="145" y="150" font-size="12" fill="#475569">les cas simples, sans code :</text>
+    <text x="145" y="168" font-size="12" fill="#475569">bloque l'envoi et affiche</text>
+    <text x="145" y="186" font-size="12" fill="#475569">une bulle d'erreur</text>
+    <text x="450" y="80" font-weight="600">2. Votre JavaScript</text>
+    <text x="450" y="104" font-size="11" font-family="ui-monospace, monospace" fill="#d97706">validateForm(evt)</text>
+    <text x="450" y="150" font-size="12" fill="#475569">les règles métier : comparer</text>
+    <text x="450" y="168" font-size="12" fill="#475569">deux champs, un format précis,</text>
+    <text x="450" y="186" font-size="12" fill="#475569">un message personnalisé</text>
+    <text x="755" y="80" font-weight="600">3. Le serveur (PHP)</text>
+    <text x="755" y="104" font-size="11" font-family="ui-monospace, monospace" fill="#16a34a">isset, empty, strlen…</text>
+    <text x="755" y="150" font-size="12" fill="#475569">la seule vérification fiable :</text>
+    <text x="755" y="168" font-size="12" fill="#475569">il revalide toujours,</text>
+    <text x="755" y="186" font-size="12" fill="#475569">quoi qu'il arrive côté client</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="270" y1="132" x2="323" y2="132"/>
+    <line x1="575" y1="132" x2="628" y2="132"/>
+  </g>
+  <rect x="20" y="236" width="555" height="44" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="297" y="263" text-anchor="middle" font-size="12" fill="#475569">Côté client : du confort pour l'utilisateur, contournable (DevTools, JS désactivé)</text>
+  <rect x="630" y="236" width="250" height="44" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="755" y="263" text-anchor="middle" font-size="12" fill="#475569">Côté serveur : la sécurité</text>
+</svg>
