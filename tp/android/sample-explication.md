@@ -55,19 +55,19 @@ Afin de simplifier l'entrée dans le code, j'ai volontairement limité l'organis
 
 ## MVVM ? Kézako !?
 
-L’acronyme MVVM signifie Modèle Vue Vue-Modèle (Model–view–viewmodel). L'architecture MVVM est « plutôt récente » elle date de 2004, elle est inventée à la base par Microsoft afin de simplifier les problématiques de gestion de l'interface (en utilisant des mécaniques d'évènement)
+L’acronyme MVVM signifie Modèle Vue Vue-Modèle (Model–view–viewmodel). L'architecture MVVM est « plutôt récente » elle date de 2004, elle est inventée à la base par Microsoft afin de simplifier les problématiques de gestion de l'interface (en utilisant des mécaniques d'événement)
 
 Elle a récemment été popularisée par certains frameworks JavaScript, car elle permet d'implémenter « simplement » des interfaces avec une réactivité importante.
 
 ![MVVM Pattern](./view/ressources/MVVMPattern.png)
 
-Cette méthode permet, tel le modèle MVC (modèle-vue-contrôleur), de séparer la vue de la logique et de l'accès aux données en accentuant les principes de liaison et d’évènement.
+Cette méthode permet, tel le modèle MVC (modèle-vue-contrôleur), de séparer la vue de la logique et de l'accès aux données en accentuant les principes de liaison et d’événement.
 
 Il faut donc distinguer _3 parties_ :
 
 - Le modèle : Les données au sens pur (de la data sous forme d'objet), elles peuvent provenir d'API, de base de données, de sources locales.
-- La vue : L'affichage utilisateur, la gestion des clics… Et _uniquement_ ça, la logique associée à la donnée est effectuée dans le `Vue-Modèle` (via « le bus des évènements »)
-- Le Vue-Modèle : Interagit avec la couche `modèle` et envoie les nouveaux états résultat à la vue (via le « bus des évènements »).
+- La vue : L'affichage utilisateur, la gestion des clics… Et _uniquement_ ça, la logique associée à la donnée est effectuée dans le `Vue-Modèle` (via « le bus des événements »)
+- Le Vue-Modèle : Interagit avec la couche `modèle` et envoie les nouveaux états résultat à la vue (via le « bus des événements »).
 
 Nous allons, donc devoir définir « des » bus de communication entre le Vue-Modèle et la Vue afin de permettre l'actualisation des données. Cette organisation va nous permettre une fois en place de ne manipuler essentiellement plus que de la donnée. La vue sera donc « automatiquement » mise à jour, et ce en fonction de l'état de la donnée (exemple les loaders / les mises à jour de liste, etc.)
 

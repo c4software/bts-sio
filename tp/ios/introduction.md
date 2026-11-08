@@ -208,7 +208,7 @@ Dans les TP, vous écrirez votre code **sur votre machine**, dans VSCode, et c'e
 ```bash
 ./devbox-build.sh            # compile, signe, installe et lance l'application
 ./devbox-build.sh build      # compile seulement
-./devbox-build.sh logs       # les logs de l'application (Ctrl-C pour arrêter)
+./devbox-build.sh logs       # les logs de l'application (Ctrl + C pour arrêter)
 ```
 
 Le script est maintenu dans le dépôt de la dev-box : [`scripts/devbox-build.sh`](https://github.com/c4software/dev-box/blob/main/scripts/devbox-build.sh) ([le télécharger](https://raw.githubusercontent.com/c4software/dev-box/main/scripts/devbox-build.sh)). Il est écrit en anglais, comme tout ce dépôt : ses commentaires et ses messages aussi. Chaque TP vous dit où le placer, et `devbox help ios`, dans la dev-box, le rappelle.

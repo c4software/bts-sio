@@ -347,13 +347,13 @@ Essayer de récupérer vos « todos » depuis votre console.
 
 Maintenant que nos API sont terminées et que notre appel via Fetch fonctionne, nous allons écrire le code JavaScript (VueJS) qui va gérer notre application.
 
-Nous allons utiliser massivement la gestion d'évènement de VueJS.
+Nous allons utiliser massivement la gestion d'événement de VueJS.
 
 Pour rappel, n’hésitez pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png).
 
 ### La liste
 
-La liste des tâches va être la première chose que nous allons charger. Cette « liste » sera chargée lors de l'évènement `beforeMount`.
+La liste des tâches va être la première chose que nous allons charger. Cette « liste » sera chargée lors de l'événement `beforeMount`.
 
 ### Les actions
 

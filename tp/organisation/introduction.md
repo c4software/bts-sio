@@ -4,13 +4,35 @@ description: Dans ce TP, nous allons voir comment « réorganiser » du code pou
 
 # (Ré)organiser mon code
 
-## Introduction
-
 Dans ce TP, nous allons voir comment « réorganiser » du code pour le rendre plus facilement maintenable.
 
 ::: danger
 Le code original fourni est clairement de mauvaise qualité. Il ne doit pas être pris comme référence.
 :::
+
+::: details Sommaire
+[[toc]]
+:::
+
+Dans ce TP, je vous invite à avoir en parallèle :
+
+- [Les slides Organisation](/cours/organisations)
+
+## Prérequis
+
+- Les TP précédents du [parcours PHP de base](/pages/categories/les-tp-php-de-base.md), en particulier les includes du [TP 1.2](../php/tp1.2.md) et le découpage du [TP 3](../php/tp3.md).
+- WAMP / XAMPP installé et démarré (l'application stocke ses données dans des fichiers JSON, aucune base n'est nécessaire, sauf pour la partie « En plus : Migration vers MySQL »).
+
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- analyser un code existant pour en relever les défauts ;
+- lister les fonctionnalités d'une application avant de la modifier ;
+- supprimer la duplication du HTML en sortant le header, le footer et les listes dans des fonctions ;
+- représenter une donnée avec une classe PHP (le modèle) ;
+- centraliser l'accès aux données dans un DAO ;
+- regrouper les paramètres de l'application dans un fichier dédié.
 
 ## Code
 
@@ -449,8 +471,6 @@ Modifier vos différentes pages PHP pour utiliser les constantes nouvellement d�
 Une variable définie en dehors d'une fonction n'est **pas** visible à l'intérieur. Pour utiliser `$_DATA_PATH` dans les méthodes de votre DAO (ou `$_ELEMENTS` dans une fonction), déclarez-la en première ligne avec `global $_DATA_PATH;`, ou passez-la en paramètre.
 :::
 
-[Le projet réorganisé à la fin de ces étapes est téléchargeable ici](/demo/php/shitty-app-organisee.zip) (les deux parties « En plus » ci-dessous restent à faire).
-
 ## En plus : Ne pas autoriser plusieurs liens identiques
 
 Pour l'instant, il est possible d'insérer plusieurs fois le même lien dans la base de données.
@@ -466,3 +486,19 @@ Nous allons profiter de la mise en place d'un DAO pour migrer notre code ! Les J
 - N'oubliez pas de mettre dans le fichier `parametres.php` la configuration de votre connexion. (️⚠️ Surtout, ne l'écrivez pas dans le DAO ⚠️).
 
 ⚠️ Vous avez vu l'avantage ! Nous avons modifié **un seul fichier** et l'ensemble de votre code utilise maintenant MySQL comme système de base de données.
+
+## Conclusion
+
+Dans ce TP, vous avez :
+
+- analysé un code de mauvaise qualité et listé ses défauts ;
+- sorti le HTML commun (header, footer) et les listes répétées dans des fonctions ;
+- créé un modèle qui représente un lien, et un DAO qui centralise la lecture et l'ajout ;
+- rangé les paramètres de l'application dans un fichier `parametres.php` ;
+- vu qu'avec un DAO, changer de stockage ne touche qu'un seul fichier.
+
+[Le projet réorganisé à la fin de ces étapes est téléchargeable ici](/demo/php/shitty-app-organisee.zip) (les deux parties « En plus » ci-dessus restent à faire).
+
+La suite ? [Évaluation 2 : Le livre d'or](../php/eval2.md), puis [TP 6 SQL : BTS TV administrable](../php/sql/tp6.md).
+
+👋 Si vous avez des questions, n'hésitez pas.

@@ -6,6 +6,10 @@ description: Le meilleur moyen de comprendre les boucles. C'est d'en écrire par
 
 Le meilleur moyen de comprendre les boucles. C'est d'en écrire par soi-même. Je vous propose de créer votre propre générateur de Bart.
 
+::: details Sommaire
+[[toc]]
+:::
+
 ## Les slides
 
 Avant de commencer, un tour rapide des compétences du jour : les boucles `while` et `for`, et le paramètre `$_GET`.
@@ -13,6 +17,22 @@ Avant de commencer, un tour rapide des compétences du jour : les boucles `while
 <ClientOnly>
 <SlidesDeck src="php_tp1_1" />
 </ClientOnly>
+
+## Prérequis
+
+- Le [TP 1 : Créer ma première page PHP](./tp1.md) terminé (balises PHP, `echo`).
+- Le HTML et la CSS (vous aurez une page et une feuille de style à écrire).
+- WAMP / XAMPP démarré.
+
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- analyser une maquette pour en déduire la structure HTML, CSS et PHP d'une page ;
+- répéter un affichage avec une boucle `while` ou `for` ;
+- utiliser des variables pour paramétrer cet affichage ;
+- lire un paramètre passé dans l'URL avec `$_GET` ;
+- prévoir une valeur par défaut avec `isset` quand le paramètre est absent.
 
 ## Introduction
 
@@ -114,3 +134,16 @@ Nous reviendrons sur cette base de TP plus tard pour y ajouter :
 
 - Une fonction.
 - Des includes.
+
+## Conclusion
+
+Dans ce TP, vous avez :
+
+- analysé une maquette avant d'écrire la moindre ligne de code ;
+- construit la page en HTML et CSS, avec une seule phrase écrite en dur ;
+- remplacé cette phrase par une boucle qui écrit `$nb_ligne` lignes ;
+- rendu le nombre de lignes paramétrable avec `$_GET`, sans oublier le cas où le paramètre est absent.
+
+La suite ? [TP 1.2 : Utiliser des includes et une librairie](./tp1.2.md).
+
+👋 Si vous avez des questions, n'hésitez pas.

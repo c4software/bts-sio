@@ -181,7 +181,7 @@ Le navigateur lit votre HTML **de haut en bas**, et exécute chaque `script` au 
 :::
 
 ::: tip La solution ?
-Attendre que votre page « soit entièrement chargée » afin de déclencher votre JavaScript ! Cet évènement est appelé `Dom Ready` (il est très important), dès que cet évènement est « levé » vous pouvez exécuter votre JS.
+Attendre que votre page « soit entièrement chargée » afin de déclencher votre JavaScript ! Cet événement est appelé `Dom Ready` (il est très important), dès que cet événement est « levé » vous pouvez exécuter votre JS.
 :::
 
 Concrètement il faut écrire :

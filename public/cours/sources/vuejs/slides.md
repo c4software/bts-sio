@@ -263,7 +263,7 @@ app.mount("#demo");
 
 ---
 
-### Gestion des évènements suite
+### Gestion des événements suite
 
 Exemple d'objet :
 
@@ -331,10 +331,10 @@ data: {
 
 ---
 
-### Les évènements HTML / les touches de modifications
+### Les événements HTML / les touches de modifications
 
 ```html
-<!-- Arrêt de la propagation de l’évènement -->
+<!-- Arrêt de la propagation de l’événement -->
 <a @click.stop="clickEvent"></a>
 
 <!--
@@ -702,7 +702,7 @@ $ npm run dev
 
 - Application multivue
 - Besoin de synchronisation entre les vues
-- Évènement global entre les vues
+- Événement global entre les vues
 
 ---
 

@@ -323,7 +323,7 @@ Pour aller plus loin dans l’utilisation de Fetch, je vous recommande la lectur
 
 #### Liste des tâches
 
-La liste des tâches est chargée dès l’arrivée sur la page « principale ». Vous devez donc écrire du code dans l’évènement « beforeMount » (pour rappel n’hésitez pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png))
+La liste des tâches est chargée dès l’arrivée sur la page « principale ». Vous devez donc écrire du code dans l’événement « beforeMount » (pour rappel n’hésitez pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png))
 
 - Dans le fichier main.js, ajouter à l’objet Vue `beforeMount`
 
@@ -487,7 +487,7 @@ var app = new Vue({
 });
 ```
 
-- Appel de votre code dans le template. Maintenant que votre code est prêt, vous allez pouvoir l’appeler depuis votre template. Pour faire ça, vous allez utiliser [la gestion des évènements de VueJS](https://vuejs.org/v2/guide/events.html) Exemple :
+- Appel de votre code dans le template. Maintenant que votre code est prêt, vous allez pouvoir l’appeler depuis votre template. Pour faire ça, vous allez utiliser [la gestion des événements de VueJS](https://vuejs.org/v2/guide/events.html) Exemple :
 
 ```html
 <form @submit.prevent="ajout()"></form>

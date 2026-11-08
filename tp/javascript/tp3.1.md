@@ -25,7 +25,7 @@ Cette fois-ci je vous laisse travailler avec comme seule information « mon cahi
 Pour ce TP, il vous faut :
 
 - Avoir terminé le [TP 3](./tp3.md) : lire une saisie, attacher un événement, modifier la page.
-- [L'aide-mémoire](/cheatsheets/javascript/) et [le support de cours](/tp/javascript/support.md), en particulier [« Les évènements »](/tp/javascript/support.md#les-evenements) et [« Allons un peu plus loin »](/tp/javascript/support.md#allons-un-peu-plus-loin) (se « balader » dans le DOM).
+- [L'aide-mémoire](/cheatsheets/javascript/) et [le support de cours](/tp/javascript/support.md), en particulier [« Les événements »](/tp/javascript/support.md#les-evenements) et [« Allons un peu plus loin »](/tp/javascript/support.md#allons-un-peu-plus-loin) (se « balader » dans le DOM).
 
 ## Objectifs
 

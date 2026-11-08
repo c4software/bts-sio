@@ -672,7 +672,7 @@ $("#monInput").val();
 
 ---
 
-## Les évènements
+## Les événements
 
 <iframe src="https://giphy.com/embed/YMGnCZyNvfQ8b6CnZc" width="480" height="325" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
@@ -745,19 +745,19 @@ En réalité, comme beaucoup de choses du WEB la pratique vous donnera l'habitud
 
 ---
 
-C'était un simple exemple… [La liste des évènements possibles bien plus longue !](https://developer.mozilla.org/fr/docs/Web/Events)
+C'était un simple exemple… [La liste des événements possibles bien plus longue !](https://developer.mozilla.org/fr/docs/Web/Events)
 
 ---
 
 ## Mise en pratique
 
-[Mettre en pratique la gestion d'évènements](/tp/javascript/tp3.html)
+[Mettre en pratique la gestion d'événements](/tp/javascript/tp3.html)
 
 ---
 
 ## Mise en pratique 2
 
-[Mettre en pratique la gestion d'évènements](/tp/javascript/tp3.1.html)
+[Mettre en pratique la gestion d'événements](/tp/javascript/tp3.1.html)
 
 ---
 

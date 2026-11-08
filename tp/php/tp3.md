@@ -18,6 +18,21 @@ Avant de commencer, un tour rapide des compétences du jour : l'entry-point, le 
 <SlidesDeck src="php_tp3" />
 </ClientOnly>
 
+## Prérequis
+
+- Votre projet Bart à la fin du [TP 2](./tp2.md), avec la base `bart` (le détail du point de départ est juste en dessous).
+- XAMPP / WAMP démarré.
+
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- expliquer le rôle d'un point d'entrée unique (`index.php`) ;
+- ranger un projet dans des dossiers qui ont un sens (`common/`, `pages/`, `public/`, `utils/`) ;
+- choisir la page à afficher avec le paramètre `?page=` ;
+- protéger cet accès avec une whitelist et `in_array()` ;
+- réécrire les URL avec un fichier `.htaccess`.
+
 ## Introduction
 
 Comme [je l'indiquai dans le cours,](./support.md#la-structure) la structuration du code est un point **très important** voir même je pense central dans votre futur métier de développeur informatique. C'est pour ça qui me semble important de créer un TP dédié à cette problématique.

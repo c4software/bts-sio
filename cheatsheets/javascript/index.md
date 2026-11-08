@@ -170,9 +170,9 @@ const arr = [1, 2, 3, 4];
 arr.filter((curr) => curr > 2); // --> Retourne un tableau avec seulement les valeurs supérieures à 2
 ```
 
-## Les évènements
+## Les événements
 
-| Évènement   | Détail                              |
+| Événement   | Détail                              |
 | ----------- | ----------------------------------- |
 | onAbort     | Chargement interrompu               |
 | onBlur      | Perte du focus                      |
@@ -378,7 +378,7 @@ document.getElementById("monInput").value;
 $("#monInput").val();
 ```
 
-## Réagir aux évènements
+## Réagir aux événements
 
 ![Event_click](./event_click.png)
 

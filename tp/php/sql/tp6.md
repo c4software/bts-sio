@@ -9,6 +9,10 @@ Dans ce TP nous allons mettre en pratique nos connaissances autour de la base de
 - La liste des vidéos.
 - Le thème en fonction de la vidéo.
 
+::: details Sommaire
+[[toc]]
+:::
+
 ## Les slides
 
 Avant de commencer, un tour rapide des compétences du jour : la clé étrangère, la jointure et le mot de passe haché.
@@ -16,6 +20,24 @@ Avant de commencer, un tour rapide des compétences du jour : la clé étrangèr
 <ClientOnly>
 <SlidesDeck src="sql_tp6" />
 </ClientOnly>
+
+## Prérequis
+
+- Votre projet BTS TV du [TP BTS TV : Le passage de paramètres](../tp-param.md) (`index.php`, `tv.php?id=…`).
+- L'organisation entry-point du [TP 3](../tp3.md) (whitelist, `pages/`, `utils/db.php`).
+- Le mécanisme de connexion du [TP 5](../tp5.md) et du [TP Authentification](./tp-authentification.md).
+- XAMPP / WAMP démarré, avec phpMyAdmin (ou dbeaver) pour créer la base.
+
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- traduire un besoin en un MCD de deux tables reliées par une clé étrangère ;
+- créer la base correspondante et y insérer un jeu de test, sans mot de passe en clair ;
+- écrire une page de connexion qui vérifie les identifiants en base avec une requête préparée ;
+- adapter la whitelist et la barre de navigation selon que l'utilisateur est connecté ou non ;
+- écrire une page d'administration qui ajoute, liste et supprime des vidéos ;
+- afficher les vidéos de la base sur l'accueil et sur `tv.php` à partir de leur identifiant interne.
 
 ## Définir le besoin
 
@@ -257,3 +279,17 @@ Une solution complète de ce TP est [téléchargeable ici](/demo/php/bts-tv-admi
 
 **Attention :** ce TP vous demande de concevoir vous-même la base, la connexion et l'administration. Utiliser le code fourni à la place du vôtre aura un impact sur votre évaluation. Ne le téléchargez que si vous êtes bloqué, pour comprendre ce qui ne fonctionne pas chez vous, puis repartez de votre propre travail.
 :::
+
+## Conclusion
+
+Dans ce TP, vous avez :
+
+- défini un besoin, puis conçu un MCD avec une clé étrangère entre les vidéos et les utilisateurs ;
+- créé la base et inséré des utilisateurs dont le mot de passe est haché ;
+- protégé l'administration par une page de connexion et une whitelist qui dépend de la session ;
+- ajouté, listé et supprimé des vidéos avec des requêtes préparées ;
+- remplacé la liste écrite dans le code par celle de la base, sur l'accueil comme sur `tv.php`.
+
+La suite ? [TP Création : La médiathèque](./creation-mediatheque.md), où vous partirez d'une base existante plus riche.
+
+👋 Si vous avez des questions, n'hésitez pas.

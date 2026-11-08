@@ -221,7 +221,7 @@ Modifier le code de démonstration pour utiliser le plug-in de manière permanen
 
 - Ajouter un bouton.
 - Ajouter une fonction JavaScript pour déclencher la caméra.
-- Ajouter un évènement `onClick` sur le bouton que vous avez créé.
+- Ajouter un événement `onClick` sur le bouton que vous avez créé.
 
 ## Ajouter un second plug-in
 

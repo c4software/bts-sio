@@ -6,6 +6,10 @@ description: Nous avons vu dans le cours qu'il était possible grace à la fonct
 
 Nous avons vu dans le cours qu'il était possible grace à la fonction PHP `include` d'inclure une page dans une autre. Cette fonction nous permet également d'utiliser des librairies en les incluant dans les différentes pages ou ça est nécessaire.
 
+::: details Sommaire
+[[toc]]
+:::
+
 ## Les slides
 
 Avant de commencer, un tour rapide des compétences du jour : l'`include` et la notion de librairie.
@@ -13,6 +17,22 @@ Avant de commencer, un tour rapide des compétences du jour : l'`include` et la 
 <ClientOnly>
 <SlidesDeck src="php_tp1_2" />
 </ClientOnly>
+
+## Prérequis
+
+- Le [TP 1.1 : Le générateur de Bart](./tp1.1.md) terminé (boucles, `$_GET` et `isset`).
+- [Le complément de cours PHP](./support.md#le-code) à portée de main, pour le découpage en fichiers.
+- WAMP / XAMPP démarré.
+
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- intégrer la librairie Bootstrap dans un projet PHP ;
+- découper une page en plusieurs fichiers (header, footer) avec `include` ;
+- inclure une librairie de fonctions PHP et lire sa documentation ;
+- appeler les fonctions d'une librairie et afficher leur résultat ;
+- conditionner un affichage selon la date ou selon un paramètre `GET`.
 
 ## Création d'un nouveau projet
 
@@ -102,3 +122,16 @@ Voilà à quoi ça va ressembler :
 
 ![Sans le paramètre](./res/lib_screen1.png)
 ![Avec le paramètre](./res/lib_screen2.png)
+
+## Conclusion
+
+Dans ce TP, vous avez :
+
+- créé un projet Bootstrap avec une NavBar et un footer ;
+- découpé votre page en plusieurs fichiers grâce à `include` ;
+- intégré une librairie fournie, rangée dans son propre dossier, et découvert ses fonctions en lisant sa documentation ;
+- utilisé ces fonctions pour afficher votre identité, un nombre de mails, le décompte avant Noël et un message personnalisé via `$_GET`.
+
+La suite ? [TP BTS TV : Le passage de paramètres](./tp-param.md).
+
+👋 Si vous avez des questions, n'hésitez pas.

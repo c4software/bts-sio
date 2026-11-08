@@ -76,7 +76,7 @@ Votre navigateur possède donc un « Moteur JavaScript » que l'on appelle parfo
 - V8 : Chrome, Opera, Edge.
 - SpiderMonkey : Firefox.
 - Chakra pour Internet Explorer.
-- ChakraCore Microsoft Edge (avant l'évènement « Chromium »)
+- ChakraCore Microsoft Edge (avant l'événement « Chromium »)
 - Nitro et SquirrelFish pour Safari.
 
 ::: tip Un Moteur ?
@@ -792,20 +792,20 @@ document.getElementById("monInput").value;
 $("#monInput").val();
 ```
 
-## Les évènements
+## Les événements
 
 Nous avons vu pour l'instant du JS très simple, il ressemble beaucoup à du code PHP c'est-à-dire sans grande interaction avec l'utilisateur.
 
 Le but du JavaScript est vraiment d'interagir avec l'utilisateur, pour améliorer l'interactivité de votre site Internet afin par exemple de valider une saisie « côté client ».
 
-Pour ça nous allons avoir à notre disposition des évènements, ces évènements nous permettront de réagir « instantanément » aux demandes de l'utilisateur. La construction des évènements est toujours la même à savoir « **on** quelque chose », par exemple :
+Pour ça nous allons avoir à notre disposition des événements, ces événements nous permettront de réagir « instantanément » aux demandes de l'utilisateur. La construction des événements est toujours la même à savoir « **on** quelque chose », par exemple :
 
 - onclick
 - onsubmit
 - onresize
 - …
 
-Nous avons deux façons d'attacher les évènements :
+Nous avons deux façons d'attacher les événements :
 
 - Dans le DOM.
 - En JavaScript.
@@ -850,7 +850,7 @@ Le `this` correspond à l'élément sur lequel vous avez cliqué.
 Simple ? Compliqué ? En réalité, comme beaucoup de choses du WEB la pratique vous donnera l'habitude de manipuler le JS. Il deviendra pour vous une véritable seconde nature :tada:.
 :::
 
-Nous avons vu ici comment utiliser l'évènement `click`, mais la liste des possibilités [est bien plus longue](https://developer.mozilla.org/fr/docs/Web/Events), sans rentrer dans le détail, nous avons :
+Nous avons vu ici comment utiliser l'événement `click`, mais la liste des possibilités [est bien plus longue](https://developer.mozilla.org/fr/docs/Web/Events), sans rentrer dans le détail, nous avons :
 
 - dblclick
 - mousemove, mouseup

@@ -1,6 +1,6 @@
 ---
 aside: false
-description: "Le portail de tout ce qui touche au web dans les supports : les parcours dans l'ordre, les cours, les compléments, les aide-mémoire, les TP, les évaluations et les jeux."
+description: "Le portail de tout ce qui touche au web dans les supports : les parcours dans l'ordre, les cours, les compléments, les aide-mémoires, les TP, les évaluations et les jeux."
 ---
 
 # Le Web
@@ -40,7 +40,7 @@ Et en transversal, quel que soit le parcours : [le versionning avec Git et GitLa
 
 - Les slides : [introduction PHP](/cours/introduction_php.md), [la structure entry-point](/cours/php_structure.md), [PHP et la base de données](/cours/introduction_sql_php.md), [les bases de la sécurité du web](/cours/securite_bases.md), [PHP et la POO](/cours/php_poo.md), [l'organisation du code](/cours/organisations.md).
 - Les compléments : [le complément PHP](/tp/php/support.md), [le complément PHP et base de données](/tp/php/sql/support.md), [le complément sécurité](/tp/php/securite/support.md), [le complément PHP et POO](/tp/php/poo/support.md).
-- Les aide-mémoire : [PHP](/cheatsheets/php/), [SQL](/cheatsheets/sql/), [la POO](/cheatsheets/poo/), [la modélisation UML](/cheatsheets/poo-uml/).
+- Les aide-mémoires : [PHP](/cheatsheets/php/), [SQL](/cheatsheets/sql/), [la POO](/cheatsheets/poo/), [la modélisation UML](/cheatsheets/poo-uml/).
 - Les exercices : [en classe](/tp/php/exercices.md) et [à la maison](/tp/php/exercices-maison.md).
 - Les TP, les TP de création et les évaluations : dans [le parcours des TP PHP de base](/pages/categories/les-tp-php-de-base.md).
 - Les jeux bonus : [l'enquête PHP](/jeux/enquete-php.md) (algorithmes) et [l'enquête SQL](/jeux/enquete-sql.md) (requêtes).
@@ -49,7 +49,7 @@ Et en transversal, quel que soit le parcours : [le versionning avec Git et GitLa
 
 - Les slides : [rappels PHP](/cours/php_rappels.md), [le design pattern MVC](/cours/mvc.md), [Laravel](/cours/laravel.md).
 - Les compléments : [le support MVC](/tp/mvc/support.md), [le support Laravel](/tp/laravel/support.md).
-- Les aide-mémoire : [Mini MVC Sample](/cheatsheets/mini-mvc-sample/), [Laravel](/cheatsheets/laravel/), [les commandes Laravel](/cheatsheets/laravel/quick.md).
+- Les aide-mémoires : [Mini MVC Sample](/cheatsheets/mini-mvc-sample/), [Laravel](/cheatsheets/laravel/), [les commandes Laravel](/cheatsheets/laravel/quick.md).
 - Les TP, du MVC pédagogique au déploiement : dans [le parcours des TP PHP avancés](/pages/categories/les-tp-php-avances.md).
 - Le déploiement : [déployer un site Laravel](/tp/ops/deployer-laravel.md), [avec l'intégration continue](/tp/ops/deployer-laravel-ci.md), [avec Docker](/tp/ops/deployer-laravel-docker.md).
 
@@ -57,7 +57,7 @@ Et en transversal, quel que soit le parcours : [le versionning avec Git et GitLa
 
 - Les slides : [introduction JavaScript](/cours/introduction_javascript.md), [JavaScript avancé](/cours/javascript_avances.md), [les frameworks JavaScript](/cours/framework_javascript.md), [VueJS](/cours/vuejs.md), [les composants](/cours/composants.md), [NodeJS](/cours/nodejs.md), [TypeScript](/cours/typescript.md).
 - Les compléments : [le complément JavaScript](/tp/javascript/support.md), [prise en main du JavaScript avancé](/tp/javascript_avances/introduction.md).
-- Les aide-mémoire : [JavaScript et Ajax](/cheatsheets/javascript/), [VueJS](/cheatsheets/vuejs/), [VueJS 3](/cheatsheets/vuejs3/).
+- Les aide-mémoires : [JavaScript et Ajax](/cheatsheets/javascript/), [VueJS](/cheatsheets/vuejs/), [VueJS 3](/cheatsheets/vuejs3/).
 - Les TP : dans [le parcours des TP JavaScript](/pages/categories/les-tp-javascript.md), puis [les composants avec VueJS 3](/tp/composants/vuejs.md), [HTMX](/tp/javascript/htmx.md) et [Larablog 2.0 (Ajax et VueJS)](/tp/javascript/tp6.md).
 
 ## Les API

@@ -7,7 +7,7 @@ description: "Le point d'entrée pour les débutants : comment fonctionnent les 
 
 Bienvenue ! Vous arrivez sur le site et vous ne savez pas par où commencer ? Pas de panique, cette page est faite pour vous.
 
-Le site contient beaucoup de supports (des cours, des TP, des aide-mémoire, des quiz, etc.). Pris un par un, ils peuvent donner l'impression d'un grand désordre. En réalité, ils sont organisés en **parcours** : des pages qui listent les TP **dans l'ordre** dans lequel je vous conseille de les faire. Votre travail consiste donc surtout à choisir le bon parcours, puis à le suivre.
+Le site contient beaucoup de supports (des cours, des TP, des aide-mémoires, des quiz, etc.). Pris un par un, ils peuvent donner l'impression d'un grand désordre. En réalité, ils sont organisés en **parcours** : des pages qui listent les TP **dans l'ordre** dans lequel je vous conseille de les faire. Votre travail consiste donc surtout à choisir le bon parcours, puis à le suivre.
 
 ::: tip Comment lire cette page
 Prenez cinq minutes pour lire les deux premières sections : elles expliquent comment sont construits les supports et comment préparer votre poste. Ensuite, choisissez votre parcours dans la section « Les parcours ».
@@ -22,7 +22,7 @@ Quel que soit le parcours, vous retrouverez toujours les mêmes types de support
 | **Les slides** (dans `cours/`) | Présenter la théorie en quelques minutes | Avant de commencer un TP |
 | **Les TP** | Pratiquer, étape par étape | En séance, puis à la maison |
 | **Les compléments de cours** | Détailler une notion, avec des exemples | Pendant le TP, quand vous bloquez |
-| **[Les aide-mémoire](/pages/categories/aide-memoires.md)** | Retrouver rapidement une syntaxe, une commande | À garder ouverts dans un onglet |
+| **[Les aide-mémoires](/pages/categories/aide-memoires.md)** | Retrouver rapidement une syntaxe, une commande | À garder ouverts dans un onglet |
 | **[Les quiz](/moodle/)** | Vérifier que les notions sont acquises | En fin de séquence, avant une évaluation |
 | **Les points étapes** | Évaluer ce que vous savez faire, sur un mini projet | Environ tous les quatre TP |
 

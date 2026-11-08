@@ -10,7 +10,7 @@ description: Le JavaScript, comme je l'indiquais en introduction, est partout. P
 
 Le JavaScript, comme je l'indiquais en introduction, est partout. Pour l'instant, nous allons le limiter principalement aux interactions utilisateurs (contrôle de saisie, validation de formulaire, interactivité).
 
-Dans le [TP précédent](./tp2.md), votre JavaScript remplissait le tableau de Bart dès le chargement de la page, avec une phrase écrite en dur dans le code. Nous allons maintenant pratiquer les évènements JavaScript en ajoutant à notre TP Bart ([Version JavaScript](/tp/javascript/tp2.md)) un simple formulaire puis des contrôles de saisie : c'est l'utilisateur qui choisira la phrase, et le code ne réagira qu'**au moment où** il valide.
+Dans le [TP précédent](./tp2.md), votre JavaScript remplissait le tableau de Bart dès le chargement de la page, avec une phrase écrite en dur dans le code. Nous allons maintenant pratiquer les événements JavaScript en ajoutant à notre TP Bart ([Version JavaScript](/tp/javascript/tp2.md)) un simple formulaire puis des contrôles de saisie : c'est l'utilisateur qui choisira la phrase, et le code ne réagira qu'**au moment où** il valide.
 
 L'objectif étant donc d'ajouter des contrôles de saisie sur votre page formulaire.
 
@@ -21,7 +21,7 @@ Deux solutions sont possibles : coder les contrôles nous-mêmes en JavaScript, 
 Pour ce TP, il vous faut :
 
 - Le projet Bart en JavaScript du [TP 2](./tp2.md), fonctionnel.
-- [Le support de cours](/tp/javascript/support.md), parties [« Obtenir les valeurs d'un input »](/tp/javascript/support.md#obtenir-les-valeurs-d-un-input) et [« Les évènements »](/tp/javascript/support.md#les-evenements).
+- [Le support de cours](/tp/javascript/support.md), parties [« Obtenir les valeurs d'un input »](/tp/javascript/support.md#obtenir-les-valeurs-d-un-input) et [« Les événements »](/tp/javascript/support.md#les-evenements).
 - [L'aide-mémoire](/cheatsheets/javascript/) à portée de main.
 
 ::: details Rattrapage : votre TP 2 ne fonctionne pas ?
@@ -63,7 +63,7 @@ Cliquez sur le bouton : la page se recharge et rien d'autre ne se passe. C'est n
 
 Ajouter des contrôles, finalement c'est simple. Il « faut juste » :
 
-- Ajouter un évènement « onSubmit ».
+- Ajouter un événement « onSubmit ».
 - Vérifier que les champs `input` ne sont pas vides (ou du moins, possèdent les valeurs attendues).
 
 En pratique ça va donner :
@@ -90,7 +90,7 @@ function validateForm(evt) {
   // Cas de réussite : la saisie est valide, votre code ici.
 }
 
-// Attacher l'évènement en JS, une fois la page chargée (comme au TP 2,
+// Attacher l'événement en JS, une fois la page chargée (comme au TP 2,
 // sinon le formulaire n'existe pas encore quand ce code s'exécute).
 document.addEventListener("DOMContentLoaded", function () {
   document

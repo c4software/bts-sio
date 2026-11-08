@@ -39,6 +39,24 @@ Avant de commencer, voici une présentation rapide de la partie théorie de notr
 <SlidesDeck src="laravel_transition" />
 </ClientOnly>
 
+## Prérequis
+
+- [Les TP PHP de base](/pages/categories/les-tp-php-de-base.md) terminés : formulaires, session, entry-point et whitelist.
+- Le TP [Pratiquer la POO et le MVC](./mvc/tp2.md), qui précède celui-ci dans [les TP PHP avancés](/pages/categories/les-tp-php-avances.md).
+- PHP 8.3 minimum et Composer (leur installation est détaillée juste en dessous).
+
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- installer Composer et créer un projet Laravel ;
+- lancer votre projet avec `php artisan serve` ;
+- déclarer des routes dans `routes/web.php` et les relier à un contrôleur ;
+- afficher une vue Blade ;
+- récupérer des paramètres `GET` et `POST` dans un contrôleur ;
+- conditionner un affichage dans une vue avec `@if` ;
+- lire et écrire des informations en session.
+
 ## Préparation
 
 Pour pouvoir utiliser Laravel, nous allons avoir besoin de différents outils :
@@ -451,12 +469,20 @@ Nous allons donc sauvegarder le nom de la personne dans une session, et afficher
 
 Je vous laisse modifier votre contrôleur `HomeController` pour sauvegarder le nom dans une session.
 
-👋 Des questions ? Je suis là.
+## Conclusion
+
+Dans ce TP, vous avez :
+
+- créé et lancé votre premier projet Laravel ;
+- remplacé le `?page=` et la whitelist par des routes, et le traitement en haut de page par un contrôleur ;
+- affiché des vues Blade, avec une condition d'affichage ;
+- récupéré des paramètres `GET` et `POST` avec `$request->input()` ;
+- utilisé la session avec `$request->session()`.
 
 [Le projet complet de ce TP est téléchargeable ici](/demo/php/transition-php-laravel.zip). L'archive ne contient ni le dossier `vendor/` ni le fichier `.env` : après l'avoir décompressée, placez-vous dans le dossier `transition-php-laravel` et lancez `composer install`, puis `cp .env.example .env` (`copy .env.example .env` sous Windows), `php artisan key:generate` et `php artisan migrate` (répondez `yes` pour créer la base SQLite), avant le traditionnel `php artisan serve`.
 
-## Conclusion
-
 Nous avons vu dans ce TP les éléments de base de Laravel, nous allons maintenant passer sur une introduction plus poussée de Laravel. Nous allons voir comment réaliser des accès à une base de données, comment réaliser des formulaires plus complexes, etc.
 
-la suite du TP est disponible ici : [TP Laravel - Introduction](/tp/laravel/introduction.md)
+La suite ? [L'introduction à Laravel](/tp/laravel/introduction.md)
+
+👋 Si vous avez des questions, n'hésitez pas.

@@ -6,6 +6,10 @@ description: Dans ce TP nous allons créer votre première page PHP. Rassurez-vo
 
 Dans ce TP nous allons créer votre première page PHP. Rassurez-vous, elle sera très simple, pas très jolie… Mais elle nous permettra de voir les concepts de bases.
 
+::: details Sommaire
+[[toc]]
+:::
+
 ## Les slides
 
 Avant de commencer, un tour rapide des compétences du jour : où s'exécute le PHP, les balises, et `echo`.
@@ -13,6 +17,23 @@ Avant de commencer, un tour rapide des compétences du jour : où s'exécute le 
 <ClientOnly>
 <SlidesDeck src="php_tp1" />
 </ClientOnly>
+
+## Prérequis
+
+- Le HTML et la CSS, vus dans le parcours [Les fondamentaux du web](/pages/categories/les-fondamentaux-du-web.md).
+- [Le complément de cours PHP](./support.md) à portée de main (ce TP y fait référence).
+- WAMP / XAMPP installé et démarré.
+
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- créer une page `.php` et l'afficher depuis votre serveur web local ;
+- placer du code PHP dans une page HTML avec les balises `<?php … ?>` ;
+- afficher une valeur dans la page avec `echo` ;
+- utiliser la fonction `date` pour afficher la date et l'heure ;
+- commenter votre code PHP ;
+- expliquer pourquoi le code PHP n'est jamais envoyé au navigateur.
 
 ## Introduction
 
@@ -222,4 +243,17 @@ Bien évidemment en
 
 :::
 
+## Conclusion
+
+Dans ce TP, vous avez :
+
+- écrit votre première page PHP et vu qu'elle s'exécute sur le serveur ;
+- découvert les balises PHP, les commentaires et le `;` obligatoire en fin d'instruction ;
+- utilisé `echo` pour envoyer un résultat dans la page, et la fonction `date` pour le rendre dynamique ;
+- constaté que le navigateur ne reçoit que le HTML produit, jamais votre code PHP.
+
 [Le projet complet de ce TP est téléchargeable ici](/demo/php/php-tp1.zip) (`index.php` et le second script, `demo2.php`).
+
+La suite ? [TP 1.1 : Le générateur de Bart](./tp1.1.md), où nous allons écrire nos premières boucles.
+
+👋 Si vous avez des questions, n'hésitez pas.

@@ -146,7 +146,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 - NodeJS
 - La structure des dossiers ([Voir](https://cordova.apache.org/docs/en/latest/reference/cordova-cli/#directory-structure))
 - Les plateformes ([Voir](https://cordova.apache.org/docs/en/latest/guide/support/index.html))
-- Les évènements ([Voir](http://cordova.apache.org/docs/en/latest/cordova/events/events.html#page-toc-source))
+- Les événements ([Voir](http://cordova.apache.org/docs/en/latest/cordova/events/events.html#page-toc-source))
 
 ---
 
@@ -274,7 +274,7 @@ Installing "cordova-plugin-camera" for android
 
 - Un fichier
 - CSS « scopée »
-- Gestion des évènements
+- Gestion des événements
 
 ---
 

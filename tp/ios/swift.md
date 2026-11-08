@@ -281,7 +281,7 @@ Sans clé d'API, la dev-box ne peut pas signer l'application pour `devbox ios xc
 :::
 
 ::: details Voir les logs de l'application
-Le script affiche aussi les logs de l'application, comme le Logcat d'Android Studio (`Ctrl-C` pour arrêter) :
+Le script affiche aussi les logs de l'application, comme le Logcat d'Android Studio (`Ctrl + C` pour arrêter) :
 
 ```bash
 ./devbox-build.sh logs

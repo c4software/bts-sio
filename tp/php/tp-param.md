@@ -16,6 +16,10 @@ L'objectif de ce code est d'illustrer le passage de paramètres entre deux pages
 - Responsive
 - Un paramètre (?id=...)
 
+::: details Sommaire
+[[toc]]
+:::
+
 ## Les slides
 
 Avant de commencer, un tour rapide des compétences du jour : une page générique, les paramètres GET et la génération de liens en boucle.
@@ -23,6 +27,22 @@ Avant de commencer, un tour rapide des compétences du jour : une page génériq
 <ClientOnly>
 <SlidesDeck src="php_tp_param" />
 </ClientOnly>
+
+## Prérequis
+
+- Le [TP 1.2 : Utiliser des includes et une librairie](./tp1.2.md) terminé (Bootstrap, `include`, `$_GET`).
+- Les boucles vues au [TP 1.1](./tp1.1.md).
+- WAMP / XAMPP démarré.
+
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- transmettre une information d'une page à une autre avec un paramètre `GET` ;
+- écrire une page générique qui change de contenu selon le paramètre reçu ;
+- regrouper le code commun à plusieurs pages (`<head>`, `<nav>`) dans des fichiers inclus ;
+- utiliser un second paramètre pour personnaliser l'apparence d'une page ;
+- générer une liste de liens à partir d'un tableau et d'une boucle.
 
 ## Rappel sur les paramètres
 
@@ -145,3 +165,17 @@ Une fois la boucle en place, la page d'accueil n'a plus aucune card écrite à l
 
 ![Page d'accueil de la BTS TV : six cards avec la miniature, le titre de la vidéo et un bouton « Regarder »](./res/tp-param_index.png)
 :::
+
+## Conclusion
+
+Dans ce TP, vous avez :
+
+- relié deux pages grâce à un paramètre `GET` (`tv.php?id=…`) ;
+- écrit une page `tv.php` générique, qui affiche la vidéo demandée ;
+- sorti le `<head>` et le `<nav>` dans des fichiers inclus par les deux pages ;
+- personnalisé le thème avec un second paramètre (`&bg=…`) ;
+- généré les cards de la page d'accueil à partir d'un tableau et d'une boucle.
+
+La suite ? [Évaluation 1 : Ma page profil dynamique](./eval1.md), pour valider les bases, puis [TP 2 : Les formulaires et la première table](./tp2.md).
+
+👋 Si vous avez des questions, n'hésitez pas.
