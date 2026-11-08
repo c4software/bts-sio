@@ -10,7 +10,7 @@ export interface VeilleSource {
   name: string
   site: string
   feed: string
-  category: 'Généralistes' | 'Développement' | 'Newsletters'
+  category: 'Développement' | 'Newsletters'
 }
 
 export interface VeilleItem {
@@ -32,13 +32,6 @@ export interface VeilleData {
 
 // La liste blanche : la fonction Netlify ne lit que ces adresses.
 export const SOURCES: VeilleSource[] = [
-  { id: 'clubic', name: 'Clubic', site: 'https://www.clubic.com/', feed: 'https://www.clubic.com/feed/news.rss', category: 'Généralistes' },
-  { id: 'lmi', name: 'Le Monde Informatique', site: 'https://www.lemondeinformatique.fr/', feed: 'https://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml', category: 'Généralistes' },
-  { id: 'jdh', name: 'Le journal du hacker', site: 'https://www.journalduhacker.net/', feed: 'https://www.journalduhacker.net/rss', category: 'Généralistes' },
-  { id: 'jdg', name: 'Le journal du geek', site: 'https://www.journaldugeek.com/', feed: 'https://www.journaldugeek.com/feed/', category: 'Généralistes' },
-  { id: 'lesnum', name: 'Les numériques', site: 'https://www.lesnumeriques.com/', feed: 'https://www.lesnumeriques.com/rss.xml', category: 'Généralistes' },
-  { id: '01net', name: '01net', site: 'https://www.01net.com/', feed: 'https://www.01net.com/feed/', category: 'Généralistes' },
-  { id: '9to5linux', name: '9to5Linux', site: 'https://9to5linux.com/', feed: 'https://9to5linux.com/feed', category: 'Généralistes' },
   { id: 'devto', name: 'Dev.to', site: 'https://dev.to/', feed: 'https://dev.to/feed', category: 'Développement' },
   { id: 'reddit-webdev', name: 'Reddit /r/webdev', site: 'https://www.reddit.com/r/webdev/', feed: 'https://www.reddit.com/r/webdev/.rss', category: 'Développement' },
   { id: 'hn', name: 'Hacker News', site: 'https://news.ycombinator.com/', feed: 'https://news.ycombinator.com/rss', category: 'Développement' },

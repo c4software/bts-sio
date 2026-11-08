@@ -11,7 +11,7 @@ import { data as snapshot } from '../veille.data'
 import { SOURCES, type VeilleData, type VeilleItem } from '../../veille'
 
 const PAGE = 30
-const CATEGORIES = ['Toutes', 'Généralistes', 'Développement', 'Newsletters'] as const
+const CATEGORIES = ['Toutes', 'Développement', 'Newsletters'] as const
 type Category = (typeof CATEGORIES)[number]
 
 const feed = ref<VeilleData>(snapshot)
