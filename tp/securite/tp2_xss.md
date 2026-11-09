@@ -56,7 +56,7 @@ Le code derrière ce champ construit une balise `<img src="...">` à partir de v
 Dans le champ de saisie, essayez :
 
 ```
-https://fakeimg.pl/300/" onload="alert('Coucou')
+https://imagefaker.access.mx.com/300/" onload="alert('Coucou')
 ```
 
 Que se passe-t-il ? Pourquoi ? Regardons le code source généré ensemble.
