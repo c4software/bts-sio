@@ -207,18 +207,22 @@ onBeforeUnmount(() => {
   <div class="veille">
     <div class="veille-toolbar">
       <div class="veille-modes" role="group" aria-label="Mode de lecture">
-        <button type="button" :class="{ active: mode === 'liste' }" :aria-pressed="mode === 'liste'" @click="setMode('liste')">Liste</button>
-        <button type="button" :class="{ active: mode === 'immersif' }" :aria-pressed="mode === 'immersif'" @click="setMode('immersif')">Immersif</button>
+        <button type="button" :class="{ active: mode === 'liste' }" :aria-pressed="mode === 'liste'"
+          @click="setMode('liste')">Liste</button>
+        <button type="button" :class="{ active: mode === 'immersif' }" :aria-pressed="mode === 'immersif'"
+          @click="setMode('immersif')">Immersif</button>
       </div>
       <div class="veille-fields">
         <select v-model="source" aria-label="Source" @change="shown = PAGE">
           <option value="">Toutes les sources</option>
           <option v-for="s in sources" :key="s.id" :value="s.id">{{ s.name }}</option>
         </select>
-        <input v-model="search" type="search" placeholder="Rechercher un mot-clé…" aria-label="Rechercher" @input="shown = PAGE" />
+        <input v-model="search" type="search" placeholder="Rechercher un mot-clé…" aria-label="Rechercher"
+          @input="shown = PAGE" />
       </div>
       <div class="veille-status">
-        <span>{{ loading ? 'Recherche des derniers articles…' : `Mis à jour le ${fullLabel.format(feed.generated)}` }}</span>
+        <span>{{ loading ? 'Recherche des derniers articles…' : `Mis à jour le ${fullLabel.format(feed.generated)}`
+          }}</span>
         <button type="button" class="veille-refresh" :disabled="loading" @click="load(false)">Actualiser</button>
       </div>
       <p v-if="error" class="veille-error">{{ error }}</p>
@@ -229,15 +233,8 @@ onBeforeUnmount(() => {
 
     <section v-for="group in groups" :key="group.key" class="veille-day">
       <h3 class="veille-day-title">{{ group.title }}</h3>
-      <a
-        v-for="item in group.items"
-        :key="item.link"
-        :href="item.link"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="veille-card"
-        :style="{ '--hue': hueOf(item.source) }"
-      >
+      <a v-for="item in group.items" :key="item.link" :href="item.link" target="_blank" rel="noopener noreferrer"
+        class="veille-card" :style="{ '--hue': hueOf(item.source) }">
         <span class="veille-meta">
           <span class="veille-source">{{ nameOf(item.source) }}</span>
           <time v-if="item.date" :datetime="new Date(item.date).toISOString()">{{ timeLabel.format(item.date) }}</time>
@@ -248,7 +245,8 @@ onBeforeUnmount(() => {
       <p v-if="group.more.length" class="veille-also">
         Et aussi, d'autres articles du jour :
         <template v-for="(m, i) in group.more" :key="m.id">
-          <button type="button" class="veille-also-link" @click="showSource(m.id)">{{ m.name }} ({{ m.count }})</button><span v-if="i < group.more.length - 1">, </span>
+          <button type="button" class="veille-also-link" @click="showSource(m.id)">{{ m.name }} ({{ m.count
+            }})</button><span v-if="i < group.more.length - 1">, </span>
         </template>
       </p>
     </section>
@@ -257,21 +255,22 @@ onBeforeUnmount(() => {
       Afficher plus d'articles ({{ capped.items.length - shown }} restants)
     </button>
 
-    <p v-if="failedNames && !loading" class="veille-failed">Sans réponse lors de la dernière récupération : {{ failedNames }}.</p>
+    <p v-if="failedNames && !loading" class="veille-failed">Sans réponse lors de la dernière récupération : {{
+      failedNames
+      }}.</p>
 
     <Teleport to="body">
-      <div v-if="immersive" class="veille-immersive" role="dialog" aria-modal="true" aria-label="Fil de veille, lecture immersive">
+      <div v-if="immersive" class="veille-immersive" role="dialog" aria-modal="true"
+        aria-label="Fil de veille, lecture immersive">
         <div class="veille-imm-bar">
           <button type="button" class="veille-imm-close" @click="setMode('liste')">← Liste</button>
-          <span v-if="capped.items.length" class="veille-imm-count">{{ Math.min(position + 1, capped.items.length) }} / {{ capped.items.length }}</span>
+          <span v-if="capped.items.length" class="veille-imm-count">{{ Math.min(position + 1, capped.items.length) }} /
+            {{
+              capped.items.length }}</span>
         </div>
         <div ref="pager" class="veille-imm-pager" tabindex="-1" @scroll.passive="onScroll">
-          <section
-            v-for="(item, i) in capped.items"
-            :key="item.link"
-            class="veille-imm-page"
-            :style="{ '--hue': hueOf(item.source) }"
-          >
+          <section v-for="(item, i) in capped.items" :key="item.link" class="veille-imm-page"
+            :style="{ '--hue': hueOf(item.source) }">
             <span class="veille-imm-initial" aria-hidden="true">{{ initialOf(item.source) }}</span>
             <div class="veille-imm-text">
               <span class="veille-imm-meta">
@@ -280,14 +279,16 @@ onBeforeUnmount(() => {
               </span>
               <h2 class="veille-imm-title">{{ item.title }}</h2>
               <p v-if="item.excerpt" class="veille-imm-excerpt">{{ item.excerpt }}</p>
-              <a :href="item.link" target="_blank" rel="noopener noreferrer" class="veille-imm-open">Lire l'article →</a>
+              <a :href="item.link" target="_blank" rel="noopener noreferrer" class="veille-imm-open">Lire l'article
+                →</a>
               <span v-if="i === 0" class="veille-imm-hint">Glissez vers le haut pour l'article suivant</span>
             </div>
           </section>
           <section class="veille-imm-page veille-imm-end">
             <div class="veille-imm-text">
               <h2 class="veille-imm-title">Vous êtes à jour 🎉</h2>
-              <p class="veille-imm-excerpt">C'est tout pour cette sélection. Revenez dans quelques jours, ou changez de source dans la liste.</p>
+              <p class="veille-imm-excerpt">C'est tout pour cette sélection. Revenez dans quelques jours, ou changez de
+                source dans la liste.</p>
               <button type="button" class="veille-imm-open" @click="setMode('liste')">Revenir à la liste</button>
             </div>
           </section>
@@ -299,7 +300,7 @@ onBeforeUnmount(() => {
 
 <style>
 .veille {
-  max-width: 760px;
+  max-width: 100%;
   margin-top: 24px;
 }
 
@@ -554,7 +555,7 @@ html.veille-immersive-open body {
   pointer-events: none;
 }
 
-.veille-imm-bar > * {
+.veille-imm-bar>* {
   pointer-events: auto;
 }
 
