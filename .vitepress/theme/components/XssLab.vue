@@ -121,7 +121,9 @@
 
     <div class="ecran">
       <div class="ecran-barre">🌐 navigateur {{ vueBob ? '— session : Bob' : '' }}</div>
-      <iframe sandbox="allow-scripts" :srcdoc="doc"></iframe>
+      <!-- Recréée à chaque rendu (clé) et forcée en thème clair : en thème sombre, Chrome
+           ne repeignait parfois pas le contenu d'une iframe srcdoc mise à jour. -->
+      <iframe :key="rendu" sandbox="allow-scripts" :srcdoc="doc"></iframe>
     </div>
 
     <div v-if="pirate.length" class="pirate">
@@ -222,6 +224,7 @@ const saisies = reactive({})
 const commentaires = ref([])
 const vueBob = ref(false)
 const doc = ref('')
+const rendu = ref(0)
 const source = ref('')
 const verdict = ref(null)
 const pirate = ref([])
@@ -268,7 +271,8 @@ function harness(cookie) {
   })()<\/script>`
 }
 
-const PAGE_CSS = `<style>body{font-family:system-ui,sans-serif;margin:0;padding:12px;color:#1b1b1f}
+// La page simulée reste en thème clair, même quand le site est en sombre (sinon texte sombre sur fond sombre).
+const PAGE_CSS = `<style>:root{color-scheme:light}body{font-family:system-ui,sans-serif;margin:0;padding:12px;color:#1b1b1f;background:#fff}
 h2{margin:0 0 8px;font-size:18px}h3{margin:0 0 8px;font-size:15px}p{margin:0}ul{padding-left:0;list-style:none;margin:0}
 li,.c{background:#f5f5f7;border-radius:6px;padding:8px 10px;margin:6px 0}img{max-width:120px;height:auto}</style>`
 
@@ -304,6 +308,7 @@ function render(asBob = false) {
   else payload = valeur.value
   const body = corps(kind, payload, commentaires.value)
   const titre = kind === 'img' ? "<h3>Aperçu de l'image</h3>" : kind === 'strip' ? '<h3>Message publié</h3>' : ''
+  rendu.value++
   doc.value = `<!doctype html><html><head><meta charset="utf-8">${PAGE_CSS}</head><body>${harness(asBob ? COOKIE_BOB : '')}${titre}${body}</body></html>`
   // Montre le HTML produit (utile pédagogiquement), sauf pour le livre d'or
   source.value = kind === 'store' ? '' : body
@@ -426,7 +431,7 @@ onBeforeUnmount(() => window.removeEventListener('message', onMessage))
 .lien { word-break: break-all; }
 .ecran { margin-top: 0.6rem; border: 1px solid var(--vp-c-divider); border-radius: 6px; overflow: hidden; }
 .ecran-barre { background: var(--vp-c-bg); padding: 0.3rem 0.6rem; font-size: 0.8em; color: var(--vp-c-text-2); border-bottom: 1px solid var(--vp-c-divider); }
-.ecran iframe { width: 100%; height: 12rem; border: 0; background: #fff; display: block; }
+.ecran iframe { width: 100%; height: 12rem; border: 0; background: #fff; display: block; color-scheme: light; }
 .pirate {
   margin-top: 0.6rem; padding: 0.7rem 0.9rem; border-radius: 6px;
   border-left: 4px solid var(--vp-c-danger-1); background: var(--vp-c-danger-soft); font-size: 0.85em;
