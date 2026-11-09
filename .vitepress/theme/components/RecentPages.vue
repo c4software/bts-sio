@@ -123,3 +123,53 @@ const features = computed(() =>
   padding-top: 8px;
 }
 </style>
+
+<style>
+/* Page /nouveautes : des cartes carrées, titre sur deux lignes et description
+   sur quatre lignes au plus. Sous 960 px (une ou deux colonnes), seule la
+   hauteur du texte est réduite : un carré y laisserait trop de vide. */
+.vp-doc .recent-pages:not(.home-content .recent-pages) .VPFeature .box {
+  padding: 20px;
+}
+
+.vp-doc .recent-pages:not(.home-content .recent-pages) .VPFeature .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.vp-doc .recent-pages:not(.home-content .recent-pages) .VPFeature .details {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+  flex: 0 0 auto;
+  max-height: 86px;
+  padding-top: 6px;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.vp-doc .recent-pages:not(.home-content .recent-pages) .VPFeature .link-text {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+@media (min-width: 960px) {
+  .vp-doc .recent-pages:not(.home-content .recent-pages) .VPFeature {
+    aspect-ratio: 1;
+  }
+}
+
+/* Entre 960 et 1280 px, la barre latérale laisse peu de place : trois cartes
+   par ligne au lieu de quatre, sinon le carré est trop étroit pour le texte. */
+@media (min-width: 960px) and (max-width: 1279px) {
+  .vp-doc .recent-pages:not(.home-content .recent-pages) .VPFeatures .item.grid-4 {
+    width: calc(100% / 3);
+  }
+}
+</style>
