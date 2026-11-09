@@ -1,20 +1,17 @@
 <template>
-  <div class="xlab">
-    <!-- ============================================ DÉMO RÉFLÉCHIE -->
+  <LabFrame class="xlab" @reset="recommencer">
+    <!-- ============================================ DÉMO RÉFLÉCHIE (exercice 1) -->
     <template v-if="type === 'reflechie'">
       <p class="intro">
         Un mini-site qui affiche une image dont l'adresse vient d'un champ. Derrière, il colle votre
         saisie dans une balise <code>&lt;img src="…"&gt;</code>, sans la filtrer.
       </p>
-      <div class="mode">
-        <label><input type="radio" value="vulnerable" v-model="mode" /> Version vulnérable (saisie collée telle quelle)</label>
-        <label><input type="radio" value="corrige" v-model="mode" /> Version corrigée (htmlspecialchars)</label>
-      </div>
+      <LabModes v-model="mode" :options="MODES_CORRIGE" />
       <div class="form">
-        <label>Adresse de l'image
-          <input v-model="valeur" spellcheck="false" placeholder='https://exemple.fr/chat.png' />
+        <label class="grow">Adresse de l'image
+          <input v-model="valeur" spellcheck="false" placeholder="https://exemple.fr/chat.png" />
         </label>
-        <button @click="render">Afficher l'image</button>
+        <button @click="render()">Afficher l'image</button>
       </div>
       <div class="exemples" v-if="mode === 'vulnerable'">
         Essayez une injection :
@@ -24,24 +21,81 @@
       </div>
     </template>
 
-    <!-- ============================================ DÉMO STOCKÉE (livre d'or + vol de session) -->
+    <!-- ============================================ PARAMÈTRE D'URL (exercice 2) -->
+    <template v-else-if="type === 'bonjour'">
+      <p class="intro">
+        La page <code>page.php</code> affiche le prénom reçu dans l'URL :
+        <code>echo "&lt;h2&gt;Bonjour {$_GET['name']}&lt;/h2&gt;";</code>
+      </p>
+      <LabModes v-model="mode" :options="MODES_CORRIGE" />
+      <div class="form">
+        <label class="grow">Adresse demandée au serveur
+          <span class="url">
+            <span class="url-fixe">page.php?name=</span>
+            <input v-model="valeur" spellcheck="false" placeholder="John" @keydown.enter="render()" />
+          </span>
+        </label>
+        <button @click="render()">Charger la page</button>
+      </div>
+      <div class="exemples" v-if="mode === 'vulnerable'">
+        Essayez :
+        <button class="link" @click="valeur = 'John'; render()"><code>John</code></button>
+        puis
+        <button class="link" @click="valeur = '&lt;script&gt;alert(\'XSS\')&lt;\/script&gt;'; render()">
+          <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code>
+        </button>
+      </div>
+      <p class="hint" v-if="lienPiege">
+        Le lien piégé que l'attaquant enverrait à sa victime :
+        <code class="lien">{{ lienPiege }}</code>
+      </p>
+    </template>
+
+    <!-- ============================================ FORMULAIRE (exercice 3) -->
+    <template v-else-if="type === 'formulaire'">
+      <p class="intro">
+        Le formulaire renvoie le nom et l'email saisis dans
+        <code>&lt;h2&gt;Bonjour $name&lt;/h2&gt;</code> et <code>&lt;p&gt;Votre email est $email&lt;/p&gt;</code>.
+        Comparez ce que produisent les deux fonctions de protection.
+      </p>
+      <LabModes v-model="mode" :options="MODES_FORMULAIRE" />
+      <div class="form">
+        <label class="grow">Nom
+          <input v-model="valeur" spellcheck="false" placeholder="Jean" />
+        </label>
+        <label class="grow">Email
+          <input v-model="email" spellcheck="false" placeholder="jean@exemple.fr" />
+        </label>
+        <button @click="render()">Envoyer</button>
+      </div>
+      <div class="exemples">
+        Essayez :
+        <button class="link" @click="valeur = '&lt;b&gt;Jean&lt;/b&gt;'; render()"><code>&lt;b&gt;Jean&lt;/b&gt;</code></button>
+        puis
+        <button class="link" @click="valeur = '&lt;img src=x onerror=alert(\'XSS\')&gt;'; render()">
+          <code>&lt;img src=x onerror=alert('XSS')&gt;</code>
+        </button>
+      </div>
+      <p class="hint">
+        Le champ email est un <code>type="email"</code> : le navigateur vérifie le format, mais un
+        attaquant envoie la requête sans passer par votre formulaire. Seul le serveur protège.
+      </p>
+    </template>
+
+    <!-- ============================================ DÉMO STOCKÉE (exercice 4 : livre d'or + vol de session) -->
     <template v-else-if="type === 'livre'">
       <p class="intro">
         Un livre d'or : chaque message est <strong>enregistré</strong>, puis réaffiché à
         <strong>tous</strong> les visiteurs. Postez un message, puis rechargez la page « dans le
         navigateur de Bob » pour voir ce que <em>lui</em> reçoit.
       </p>
-      <div class="mode">
-        <label><input type="radio" value="vulnerable" v-model="mode" /> Version vulnérable</label>
-        <label><input type="radio" value="corrige" v-model="mode" /> Version corrigée (htmlspecialchars)</label>
-      </div>
+      <LabModes v-model="mode" :options="MODES_LIVRE" />
       <div class="form">
         <label class="grow">Votre message
           <input v-model="message" spellcheck="false" placeholder="Bravo pour votre site !" />
         </label>
         <button @click="poster">Publier</button>
         <button class="secondary" @click="voirCommeBob">Recharger dans le navigateur de Bob</button>
-        <button class="secondary" @click="reinitLivre">Vider le livre d'or</button>
       </div>
       <p class="hint" v-if="commentaires.length">
         {{ commentaires.length }} message{{ commentaires.length > 1 ? 's' : '' }} enregistré{{ commentaires.length > 1 ? 's' : '' }}.
@@ -50,47 +104,24 @@
     </template>
 
     <!-- ============================================ ÉPREUVES -->
-    <template v-else-if="type === 'defis'">
-      <div class="picker">
-        <label>Épreuve :
-          <select v-model="defiId">
-            <option v-for="(d, i) in DEFIS" :key="d.id" :value="d.id">{{ i + 1 }}. {{ d.titre }}</option>
-          </select>
+    <LabDefis v-else-if="type === 'defis'" v-model="defiId" :defis="DEFIS" :resolus="resolus" v-slot="{ defi: d }">
+      <LabModes v-model="mode" :options="MODES_DEFIS" />
+      <div class="form">
+        <label class="grow">{{ d.champ }}
+          <input v-model="saisies[defiId]" spellcheck="false" :placeholder="d.placeholder" />
         </label>
+        <button @click="jouerDefi">{{ d.bouton || 'Envoyer' }}</button>
+        <button v-if="d.commentaires" class="secondary" @click="voirCommeBob">Ouvrir chez Bob</button>
+        <button class="secondary" @click="montrerIndice">Coup de pouce</button>
       </div>
-      <div class="journal">
-        <strong>Progression</strong>
-        <span v-for="d in DEFIS" :key="d.id" class="etape" :class="{ ok: resolus[d.id] }">
-          {{ resolus[d.id] ? '✔ ' + d.titre : d.titre }}
-        </span>
-      </div>
-      <div v-if="defi" class="brief">
-        <p><strong>Scénario.</strong> {{ defi.scenario }}</p>
-        <p class="objectif"><strong>Objectif :</strong> {{ defi.objectif }}</p>
-        <div class="mode">
-          <label><input type="radio" value="vulnerable" v-model="mode" /> Page vulnérable</label>
-          <label><input type="radio" value="corrige" v-model="mode" /> La même, affichage échappé</label>
-        </div>
-        <div class="form">
-          <label class="grow">{{ defi.champ }}
-            <input v-model="saisies[defiId]" spellcheck="false" :placeholder="defi.placeholder" />
-          </label>
-          <button @click="jouerDefi">{{ defi.bouton || 'Envoyer' }}</button>
-          <button v-if="defi.commentaires" class="secondary" @click="voirCommeBob">Ouvrir chez Bob</button>
-          <button class="secondary" @click="montrerIndice">Coup de pouce</button>
-        </div>
-      </div>
-    </template>
+    </LabDefis>
 
     <!-- ============================================ affichage commun -->
-    <div v-if="source" class="requete">
-      <span class="requete-label">HTML réellement produit par le serveur :</span>
-      <pre>{{ source }}</pre>
-    </div>
+    <LabCode label="HTML réellement produit par le serveur :" :code="source" />
 
     <div class="ecran">
       <div class="ecran-barre">🌐 navigateur {{ vueBob ? '— session : Bob' : '' }}</div>
-      <iframe ref="frame" sandbox="allow-scripts" :srcdoc="doc"></iframe>
+      <iframe sandbox="allow-scripts" :srcdoc="doc"></iframe>
     </div>
 
     <div v-if="pirate.length" class="pirate">
@@ -98,18 +129,40 @@
       <pre v-for="(p, i) in pirate" :key="i">{{ p }}</pre>
     </div>
 
-    <div v-if="verdict" class="verdict" :class="verdict.ok ? 'ok' : 'ko'">
-      <p>{{ verdict.texte }}</p>
-    </div>
-  </div>
+    <LabVerdict :verdict="verdict" />
+  </LabFrame>
 </template>
 
 <script setup>
 import { ref, reactive, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import LabFrame from './lab/LabFrame.vue'
+import LabModes from './lab/LabModes.vue'
+import LabCode from './lab/LabCode.vue'
+import LabVerdict from './lab/LabVerdict.vue'
+import LabDefis from './lab/LabDefis.vue'
+import { useProgression } from './lab/useProgression.js'
 
+// reflechie (ex. 1), bonjour (ex. 2), formulaire (ex. 3), livre (ex. 4), defis (À vous d'attaquer)
 const props = defineProps({ type: { type: String, default: 'reflechie' } })
-const STORAGE_KEY = 'xss-lab:defis'
 const COOKIE_BOB = 'session=BOB-9f3a7c21e0; theme=sombre'
+
+const MODES_CORRIGE = [
+  { value: 'vulnerable', label: 'Version vulnérable (saisie collée telle quelle)' },
+  { value: 'corrige', label: 'Version corrigée (htmlspecialchars)' },
+]
+const MODES_FORMULAIRE = [
+  { value: 'vulnerable', label: 'Sans protection' },
+  { value: 'corrige', label: 'htmlspecialchars (neutralise)' },
+  { value: 'strip', label: 'strip_tags (supprime les balises)' },
+]
+const MODES_LIVRE = [
+  { value: 'vulnerable', label: 'Version vulnérable' },
+  { value: 'corrige', label: 'Version corrigée (htmlspecialchars)' },
+]
+const MODES_DEFIS = [
+  { value: 'vulnerable', label: 'Page vulnérable' },
+  { value: 'corrige', label: 'La même, affichage échappé' },
+]
 
 const DEFIS = [
   {
@@ -162,8 +215,9 @@ const DEFIS = [
 
 const mode = ref('vulnerable')
 const valeur = ref('')
+const email = ref('')
 const message = ref('')
-const defiId = ref('reflechie')
+const defiId = ref(DEFIS[0].id)
 const saisies = reactive({})
 const commentaires = ref([])
 const vueBob = ref(false)
@@ -171,15 +225,33 @@ const doc = ref('')
 const source = ref('')
 const verdict = ref(null)
 const pirate = ref([])
-const resolus = ref({})
-const frame = ref(null)
+const { resolus, charger, marquer, effacer } = useProgression('xss-lab:defis')
 
 const defi = computed(() => DEFIS.find((d) => d.id === defiId.value))
+
+// Exercice 2 : l'URL qu'un attaquant ferait cliquer (saisie encodée comme dans un vrai lien).
+const lienPiege = computed(() =>
+  mode.value === 'vulnerable' && /[<>"]/.test(valeur.value)
+    ? 'https://site.fr/page.php?name=' + encodeURIComponent(valeur.value)
+    : '',
+)
 
 function escapeHtml(s) {
   return String(s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;')
+}
+
+// Comme strip_tags en PHP : retire tout ce qui ressemble à une balise, garde le texte.
+function stripTags(s) {
+  return String(s).replace(/<[^>]*>?/g, '')
+}
+
+// Ce que le « serveur » fait de la saisie avant de l'afficher, selon le mode choisi.
+function proteger(v) {
+  if (mode.value === 'corrige') return escapeHtml(v)
+  if (mode.value === 'strip') return stripTags(v)
+  return v
 }
 
 // Petit "serveur" injecté dans l'iframe : simule alert() et le cookie, intercepte les exfiltrations.
@@ -197,32 +269,29 @@ function harness(cookie) {
 }
 
 const PAGE_CSS = `<style>body{font-family:system-ui,sans-serif;margin:0;padding:12px;color:#1b1b1f}
-h3{margin:0 0 8px;font-size:15px}ul{padding-left:0;list-style:none;margin:0}
+h2{margin:0 0 8px;font-size:18px}h3{margin:0 0 8px;font-size:15px}p{margin:0}ul{padding-left:0;list-style:none;margin:0}
 li,.c{background:#f5f5f7;border-radius:6px;padding:8px 10px;margin:6px 0}img{max-width:120px;height:auto}</style>`
 
-// Construit le HTML de la page vulnérable ou corrigée selon l'épreuve/la démo.
-function build(kind, payload, comments, cookie) {
-  const corrige = mode.value === 'corrige'
-  let body = ''
-  if (kind === 'img') {
-    const v = corrige ? escapeHtml(payload) : payload
-    body = `<h3>Aperçu de l'image</h3><img src="${v}" alt="aperçu">`
-  } else if (kind === 'strip') {
-    // Filtre naif : retire seulement les balises de type script (voir le regex ci-dessous)
-    let v = corrige ? escapeHtml(payload) : payload.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
-    body = `<h3>Message publié</h3><div class="c">${v}</div>`
-  } else {
-    // store : livre d'or, tous les messages enregistrés
-    const items = (comments || []).map((m) => `<div class="c">${corrige ? escapeHtml(m) : m}</div>`).join('')
-    body = `<h3>Livre d'or</h3>${items || '<p style="color:#888">Aucun message pour l\'instant.</p>'}`
+// Construit le HTML de la page (le corps est ce que le serveur renvoie, cf. source).
+function corps(kind, payload, comments) {
+  if (kind === 'img') return `<img src="${proteger(payload)}">`
+  if (kind === 'bonjour') return `<h2>Bonjour ${proteger(payload)}</h2>`
+  if (kind === 'formulaire') return `<h2>Bonjour ${proteger(payload)}</h2>\n<p>Votre email est ${proteger(email.value)}</p>`
+  if (kind === 'strip') {
+    // Filtre naïf de l'épreuve 2 : ne retire que les balises de type script.
+    const v = mode.value === 'corrige' ? escapeHtml(payload) : payload.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+    return `<div class="c">${v}</div>`
   }
-  return `<!doctype html><html><head><meta charset="utf-8">${PAGE_CSS}</head><body>${harness(cookie)}${body}</body></html>`
+  // store : livre d'or, tous les messages enregistrés
+  const items = (comments || []).map((m) => `<div class="c">${proteger(m)}</div>`).join('')
+  return `<h3>Livre d'or</h3>${items || '<p style="color:#888">Aucun message pour l\'instant.</p>'}`
 }
 
 function currentKind() {
   if (props.type === 'reflechie') return 'img'
   if (props.type === 'livre') return 'store'
-  return defi.value.kind
+  if (props.type === 'defis') return defi.value.kind
+  return props.type
 }
 
 function render(asBob = false) {
@@ -230,21 +299,14 @@ function render(asBob = false) {
   pirate.value = []
   verdict.value = null
   const kind = currentKind()
-  const cookie = asBob ? COOKIE_BOB : ''
   let payload = ''
-  let comments = commentaires.value
-  if (props.type === 'reflechie') payload = valeur.value
-  else if (props.type === 'defis' && kind !== 'store') payload = saisies[defiId.value] || ''
-  doc.value = build(kind, payload, comments, cookie)
-  // Montre le HTML produit (utile pédagogiquement)
-  if (kind === 'img') {
-    const v = mode.value === 'corrige' ? escapeHtml(payload) : payload
-    source.value = `<img src="${v}">`
-  } else if (kind === 'strip') {
-    source.value = `<div>${mode.value === 'corrige' ? escapeHtml(payload) : payload.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')}</div>`
-  } else {
-    source.value = ''
-  }
+  if (props.type === 'defis') payload = kind === 'store' ? '' : saisies[defiId.value] || ''
+  else payload = valeur.value
+  const body = corps(kind, payload, commentaires.value)
+  const titre = kind === 'img' ? "<h3>Aperçu de l'image</h3>" : kind === 'strip' ? '<h3>Message publié</h3>' : ''
+  doc.value = `<!doctype html><html><head><meta charset="utf-8">${PAGE_CSS}</head><body>${harness(asBob ? COOKIE_BOB : '')}${titre}${body}</body></html>`
+  // Montre le HTML produit (utile pédagogiquement), sauf pour le livre d'or
+  source.value = kind === 'store' ? '' : body
 }
 
 function poster() {
@@ -262,8 +324,19 @@ function voirCommeBob() {
   render(true)
 }
 
-function reinitLivre() {
+// Remet l'exercice dans son état de départ : saisies, messages, mode, résultats
+// et, pour les épreuves, la progression enregistrée dans le navigateur.
+function recommencer() {
+  mode.value = 'vulnerable'
+  valeur.value = ''
+  email.value = ''
+  message.value = ''
   commentaires.value = []
+  Object.keys(saisies).forEach((k) => delete saisies[k])
+  if (props.type === 'defis') {
+    defiId.value = DEFIS[0].id
+    effacer()
+  }
   render(false)
 }
 
@@ -273,29 +346,27 @@ function jouerDefi() {
     const m = saisies[defiId.value]
     if (m && m.trim() && !commentaires.value.includes(m)) commentaires.value.push(m)
     render(false)
-    verdict.value = { ok: false, texte: 'Message publié. Cliquez « Ouvrir chez Bob » pour voir ce qu\'il déclenche chez un autre visiteur.' }
+    verdict.value = { ton: 'info', texte: 'Message publié. Cliquez « Ouvrir chez Bob » pour voir ce qu\'il déclenche chez un autre visiteur.' }
   } else {
     render(false)
   }
 }
 
 function montrerIndice() {
-  verdict.value = { ok: false, texte: 'Coup de pouce : ' + defi.value.indice }
+  verdict.value = { ton: 'info', texte: 'Coup de pouce : ' + defi.value.indice }
 }
 
-function marquerResolu(id) {
-  if (resolus.value[id]) return
-  resolus.value = { ...resolus.value, [id]: true }
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(Object.keys(resolus.value).filter((k) => resolus.value[k])))
-  } catch (e) {}
+const SUCCES_DEMO = {
+  reflechie: 'Le JavaScript s\'est exécuté : votre saisie est devenue du code. C\'est une XSS réfléchie.',
+  bonjour: 'Le script s\'est exécuté : la valeur de name a été collée telle quelle dans le HTML. Il suffit de faire cliquer le lien piégé à une victime.',
+  formulaire: 'Le JavaScript s\'est exécuté : le nom saisi est devenu du code. Passez en htmlspecialchars ou strip_tags et renvoyez le même nom.',
 }
 
 function onMessage(e) {
   const d = e.data
   if (!d || d.__xss !== 1) return
-  if (props.type === 'reflechie') {
-    if (mode.value === 'vulnerable') verdict.value = { ok: true, texte: 'Le JavaScript s\'est exécuté : votre saisie est devenue du code. C\'est une XSS réfléchie.' }
+  if (SUCCES_DEMO[props.type]) {
+    if (mode.value === 'vulnerable') verdict.value = { ok: true, texte: SUCCES_DEMO[props.type] }
     return
   }
   if (props.type === 'livre') {
@@ -314,21 +385,21 @@ function onMessage(e) {
     if (d.kind === 'exfil' && String(d.data).includes('BOB-9f3a7c21e0')) {
       pirate.value.push('GET ' + d.data)
       verdict.value = { ok: true, texte: 'Réussi ! Le cookie de session de Bob est arrivé sur pirate.com. Vous pourriez maintenant usurper sa session.' }
-      marquerResolu(dfi.id)
+      marquer(dfi.id)
     } else if (d.kind === 'exfil') {
       pirate.value.push('GET ' + d.data)
-      verdict.value = { ok: false, texte: 'Une requête est partie vers le pirate, mais sans le cookie. Ajoutez +document.cookie à l\'URL.' }
+      verdict.value = { ton: 'warn', texte: 'Une requête est partie vers le pirate, mais sans le cookie. Ajoutez +document.cookie à l\'URL.' }
     }
     return
   }
   if (d.kind === 'js' || d.kind === 'exfil') {
     const besoinBob = dfi.kind === 'store'
     if (besoinBob && !vueBob.value) {
-      verdict.value = { ok: false, texte: 'Le code s\'exécute, mais chez vous. Le but est qu\'il s\'exécute chez un autre visiteur : cliquez « Ouvrir chez Bob ».' }
+      verdict.value = { ton: 'warn', texte: 'Le code s\'exécute, mais chez vous. Le but est qu\'il s\'exécute chez un autre visiteur : cliquez « Ouvrir chez Bob ».' }
       return
     }
     verdict.value = { ok: true, texte: 'Réussi ! Votre saisie a été exécutée comme du code par le navigateur.' }
-    marquerResolu(dfi.id)
+    marquer(dfi.id)
   }
 }
 
@@ -336,10 +407,7 @@ watch(mode, () => render(vueBob.value))
 watch(defiId, () => { verdict.value = null; pirate.value = []; commentaires.value = []; render(false) })
 
 onMounted(() => {
-  try {
-    const p = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null')
-    if (Array.isArray(p)) resolus.value = Object.fromEntries(p.map((id) => [id, true]))
-  } catch (e) {}
+  charger()
   window.addEventListener('message', onMessage)
   render(false)
 })
@@ -347,39 +415,15 @@ onBeforeUnmount(() => window.removeEventListener('message', onMessage))
 </script>
 
 <style scoped>
-.xlab {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  background: var(--vp-c-bg-soft);
+.form input { width: 100%; }
+.url { display: flex; align-items: stretch; }
+.url-fixe {
+  padding: 0.35rem 0.5rem; border: 1px solid var(--vp-c-divider); border-right: 0;
+  border-radius: 4px 0 0 4px; background: var(--vp-c-bg-alt);
+  font-family: var(--vp-font-family-mono); font-size: 0.9em; color: var(--vp-c-text-2); white-space: nowrap;
 }
-.intro { margin-top: 0; }
-.mode { display: flex; flex-wrap: wrap; gap: 1rem; margin: 0.6rem 0; font-size: 0.9em; }
-.form { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: flex-end; margin: 0.6rem 0; }
-.form label { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.85em; color: var(--vp-c-text-2); }
-.form label.grow { flex: 1 1 22rem; }
-.form input {
-  padding: 0.35rem 0.5rem; border: 1px solid var(--vp-c-divider); border-radius: 4px;
-  background: var(--vp-c-bg); color: var(--vp-c-text-1);
-  font-family: var(--vp-font-family-mono); font-size: 0.9em; width: 100%;
-}
-.exemples, .hint { font-size: 0.85em; color: var(--vp-c-text-2); margin: 0.3rem 0; }
-.picker select { margin-left: 0.5rem; padding: 0.3rem 0.5rem; border: 1px solid var(--vp-c-divider); border-radius: 4px; background: var(--vp-c-bg); color: var(--vp-c-text-1); }
-.brief { margin-top: 0.6rem; }
-.brief p { margin: 0.3rem 0; }
-button {
-  padding: 0.4rem 0.9rem; border-radius: 4px; border: 1px solid var(--vp-c-brand-1);
-  background: var(--vp-c-brand-1); color: #fff; cursor: pointer;
-}
-button.secondary { background: transparent; color: var(--vp-c-brand-1); }
-button.link { background: none; border: none; padding: 0; color: var(--vp-c-brand-1); text-decoration: underline; cursor: pointer; font-size: inherit; }
-.requete { margin-top: 0.6rem; }
-.requete-label { font-size: 0.8em; color: var(--vp-c-text-2); }
-.requete pre {
-  margin: 0.2rem 0 0; padding: 0.6rem; border-radius: 4px; background: var(--vp-c-bg);
-  border: 1px solid var(--vp-c-divider); font-size: 0.85em; overflow-x: auto; white-space: pre-wrap;
-}
+.url input { border-radius: 0 4px 4px 0; }
+.lien { word-break: break-all; }
 .ecran { margin-top: 0.6rem; border: 1px solid var(--vp-c-divider); border-radius: 6px; overflow: hidden; }
 .ecran-barre { background: var(--vp-c-bg); padding: 0.3rem 0.6rem; font-size: 0.8em; color: var(--vp-c-text-2); border-bottom: 1px solid var(--vp-c-divider); }
 .ecran iframe { width: 100%; height: 12rem; border: 0; background: #fff; display: block; }
@@ -388,10 +432,4 @@ button.link { background: none; border: none; padding: 0; color: var(--vp-c-bran
   border-left: 4px solid var(--vp-c-danger-1); background: var(--vp-c-danger-soft); font-size: 0.85em;
 }
 .pirate pre { margin: 0.3rem 0 0; white-space: pre-wrap; word-break: break-all; }
-.verdict { margin-top: 0.6rem; padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 4px solid var(--vp-c-danger-1); background: var(--vp-c-danger-soft); }
-.verdict.ok { border-left-color: var(--vp-c-success-1); background: var(--vp-c-success-soft); }
-.verdict p { margin: 0; font-weight: 600; }
-.journal { margin: 0.8rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-size: 0.9em; }
-.etape { padding: 0.15rem 0.6rem; border-radius: 999px; border: 1px dashed var(--vp-c-divider); color: var(--vp-c-text-2); }
-.etape.ok { border-style: solid; border-color: var(--vp-c-success-1); color: var(--vp-c-success-1); }
 </style>

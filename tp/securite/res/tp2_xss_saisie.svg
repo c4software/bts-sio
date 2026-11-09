@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 330" width="780" height="330" role="img" aria-label="Comment la saisie ferme l'attribut src et ajoute un attribut onload">
+<rect x="1" y="1" width="778" height="328" rx="10" fill="#ffffff" stroke="#e2e2e3"/>
+<text x="32" y="40" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#67676c">1. Le code du serveur colle la saisie dans la balise</text>
+<text x="44.0" y="74" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#1b1b1f" xml:space="preserve">&lt;img src=&quot;</text>
+<rect x="149.0" y="55" width="140" height="27" rx="5" fill="#f6f6f7" stroke="#3451b2" stroke-dasharray="5 4"/>
+<text x="219.0" y="74" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#3451b2">VOTRE SAISIE</text>
+<text x="295.0" y="74" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#1b1b1f" xml:space="preserve">&quot;&gt;</text>
+<text x="32" y="122" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#67676c">2. Ce que vous tapez dans le champ</text>
+<text x="44.0" y="156" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#3451b2" xml:space="preserve">https://…/300/</text>
+<text x="186.8" y="156" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#c62828" font-weight="700" xml:space="preserve">&quot;</text>
+<text x="197.0" y="156" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#b45309" xml:space="preserve"> onload=&quot;alert()&quot;</text>
+<text x="32" y="204" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#67676c">3. Le HTML que reçoit le navigateur</text>
+<rect x="34" y="214" width="468.8" height="36" rx="6" fill="#f6f6f7"/>
+<text x="44.0" y="238" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#1b1b1f" xml:space="preserve">&lt;img src=&quot;</text>
+<text x="146.0" y="238" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#3451b2" xml:space="preserve">https://…/300/</text>
+<text x="288.8" y="238" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#c62828" font-weight="700" xml:space="preserve">&quot;</text>
+<text x="299.0" y="238" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#b45309" xml:space="preserve"> onload=&quot;alert()&quot;</text>
+<text x="472.4" y="238" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#1b1b1f" xml:space="preserve">&quot;&gt;</text>
+<path d="M293.9 254 L293.9 278" stroke="#c62828" stroke-width="2"/>
+<text x="293.9" y="298" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#c62828">ferme l'attribut src</text>
+<path d="M309.2 254 L309.2 262 L472.4 262 L472.4 254 M390.8 262 L390.8 278" fill="none" stroke="#b45309" stroke-width="2"/>
+<text x="400.8" y="298" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#b45309">ajoute un attribut : le JavaScript</text>
+<text x="400.8" y="316" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#b45309">s'exécute au chargement de l'image</text>
+</svg>

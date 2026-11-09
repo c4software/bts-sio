@@ -66,6 +66,8 @@ Que se passe-t-il ? Pourquoi ? Regardons le code source généré ensemble.
 Notre saisie **ferme** l'attribut `src` (grâce au `"`) puis en **ajoute un nouveau**, `onload`, qui contient du JavaScript. Le navigateur reçoit un HTML parfaitement valide et exécute donc le `onload`. Nous n'avons pas « piraté » le site, nous avons profité du fait qu'il colle notre saisie telle quelle dans son HTML.
 :::
 
+![La saisie ferme l'attribut src puis ajoute un attribut onload qui contient du JavaScript](./res/tp2_xss_saisie.svg)
+
 On parle de XSS **réfléchie** : le code voyage dans la saisie (ou dans l'URL) et n'affecte que la personne qui l'envoie… ou celle à qui on envoie le lien piégé.
 
 ## Exercice 2 : le mini-bug qui cache une faille (observer et corriger)
@@ -77,6 +79,12 @@ Observez cette page, appelée avec `page.php?name=John` :
 echo "<h2>Bonjour $_GET['name']</h2>";
 ?>
 ```
+
+Une fois le bug de syntaxe corrigé, voici ce que produit cette page selon la valeur de `name` (essayez un prénom, puis une balise) :
+
+<ClientOnly>
+<XssLab type="bonjour" />
+</ClientOnly>
 
 ::: details Question : ce code fonctionne-t-il seulement ?
 Non. `"<h2>Bonjour $_GET['name']</h2>"` provoque une **erreur de syntaxe** PHP : on ne peut pas écrire `$_GET['name']` avec des quotes simples à l'intérieur d'une chaîne à guillemets sans accolades. Il faudrait `{$_GET['name']}`. C'est un bon réflexe d'examen : un code peut être à la fois **buggé** et **vulnérable**.
@@ -123,6 +131,12 @@ if (isset($_POST['name']) && isset($_POST['email'])) {
 - `htmlspecialchars($valeur)` : **neutralise** les caractères spéciaux (`<`, `>`, `"`…) en entités HTML. La saisie s'affiche telle quelle, mais n'est pas exécutée. C'est la solution recommandée **à l'affichage**.
 - `strip_tags($valeur)` : **supprime** purement et simplement les balises HTML. Utile quand vous ne voulez accepter aucune mise en forme.
 :::
+
+Avant de corriger, comparez ce que deviennent un nom « mis en forme » et un nom piégé avec chacune des deux fonctions :
+
+<ClientOnly>
+<XssLab type="formulaire" />
+</ClientOnly>
 
 À vous de corriger l'affichage.
 
@@ -177,6 +191,8 @@ Non, elle utilise une requête préparée (`VALUES (?)`), c'est correct. Le prob
 ::: details Question : pourquoi est-ce une XSS stockée ?
 Un visiteur peut poster un commentaire contenant `<script>...</script>`. Ce contenu est enregistré tel quel, puis réaffiché **sans échappement** (`<?= $comment['content'] ?>`) à **chaque** visiteur de la page. Un seul commentaire piégé compromet donc tout le monde, jusqu'à ce qu'on le supprime.
 :::
+
+![Parcours d'une XSS stockée : l'attaquant poste un script, il est enregistré en base puis renvoyé à chaque visiteur, et vole le cookie de Bob](./res/tp2_xss_stockee.svg)
 
 ::: details Question : le formulaire fonctionne-t-il d'ailleurs ?
 Non : il n'a ni `method="post"` ni `action`. Par défaut il enverrait en `GET`, donc `$_POST['content']` resterait vide. Un bug à corriger en même temps.
