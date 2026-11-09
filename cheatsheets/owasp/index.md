@@ -234,7 +234,7 @@ L'IA peut ignorer une consigne, se tromper ou inventer une dépendance. **Vous r
 
 > Open Web Application Security Project (OWASP) est une communauté en ligne travaillant sur la sécurité des applications Web. Sa philosophie est d'être à la fois libre et ouverte à tous. Elle a pour vocation de publier des recommandations de sécurisation Web et de proposer aux internautes, administrateurs et entreprises des méthodes et outils de référence permettant de contrôler le niveau de sécurisation de ses applications Web.
 
-> _Source: Wikipédia_
+> *Source: Wikipédia*
 
 [Site d'OWASP](https://owasp.org/)
 
@@ -837,7 +837,7 @@ Ne stockez pas un JWT dans le `localStorage` si vous pouvez l'éviter (risque XS
 Les headers HTTP sont le premier rempart côté navigateur. Ils se configurent côté serveur.
 
 | Header | Rôle |
-|---|---|
+| --- | --- |
 | `Content-Security-Policy` (CSP) | Empêche l'exécution de scripts inline et limite les sources de contenu (protection XSS). |
 | `Strict-Transport-Security` (HSTS) | Force le navigateur à n'utiliser que HTTPS. |
 | `X-Frame-Options` | Empêche le clickjacking (ex. `DENY`, `SAMEORIGIN`). |
@@ -882,7 +882,7 @@ setcookie('session', $token, [
 
 ## DevSecOps et CI/CD sécurisé
 
-La sécurité ne se fait pas qu'en production. Il faut l'intégrer dès la phase de développement (_shift-left_).
+La sécurité ne se fait pas qu'en production. Il faut l'intégrer dès la phase de développement (*shift-left*).
 
 - **Analyse statique (SAST)** : SonarQube, Semgrep, CodeQL analysent le code à la recherche de failles sans l'exécuter.
 - **Scan de dépendances (SCA)** : Snyk, Dependabot, OWASP Dependency-Check vérifient que vous n'utilisez pas de librairies vulnérables.
@@ -914,10 +914,12 @@ secret_detection:
 
 ::: tip Le pré-commit hook
 Avant même la CI, bloquez les secrets en local :
+
 ```bash
 # .git/hooks/pre-commit
 gitleaks protect --staged
 ```
+
 :::
 
 ## La formation
@@ -935,7 +937,3 @@ La formation prend également la forme de **sensibilisation** :
 - Formation aux bonnes pratiques.
 - Formation sur les mots de passe.
 - Chocoblast (technique pour rappeler aux utilisateurs l'importance de verrouiller leur session).
-
-## Synthèse OWASP
-
-![](./res/tableau.png)
