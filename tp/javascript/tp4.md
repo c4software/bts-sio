@@ -355,7 +355,7 @@ Nous avons fait deux pages de tests, je vous propose de faire la même chose, ma
 - [→ Ajouter de l'Ajax dans la BTS TV / Site PHP ←](./tp4.1.md)
 - [→ Ajouter de l'Ajax dans Larablog / Site Laravel ←](./tp6.md)
 - [→ Découverte de HTMX ←](./htmx.md)
-- [→ Ajouter un chat dans Laravel ←](../laravel/authentification.md#ajouter-un-système-de-chat)
+- [→ Ajouter un chat dans Laravel ←](../laravel/authentification.md#ajouter-un-systeme-de-chat)
 
 ## Conclusion
 
