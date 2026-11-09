@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 396" width="780" height="396" role="img" aria-label="Une requête passe d&#x27;abord le contrôle « est connecté ? », puis « a le droit sur cette ressource ? », avant que le contrôleur ne réponde">
+<rect x="1" y="1" width="778" height="394" rx="10" fill="#ffffff" stroke="#e2e2e3"/>
+<defs><marker id="frouge" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c62828"/></marker><marker id="fbleu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3451b2"/></marker><marker id="fvert" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#18794e"/></marker></defs>
+<rect x="24" y="60" width="150" height="84" rx="8" fill="#f6f6f7" stroke="#3451b2" stroke-width="2"/>
+<text x="99.0" y="90.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f" xml:space="preserve">Requête</text>
+<text x="99.0" y="108.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c" xml:space="preserve">GET /facture?id=8987</text>
+<text x="99.0" y="124.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c" xml:space="preserve">ou GET /admin</text>
+<rect x="222" y="60" width="160" height="84" rx="8" fill="#f6f6f7" stroke="#18794e" stroke-width="2"/>
+<text x="302.0" y="90.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f" xml:space="preserve">1. Connecté ?</text>
+<text x="302.0" y="108.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c" xml:space="preserve">qui êtes-vous ?</text>
+<text x="302.0" y="124.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c" xml:space="preserve">session valide</text>
+<rect x="430" y="60" width="160" height="84" rx="8" fill="#f6f6f7" stroke="#18794e" stroke-width="2"/>
+<text x="510.0" y="90.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f" xml:space="preserve">2. Autorisé ?</text>
+<text x="510.0" y="108.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c" xml:space="preserve">droit sur CETTE</text>
+<text x="510.0" y="124.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c" xml:space="preserve">ressource ?</text>
+<rect x="638" y="60" width="118" height="84" rx="8" fill="#f6f6f7" stroke="#3451b2" stroke-width="2"/>
+<text x="697.0" y="98.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f" xml:space="preserve">Contrôleur</text>
+<text x="697.0" y="116.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c" xml:space="preserve">200 OK</text>
+<path d="M174 102.0 L218 102.0" fill="none" stroke="#3451b2" stroke-width="2.2" marker-end="url(#fbleu)"/>
+<path d="M382 102.0 L426 102.0" fill="none" stroke="#3451b2" stroke-width="2.2" marker-end="url(#fbleu)"/>
+<path d="M590 102.0 L634 102.0" fill="none" stroke="#3451b2" stroke-width="2.2" marker-end="url(#fbleu)"/>
+<text x="406" y="92.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#18794e" xml:space="preserve">oui</text>
+<text x="614" y="92.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#18794e" xml:space="preserve">oui</text>
+<path d="M302 144 L302 190" fill="none" stroke="#c62828" stroke-width="2.2" marker-end="url(#frouge)"/>
+<text x="312" y="172" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#c62828" xml:space="preserve">non</text>
+<rect x="222" y="194" width="160" height="52" rx="8" fill="#f6f6f7" stroke="#c62828" stroke-width="2"/>
+<text x="302.0" y="216.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f" xml:space="preserve">302 vers /login</text>
+<text x="302.0" y="234.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c" xml:space="preserve">page de connexion</text>
+<path d="M510 144 L510 190" fill="none" stroke="#c62828" stroke-width="2.2" marker-end="url(#frouge)"/>
+<text x="520" y="172" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#c62828" xml:space="preserve">non</text>
+<rect x="430" y="194" width="160" height="52" rx="8" fill="#f6f6f7" stroke="#c62828" stroke-width="2"/>
+<text x="510.0" y="216.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f" xml:space="preserve">403 Forbidden</text>
+<text x="510.0" y="234.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c" xml:space="preserve">rien n&#x27;est montré</text>
+<text x="32" y="284" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#67676c" xml:space="preserve">Le contrôle 2 dépend de la ressource demandée :</text>
+<text x="44" y="312" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#1b1b1f" xml:space="preserve">Exercice 2 (IDOR)</text>
+<text x="200" y="312" text-anchor="start" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#3451b2" xml:space="preserve">$facture-&gt;user_id === Auth::id()</text>
+<text x="44" y="338" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#1b1b1f" xml:space="preserve">Exercice 3 (routes)</text>
+<text x="200" y="338" text-anchor="start" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#3451b2" xml:space="preserve">middleware admin : rôle === &#x27;admin&#x27;</text>
+<text x="32" y="372" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#c62828" xml:space="preserve">Si le contrôle 2 manque, tout utilisateur connecté passe : c&#x27;est la faille A01.</text>
+<text x="32" y="34" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#67676c" xml:space="preserve">Ce que le serveur doit vérifier à chaque requête</text>
+</svg>

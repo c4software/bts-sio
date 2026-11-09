@@ -2,6 +2,7 @@
 import type { Theme } from 'vitepress'
 import { h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
+import AccessLab from './components/AccessLab.vue'
 import AlgoEnquete from './components/AlgoEnquete.vue'
 import AuthLab from './components/AuthLab.vue'
 import Contact from './components/Contact.vue'
@@ -31,6 +32,7 @@ export default {
     'nav-bar-content-after': () => h(ChatNavButton),
   }),
   enhanceApp({ app }) {
+    app.component('AccessLab', AccessLab)
     app.component('AlgoEnquete', AlgoEnquete)
     app.component('AuthLab', AuthLab)
     app.component('Contact', Contact)

@@ -40,6 +40,10 @@ Un middleware est un « filtre » exécuté **avant** le contrôleur. Il peut la
 
 Une faille de contrôle d'accès survient quand l'application **fait confiance** à ce que le client demande (une URL, un identifiant, un champ caché) sans vérifier, **côté serveur**, qu'il en a le droit.
 
+Côté serveur, une requête doit franchir deux contrôles distincts avant d'obtenir sa réponse. Toutes les failles de ce TP viennent d'un contrôle oublié :
+
+![Une requête passe d'abord le contrôle « est connecté ? » (sinon redirection vers /login), puis le contrôle « a le droit sur cette ressource ? » (sinon 403), avant que le contrôleur ne réponde 200](./res/tp3_acces_controles.svg)
+
 ## Exercice 1 : lire les logs (observer)
 
 Vous êtes en charge de la sécurité de l'application. Avant tout code, on analyse les journaux d'accès du serveur :
@@ -62,6 +66,12 @@ Oui. La même adresse `192.168.1.4` demande des factures par **numéros consécu
 ::: details Question : à quoi servent les logs ici ? Le traitement doit-il être manuel ou automatisé ?
 Les logs donnent la **traçabilité** : qui a fait quoi, quand. Ils permettent de détecter une attaque même quand le code « fonctionne ». Sur cet exemple, une lecture manuelle suffit, mais en production le volume est énorme : le repérage doit être **automatisé** (détection d'un même IP qui enchaîne des identifiants, un pic de 404, etc.), avec une alerte. C'est le rôle de l'observabilité (catégorie A09 de l'OWASP : carence de journalisation et d'alerte).
 :::
+
+Rejouez l'attaque et regardez le journal se remplir. Comparez une lecture humaine et une règle de détection automatique :
+
+<ClientOnly>
+<AccessLab type="logs" />
+</ClientOnly>
 
 ## Exercice 2 : la faille IDOR (corriger)
 
@@ -95,6 +105,16 @@ Le contrôleur vérifie seulement que la facture **existe** (`if ($facture)`), p
 ::: details Question : ce code compile-t-il seulement ?
 Non. La ligne `return $facture->user_id === Auth::id()` manque son point-virgule final. Encore un rappel d'examen : lisez le code jusqu'au bout, un défaut de sécurité voisine souvent avec un bug de syntaxe.
 :::
+
+Voici ce qui se passe quand un client connecté change simplement le numéro dans l'URL :
+
+![Alice, connectée, demande /facture?id=8985 au lieu de 8986. Le contrôleur trouve la facture en base et la renvoie sans vérifier qu'elle appartient à David](./res/tp3_acces_idor.svg)
+
+Essayez vous-même, puis passez au contrôleur corrigé et refaites les mêmes demandes :
+
+<ClientOnly>
+<AccessLab type="idor" />
+</ClientOnly>
 
 Corrigez le contrôleur pour qu'il refuse l'accès à une facture qui n'appartient pas à l'utilisateur connecté, en **utilisant la méthode déjà présente**.
 
@@ -150,6 +170,12 @@ Route::get('/admin/users', 'UserController@index');
 Les routes `/admin` et `/admin/users` ne sont protégées par **aucun** contrôle. N'importe quel visiteur (connecté ou non, admin ou non) y accède en tapant l'URL. C'est un **manque de contrôle d'accès au niveau fonctionnel** : des pages d'administration ouvertes à tous.
 :::
 
+Vérifiez-le : naviguez en tant que simple membre ou sans être connecté, puis activez le routeur corrigé :
+
+<ClientOnly>
+<AccessLab type="admin" />
+</ClientOnly>
+
 Corrigez le routeur pour que les pages d'administration ne soient accessibles qu'aux utilisateurs ayant le rôle `admin`, à l'aide d'un middleware.
 
 ::: details Voir l'une des solutions possibles
@@ -186,6 +212,12 @@ Route::middleware(['admin'])->group(function () {
 
 La route rejoint le groupe protégé par le middleware `admin` : rien de plus à écrire pour la sécuriser. Notez la différence de logique côté contrôleur : `index()` vérifie la **propriété** de la facture (exercice 2), tandis que `all()` est réservé aux admins par le **middleware** et peut donc tout afficher.
 :::
+
+Une erreur fréquente consiste à ajouter la route à la fin du fichier, hors du groupe. Comparez les deux emplacements avec Alice, puis avec Zoé :
+
+<ClientOnly>
+<AccessLab type="admin-factures" />
+</ClientOnly>
 
 ## À retenir
 
