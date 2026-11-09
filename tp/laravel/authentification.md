@@ -1198,9 +1198,22 @@ Breeze vous a également généré un système de « mot de passe oublié » com
 
 Oui, nous avions tout codé à la main, mais Breeze le fait automatiquement : la force d'un framework, c'est de ne pas tout recoder. Vous l'utiliserez désormais **en sachant ce qu'il fait**.
 
-::: tip Le code entier, mais uniquement si vous le demandez
+::: details Le code entier, mais uniquement après avoir essayé
 
-Vous souhaitez voir mon code ? [J'ai un repository privé si nécessaire](https://github.com/c4software/laravel-auth-student).
+Vous souhaitez comparer avec mon code ? [Téléchargez le projet de référence](/demo/laravel/laravel-breeze.zip) et décompressez-le **à côté** de votre projet (pas dedans !). Il contient l'ensemble du TP, chat compris. Comme pour tout projet Laravel récupéré, il faut l'installer avant de le lancer :
+
+```sh
+cd laravel-breeze
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+npm install
+npm run build
+php artisan serve
+```
+
+Si `migrate` vous demande de créer le fichier `database.sqlite`, répondez `yes`. Le `--seed` crée les rôles `admin` et `user` : créez ensuite votre compte sur `/register`.
 
 :::
 
