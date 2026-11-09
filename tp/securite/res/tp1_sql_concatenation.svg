@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 336" width="780" height="336" role="img" aria-label="La saisie 1 OR 1=1 est collée dans la requête : 1 reste une donnée, OR 1=1 devient du code">
+<defs><marker id="fl-rouge" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c62828"/></marker><marker id="fl-vert" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#18794e"/></marker><marker id="fl-bleu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3451b2"/></marker></defs>
+<rect x="1" y="1" width="778" height="334" rx="10" fill="#ffffff" stroke="#e2e2e3"/>
+<text x="32" y="40" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#67676c">1. Le code PHP colle la saisie dans la requête</text>
+<text x="44.0" y="74" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#1b1b1f" xml:space="preserve">&quot;SELECT * FROM users WHERE id = </text>
+<rect x="372.4" y="55" width="140" height="27" rx="5" fill="#f6f6f7" stroke="#3451b2" stroke-dasharray="5 4"/>
+<text x="442.4" y="74" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#3451b2">VOTRE SAISIE</text>
+<text x="518.4" y="74" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#1b1b1f" xml:space="preserve">&quot;</text>
+<text x="32" y="122" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#67676c">2. Ce que vous mettez dans l&#x27;URL</text>
+<text x="44.0" y="156" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#67676c" xml:space="preserve">fiche.php?id=</text>
+<text x="176.6" y="156" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#3451b2" font-weight="700" xml:space="preserve">1</text>
+<text x="186.8" y="156" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#c62828" font-weight="700" xml:space="preserve"> OR 1=1</text>
+<text x="32" y="204" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#67676c">3. La requête que reçoit la base</text>
+<rect x="34" y="214" width="417.8" height="36" rx="6" fill="#f6f6f7"/>
+<text x="44.0" y="238" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#1b1b1f" xml:space="preserve">SELECT * FROM users WHERE id = </text>
+<text x="360.2" y="238" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#3451b2" font-weight="700" xml:space="preserve">1</text>
+<text x="370.4" y="238" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17" fill="#c62828" font-weight="700" xml:space="preserve"> OR 1=1</text>
+<path d="M365.3 254 L365.3 278" stroke="#3451b2" stroke-width="2"/>
+<text x="365.3" y="298" text-anchor="end" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#3451b2">la donnée attendue</text>
+<path d="M380.6 254 L380.6 262 L441.8 262 L441.8 254 M411.2 262 L411.2 278" fill="none" stroke="#c62828" stroke-width="2"/>
+<text x="403.19999999999993" y="298" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#c62828">du code ajouté : une condition toujours vraie,</text>
+<text x="403.19999999999993" y="316" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#c62828">le WHERE ne filtre plus, toutes les lignes sortent</text>
+</svg>

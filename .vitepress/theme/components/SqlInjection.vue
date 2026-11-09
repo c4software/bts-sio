@@ -1,15 +1,12 @@
 <template>
-  <div class="sqli" :class="'sqli-' + type">
+  <LabFrame class="sqli" :class="'sqli-' + type" :disabled="loading" @reset="recommencer">
     <!-- ============================================ NIVEAU 1 : formulaire de login -->
     <template v-if="type === 'login'">
       <p class="intro">
         Un formulaire de connexion, comme il en existe des milliers. Derrière, cette requête
         est construite <strong>en collant</strong> vos saisies :
       </p>
-      <div class="mode">
-        <label><input type="radio" value="vulnerable" v-model="mode" /> Version vulnérable (concaténation)</label>
-        <label><input type="radio" value="prepared" v-model="mode" /> Version corrigée (requête préparée)</label>
-      </div>
+      <LabModes v-model="mode" :options="MODES_LOGIN" />
       <div class="form">
         <label>Identifiant <input v-model="login" spellcheck="false" placeholder="ex. jdupont" /></label>
         <label>Mot de passe <input v-model="motDePasse" spellcheck="false" placeholder="son mot de passe" /></label>
@@ -23,39 +20,104 @@
       </div>
     </template>
 
-    <!-- ============================================ NIVEAU 3 : épreuves -->
-    <template v-else-if="type === 'defis'">
-      <div class="picker">
-        <label>
-          Épreuve :
-          <select v-model="defiId" :disabled="loading">
-            <option v-for="(d, i) in DEFIS" :key="d.id" :value="d.id">{{ i + 1 }}. {{ d.titre }}</option>
-          </select>
+    <!-- ============================================ FICHE UTILISATEUR (exercice 1) et FAUX AMI (exercice 2) -->
+    <template v-else-if="type === 'fiche' || type === 'fauxami'">
+      <p class="intro" v-if="type === 'fiche'">
+        La page <code>fiche.php</code> colle l'identifiant reçu dans l'URL :
+        <code>"SELECT * FROM users WHERE id = $id"</code>. Le tableau montre les lignes que la base renvoie.
+      </p>
+      <p class="intro" v-else>
+        Trois façons d'exécuter la même recherche par identifiant. Comparez ce que la base reçoit
+        et ce qu'elle renvoie pour une même saisie.
+      </p>
+      <LabModes v-model="mode" :options="type === 'fiche' ? MODES_FICHE : MODES_FAUXAMI" />
+      <div class="form">
+        <label class="grow">Adresse demandée au serveur
+          <span class="url">
+            <span class="url-fixe">fiche.php?id=</span>
+            <input v-model="saisie" spellcheck="false" placeholder="1" @keydown.enter="runFiche" />
+          </span>
         </label>
+        <button @click="runFiche" :disabled="loading">Charger la page</button>
       </div>
-      <div class="journal">
-        <strong>Progression</strong>
-        <span v-for="d in DEFIS" :key="d.id" class="etape" :class="{ ok: resolus[d.id] }">
-          {{ resolus[d.id] ? '✔ ' + d.titre : d.titre }}
-        </span>
-      </div>
-      <div v-if="defi" class="brief">
-        <p><strong>Scénario.</strong> {{ defi.scenario }}</p>
-        <p class="objectif"><strong>Objectif :</strong> {{ defi.objectif }}</p>
-        <div class="mode">
-          <label><input type="radio" value="vulnerable" v-model="mode" /> Formulaire vulnérable</label>
-          <label><input type="radio" value="prepared" v-model="mode" /> Le même en requête préparée</label>
-        </div>
-        <div class="form">
-          <label v-for="champ in defi.champs" :key="champ.name">
-            {{ champ.label }}
-            <input v-model="saisies[champ.name]" spellcheck="false" :placeholder="champ.placeholder" />
-          </label>
-          <button @click="runDefi" :disabled="loading">Envoyer</button>
-          <button class="secondary" @click="montrerSolution" :disabled="loading">Coup de pouce</button>
-        </div>
+      <div class="exemples">
+        Essayez :
+        <button class="link" @click="saisie = '1'; runFiche()"><code>1</code></button>
+        puis
+        <button class="link" @click="saisie = '1 OR 1=1'; runFiche()"><code>1 OR 1=1</code></button>
       </div>
     </template>
+
+    <!-- ============================================ RECHERCHE (exercice 3) -->
+    <template v-else-if="type === 'recherche'">
+      <p class="intro">
+        La page <code>search.php</code> cherche dans les titres des articles (on suppose les bugs PHP
+        réglés : seule la requête change d'une version à l'autre).
+      </p>
+      <LabModes v-model="mode" :options="MODES_RECHERCHE" />
+      <div class="form">
+        <label class="grow">Recherche
+          <input v-model="saisie" spellcheck="false" placeholder="sécurité" @keydown.enter="runRecherche" />
+        </label>
+        <button @click="runRecherche" :disabled="loading">Rechercher</button>
+      </div>
+      <div class="exemples">
+        Essayez :
+        <button class="link" @click="saisie = 'sécurité'; runRecherche()"><code>sécurité</code></button>
+        puis
+        <button class="link" @click="saisie = &quot;' UNION SELECT name, password FROM users --&quot;; runRecherche()">
+          <code>' UNION SELECT name, password FROM users --</code>
+        </button>
+      </div>
+    </template>
+
+    <!-- ============================================ INSERTION (exercice 4) -->
+    <template v-else-if="type === 'insertion'">
+      <p class="intro">
+        Le formulaire d'inscription ajoute une ligne dans la table <code>users</code>. La base est
+        conservée d'un envoi à l'autre : « Recommencer » la remet dans son état de départ.
+      </p>
+      <LabModes v-model="mode" :options="MODES_INSERTION" />
+      <div class="form">
+        <label class="grow">Nom
+          <input v-model="saisie" spellcheck="false" placeholder="Chloé" @keydown.enter="runInsertion" />
+        </label>
+        <label class="grow">Email
+          <input v-model="email" spellcheck="false" placeholder="chloe@exemple.fr" @keydown.enter="runInsertion" />
+        </label>
+        <button @click="runInsertion" :disabled="loading">S'inscrire</button>
+      </div>
+      <div class="exemples">
+        Essayez :
+        <button class="link" @click="saisie = 'Chloé'; email = 'chloe@exemple.fr'; runInsertion()">
+          <code>Chloé</code>
+        </button>
+        puis
+        <button class="link" @click="saisie = &quot;', ''); DROP TABLE users; --&quot;; email = 'x@exemple.fr'; runInsertion()">
+          <code>', ''); DROP TABLE users; --</code>
+        </button>
+      </div>
+    </template>
+
+    <!-- ============================================ NIVEAU 3 : épreuves -->
+    <LabDefis
+      v-else-if="type === 'defis'"
+      v-model="defiId"
+      :defis="DEFIS"
+      :resolus="resolus"
+      :disabled="loading"
+      v-slot="{ defi: d }"
+    >
+      <LabModes v-model="mode" :options="MODES_DEFIS" />
+      <div class="form">
+        <label v-for="champ in d.champs" :key="champ.name">
+          {{ champ.label }}
+          <input v-model="saisies[champ.name]" spellcheck="false" :placeholder="champ.placeholder" />
+        </label>
+        <button @click="runDefi" :disabled="loading">Envoyer</button>
+        <button class="secondary" @click="montrerSolution" :disabled="loading">Coup de pouce</button>
+      </div>
+    </LabDefis>
 
     <!-- ============================================ NIVEAU 2 : bac à sable libre -->
     <template v-else>
@@ -80,24 +142,19 @@
         ></textarea>
         <div class="actions">
           <button @click="runEditor" :disabled="loading">Exécuter (Ctrl + Entrée)</button>
-          <button class="secondary" @click="reinit" :disabled="loading">Réinitialiser la base</button>
           <span class="status">{{ status }}</span>
         </div>
       </div>
     </template>
 
     <!-- ============================================ affichage commun -->
-    <div v-if="requete" class="requete">
-      <span class="requete-label">Requête envoyée à la base :</span>
-      <pre>{{ requete }}</pre>
-    </div>
+    <LabCode label="Requête envoyée à la base :" :code="requete" />
 
     <div v-if="error" class="error">{{ error }}</div>
 
-    <div v-if="verdict" class="verdict" :class="verdict.ok ? 'ok' : 'ko'">
-      <p>{{ verdict.texte }}</p>
-    </div>
+    <LabVerdict :verdict="verdict" />
 
+    <p v-if="resultLabel && results.length" class="count">{{ resultLabel }}</p>
     <div v-for="(r, i) in results" :key="i" class="result">
       <p class="count">
         {{ r.values.length }} ligne{{ r.values.length > 1 ? 's' : '' }}<span v-if="r.truncated"> (affichage limité à {{ MAX_ROWS }})</span>
@@ -114,14 +171,21 @@
       </div>
     </div>
     <p v-if="ran && !results.length && !error" class="count">La requête n'a renvoyé aucune ligne.</p>
-  </div>
+  </LabFrame>
 </template>
 
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
+import LabFrame from './lab/LabFrame.vue'
+import LabModes from './lab/LabModes.vue'
+import LabCode from './lab/LabCode.vue'
+import LabVerdict from './lab/LabVerdict.vue'
+import LabDefis from './lab/LabDefis.vue'
+import { useProgression } from './lab/useProgression.js'
 
 const props = defineProps({
   // 'login' : formulaire vulnérable + bascule préparée ; 'editor' : bac à sable libre ; 'defis' : épreuves
+  // 'fiche' (ex. 1), 'fauxami' (ex. 2), 'recherche' (ex. 3), 'insertion' (ex. 4) : démos des exercices
   type: { type: String, default: 'login' },
 })
 
@@ -161,6 +225,29 @@ INSERT INTO utilisateurs VALUES
  (3, 'mmartin', 'soleil2024',   'membre', '6640'),
  (4, 'invite',  'invite',       'invite', '0000');
 `
+
+// --- bases des démos des exercices 1 à 4 (mêmes noms de tables et colonnes que le code PHP du TP)
+const USERS = `
+CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT);
+INSERT INTO users (name, email) VALUES
+ ('Alice Martin',  'alice@exemple.fr'),
+ ('Bruno Petit',   'bruno@exemple.fr'),
+ ('Chantal Roux',  'chantal@exemple.fr'),
+ ('David Leroy',   'david@exemple.fr');
+`
+const ARTICLES = `
+CREATE TABLE articles (id INTEGER PRIMARY KEY, title TEXT, content TEXT);
+INSERT INTO articles (title, content) VALUES
+ ('Bien choisir son mot de passe',  'Longueur, phrases de passe et gestionnaire.'),
+ ('La sécurité des formulaires',    'Toute saisie est suspecte.'),
+ ('Pourquoi les requêtes préparées ?', 'Une donnée ne doit jamais devenir du code.'),
+ ('Sauvegarder sa base',            'La règle du 3-2-1.');
+CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, password TEXT);
+INSERT INTO users (name, password) VALUES
+ ('admin',   'Sup3rS3cret!'),
+ ('jdupont', 'azerty123');
+`
+const MOTS_DE_PASSE = ['Sup3rS3cret!', 'azerty123']
 
 // --- les épreuves du niveau 3 (contenu pédagogique écrit à la main)
 const DEFIS = [
@@ -276,6 +363,12 @@ const mode = ref('vulnerable')
 const login = ref('')
 const motDePasse = ref('')
 
+// démos des exercices 1 à 4
+const saisie = ref('')
+const email = ref('')
+const resultLabel = ref('')
+let insertDb = null
+
 // editor
 const sql = ref('')
 const schema = ref([])
@@ -285,7 +378,40 @@ let editorDb = null
 const defiId = ref(DEFIS[0].id)
 const defi = computed(() => DEFIS.find((d) => d.id === defiId.value))
 const saisies = ref({})
-const resolus = ref({})
+const { resolus, charger: chargerProgres, marquer, effacer } = useProgression(STORAGE_KEY + ':defis')
+
+// Ce que PDO lève réellement (vérifié en PHP 8.3 + MariaDB, préparation émulée ou native) quand on
+// passe des valeurs à execute() alors que la requête n'a aucun emplacement (les ? sont entre apostrophes).
+const ERREUR_HY093 = 'PDOException : SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens'
+
+const MODES_LOGIN = [
+  { value: 'vulnerable', label: 'Version vulnérable (concaténation)' },
+  { value: 'prepared', label: 'Version corrigée (requête préparée)' },
+]
+const MODES_DEFIS = [
+  { value: 'vulnerable', label: 'Formulaire vulnérable' },
+  { value: 'prepared', label: 'Le même en requête préparée' },
+]
+
+const MODES_FICHE = [
+  { value: 'vulnerable', label: 'Code vulnérable (concaténation)' },
+  { value: 'prepared', label: 'Code corrigé (requête préparée)' },
+]
+const MODES_FAUXAMI = [
+  { value: 'vulnerable', label: 'query() sur la requête collée' },
+  { value: 'fauxami', label: 'prepare() sur la requête collée (faux ami)' },
+  { value: 'prepared', label: 'Vraie requête préparée (? + execute)' },
+]
+const MODES_RECHERCHE = [
+  { value: 'vulnerable', label: "Concaténation : LIKE '%$query%'" },
+  { value: 'guillemets', label: "Placeholder entre apostrophes : LIKE '%?%'" },
+  { value: 'prepared', label: 'Corrigé : LIKE ? et les % dans la donnée' },
+]
+const MODES_INSERTION = [
+  { value: 'vulnerable', label: 'Version A (concaténation)' },
+  { value: 'guillemets', label: "Version B ('?', '?')" },
+  { value: 'prepared', label: 'Version corrigée (?, ?)' },
+]
 
 function loadScript(src) {
   return new Promise((resolve, reject) => {
@@ -378,6 +504,171 @@ async function runLogin() {
   }
 }
 
+// exécute une requête préparée (avec ou sans paramètres) et renvoie le format de db.exec()
+function executer(db, texte, params) {
+  const stmt = db.prepare(texte)
+  if (params) stmt.bind(params)
+  const rows = []
+  while (stmt.step()) rows.push(stmt.getAsObject())
+  stmt.free()
+  return rows.length ? [{ columns: Object.keys(rows[0]), values: rows.map((r) => Object.values(r)) }] : []
+}
+
+function preparerEssai() {
+  error.value = ''
+  results.value = []
+  verdict.value = null
+  requete.value = ''
+  resultLabel.value = ''
+  ran.value = true
+}
+
+// exercice 1 (fiche) et exercice 2 (faux ami) : fiche.php?id=…
+async function runFiche() {
+  loading.value = true
+  preparerEssai()
+  const id = saisie.value
+  const colle = `SELECT * FROM users WHERE id = ${id}`
+  try {
+    const db = freshDb(await getSql(), USERS)
+    let out
+    try {
+      if (mode.value === 'prepared') {
+        requete.value = 'prepare("SELECT * FROM users WHERE id = ?")\nexecute(' + JSON.stringify([id]) + ')'
+        // Comme MariaDB/MySQL (et non SQLite) : la chaîne comparée à une colonne INT est convertie
+        // en nombre d'après ses premiers chiffres ('1 OR 1=1' devient 1, vérifié en PHP 8.3 + MariaDB 11.4).
+        const m = String(id).match(/^\s*-?\d+/)
+        out = executer(db, 'SELECT * FROM users WHERE id = ?', [m ? Number(m[0]) : 0])
+      } else if (mode.value === 'fauxami') {
+        requete.value = `prepare("${colle}")\nexecute()\n-- la saisie est déjà dans le texte préparé, execute() ne reçoit rien`
+        out = executer(db, colle)
+      } else {
+        requete.value = props.type === 'fauxami' ? `query("${colle}")` : colle
+        out = db.exec(colle)
+      }
+    } finally {
+      db.close()
+    }
+    results.value = versResultats(out)
+    resultLabel.value = 'Lignes renvoyées par la base :'
+    const n = out.length ? out[0].values.length : 0
+    if (mode.value === 'prepared') {
+      verdict.value = {
+        ok: false,
+        texte: n
+          ? `Une seule fiche : la valeur « ${id} » a servi de donnée, rien de plus.` +
+            (/\D/.test(String(id).trim()) ? ' MariaDB la convertit en nombre pour la comparer à id (ses premiers chiffres) : le reste n\'est jamais exécuté.' : '')
+          : `Aucune ligne : la valeur « ${id} » a servi de donnée, et aucun id ne lui correspond. L'injection est neutralisée.`,
+      }
+    } else if (n > 1) {
+      verdict.value = {
+        ok: true,
+        texte: `La base renvoie ${n} utilisateurs pour une seule fiche demandée : votre saisie est devenue du code SQL.` +
+          (mode.value === 'fauxami' ? ' Le prepare() n\'a rien changé : la saisie était déjà collée dans la requête.' : ''),
+      }
+    } else {
+      verdict.value = { ton: 'info', texte: n ? 'Une seule fiche, comme prévu. Essayez maintenant une saisie qui ajoute une condition.' : 'Aucun utilisateur ne porte cet identifiant.' }
+    }
+  } catch (e) {
+    error.value = 'La base a renvoyé une erreur : ' + e.message
+  } finally {
+    loading.value = false
+  }
+}
+
+// exercice 3 : search.php?query=…
+async function runRecherche() {
+  loading.value = true
+  preparerEssai()
+  const q = saisie.value
+  try {
+    const db = freshDb(await getSql(), ARTICLES)
+    let out
+    try {
+      if (mode.value === 'prepared') {
+        requete.value = 'SELECT title, content FROM articles\nWHERE title LIKE ?\n-- paramètres : ' + JSON.stringify(['%' + q + '%'])
+        out = executer(db, 'SELECT title, content FROM articles WHERE title LIKE ?', ['%' + q + '%'])
+      } else if (mode.value === 'guillemets') {
+        // Comme PDO : la requête n'a aucun emplacement mais execute() reçoit une valeur : exception, rien n'est exécuté.
+        requete.value = "SELECT title, content FROM articles\nWHERE title LIKE '%?%'\n-- execute(" + JSON.stringify([q]) + ') : 1 valeur pour 0 emplacement'
+        error.value = ERREUR_HY093
+        verdict.value = { ok: false, texte: 'La page plante, quelle que soit votre recherche. Le ? entre apostrophes n\'est pas un emplacement : PDO reçoit une valeur qu\'il ne peut placer nulle part. C\'est un bug, pas une faille.' }
+        return
+      } else {
+        const texte = `SELECT title, content FROM articles\nWHERE title LIKE '%${q}%'`
+        requete.value = texte
+        out = db.exec(texte)
+      }
+    } finally {
+      db.close()
+    }
+    results.value = versResultats(out)
+    resultLabel.value = 'Articles affichés par la page :'
+    const n = out.length ? out[0].values.length : 0
+    const fuite = out.some((r) => r.values.some((row) => row.some((v) => MOTS_DE_PASSE.includes(v))))
+    if (fuite) {
+      verdict.value = { ok: true, texte: 'Des mots de passe s\'affichent parmi les articles : le UNION SELECT a recollé les colonnes de la table users dans le résultat.' }
+    } else if (mode.value === 'prepared') {
+      verdict.value = { ok: false, texte: (n ? `${n} article${n > 1 ? 's' : ''} trouvé${n > 1 ? 's' : ''}.` : 'Aucun titre ne contient ce texte.') + ' La recherche fonctionne et votre saisie reste une donnée, apostrophes comprises.' }
+    } else {
+      verdict.value = { ton: 'info', texte: `${n} article${n > 1 ? 's' : ''} trouvé${n > 1 ? 's' : ''}. Essayez maintenant une saisie qui ferme l'apostrophe.` }
+    }
+  } catch (e) {
+    error.value = 'La base a renvoyé une erreur : ' + e.message + ' (une injection mal ajustée provoque souvent une erreur de syntaxe).'
+  } finally {
+    loading.value = false
+  }
+}
+
+function tableUsersExiste(db) {
+  return db.exec("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'users'").length > 0
+}
+
+// exercice 4 : inscription, la base est conservée d'un envoi à l'autre
+async function runInsertion() {
+  loading.value = true
+  preparerEssai()
+  const nom = saisie.value
+  const mail = email.value
+  try {
+    if (!insertDb) insertDb = freshDb(await getSql(), USERS)
+    const db = insertDb
+    if (mode.value === 'prepared') {
+      requete.value = 'INSERT INTO users (name, email) VALUES (?, ?)\n-- paramètres : ' + JSON.stringify([nom, mail])
+      executer(db, 'INSERT INTO users (name, email) VALUES (?, ?)', [nom, mail])
+    } else if (mode.value === 'guillemets') {
+      // Comme PDO : aucun emplacement réel dans la requête mais deux valeurs passées à execute() : exception, rien n'est inséré.
+      requete.value = "INSERT INTO users (name, email) VALUES ('?', '?')\n-- execute(" + JSON.stringify([nom, mail]) + ') : 2 valeurs pour 0 emplacement'
+      error.value = ERREUR_HY093
+      results.value = versResultats(db.exec('SELECT * FROM users'))
+      resultLabel.value = 'Contenu de la table users après l\'envoi (inchangé) :'
+      verdict.value = { ok: false, texte: 'L\'inscription plante, pour tout le monde : les ? entre apostrophes ne sont pas des emplacements, PDO refuse les valeurs et rien n\'est inséré. C\'est un bug, pas une faille.' }
+      return
+    } else {
+      const texte = `INSERT INTO users (name, email) VALUES ('${nom}', '${mail}')`
+      requete.value = texte
+      db.exec(texte)
+    }
+    if (!tableUsersExiste(db)) {
+      ran.value = false
+      verdict.value = { ok: true, texte: 'La table users a été supprimée : votre saisie a terminé l\'INSERT puis enchaîné un DROP TABLE. Cliquez sur « Recommencer » pour la retrouver.' }
+      return
+    }
+    results.value = versResultats(db.exec('SELECT * FROM users'))
+    resultLabel.value = 'Contenu de la table users après l\'envoi :'
+    if (mode.value === 'prepared') {
+      verdict.value = { ok: true, texte: `Utilisateur ajouté. Son nom est exactement « ${nom} » : même avec des apostrophes, la saisie est restée une donnée.` }
+    } else {
+      verdict.value = { ton: 'info', texte: 'Utilisateur ajouté. Tout va bien… tant que personne ne tape d\'apostrophe.' }
+    }
+  } catch (e) {
+    error.value = 'La base a renvoyé une erreur : ' + e.message +
+      (/no such table/.test(e.message) ? ' (la table a été supprimée : cliquez sur « Recommencer »).' : '')
+  } finally {
+    loading.value = false
+  }
+}
+
 async function runDefi() {
   loading.value = true
   error.value = ''
@@ -417,12 +708,11 @@ async function runDefi() {
         : '❌ Compte inconnu : votre condition est FAUSSE (ou l\'identifiant n\'existe pas).'
       if (d.resolu(db, objs, saisies.value)) {
         verdict.value = { ok: true, texte: d.succes }
-        resolus.value = { ...resolus.value, [d.id]: true }
-        sauverProgres()
+        marquer(d.id)
       } else if ((saisies.value.code || '').trim()) {
-        verdict.value = { ok: false, texte: oracle + ` Mais le code « ${saisies.value.code} » n'est pas le bon, continuez à interroger la base.` }
+        verdict.value = { ton: 'info', texte: oracle + ` Mais le code « ${saisies.value.code} » n'est pas le bon, continuez à interroger la base.` }
       } else {
-        verdict.value = { ok: false, texte: oracle + ' Notez la réponse, puis testez le chiffre ou la position suivante.' }
+        verdict.value = { ton: 'info', texte: oracle + ' Notez la réponse, puis testez le chiffre ou la position suivante.' }
       }
       db.close()
       return
@@ -430,8 +720,7 @@ async function runDefi() {
     results.value = versResultats(out)
     if (d.resolu(db, objs, saisies.value)) {
       verdict.value = { ok: true, texte: d.succes }
-      resolus.value = { ...resolus.value, [d.id]: true }
-      sauverProgres()
+      marquer(d.id)
     } else {
       verdict.value = { ok: false, texte: 'Objectif non atteint. Regardez la requête générée, et le coup de pouce si besoin.' }
     }
@@ -444,7 +733,7 @@ async function runDefi() {
 }
 
 function montrerSolution() {
-  verdict.value = { ok: false, texte: 'Coup de pouce : ' + defi.value.indice }
+  verdict.value = { ton: 'info', texte: 'Coup de pouce : ' + defi.value.indice }
 }
 
 async function chargerEditor() {
@@ -493,17 +782,30 @@ function reinit() {
   chargerEditor()
 }
 
-function sauverProgres() {
-  try {
-    localStorage.setItem(STORAGE_KEY + ':defis', JSON.stringify(Object.keys(resolus.value).filter((k) => resolus.value[k])))
-  } catch (e) {}
-}
-
-function chargerProgres() {
-  try {
-    const p = JSON.parse(localStorage.getItem(STORAGE_KEY + ':defis') || '[]')
-    if (Array.isArray(p)) resolus.value = Object.fromEntries(p.map((id) => [id, true]))
-  } catch (e) {}
+// Remet l'exercice dans son état de départ : saisies, mode, résultats, base de
+// l'éditeur et, pour les épreuves, la progression enregistrée dans le navigateur.
+function recommencer() {
+  mode.value = 'vulnerable'
+  login.value = ''
+  motDePasse.value = ''
+  saisies.value = {}
+  saisie.value = ''
+  email.value = ''
+  resultLabel.value = ''
+  if (insertDb) {
+    insertDb.close()
+    insertDb = null
+  }
+  results.value = []
+  requete.value = ''
+  verdict.value = null
+  error.value = ''
+  ran.value = false
+  if (props.type === 'defis') {
+    defiId.value = DEFIS[0].id
+    effacer()
+  }
+  if (props.type === 'editor') reinit()
 }
 
 watch(defiId, () => {
@@ -523,205 +825,27 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.sqli {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  background: var(--vp-c-bg-soft);
+.form input { min-width: 14rem; }
+.url { display: flex; align-items: stretch; }
+.url-fixe {
+  padding: 0.35rem 0.5rem; border: 1px solid var(--vp-c-divider); border-right: none;
+  border-radius: 4px 0 0 4px; background: var(--vp-c-default-soft);
+  font-family: var(--vp-font-family-mono); font-size: 0.9em; color: var(--vp-c-text-2); white-space: nowrap;
 }
-.intro {
-  margin-top: 0;
-}
-.mode {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: 0.6rem 0;
-  font-size: 0.9em;
-}
-.form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  align-items: flex-end;
-  margin: 0.6rem 0;
-}
-.form label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  font-size: 0.85em;
-  color: var(--vp-c-text-2);
-}
-.form input {
-  padding: 0.35rem 0.5rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-  font-family: var(--vp-font-family-mono);
-  font-size: 0.9em;
-  min-width: 14rem;
-}
-.exemples {
-  font-size: 0.85em;
-  color: var(--vp-c-text-2);
-}
-.picker select {
-  margin-left: 0.5rem;
-  padding: 0.3rem 0.5rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-}
-.brief {
-  margin-top: 0.6rem;
-}
-.brief p {
-  margin: 0.3rem 0;
-}
-.objectif {
-  color: var(--vp-c-text-1);
-}
-.schema {
-  margin: 0.6rem 0;
-  font-size: 0.9em;
-}
-.schema summary {
-  cursor: pointer;
-}
-.schema ul {
-  margin: 0.5rem 0 0 1rem;
-  padding: 0;
-}
+.url input { flex: 1; min-width: 8rem; border-radius: 0 4px 4px 0; }
+.schema { margin: 0.6rem 0; font-size: 0.9em; }
+.schema summary { cursor: pointer; }
+.schema ul { margin: 0.5rem 0 0 1rem; padding: 0; }
 .editor textarea {
-  width: 100%;
-  font-family: var(--vp-font-family-mono);
-  font-size: 0.9em;
-  padding: 0.6rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-  resize: vertical;
+  width: 100%; font-family: var(--vp-font-family-mono); font-size: 0.9em; padding: 0.6rem;
+  border: 1px solid var(--vp-c-divider); border-radius: 4px;
+  background: var(--vp-c-bg); color: var(--vp-c-text-1); resize: vertical;
 }
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: center;
-  margin-top: 0.5rem;
-}
-button {
-  padding: 0.4rem 0.9rem;
-  border-radius: 4px;
-  border: 1px solid var(--vp-c-brand-1);
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  cursor: pointer;
-}
-button.secondary {
-  background: transparent;
-  color: var(--vp-c-brand-1);
-}
-button:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-button.link {
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--vp-c-brand-1);
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: inherit;
-}
-.status {
-  font-size: 0.85em;
-  color: var(--vp-c-text-2);
-}
-.requete {
-  margin-top: 0.6rem;
-}
-.requete-label {
-  font-size: 0.8em;
-  color: var(--vp-c-text-2);
-}
-.requete pre {
-  margin: 0.2rem 0 0;
-  padding: 0.6rem;
-  border-radius: 4px;
-  background: var(--vp-c-bg);
-  border: 1px solid var(--vp-c-divider);
-  font-size: 0.85em;
-  overflow-x: auto;
-  white-space: pre-wrap;
-}
-.error {
-  margin-top: 0.8rem;
-  padding: 0.6rem;
-  border-radius: 4px;
-  background: var(--vp-c-danger-soft);
-  color: var(--vp-c-danger-1);
-  font-family: var(--vp-font-family-mono);
-  font-size: 0.85em;
-  white-space: pre-wrap;
-}
-.verdict {
-  margin-top: 0.6rem;
-  padding: 0.7rem 0.9rem;
-  border-radius: 6px;
-  border-left: 4px solid var(--vp-c-danger-1);
-  background: var(--vp-c-danger-soft);
-}
-.verdict.ok {
-  border-left-color: var(--vp-c-success-1);
-  background: var(--vp-c-success-soft);
-}
-.verdict p {
-  margin: 0;
-  font-weight: 600;
-}
-.count {
-  font-size: 0.9em;
-  color: var(--vp-c-text-2);
-}
-.result {
-  margin-top: 0.6rem;
-}
-.table-wrap {
-  overflow-x: auto;
-  max-height: 22rem;
-  overflow-y: auto;
-}
-.result table {
-  font-size: 0.85em;
-  margin: 0;
-}
-.result th,
-.result td {
-  white-space: nowrap;
-}
-.journal {
-  margin: 0.8rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: center;
-  font-size: 0.9em;
-}
-.etape {
-  padding: 0.15rem 0.6rem;
-  border-radius: 999px;
-  border: 1px dashed var(--vp-c-divider);
-  color: var(--vp-c-text-2);
-}
-.etape.ok {
-  border-style: solid;
-  border-color: var(--vp-c-success-1);
-  color: var(--vp-c-success-1);
-}
+.actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 0.5rem; }
+.status { font-size: 0.85em; color: var(--vp-c-text-2); }
+.count { font-size: 0.9em; color: var(--vp-c-text-2); }
+.result { margin-top: 0.6rem; }
+.table-wrap { margin: 0; max-height: 22rem; overflow-y: auto; }
+.result table { font-size: 0.85em; margin: 0; }
+.result th, .result td { white-space: nowrap; }
 </style>

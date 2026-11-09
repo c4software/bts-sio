@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 422" width="780" height="422" role="img" aria-label="Faux ami : la saisie collée avant prepare() devient du code. Vraie requête préparée : le code puis la donnée sont envoyés séparément, la saisie reste une valeur">
+<defs><marker id="fl-rouge" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c62828"/></marker><marker id="fl-vert" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#18794e"/></marker><marker id="fl-bleu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3451b2"/></marker></defs>
+<rect x="1" y="1" width="778" height="420" rx="10" fill="#ffffff" stroke="#e2e2e3"/>
+<text x="32" y="34" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#67676c">Côté PHP</text>
+<text x="486" y="34" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#67676c">Côté base de données</text>
+<text x="32" y="64" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#c62828">Faux ami : la saisie est collée avant prepare()</text>
+<rect x="32" y="76" width="262" height="80" rx="8" fill="#f6f6f7" stroke="#c62828" stroke-width="2"/>
+<text x="44.0" y="110" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1b1b1f" xml:space="preserve">prepare(&quot;SELECT * FROM users</text>
+<text x="44.0" y="132" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1b1b1f" xml:space="preserve">  WHERE id = </text>
+<text x="145.4" y="132" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#c62828" font-weight="700" xml:space="preserve">1 OR 1=1</text>
+<text x="207.8" y="132" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1b1b1f" xml:space="preserve">&quot;)</text>
+<path d="M302 116 L478 116" stroke="#c62828" stroke-width="2.2" marker-end="url(#fl-rouge)"/>
+<text x="390.0" y="107" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#c62828">un seul envoi :</text>
+<text x="390.0" y="136" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#c62828">code et saisie mélangés</text>
+<rect x="486" y="76" width="262" height="80" rx="8" fill="#f6f6f7" stroke="#c62828" stroke-width="2"/>
+<text x="498.0" y="102" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1b1b1f" xml:space="preserve">WHERE id = 1 </text>
+<text x="599.4" y="102" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#c62828" font-weight="700" xml:space="preserve">OR 1=1</text>
+<text x="498" y="124" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#c62828">OR 1=1 est lu comme du code :</text>
+<text x="498" y="143" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#c62828">toutes les lignes sortent</text>
+<path d="M32 180 L748 180" stroke="#e2e2e3" stroke-width="1.5"/>
+<text x="32" y="210" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#18794e">Vraie requête préparée : le code et la donnée voyagent séparément</text>
+<rect x="32" y="224" width="262" height="80" rx="8" fill="#f6f6f7" stroke="#18794e" stroke-width="2"/>
+<text x="44.0" y="258" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1b1b1f" xml:space="preserve">prepare(&quot;SELECT * FROM users</text>
+<text x="44.0" y="280" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1b1b1f" xml:space="preserve">  WHERE id = ?&quot;)</text>
+<path d="M302 264 L478 264" stroke="#18794e" stroke-width="2.2" marker-end="url(#fl-vert)"/>
+<circle cx="316" cy="244" r="11" fill="#18794e"/><text x="316" y="248.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#fff">1</text>
+<text x="334" y="249" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#18794e">le code seul</text>
+<rect x="486" y="224" width="262" height="80" rx="8" fill="#f6f6f7" stroke="#18794e" stroke-width="2"/>
+<text x="498" y="248" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="400" fill="#1b1b1f">La structure est figée, avec un</text>
+<text x="498" y="266" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="400" fill="#1b1b1f">emplacement pour une valeur :</text>
+<text x="498.0" y="290" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1b1b1f" xml:space="preserve">WHERE id = </text>
+<rect x="581.8" y="276" width="22" height="19" rx="3" fill="#fff" stroke="#18794e" stroke-dasharray="3 3"/>
+<text x="588.8" y="290" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#18794e" font-weight="700" xml:space="preserve">?</text>
+<rect x="32" y="318" width="262" height="80" rx="8" fill="#f6f6f7" stroke="#18794e" stroke-width="2"/>
+<text x="44.0" y="363" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1b1b1f" xml:space="preserve">execute([&quot;1 OR 1=1&quot;])</text>
+<path d="M302 358 L478 358" stroke="#18794e" stroke-width="2.2" marker-end="url(#fl-vert)"/>
+<circle cx="316" cy="338" r="11" fill="#18794e"/><text x="316" y="342.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#fff">2</text>
+<text x="334" y="343" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#18794e">la donnée seule</text>
+<rect x="486" y="318" width="262" height="80" rx="8" fill="#f6f6f7" stroke="#18794e" stroke-width="2"/>
+<text x="498.0" y="352" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1b1b1f" xml:space="preserve">WHERE id = </text>
+<rect x="581.8" y="338" width="84.0" height="19" rx="3" fill="#fff" stroke="#18794e"/>
+<text x="584.8" y="352" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#18794e" font-weight="700" xml:space="preserve">&#x27;1 OR 1=1&#x27;</text>
+<text x="498" y="378" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#18794e">une simple valeur texte, jamais du code</text>
+</svg>

@@ -105,6 +105,14 @@ SELECT * FROM users WHERE id = 1 OR 1=1
 `1=1` est toujours vrai, la condition `WHERE` ne filtre plus rien : la base renvoie **tous** les utilisateurs. Un attaquant plus avancé irait plus loin (`UNION SELECT` pour lire d'autres tables, mots de passe compris).
 :::
 
+![La saisie 1 OR 1=1 est collée dans la requête : 1 reste une donnée, OR 1=1 devient du code](./res/tp1_sql_concatenation.svg)
+
+Vérifiez-le sur cette copie de la page : chargez `?id=1`, puis `?id=1 OR 1=1`, et comptez les lignes renvoyées.
+
+<ClientOnly>
+<SqlInjection type="fiche" />
+</ClientOnly>
+
 Vous avez identifié le problème : la donnée `$id` est **collée** dans la requête. À vous de la corriger avec une requête préparée.
 
 ::: tip Point de contrôle
@@ -140,11 +148,19 @@ $user = $pdo->fetch(PDO::FETCH_ASSOC);
 
 La requête est bel et bien « préparée ». Pourtant l'auditeur maintient que la faille est toujours là.
 
+Comparez les trois versions avec la même saisie `1 OR 1=1` : la version « faux ami » renvoie-t-elle moins de lignes que la version qui utilise `query()` ?
+
+<ClientOnly>
+<SqlInjection type="fauxami" />
+</ClientOnly>
+
 ::: details Question : pourquoi ce code reste-t-il vulnérable ?
 Parce que la donnée a été **collée dans la chaîne avant** le `prepare()`. Au moment où la requête est préparée, `$id` fait déjà partie du texte SQL : `id = 1 OR 1=1` est déjà écrit. Préparer une requête déjà concaténée ne protège de rien.
 
 La règle : le `?` (ou un paramètre nommé) doit **remplacer** la donnée dans la requête, la donnée n'arrivant qu'au moment de `execute([...])`.
 :::
+
+![Faux ami : la saisie collée avant prepare() devient du code. Vraie requête préparée : le code puis la donnée sont envoyés séparément, la saisie reste une valeur](./res/tp1_sql_faux_ami.svg)
 
 ::: details Question : y a-t-il une autre erreur dans ce code ?
 Oui, un bug qui n'a rien à voir avec la sécurité mais qui empêche le code de fonctionner : `$pdo->fetch(...)`. La méthode `fetch()` s'appelle sur le **statement** (le résultat de `prepare`), pas sur l'objet `$pdo`. Il faut récupérer le statement dans une variable.
@@ -200,6 +216,12 @@ Au moins trois, dont deux qui empêchent carrément le code de fonctionner :
 
 Et un quatrième, côté affichage : le contenu de l'article est réaffiché sans échappement (on en reparle au [TP 2 sur les XSS](./tp2_xss.md)).
 :::
+
+Voici l'effet de chacune des trois écritures de la requête. Faites une recherche normale, puis tentez le `UNION SELECT`, dans chaque version :
+
+<ClientOnly>
+<SqlInjection type="recherche" />
+</ClientOnly>
 
 ::: tip Point de contrôle
 Pour un `LIKE`, le placeholder ne prend **pas** de `%` autour de lui dans la requête : on met le `?` seul, et on ajoute les `%` **dans la donnée** passée à `execute()`.
@@ -260,8 +282,14 @@ Elle est **vulnérable**. `$name` et `$email` sont concaténés dans la requête
 :::
 
 ::: details Question : et la version B ?
-Le développeur a voulu utiliser des placeholders, mais il les a mis **entre guillemets** : `'?'`. Résultat, la base insère littéralement le caractère `?` dans les colonnes `name` et `email`, et ignore les vraies valeurs. Ce n'est pas une faille de sécurité, mais un **bug** : tous les utilisateurs s'appellent « ? ». C'est le même piège que le `LIKE '%?%'` de l'exercice 3.
+Le développeur a voulu utiliser des placeholders, mais il les a mis **entre guillemets** : `'?'`. Résultat, un `?` entre guillemets n'est pas un emplacement mais un simple caractère : la requête ne contient **aucun** paramètre, alors que `execute()` en reçoit deux. PDO lève une exception (`SQLSTATE[HY093]: Invalid parameter number`) et rien n'est inséré. Ce n'est pas une faille de sécurité, mais un **bug** : plus personne ne peut s'inscrire. C'est le même piège que le `LIKE '%?%'` de l'exercice 3.
 :::
+
+Vérifiez vos réponses : inscrivez un utilisateur normal, puis le nom piégé, avec chacune des trois versions. Regardez la table après chaque envoi.
+
+<ClientOnly>
+<SqlInjection type="insertion" />
+</ClientOnly>
 
 À vous d'écrire la version correcte.
 
