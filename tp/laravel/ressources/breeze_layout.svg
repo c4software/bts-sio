@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="820" height="440" viewBox="0 0 820 440" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" markerWidth="5" markerHeight="5" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="820" height="440" fill="#ffffff"/>
+  <!-- page -->
+  <rect x="20" y="20" width="440" height="400" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+  <text x="240" y="44" text-anchor="middle" font-weight="600" fill="#475569">layouts/app.blade.php  (&lt;x-app-layout&gt;)</text>
+  <rect x="40" y="60" width="400" height="60" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="240" y="86" text-anchor="middle" font-weight="600">Navigation (menu, nom de l'utilisateur)</text>
+  <text x="240" y="106" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#92400e">@include('layouts.navigation')</text>
+  <rect x="40" y="135" width="400" height="55" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="240" y="159" text-anchor="middle" font-weight="600">Titre de la page</text>
+  <text x="240" y="178" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e40af">{{ $header }}</text>
+  <rect x="40" y="205" width="400" height="195" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="240" y="295" text-anchor="middle" font-weight="600">Contenu de la page</text>
+  <text x="240" y="315" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#166534">{{ $slot }}</text>
+  <!-- votre vue -->
+  <rect x="520" y="110" width="280" height="230" rx="10" fill="#ffffff" stroke="#475569" stroke-width="2"/>
+  <text x="660" y="134" text-anchor="middle" font-weight="600" fill="#475569">Votre vue (ex. dashboard)</text>
+  <g font-family="ui-monospace, monospace" font-size="12">
+    <text x="536" y="164">&lt;x-app-layout&gt;</text>
+    <rect x="546" y="174" width="240" height="44" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="554" y="192" fill="#1e40af">&lt;x-slot name="header"&gt;</text>
+    <text x="554" y="209" fill="#1e40af">  Dashboard &lt;/x-slot&gt;</text>
+    <rect x="546" y="228" width="240" height="70" rx="6" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="554" y="252" fill="#166534">Tout le reste</text>
+    <text x="554" y="270" fill="#166534">(votre HTML,</text>
+    <text x="554" y="288" fill="#166534"> vos composants)</text>
+    <text x="536" y="324">&lt;/x-app-layout&gt;</text>
+  </g>
+  <path d="M546,196 C500,196 480,162 446,162" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M546,262 C500,262 480,300 446,300" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>

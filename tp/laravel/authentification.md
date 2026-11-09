@@ -1,24 +1,29 @@
 ---
-description: Nous avons vu dans le TP introduction qu'il était très simple de créer un petit site avec Laravel. L'autre problème que Laravel résout « simplement » c'est la partie authentification.
+description: "Vous avez codé l'authentification à la main, place à Laravel Breeze : une authentification complète générée en une commande, que vous allez lire, modifier et enrichir (profil, rôles, chat en Ajax)."
 ---
 
 # L'authentification avec Breeze
 
-Nous avons vu dans [le TP introduction](./introduction.md) qu'il était très simple de créer un petit site avec Laravel. L'autre problème que Laravel résout « simplement » c'est la partie authentification.
-
-La gestion des utilisateurs est en effet un élément complexe d'une application entre :
-
-- L'authentification.
-- Limiter l'accès à certaines ressources.
-- La sécurité des mots de passe.
-- La gestion du mot de passe oubliée.
-- …
-
-Vous l'avez compris, la liste est longue… Vous pouvez évidemment tout coder vous-même! C'est d'ailleurs ce que nous avons fait dans le TP [Comprendre l'authentification](./authentification_manuelle.md) (mots de passe hashés, session, middleware). Mais nous allons le voir la force de Laravel c'est également ça, intégrer l'ensemble des briques pour une application qualitative dans les standards du marché, en automatisant ce que vous avez codé à la main.
+![Laravel](./ressources/logo.png)
 
 ::: details Sommaire
 [[toc]]
 :::
+
+Dans les TP précédents, vous avez codé **à la main** toute la mécanique d'authentification : [mots de passe hashés, session et middleware](./authentification_manuelle.md), puis [le reset de mot de passe](./reset_mot_de_passe.md) (token, expiration, email). Et vous avez vu que la gestion des utilisateurs est un élément complexe d'une application :
+
+- L'authentification.
+- Limiter l'accès à certaines ressources.
+- La sécurité des mots de passe.
+- La gestion du mot de passe oublié.
+- …
+
+Vous l'avez compris, la liste est longue… La force de Laravel, c'est justement de vous fournir l'ensemble de ces briques, dans les standards du marché, **sans tout recoder**. Dans ce TP, nous allons générer une authentification complète avec **Laravel Breeze**, puis la modifier pour l'adapter à nos besoins : un profil enrichi, des rôles, et pour finir un petit chat en Ajax.
+
+Dans ce TP, je vous invite à avoir en parallèle :
+
+- [L'aide-mémoire Laravel](/cheatsheets/laravel/)
+- [La synthèse des commandes](/cheatsheets/laravel/quick.md)
 
 ## Les slides
 
@@ -28,254 +33,290 @@ Avant de commencer, voici une présentation rapide de la partie théorie de notr
 <SlidesDeck src="laravel_breeze" />
 </ClientOnly>
 
-## Créer votre projet
+## Prérequis
 
-Pour cette étape, je vous laisse suivre le début du [précédent TP](./introduction.md).
+Ce TP repart d'un **nouveau projet** Laravel, mais il s'appuie sur ce que vous avez construit dans la chaîne des TP Laravel :
 
-**Attention** a bien installer au moins la version >=11 de Laravel.
+- Créer un projet, des routes, des contrôleurs et des vues ([TP introduction](./introduction.md)).
+- Les migrations, les modèles et les relations ([TP base de données](./base_de_donnees.md)).
+- Le fonctionnement d'une authentification : hash, session, middleware ([TP Comprendre l'authentification](./authentification_manuelle.md)).
 
-## Installer la laravel debug bar
+Il vous faut également **Node.js** (et donc `npm`) sur votre poste : Breeze en a besoin pour compiler l'interface. Si vous ne l'avez pas, vous pouvez le télécharger [ici](https://nodejs.org/).
 
-Vous avez remarqué que les pages d'erreurs de Laravel sont toujours pleines de bonnes informations. Avec Laravel nous pouvons avoir « encore mieux », vous avez à votre disposition une extension à Laravel qui vous permettra de voir :
+::: details Vous n'avez pas fait le TP Comprendre l'authentification ?
 
-- Le contenu de la session.
-- Les requêtes SQL réalisé par l'ORM.
-- …
-
-![Debug bar](./ressources/debug_bar.png)
-
-Après installation cette barre va apparaître automatiquement en bas de votre site Laravel (évidemment uniquement le temps du développement). Pour l'installer la commande est la suivante :
-
-```sh
-composer require barryvdh/laravel-debugbar --dev
-```
-
-::: warning
-
-La Debugbar sera automatiquement active quand APP_DEBUG est à `true`.
+Vous pouvez suivre ce TP sans lui, Breeze fait tout le travail. Mais vous perdrez le plus intéressant : comprendre ce que Breeze a généré. Je vous conseille de le faire avant, ou au moins de le lire en parallèle.
 
 :::
 
-[En savoir plus](https://github.com/barryvdh/laravel-debugbar)
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- Installer **Breeze** et retrouver dans le code généré les briques codées à la main dans les TP précédents.
+- Utiliser les outils du front qui arrivent avec (**Tailwind**, **Vite**, `npm`).
+- Utiliser et créer des **composants Blade** (`<x-app-layout>`, `<x-card>`).
+- Protéger une page avec le middleware `auth`.
+- Modifier le code généré : champs supplémentaires, table liée, rôles (relation **many-to-many**).
+- Rafraîchir une page en Ajax avec `fetch` ou **HTMX**.
+
+## Créer votre projet
+
+Pour cette étape, je vous laisse suivre le début du [TP introduction](./introduction.md#creer-le-premier-projet). Votre projet doit être en **Laravel 13** (la commande `php artisan --version` vous l'indique).
+
+::: tip Point de contrôle
+
+`php artisan serve` affiche la page d'accueil par défaut de Laravel sur `http://127.0.0.1:8000`.
+
+:::
+
+## Installer la Laravel Debugbar
+
+Vous avez remarqué que les pages d'erreurs de Laravel sont toujours pleines de bonnes informations. Avec Laravel nous pouvons avoir « encore mieux » : une extension qui ajoute une barre en bas de votre site (uniquement le temps du développement) et qui vous permet de voir :
+
+- Les requêtes SQL réalisées par l'ORM.
+- Les vues affichées.
+- Le contenu de la session.
+- …
+
+Pour l'installer, dans le dossier de votre projet :
+
+```sh
+composer require fruitcake/laravel-debugbar --dev
+```
+
+::: tip Un nouveau nom
+
+Vous croiserez sur Internet le nom `barryvdh/laravel-debugbar` : c'est le même paquet, il a simplement changé d'organisation. Les deux noms fonctionnent, préférez le nouveau.
+
+:::
+
+La Debugbar est automatiquement active quand `APP_DEBUG` vaut `true` dans votre fichier `.env`. Elle apparaît **en bas de chaque page**, cliquez sur un onglet pour le déplier. Voici par exemple l'onglet « Queries » sur une page que nous allons construire plus loin :
+
+![La Debugbar, onglet Queries](./ressources/breeze_debugbar.png)
+
+Elle vous sera très utile pour comprendre ce que fait Eloquent derrière vos `->get()` et vos relations. Gardez-la sous le coude !
+
+[En savoir plus](https://github.com/fruitcake/laravel-debugbar)
 
 ## Ajout de l'authentification
 
-Nous allons intégrer l'authentification en utilisant [Laravel Breeze](https://laravel.com/docs/10.x/starter-kits#laravel-breeze) ce paquet `Composer` va ajouter l'ensemble des :
+Nous allons intégrer l'authentification en utilisant [Laravel Breeze](https://github.com/laravel/breeze). Ce paquet `Composer` va ajouter dans votre projet l'ensemble des :
 
 - Routes
-- Contrôleur
-- Vue (templates blades)
+- Contrôleurs
+- Vues (templates Blade)
 
-Permettant de gérer simplement l'ensemble des problématiques.
+Permettant de gérer simplement l'ensemble des problématiques : inscription, connexion, déconnexion, mot de passe oublié, vérification de l'email et page de profil.
 
 ::: warning Nous avons plusieurs choix
 
-Laravel Breeze n'est pas la seule option, vous avez également : [Laravel Jetstream](https://jetstream.laravel.com/introduction.html) qui est plus complet, mais également plus complexe à mettre en place. Pour l'instant nous allons nous concentrer sur Breeze, mais vous pouvez regarder Jetstream si vous le souhaitez (je vous conseille cependant de débuter avec Breeze, Jetstream est réellement plus complexe à mettre en place).
+Breeze n'est pas la seule option. Depuis Laravel 12, Laravel met en avant de [nouveaux « starter kits »](https://laravel.com/docs/13.x/starter-kits) (React, Vue ou Livewire), proposés directement par la commande `laravel new`. Ils sont plus complets, mais reposent sur des technologies front que nous n'avons pas encore vues.
+
+Breeze, lui, ne reçoit plus de nouvelles fonctionnalités, mais il reste maintenu, compatible Laravel 13, et surtout il génère du **Blade simple et lisible**. Pour comprendre ce qui est généré, c'est le meilleur point de départ.
 
 :::
 
 ### Ajout de la dépendance
 
-::: tip Un instant
-
-**Attention** pour que breeze s'installe il vous faut NPM, vous devez avoir `NodeJS`. Si vous ne l'avez pas, vous pouvez le télécharger [ici](https://nodejs.org/).
-
-:::
-
-L'ajout de dépendances, pour cette étape aucun problème, il suffit d'ajouter dans votre projet « breeze » dans le dossier de votre projet :
+Dans le dossier de votre projet, ajoutez Breeze :
 
 ```sh
 composer require laravel/breeze --dev
 ```
 
-Une fois ajoutée, nous allons devoir installer breeze pour que celui-ci active l'ensemble des fonctionnalités :
+Une fois ajouté, nous allons lancer son installation pour qu'il génère l'ensemble des fichiers :
 
 ```sh
-php artisan migrate
-
 php artisan breeze:install
-
-php artisan migrate
 ```
 
-La commande `breeze:install` va vous poser quelques questions, voici les réponses que vous pouvez donner :
+La commande va vous poser quelques questions, voici les réponses à donner :
 
-![Laravel Breeze](./ressources/auth_breeze_setup.jpg)
+- **Stack** : `Blade with Alpine` (le choix par défaut, validez avec Entrée).
+- **Dark mode** : `No`.
+- **Testing framework** : `PHPUnit` (flèche du bas, puis Entrée). C'est celui que nous utiliserons dans le [TP sur les tests](./tests.md).
 
-::: tip Vous avez vu ?
+![Installation de Breeze](./ressources/breeze_install.png)
 
-Nous venons d'ajouter de nouvelles routes, celles-ci sont dans le dossier `route/auth.php` **,mais ce n'est pas tout** vous avez également maintenant l'ensemble des contrôleurs, mais également l'ensemble des `Layout Blade` nécessaires à toute la partie authentification.
+L'installation se termine par l'installation des dépendances JavaScript (`npm install`) et une première compilation de l'interface (`npm run build`) : Breeze le fait pour vous, rien à faire de plus pour l'instant.
 
-Pour le reste c'est dans les dossiers que vous connaissez déjà.
-:::
+::: tip Et la base de données ?
 
-Lors de cette phase d'installation, Breeze va rajouter un ensemble de dépendances JavaScript (Vite, Alpine, Tailwind). Ne vous inquiétez pas, tout est déjà configuré, vous n'avez rien à faire.
-
-### L'UI
-
-Si vous lancez dès maintenant votre projet via la commande `php artisan serve` vous allez voir que votre page d'accueil intègre maintenant deux nouveaux liens :
-
-![Laravel Breeze](./ressources/laravel_auth_breeze.png)
-
-Vous pouvez cliquer dès à présent sur les différents liens, **cependant** les fichiers que vous avez ajoutés avec Breeze reposent sur un « framework UI » autre que Bootstrap celui-ci se nomme [Tailwind](https://tailwindcss.com/) l'approche de Laravel est moderne et Tailwind repose sur un concept similaire à Bootstrap, mais en ce focalisant plus sur un système de classes `css` que l'on va appeler « utilitaire ».
-
-Nous allons donc avoir besoin de `node`, mais surtout de `npm` pour compiler l'ensemble des ressources nécessaires au bon fonctionnement de l'interface ajouté. Si vous avez déjà pratiqué `node` et `npm` vous savez peut-être que ces outils sont plus utilisés dans le monde du JavaScript que du PHP ; rien d'étonnant dans notre cas, nous allons utilisé `npm` pour ajouter l'ensemble des dépendances UI de notre projet, mais également les « compiler » / « packager » dans un gros fichier CSS et JS pour nos clients.
-
-::: tip ✋ Un instant !
-
-Notre projet va contenir seulement Tailwind après installation, si vous souhaitez avoir également Bootstrap vous avez deux options :
-
-- Ajouter les librairies Bootstrap via le CDN de votre choix.
-- Ajouter Bootstrap dans les dépendances npm de votre projet. (à faire via le `package.json` et `webpack.mix.js`, attention c'est plus complexe)
+Breeze utilise la table `users` créée par Laravel lors de la création du projet (les migrations ont déjà été lancées, sur SQLite par défaut). Si vous avez configuré une autre base, n'oubliez pas un `php artisan migrate`.
 
 :::
 
-Pour installer puis « compiler » vos ressources, il va falloir entrer les commandes suivantes dans le dossier de votre projet :
+### Ce que Breeze a généré
+
+Prenez quelques minutes pour regarder ce qui vient d'arriver dans votre projet :
+
+- `routes/auth.php` : toutes les routes de l'authentification (inscription, connexion, mot de passe oublié…), incluses à la fin de `routes/web.php`.
+- `app/Http/Controllers/Auth/` : un contrôleur par fonctionnalité (`RegisteredUserController`, `AuthenticatedSessionController`, `PasswordResetLinkController`…).
+- `resources/views/auth/` : les vues des formulaires.
+- `resources/views/layouts/` et `resources/views/components/` : les layouts et les composants de l'interface (nous y revenons plus loin).
+
+Pour le reste, c'est dans les dossiers que vous connaissez déjà.
+
+Questions :
+
+- Ouvrez `app/Http/Controllers/Auth/RegisteredUserController.php`. Où est hashé le mot de passe ? Retrouvez-vous ce que vous aviez écrit à la main ?
+- Ouvrez `app/Http/Controllers/Auth/AuthenticatedSessionController.php`. Quelle méthode de la façade `Auth` connecte l'utilisateur ? Et que fait `$request->session()->regenerate()` ?
+
+::: details Voir les réponses
+
+- Dans la méthode `store` : `Hash::make($request->password)`, exactement comme dans votre TP. Notez que le modèle `User` déclare aussi `'password' => 'hashed'` dans ses `casts()` : une sécurité supplémentaire si un mot de passe arrive en clair.
+- La connexion passe par `Auth::attempt()` (dans `app/Http/Requests/Auth/LoginRequest.php`), qui vérifie le hash comme votre `Hash::check()`. `regenerate()` change l'identifiant de session après la connexion : c'est la protection contre la fixation de session.
+
+:::
+
+### L'UI : Tailwind et Vite
+
+Les fichiers ajoutés par Breeze reposent sur un « framework UI » autre que Bootstrap : [Tailwind](https://tailwindcss.com/). Tailwind poursuit le même objectif que Bootstrap, mais avec une approche différente : des petites classes CSS que l'on va appeler « utilitaires » (`text-center`, `font-bold`, `p-6`…), que vous composez directement dans votre HTML.
+
+C'est pour ça que nous avons besoin de `node` et surtout de `npm` : Vite va lire vos templates, ne garder que les classes Tailwind réellement utilisées, puis « compiler » / « packager » l'ensemble dans un fichier CSS et un fichier JS optimisés pour vos clients. Rien d'étonnant à croiser ces outils du monde JavaScript dans un projet PHP : c'est partout aujourd'hui.
+
+Les commandes à connaître, dans le dossier de votre projet :
 
 ```sh
+# Installer les dépendances (déjà fait par Breeze, à refaire après un git clone)
 npm install
 
-# Lancer la compilation des ressources
+# Compiler une fois les ressources (pour la mise en production)
 npm run build
 
-# Ou si vous souhaitez que les ressources soient recompilées à chaque modification
+# Ou recompiler automatiquement à chaque modification (pendant le développement)
 npm run dev
 ```
 
-Si vous lancez la commande `npm run build`, votre projet sera compilé une seule fois. C'est intéressant pour la mise en production, mais pas pour le développement. Si vous souhaitez que vos ressources soient recompilées à chaque modification, vous pouvez lancer la commande `npm run dev` en arrière-plan. Celle-ci va surveiller les modifications de vos fichiers et recompiler vos ressources à chaque modification.
+Voici le résultat attendu d'un `npm run build` :
 
-Une fois le processus terminé, vous devriez avoir un résultat comme celui-ci :
-
-![Vite build](./ressources/vite.jpg)
-
-Vos pages d'authentification sont maintenant fonctionnelles, votre site intègre maintenant toute la mécanique permettant de gérer cette problématique.
-
-Exemple :
-
-![Laravel Breeze Create Account](./ressources/breeze_create_account.png)
-
-::: tip Petit point important
-Laravel Breeze est intéressant, car il ne cache pas le code **l'ensemble des éléments sont accessibles** vous pouvez modifier le code fourni aucun problème ! C'est d'ailleurs ce que nous allons faire.
-:::
+```
+vite v8.3.7 building client environment for production...
+✓ 4 modules transformed.
+public/build/manifest.json             0.33 kB │ gzip:  0.16 kB
+public/build/assets/app-DciKFhTV.css  35.47 kB │ gzip:  6.97 kB
+public/build/assets/app-Dr67-uCa.js   54.32 kB │ gzip: 19.13 kB
+✓ built in 289ms
+```
 
 ::: danger npm run build ?
 
-La commande `npm run build` va compiler vos ressources afin de le figer dans le temps après des modifications. Pendant la phase de développement vous serez amené à de plusieurs reprises à lancer cette commande pour mettre à jours vous ressources.
+La commande `npm run build` fige vos ressources à un instant donné. Si vous ajoutez une classe Tailwind dans un template après le build, **elle n'aura aucun effet** tant que vous ne relancez pas la compilation.
 
-Si vous souhaitez le faire de manière « automatique », vous pouvez lancer en arrière-plan `npm run dev` (en local uniquement évidemment), afin de surveiller le code client (CSS, JS) pour mettre à jour vos ressources.
+Pendant le développement, lancez plutôt `npm run dev` dans un second terminal, à côté de `php artisan serve`. Encore plus simple : la commande `composer run dev` lance le serveur PHP **et** Vite en même temps.
 
 :::
+
+Et Bootstrap ? Notre projet ne contient que Tailwind après installation. Si vous souhaitez également Bootstrap, le plus simple est de l'ajouter via un CDN dans les layouts. Mélanger les deux frameworks est cependant rarement une bonne idée : je vous conseille de jouer le jeu de Tailwind dans ce TP.
 
 ### Tester le code
 
-Vous avez normalement tout suivi, votre site est donc fonctionnel ! Avant d'aller plus loin, je vous laisse tester l'ensemble de votre site.
+Votre site est fonctionnel ! Avant d'aller plus loin, je vous laisse tester l'ensemble :
 
-- Home.
-- Création de comptes.
-- Connexion.
+- La page d'accueil, qui affiche maintenant deux liens **Log in** et **Register** en haut à droite.
+- La création d'un compte.
+- La déconnexion, puis la connexion.
+- La page **Profile** (menu en haut à droite une fois connecté).
 
-::: tip Avant d'aller plus loin
-Regarder également les templates, les règles de validation de saisie présente dans les contrôleurs, bref tout ce que vous avez pu installer de manière automatique !
+![Le formulaire d'inscription de Breeze](./ressources/breeze_register.png)
+
+::: tip Point de contrôle
+
+Après l'inscription, vous arrivez sur la page `/dashboard` avec le message « You're logged in! ». Dans la Debugbar, l'onglet « Session » contient votre identifiant de connexion.
+
 :::
+
+Laravel Breeze est intéressant, car il ne cache pas le code : **l'ensemble des éléments sont dans votre projet**, vous pouvez modifier le code fourni sans aucun problème ! C'est d'ailleurs ce que nous allons faire. Regardez aussi les templates et les règles de validation présentes dans les contrôleurs : bref, tout ce que vous avez pu installer de manière automatique.
 
 <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/YWy93Zf9eW8RMlK0gK" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
 
-## Les « Composants » et les templates blades
+## Les composants et les templates Blade
 
-Si vous avez regardé l'ensemble du code, vous noterez une syntaxe un peu particulière dans les templates Blades ; celle-ci vous permet de créer des composants, mais également des templates de base (ce sont les `x-` quelque chose dans le code blade).
+Si vous avez regardé le code des vues, vous avez remarqué une syntaxe un peu particulière : des balises qui commencent par `x-` (`<x-app-layout>`, `<x-text-input>`, `<x-primary-button>`…). Ce sont des **composants** Blade. Ils permettent de créer des morceaux de vue réutilisables, mais également des layouts de base.
 
-Tout est déjà configuré, vous pouvez dès à présent l'utiliser, mais également créer de nouveau composant en ajoutant les fichiers `blade` dans `views/components/`
+Tout est déjà configuré : vous pouvez utiliser les composants fournis, mais également en créer de nouveaux en ajoutant des fichiers `.blade.php` dans `resources/views/components/`.
 
-[Pour plus d'information, rendez-vous ici](https://laravel.com/docs/8.x/blade#rendering-components)
+[Pour plus d'informations, rendez-vous ici](https://laravel.com/docs/13.x/blade#components)
 
-::: tip Nous avons vu la dernière fois, l'héritage
-Nous avions vu la dernière fois [l'héritage de template](https://laravel.com/docs/8.x/blade#layouts-using-template-inheritance) et bien la c'est là mêmes choses, mais via un système de « composant » très à la mode en ce moment.
+::: tip Nous avons déjà vu l'héritage
+
+Dans le [TP introduction](./introduction.md), nous avions vu [l'héritage de template](https://laravel.com/docs/13.x/blade#layouts-using-template-inheritance) (`@extends`, `@section`, `@yield`). Ici c'est la même idée, mais via un système de « composants », très à la mode en ce moment. Les deux fonctionnent, personnellement je trouve l'approche composant plus moderne et plus lisible.
+
 :::
 
-👋 Regardons ensemble comment ça fonctionne ! (vous pouvez m'appeler)
+Avec Breeze, nous avons à notre disposition **deux layouts** :
 
-::: details Pour résumer
-Le système de composant va vous permettre :
+- `layouts/app.blade.php` pour les clients **connectés**, utilisable dans votre template via `<x-app-layout>`.
+- `layouts/guest.blade.php` pour les clients **non connectés**, utilisable via `<x-guest-layout>`.
 
-- De rendre générique un morceau de code que vous utilisez plusieurs fois dans votre projet.
-- Penser composant plutôt que HTML copié depuis Internet.
-- Rendre « générique les layouts » pour les partager entre les pages.
-  :::
+Le layout `app` est découpé en plusieurs parties : le menu (inclus depuis `layouts/navigation.blade.php`), un titre de page optionnel, et le contenu de votre page.
 
-### Migrer la page « / » vers le nouveau système
-
-Le nouveau système de template est très très sympa, il permet de découper son travail pour sortir les parties génériques dans un « layouts » partageables entre toutes vos pages. Par exemple :
-
-![Différentes parties](./ressources/parties.png)
+![Le découpage du layout app](./ressources/breeze_layout.svg)
 
 ::: tip Hey toi lecteur ! Stop !
 
-L'organisation est tout aussi importante que le code, tu peux copier-coller du code entre tous les templates oui… Mais sache que c'est pas efficace, que tu perds du temps et que si on te demande une modification **tu perdras du temps** !
+L'organisation est tout aussi importante que le code. Vous pouvez copier-coller du code entre tous les templates, oui… Mais ce n'est pas efficace, et si on vous demande une modification **vous perdrez du temps** !
 
-Prendre du temps pour utiliser le système de layout tels proposé par Laravel est un vrai gain de temps ! Le toi du futur te remercie d'avance.
-
-Promis, ça va bien se passer !
+Prendre du temps pour utiliser le système de layout proposé par Laravel est un vrai gain de temps. Le vous du futur vous remercie d'avance.
 
 :::
 
-Avec le Scaffolding de Breeze nous avons à notre disposition **deux templates** :
+### Migrer la page « / » vers le nouveau système
 
-- `app.blade.php` pour les clients **connectés**. Accessible dans votre template via `<x-app-layout>`
-- `guest.blade.php` pour les clients **non connectés**. Accessible dans votre template via `<x-guest-layout>`
+Retournez sur la page d'accueil de votre site. Surprise : elle semble « cassée ».
 
-Nous allons donc migrer notre page d'accueil pour utiliser le nouveau système de composant. Pour ça rien de plus simple, il nous suffit d'utiliser `<x-guest-layout>` dans le template `welcome.blade.php`, je vous laisse le faire celui-ci va remplacer l'ensemble du code HTML de la page d'accueil.
+![La page d'accueil après l'installation de Breeze](./ressources/breeze_welcome.png)
 
-::: tip Un instant 👋
+Pas de panique : la page d'accueil par défaut de Laravel était prévue pour sa propre feuille de style. Depuis l'installation de Breeze, c'est la feuille de style de Breeze (compilée par Vite) qui est chargée, et elle ne contient pas les classes utilisées par cette page. C'est l'occasion idéale de la migrer vers notre layout `<x-guest-layout>`.
 
-Les composants sont une alternative à l'héritage des templates, ici nous allons réaliser l'équivalent du `@extends` du précédent TP. Je vous laisse choisir la version que vous préférez. Personnellement, j'aime bien l'approche composant bien plus moderne et lisible.
-
-:::
-
-Nous allons donc modifier `welcome.blade.php`, pour utiliser le composant `<x-guest-layout>` :
+Remplacez **tout** le contenu de `resources/views/welcome.blade.php` par :
 
 ```html
 <x-guest-layout>
     @if (Route::has('login'))
-      <div class="fixed top-0 right-0 px-6 py-4 sm:block">
-        @auth
-          <a href="{{ url('/dashboard') }}" class="text-sm text-white underline">Dashboard</a>
-        @else
-          <a href="{{ route('login') }}" class="text-sm text-white underline">Log in</a>
+        <div class="fixed top-0 right-0 px-6 py-4">
+            @auth
+                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
 
-          @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="ml-4 text-sm text-white underline">Register</a>
-          @endif 
-        @endauth
-      </div>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                @endif
+            @endauth
+        </div>
     @endif
 
     Bienvenue sur mon site !
 </x-guest-layout>
 ```
 
-⚠️ Je vous laisse constater la différence.
+Plus de `<html>`, de `<head>` ni de `<body>` : tout cela est dans le layout. Votre page ne contient que **ce qui lui est propre**.
+
+![La page d'accueil avec x-guest-layout](./ressources/breeze_welcome_guest.png)
 
 ::: danger À partir de maintenant
-J'espère qu'à partir de maintenant, vous allez utiliser le système de template ! Je vous encourage vivement à le faire.
+
+J'espère qu'à partir de maintenant, vous allez utiliser le système de layout ! Je vous encourage vivement à le faire.
+
 :::
 
 ### Fonctionnement des composants
 
-Vous avez utilisé les composants, mais avez-vous compris le fonctionnement ? Un composant, c'est quelque chose de très simple. Il s'agit d'un morceau de vue réutilisable (un bouton, une card, etc.), il s'agit donc de « code HTML ». Si vous voulez une comparaison, nous pourrions comparer cela à une sorte de fonction. Prenons un exemple.
+Vous avez utilisé les composants, mais avez-vous compris le fonctionnement ? Un composant, c'est quelque chose de très simple : un morceau de vue réutilisable (un bouton, une card, etc.), donc du « code HTML ». Si vous voulez une comparaison, c'est une sorte de fonction. Prenons un exemple.
 
-Si nous souhaitons faire une `Card`. Notre composant pourrait ressembler à :
+Nous souhaitons faire une `Card`. Créez le fichier `resources/views/components/card.blade.php` :
 
 ```html
-<div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+<div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
     <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
         {{ $slot }}
     </div>
 </div>
 ```
 
-Vous pouvez mettre ce code dans `resources/views/components/card.blade.php`
-
-L'important dans le code ici est <span v-pre>`{{ $slot }}`</span>. `$slot` est une variable qui va contenir les éléments à l'intérieure de votre Card lors de son usage. Dans votre `welcome.blade.php`, vous pouvez utiliser votre composant comme ceci :
+L'important ici est <code v-pre>{{ $slot }}</code>. `$slot` est une variable qui va contenir les éléments placés à l'intérieur de votre Card lors de son utilisation :
 
 ```html
 <x-card>
@@ -283,176 +324,203 @@ L'important dans le code ici est <span v-pre>`{{ $slot }}`</span>. `$slot` est u
 </x-card>
 ```
 
-Dans ce cas, la variable `$slot` contiendra… `Ceci est une démo`. Vous venez en quelque sorte de créer votre propre élément HTML réutilisable comme une `div` un `span` ou un `li`, mais ici cet élément est plus complet il peut contenir, du style, un comportement, des données par défaut.
+Dans ce cas, la variable `$slot` contiendra… `Ceci est une démo`. Vous venez en quelque sorte de créer votre propre élément HTML réutilisable, comme une `div`, un `span` ou un `li`. Mais cet élément est plus complet : il peut contenir du style, un comportement, des données par défaut.
 
-Je vous laisse parcourir les composants déjà disponibles dans le dossier `components`.
+Question :
+
+- Le nom du fichier est `card.blade.php` et la balise est `<x-card>`. Comment s'appellerait la balise d'un composant `resources/views/components/forms/bouton-rouge.blade.php` ?
+
+::: details Voir la réponse
+
+`<x-forms.bouton-rouge>` : le préfixe `x-`, puis le chemin depuis `components/`, les sous-dossiers étant séparés par un point.
+
+:::
+
+Je vous laisse parcourir les composants déjà disponibles dans le dossier `components` (regardez par exemple `primary-button.blade.php`, et la façon dont il accepte des attributs supplémentaires avec `$attributes`).
+
+::: details Pour résumer
+
+Le système de composants va vous permettre :
+
+- De rendre générique un morceau de code que vous utilisez plusieurs fois dans votre projet.
+- De penser composant plutôt que HTML copié depuis Internet.
+- De rendre « génériques » les layouts pour les partager entre les pages.
+
+:::
 
 ## Protéger une page
 
-Le but de l'authentification est donc de limiter l'accès à certaines pages vous l'avez bien compris… Sauf que pour l'instant nous n'avons pas encore vu comment le faire sur les pages que nous souhaitons protéger !
-
-Nous allons créer un contrôleur fictif, celui-ci vous nous permettre de tester la protection.
+Le but de l'authentification est de limiter l'accès à certaines pages, vous l'avez bien compris… Voyons comment le faire sur nos propres pages. Nous allons créer un contrôleur de test :
 
 ```sh
-php artisan make:controller YoloControler
+php artisan make:controller YoloController
 ```
 
-Vous venez de créer un contrôleur vide. En reprenant si nécessaire les exemples du premier TP, je vous laisse créer dedans :
+Vous venez de créer un contrôleur vide. En reprenant si nécessaire les exemples du [TP introduction](./introduction.md), je vous laisse y créer :
 
-| Route             | Méthode         |
-| :---------------- | :-------------- |
-| `/yolo`           | `publicView()`  |
-| `/yolo-connected` | `privateView()` |
+| Route             | Méthode         | Accès                       |
+| :---------------- | :-------------- | :-------------------------- |
+| `/yolo`           | `publicView()`  | Tout le monde               |
+| `/yolo-connected` | `privateView()` | Utilisateurs connectés      |
 
 ### La partie publique
 
-Pour la partie publique (non connecté), pas rapport à précédemment :
+Pour la partie publique (non connecté), rien de nouveau par rapport aux TP précédents :
 
-- Une méthode `publicView`, celle-ci doit retourner une `view` qui affichera pour l'instant `Bonjour non connecté`. Attention ! Cette vue doit utiliser le template `<x-guest-layout>`
-- Ajouter cette route dans le fichier `routes/web.php`.
+- Une méthode `publicView`, qui retourne une vue `yolo.publicView` affichant pour l'instant `Bonjour non connecté`. Attention ! Cette vue doit utiliser le layout `<x-guest-layout>`.
+- La route correspondante dans le fichier `routes/web.php`.
 
 ::: details Besoin d'aide ?
 
 Avez-vous bien cherché ?
 
-Je vous aide pour la partie route :
+Pour la route :
 
 ```php
-Route::get('/yolo', ['App\Http\Controllers\YoloControler', 'publicView']);
+use App\Http\Controllers\YoloController;
+
+Route::get('/yolo', [YoloController::class, 'publicView']);
 ```
 
-Je vous aide pour la partie méthode :
+Pour la méthode :
 
 ```php
-  return view("yolo.publicView");
-```
-
-:::
-
-Nous avons le temps, n'hésitez pas à :
-
-- Créer des composants si nécessaire.
-- Utiliser les class de Tailwind (vous avez même de la complétion dans PhpStorm).
-
-Pour ma part voilà mon rendu :
-
-![Résultat Valentin](./ressources/resultat-valentin.png)
-
-::: details Vous voulez-voir mon template ?
-
-Est-ce vraiment une bonne idée ? Je vous encourage vraiment à faire le vôtre, d'autant plus que j'ai décidé de créer un composant nommé `card.blade.php` dans la partie composant. Mais voilà mon code :
-
-_resources/views/yolo/publicView.blade.php:_
-
-```html
-<x-guest-layout>
-  <x-card>
-    <div class="text-center font-bold text-indigo-600">Bonjour Mr Anonyme 👋</div>
-  </x-card>
-</x-guest-layout>
-```
-
-:::
-
-Je vous laisse coder **votre version**.
-
-### La partie privée
-
-Pour la partie privée, je vous laisse gérer l'ensemble de la base :
-
-- Création de la méthode.
-- Création du template. Attention cette fois-ci nous allons utiliser le composant `<x-app-layout>` qui contient toute la logique de la partie « information de connexion » (menu, etc.).
-
-#### Le Layout
-
-Pour le layout j'ai décidé de le nommer `privateView.blade.php` et de le mettre ici : `resources/views/yolo/privateView.blade.php`
-
-```html
-<x-app-layout>
-  <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">Hello</h2>
-  </x-slot>
-
-  <div class="p-5">
-    <div class="text-center font-bold text-indigo-600">
-      Bonjour {{Auth::user()->name}} 👋
-    </div>
-  </div>
-</x-app-layout>
-```
-
-### Le contrôleur
-
-Pour le contrôleur, je vous laisse ajouter la méthode `privateView` comme demandé dans le tableau plus haut :
-
-::: details Dans mon cas ça donne
-
-```php
-public function privateView(){
-    return view("yolo.privateView");
+public function publicView()
+{
+    return view('yolo.publicView');
 }
 ```
 
 :::
 
-### La route
+Nous avons le temps, n'hésitez pas à utiliser les classes de Tailwind (vous avez même de la complétion dans PhpStorm). Pour ma part, voilà mon rendu :
 
-C'est la partie qui nous intéresse… Vous avez remarqué que dans les lignes précédentes, nous n'avons jamais parlé de l'authentification. Comment alors est-ce possible que la page ne soit accessible qu'aux gens connectés ?
+![La page publique](./ressources/breeze_yolo_public.png)
 
-Et bien … C'est simple ! Quand vous avez installé `breeze` vous avez également ajouté des `Middleware`, un middleware est un morceau de code qui va intercepter la demande initiale pour faire des contrôles supplémentaires. Dans notre cas le contrôle en plus va être « Est-ce que l'utilisateur est connecté » :
+::: details Vous voulez voir mon template ?
 
-![Logique d'authentification](./ressources/auth-logic.png)
+Est-ce vraiment une bonne idée ? Je vous encourage vraiment à faire le vôtre. Mais voilà mon code :
 
-Nous allons donc ajouter dans le fichier `routes/web.php`
+_resources/views/yolo/publicView.blade.php :_
 
-```php
-Route::get('/yolo-connected', ['App\Http\Controllers\YoloControler', 'privateView'])->middleware(['auth'])->name("yoloPrivate");
+```html
+<x-guest-layout>
+    <div class="text-center font-bold text-indigo-600">Bonjour Mr Anonyme 👋</div>
+</x-guest-layout>
 ```
 
-Ici la protection est ajoutée grâce à la méthode `middleware(['auth'])`. Elle va permettre de ne laisser passer que les utilisateurs connectés.
+:::
 
-::: tip Middleware
+### La partie privée
 
-Pour rappel, le middleware `auth` est celui qui va vérifier si l'utilisateur est connecté ou non. Si ce n'est pas le cas, il va rediriger l'utilisateur vers la page de connexion.
+Pour la partie privée, je vous laisse gérer l'ensemble de la base :
 
-Un Middleware est un morceau de code qui va être exécuté avant le contrôleur. Il peut être utilisé pour faire des contrôles supplémentaires, ou pour modifier la demande initiale.
+- La création de la méthode `privateView` dans le contrôleur.
+- La création du template. Attention, cette fois-ci nous allons utiliser le composant `<x-app-layout>`, qui contient toute la logique de la partie « information de connexion » (menu, nom de l'utilisateur, déconnexion…).
+
+#### La vue
+
+Pour la vue, j'ai décidé de la nommer `privateView.blade.php` et de la mettre ici : `resources/views/yolo/privateView.blade.php`. J'en profite pour utiliser notre composant `<x-card>` :
+
+```html
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Hello</h2>
+    </x-slot>
+
+    <x-card>
+        <div class="text-center font-bold text-indigo-600">
+            Bonjour {{ Auth::user()->name }} 👋
+        </div>
+    </x-card>
+</x-app-layout>
+```
+
+Remarquez le `<x-slot name="header">` : c'est un **slot nommé**. Son contenu remplit la zone de titre du layout (la variable `$header`), le reste remplit `$slot`.
+
+<code v-pre>{{ Auth::user()->name }}</code> vous donne accès à l'utilisateur connecté, dans une vue comme dans un contrôleur. Vous l'aviez déjà utilisé dans le [TP Comprendre l'authentification](./authentification_manuelle.md).
+
+#### Le contrôleur
+
+Pour le contrôleur, je vous laisse ajouter la méthode `privateView` comme demandé dans le tableau plus haut.
+
+::: details Voir l'une des solutions possibles
+
+```php
+public function privateView()
+{
+    return view('yolo.privateView');
+}
+```
 
 :::
 
-Voilà le résultat pour moi
+#### La route
 
-![Résultat Valentin partie privée](./ressources/resultat-valentin-private.png)
+C'est la partie qui nous intéresse… Vous avez remarqué que dans les lignes précédentes, nous n'avons jamais parlé d'authentification. Comment alors la page peut-elle n'être accessible qu'aux gens connectés ?
 
-⚠️ Je vous laisse implémenter la partie privée dans votre code. ⚠️
+C'est simple : avec un **middleware**, comme celui que vous aviez écrit vous-même (`CheckAuth`). Laravel en fournit un tout prêt, nommé `auth`. Il intercepte la requête avant le contrôleur et vérifie que l'utilisateur est connecté :
 
-::: danger Un instant !
+![Le middleware auth](./ressources/breeze_middleware.svg)
 
-Vous noterez que dans ma version j'ai un menu avec un lien vers ma page… Pas de magie ! J'ai ajouté le code nécessaire dans le fichier `resources/views/layouts/navigation.blade.php`
+Ajoutez dans le fichier `routes/web.php` :
 
-Dans la partie « Navigation Link » :
+```php
+Route::get('/yolo-connected', [YoloController::class, 'privateView'])->middleware(['auth'])->name('yoloPrivate');
+```
 
-![Navigation Links](./ressources/navigation-links.png)
+Ici la protection est ajoutée grâce à `->middleware(['auth'])`. Le `->name('yoloPrivate')` donne un nom à la route, pour pouvoir la retrouver avec `route('yoloPrivate')`.
+
+::: tip Que se passe-t-il derrière ?
+
+Le middleware `auth` fait exactement ce que faisait votre `CheckAuth` : un `Auth::check()`, et une redirection vers la page de connexion si ce n'est pas le cas. Petit bonus : après la connexion, Laravel vous renvoie automatiquement sur la page que vous vouliez voir au départ.
+
+Regardez aussi la route `/dashboard` générée par Breeze : elle utilise `['auth', 'verified']`. Le second middleware vérifie que l'email a été confirmé, il ne bloque rien tant que le modèle `User` n'implémente pas `MustVerifyEmail`.
 
 :::
 
-## Conclusion
+Testez en navigation privée : `/yolo-connected` vous renvoie sur `/login`. Une fois connecté, voilà le résultat pour moi :
 
-Nous avons fait le tour de la base de ce qu'il faut savoir. Cependant le TP continue sur deux éléments qui peuvent être intéressants pour vous à la suite de cette conclusion.
+![La page privée](./ressources/breeze_yolo_private.png)
 
-::: tip Le code entier, mais uniquement si vous le demandez
-Vous souhaitez voir mon code ? [J'ai un repository privé si nécessaire](https://github.com/c4software/laravel-auth-student)
+#### Le lien dans le menu
+
+Vous noterez que dans ma version, j'ai un lien « Yolo » dans le menu… Pas de magie ! Il suffit d'ajouter un composant `<x-nav-link>` dans le fichier `resources/views/layouts/navigation.blade.php`, dans la partie « Navigation Links », juste après le lien du Dashboard :
+
+```html
+<!-- Navigation Links -->
+<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+        {{ __('Dashboard') }}
+    </x-nav-link>
+    <x-nav-link :href="route('yoloPrivate')" :active="request()->routeIs('yoloPrivate')">
+        Yolo
+    </x-nav-link>
+</div>
+```
+
+L'attribut `:active` souligne le lien quand on est sur la page correspondante. Le même fichier contient un second menu pour les petits écrans (`<x-responsive-nav-link>`), je vous laisse y ajouter le lien également.
+
+::: tip Point de contrôle
+
+- `/yolo` s'affiche avec ou sans connexion.
+- `/yolo-connected` redirige vers `/login` si vous n'êtes pas connecté, et affiche votre nom sinon.
+- Le lien « Yolo » apparaît dans le menu une fois connecté.
+
 :::
+
+👋 Si vous avez des questions, n'hésitez pas. Vous avez maintenant la base de ce qu'il faut savoir. La suite du TP consiste à **modifier le code généré** par Breeze : c'est là que vous allez vraiment en comprendre le fonctionnement.
 
 ## Modifier les informations demandées
 
-En reprenant ce que nous avons fait précédemment, je vous laisse modifier la structure de la base de données pour ajouter dans la table `users` un nouveau champ nommé par exemple `pseudo`.
+En reprenant ce que vous avez vu dans le [TP base de données](./base_de_donnees.md), je vous laisse ajouter dans la table `users` un nouveau champ nommé `pseudo`, demandé à l'inscription :
 
-- Ajouter la colonne en base
-- Modifier le formulaire de création de comptes `resources/views/auth/register.blade.php` pour ajouter le champ dans le formulaire.
-- Modifier le modèle `app/Models/User.php` pour ajouter dans les `$fillable` le nouveau champ.
-- Modifier le contrôleur pour sauvegarder la nouvelle valeur. (méthode `store` dans `app/Http/Controllers/Auth/RegisteredUserController.php`)
+- Ajouter la colonne en base, avec une migration.
+- Modifier le formulaire de création de compte `resources/views/auth/register.blade.php` pour ajouter le champ.
+- Modifier le modèle `app/Models/User.php` pour autoriser le remplissage du nouveau champ.
+- Modifier le contrôleur pour valider et sauvegarder la nouvelle valeur (méthode `store` dans `app/Http/Controllers/Auth/RegisteredUserController.php`).
 
-Vous souhaitez le faire avec une migration ?
+Pour la migration :
 
 ```sh
 php artisan make:migration add_pseudo_to_users_table --table=users
@@ -464,141 +532,184 @@ Puis dans votre migration :
 public function up(): void
 {
     Schema::table('users', function (Blueprint $table) {
-        $table->string('pseudo');
+        $table->string('pseudo')->nullable();
+    });
+}
+
+public function down(): void
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->dropColumn('pseudo');
     });
 }
 ```
 
-## Accéder aux informations du connecté
+::: warning Pourquoi nullable() ?
 
-Nous l'avons fait dans notre exemple de contrôleur, mais, si vous ne l'aviez pas compris :
+Votre table `users` contient déjà des comptes (ceux créés pour tester). Que mettre dans la colonne `pseudo` de ces comptes ? Sans valeur par défaut, la base refuse d'ajouter une colonne obligatoire : SQLite répond `Cannot add a NOT NULL column with default value NULL`. Le `nullable()` règle le problème, et c'est la **validation du formulaire** qui rendra le pseudo obligatoire pour les nouveaux comptes.
+
+:::
+
+Côté modèle, attention à une nouveauté de Laravel 13 : le modèle `User` n'a plus de tableau `$fillable`, mais un **attribut PHP** placé juste au-dessus de la classe.
+
+::: details Besoin d'aide pour le modèle ?
+
+C'est la même chose qu'un `$fillable`, écrite différemment :
+
+```php
+#[Fillable(['name', 'email', 'password', 'pseudo'])]
+#[Hidden(['password', 'remember_token'])]
+class User extends Authenticatable
+```
+
+:::
+
+Pour le formulaire, réutilisez les composants fournis par Breeze plutôt que du HTML brut : vos champs auront le même style que les autres.
+
+::: details Besoin d'aide pour le formulaire ?
+
+Inspirez-vous du bloc du champ `name`, en réutilisant les composants de Breeze :
 
 ```html
-{{Auth::user()->name}}
+<!-- Pseudo -->
+<div class="mt-4">
+    <x-input-label for="pseudo" value="Pseudo" />
+    <x-text-input id="pseudo" class="block mt-1 w-full" type="text" name="pseudo" :value="old('pseudo')" required />
+    <x-input-error :messages="$errors->get('pseudo')" class="mt-2" />
+</div>
 ```
+
+Et dans le contrôleur, une règle de validation de plus (`'pseudo' => ['required', 'string', 'max:50']`) et une ligne de plus dans le `User::create()`.
+
+:::
+
+Pour afficher le pseudo de l'utilisateur connecté, c'est comme pour le nom : <code v-pre>{{ Auth::user()->pseudo }}</code>.
 
 ## Créer plusieurs enregistrements en base de données
 
-Le but de Breeze est de vous permettre de modifier le code « préfourni » c'est ce que l'on appelle du Scaffolding, nous allons donc en profiter pour modifier son comportement afin de créer lors de l'ajout d'utilisateur une autre entrée en base de données, par exemple une `personne`.
+Le but de Breeze est de vous permettre de modifier le code « préfourni », c'est ce que l'on appelle du **scaffolding**. Nous allons en profiter pour modifier son comportement afin de créer, lors de l'inscription, une autre entrée en base de données : une `personne`, qui contient des informations complémentaires sur l'utilisateur.
 
-- Créer la migration ainsi que le modèle. `php artisan make:model Personne --migration`
-- Renseigner les champs dans votre migration **,mais également** dans le modèle. Exemple de migration :
+- Créez la migration ainsi que le modèle : `php artisan make:model Personne --migration`.
+- Renseignez les champs dans votre migration **mais également** dans le `$fillable` du modèle. Exemple de migration :
 
 ```php
 Schema::create('personnes', function (Blueprint $table) {
     $table->id();
     $table->string('ville');
-    $table->date('dateNaissance');
+    $table->date('date_naissance');
     $table->string('genre');
-    $table->foreignId('userId')->constrained('users');
+    $table->foreignId('user_id')->constrained();
     $table->timestamps();
 });
 ```
 
-- Lancer la migration `php artisan migrate`
-- Modifier le code de la méthode `store` dans le contrôleur `app/Http/Controllers/Auth/RegisteredUserController.php` pour ajouter également un utilisateur :
-
-Exemple dans mon cas :
+- Lancez la migration : `php artisan migrate`.
+- Ajoutez les champs `ville`, `date_naissance` (un `type="date"`) et `genre` dans le formulaire d'inscription.
+- Modifiez la méthode `store` du contrôleur `RegisteredUserController` pour créer la personne, **après** la création de l'utilisateur (il nous faut son `id`) :
 
 ```php
 Personne::create([
     'ville' => $request->ville,
-    'dateNaissance' => $request->dateNaissance,
+    'date_naissance' => $request->date_naissance,
     'genre' => $request->genre,
-    'userId' => $user->id
-])
+    'user_id' => $user->id,
+]);
 ```
 
-Et voilà nous avons maintenant une méthode de « Création d'un utilisateur » qui ajoute également une personne.
+N'oubliez pas le `use App\Models\Personne;` en haut du contrôleur. Et voilà : l'inscription crée maintenant un utilisateur **et** une personne.
 
-::: tip C'est bien évidement un exemple
-Je vous laisse l'implémenter… Cependant vous comprenez bien que c'est évidemment un exemple !
+::: tip Pourquoi user_id ?
+
+`foreignId('user_id')->constrained()` crée la colonne **et** la clé étrangère vers la table `users`. Laravel devine la table grâce au nom de la colonne : `user_id` → table `users`. En respectant cette convention, vous n'aurez rien à préciser dans vos relations.
+
 :::
+
+Il reste un point essentiel avant de tester.
 
 ::: danger N'oubliez pas la validation
 
-Les données que vous récupérez dans le formulaire doivent être validées. Laravel propose un système de validation très complet. Je vous laisse regarder la documentation pour en savoir plus.
-
-[https://laravel.com/docs/11.x/validation#available-validation-rules](https://laravel.com/docs/11.x/validation#available-validation-rules)
+Les données que vous récupérez dans le formulaire doivent être validées. Laravel propose un système de validation très complet, je vous laisse regarder [la liste des règles disponibles](https://laravel.com/docs/13.x/validation#available-validation-rules) pour compléter le `$request->validate([...])` de la méthode `store`. Par exemple, pour la date : `'date_naissance' => ['required', 'date', 'before:today']`.
 
 :::
 
-Je vous laisse implémenter la modification dans votre code.
+Je vous laisse implémenter la modification dans votre code. Pour ma part, voici le formulaire obtenu :
 
-::: details Votre table existe ? Vous souhaitez la modifier ?
+![Le formulaire d'inscription complété](./ressources/breeze_register_complet.png)
 
-```php
-php artisan make:migration add_ville_dateNaissance_genre_to_personnes_table --table=personnes
-```
+::: tip Point de contrôle
 
-```php
-public function up(): void
-{
-    Schema::table('personnes', function (Blueprint $table) {
-        $table->string('ville');
-        $table->date('dateNaissance');
-        $table->string('genre');
-    });
-}
-```
+Créez un nouveau compte : la table `personnes` contient une ligne dont le `user_id` correspond au nouvel utilisateur. Et si vous oubliez un champ, le message d'erreur s'affiche sous le champ concerné.
 
-```sh
-php artisan migrate
-```
+:::
+
+Avant de passer à la suite, lancez `php artisan test`.
+
+::: warning Breeze a aussi généré des tests
+
+Le test `test_new_users_can_register` échoue maintenant. Normal, il envoie un formulaire d'inscription sans vos nouveaux champs obligatoires ! Je vous laisse le corriger dans `tests/Feature/Auth/RegistrationTest.php`, en ajoutant les champs manquants dans le `$this->post('/register', [...])`. Nous reviendrons sur les tests dans le [TP dédié](./tests.md).
 
 :::
 
 ## Afficher les informations de l'utilisateur
 
-Maintenant que nous avons créé une personne lors de la création d'un utilisateur, nous allons afficher ces données dans la page d'accueil après la connexion.
+Maintenant que nous créons une personne lors de l'inscription, nous allons afficher ses informations sur le dashboard après la connexion.
 
+Pour l'instant, la route `/dashboard` générée par Breeze affiche directement la vue, sans contrôleur. Nous allons donc :
+
+- Créer un contrôleur `DashboardController` (`php artisan make:controller DashboardController`) avec une méthode `index`.
+- Modifier la route `/dashboard` pour qu'elle utilise ce contrôleur (en gardant son middleware et son nom).
 - Modifier la vue `resources/views/dashboard.blade.php` pour afficher les informations de la personne connectée.
-- Modifier le contrôleur `app/Http/Controllers/DashboardController.php` pour récupérer les informations de la personne connectée.
 
-::: tip Vous avez besoin d'aide ?
-
-Je vous aide pour le contrôleur :
+Le plus propre est de déclarer la relation dans le modèle `User`. Une personne par utilisateur, c'est une relation **un à un** (`hasOne`) :
 
 ```php
-public function index()
+public function personne()
 {
-    /**
-     * Ici je récupère la personne connectée,
-     * mais le mieux serait de faire une relation dans le modèle User du type :
-     * public function personne(){
-     *    return $this->hasOne(Personne::class, 'userId', 'id');
-     * }
-     * 
-     * ET de récupérer la personne via :
-     * 
-     * $personne = Auth::user()->personne;
-     */
-    $personne = Personne::where('userId', Auth::user()->id)->first();
-    return view('dashboard', ['personne' => $personne]);
+    return $this->hasOne(Personne::class);
 }
+```
+
+Vous pourrez alors récupérer la personne de l'utilisateur connecté avec `Auth::user()->personne`.
+
+::: details Besoin d'aide pour le contrôleur et la route ?
+
+```php
+use Illuminate\Support\Facades\Auth;
+
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        $personne = Auth::user()->personne;
+
+        return view('dashboard', ['personne' => $personne]);
+    }
+}
+```
+
+```php
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 ```
 
 :::
 
-C'est à vous de jouer pour la vue !
+C'est à vous de jouer pour la vue ! Attention : les comptes créés **avant** cette étape n'ont pas de personne, `$personne` vaudra alors `null`. Pensez à un `@if`.
+
+![Le dashboard avec les informations de la personne](./ressources/breeze_dashboard.png)
 
 ## Utiliser le système de mapping des paramètres de route
 
-En cours nous avons vu qu'il était possible de passer des paramètres dans des routes. Pour l'instant vous vous êtes contenté de récupérer des paramètres simple `id`, `slug`, etc. Mais il est possible de faire plus complexe.
+En cours, nous avons vu qu'il était possible de passer des paramètres dans des routes. Pour l'instant, vous vous êtes contentés de récupérer des paramètres simples (`id`, `slug`, etc.). Mais il est possible de faire plus pratique.
 
-- Créer une nouvelle route `/personne/{personne}` qui va afficher les informations de la personne.
-- Créer une méthode dans le contrôleur `PersonneController` qui va récupérer les informations de la personne.
+- Créer une nouvelle route `/personne/{personne}` qui va afficher les informations d'une personne.
+- Créer une méthode `show` dans un contrôleur `PersonneController` qui va récupérer les informations de la personne.
 - Créer une vue `resources/views/personne.blade.php` qui va afficher les informations de la personne.
 
-::: tip C'est à vous de jouer !
-
-Je vous laisse créer le structure de cette demande.
-
-:::
+Je vous laisse créer la structure de cette demande, en protégeant la route avec le middleware `auth`.
 
 ### Vous avez la base
 
-Comment gagner du temps ? Et bien, c'est simple ! En utilisant le système de récupération automatique des objets de la base de données. Pour cela, il vous suffit de modifier le contrôleur `PersonneController` pour qu'il récupère directement l'objet `Personne` :
+Comment gagner du temps ? En laissant Laravel récupérer l'objet en base pour vous ! Il suffit de typer le paramètre de la méthode avec le modèle `Personne` :
 
 ```php
 public function show(Personne $personne)
@@ -607,23 +718,48 @@ public function show(Personne $personne)
 }
 ```
 
-Et voilà, Laravel va automatiquement récupérer l'objet `Personne` correspondant à l'`id` passé dans la route. C'est magique ! C'est automatique ! Et c'est très pratique !
+Et voilà : Laravel récupère automatiquement la `Personne` correspondant à l'`id` passé dans l'URL (`/personne/1`). Si elle n'existe pas, il répond directement par une erreur **404**. Pas de `find()`, pas de `if`, c'est ce que l'on appelle le [Route Model Binding](https://laravel.com/docs/13.x/routing#route-model-binding).
 
-## Liste des Personnes
+Question :
 
-Maintenant que nous avons la possibilité de voir une personne, nous allons créer une page qui va afficher la liste de toutes les personnes enregistrées dans la base de données.
+- Pour que cela fonctionne, deux noms doivent être identiques. Lesquels ?
 
-Je vous laisse créer une nouvelle route `/personnes` qui va afficher la liste des personnes.
+::: details Voir la réponse
+
+Le nom du paramètre dans la route (`{personne}`) et le nom de la variable dans la méthode (`$personne`). Si vous écrivez `{id}` dans la route, Laravel ne fera pas le lien.
+
+:::
+
+Dans la vue, vous pouvez afficher le nom de l'utilisateur lié en ajoutant la relation inverse dans le modèle `Personne` :
+
+```php
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+```
+
+## Liste des personnes
+
+Maintenant que nous avons la possibilité de voir une personne, nous allons créer une page qui affiche la liste de toutes les personnes enregistrées dans la base de données.
+
+Je vous laisse créer une nouvelle route `/personnes` (méthode `index` du `PersonneController`) qui affiche la liste des personnes, avec pour chacune un lien vers sa page `/personne/{id}`. Ajoutez-la au menu.
+
+![La liste des personnes](./ressources/breeze_personnes.png)
+
+::: tip Ouvrez la Debugbar
+
+Affichez votre liste avec `Personne::all()`, puis regardez l'onglet « Queries » : une requête pour les personnes, puis **une requête par personne** pour récupérer son utilisateur. Avec 100 personnes, 101 requêtes ! C'est le problème dit « N+1 ».
+
+Remplacez par `Personne::with('user')->get()` et regardez à nouveau : deux requêtes seulement, quel que soit le nombre de personnes (c'est la capture de la Debugbar en début de TP).
+
+:::
 
 ## Création d'une table pivot pour les rôles
 
-Dans cette partie, nous allons voir comment créer une table pivot pour gérer les rôles des utilisateurs. Pour cela, nous allons créer une table `roles` qui va contenir les différents rôles disponibles, et une table `role_user` qui va faire le lien entre les utilisateurs et les rôles.
+Dans cette partie, nous allons créer une table pivot pour gérer les rôles des utilisateurs. Pour cela, nous allons créer une table `roles` qui contient les différents rôles disponibles, et une table `role_user` qui fait le lien entre les utilisateurs et les rôles.
 
-::: tip Relation de type `many-to-many`
-
-La relation entre les utilisateurs et les rôles est une relation de type `many-to-many`. Cela signifie qu'un utilisateur peut avoir plusieurs rôles, et qu'un rôle peut être attribué à plusieurs utilisateurs.
-
-Elle se représente de la façon suivante :
+La relation entre les utilisateurs et les rôles est une relation **many-to-many** (plusieurs à plusieurs) : un utilisateur peut avoir plusieurs rôles, et un rôle peut être attribué à plusieurs utilisateurs. Elle se représente de la façon suivante :
 
 ```plaintext
 +-----------+     +-----------+     +-----------+
@@ -638,22 +774,17 @@ users.id <----> role_user.user_id
 roles.id <----> role_user.role_id
 ```
 
-:::
+Vous aviez déjà construit une relation de ce type dans le [TP base de données](./base_de_donnees.md) : c'est le même principe.
 
-### Créer la table `roles`
+### Créer la table roles
 
-Pour commencer, nous allons créer la table `roles` qui va contenir les différents rôles disponibles. Pour cela, nous allons créer une migration :
+Pour commencer, créons la table `roles` avec sa migration :
 
 ```sh
 php artisan make:migration create_roles_table
 ```
 
-Dans la migration, nous allons ajouter les champs suivants :
-
-- `id` : l'identifiant du rôle.
-- `name` : le nom du rôle.
-
-Exemple de migration :
+Dans la migration, nous ajoutons un champ `name` :
 
 ```php
 Schema::create('roles', function (Blueprint $table) {
@@ -663,21 +794,13 @@ Schema::create('roles', function (Blueprint $table) {
 });
 ```
 
-### Créer la table `role_user`
+### Créer la table role_user
 
-Ensuite, nous allons créer la table `role_user` qui va faire le lien entre les utilisateurs et les rôles. Pour cela, nous allons créer une migration :
+Ensuite, la table pivot `role_user` qui fait le lien entre les utilisateurs et les rôles :
 
 ```sh
 php artisan make:migration create_role_user_table
 ```
-
-Dans la migration, nous allons ajouter les champs suivants :
-
-- `id` : l'identifiant de la relation.
-- `user_id` : l'identifiant de l'utilisateur.
-- `role_id` : l'identifiant du rôle.
-
-Exemple de migration :
 
 ```php
 Schema::create('role_user', function (Blueprint $table) {
@@ -688,20 +811,29 @@ Schema::create('role_user', function (Blueprint $table) {
 });
 ```
 
-### Créer les modèles
+::: tip Le nom role_user n'est pas choisi au hasard
 
-Ensuite, nous allons créer les modèles `Role` et `RoleUser` pour gérer les rôles. Pour cela, nous allons créer les fichiers `Role.php` et `RoleUser.php` dans le dossier `app/Models` :
+Par convention, Laravel nomme la table pivot avec les deux noms de modèles **au singulier**, dans l'**ordre alphabétique**, séparés par un `_` : `role` + `user` → `role_user`. En respectant cette convention, Laravel trouve la table tout seul.
+
+:::
+
+Lancez les migrations : `php artisan migrate`.
+
+### Créer le modèle et les relations
+
+Créons le modèle `Role` :
 
 ```sh
 php artisan make:model Role
-php artisan make:model RoleUser
 ```
 
-Dans le modèle `Role`, nous allons ajouter la relation `belongsToMany` avec le modèle `User` :
+Dans le modèle `Role`, ajoutez le `$fillable` et la relation `belongsToMany` avec le modèle `User` :
 
 ```php
 class Role extends Model
 {
+    protected $fillable = ['name'];
+
     public function users()
     {
         return $this->belongsToMany(User::class);
@@ -709,101 +841,132 @@ class Role extends Model
 }
 ```
 
-Dans le modèle `RoleUser`, nous allons ajouter la relation `belongsTo` avec les modèles `User` et `Role` :
+Et dans le modèle `User`, la relation `belongsToMany` avec le modèle `Role` :
 
 ```php
-class RoleUser extends Model
+public function roles()
 {
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
+    return $this->belongsToMany(Role::class);
 }
 ```
 
-Et dans le modèle `User`, nous allons ajouter la relation `belongsToMany` avec le modèle `Role` :
+Question :
+
+- Nous n'avons pas créé de modèle `RoleUser` pour la table pivot. Pourquoi n'en a-t-on pas besoin ?
+
+::: details Voir la réponse
+
+`belongsToMany` gère la table pivot pour nous : il sait la lire (pour retrouver les rôles d'un utilisateur) et y écrire (avec `attach`, `detach` et `sync`, que nous allons utiliser). Un modèle pour la table pivot n'est utile que si elle porte des données supplémentaires que l'on veut manipuler.
+
+:::
+
+### Créer les rôles en base de données
+
+Pour créer les rôles en base de données, nous allons les ajouter **au début** de la méthode `run` du seeder `database/seeders/DatabaseSeeder.php` :
 
 ```php
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
-```
-
-### Créer les roles en base de données
-
-Pour créer les rôles en base de données, nous allons ajouter les rôles dans la méthode `run` du seeder `DatabaseSeeder` :
-
-```php
-public function run()
+public function run(): void
 {
-    // À la fin de la méthode run
-    // Création des rôles par défaut de l'application
-    Role::create(['name' => 'admin']);
-    Role::create(['name' => 'user']);
+    // Les rôles de l'application (firstOrCreate : pas de doublon si on relance le seeder)
+    Role::firstOrCreate(['name' => 'admin']);
+    Role::firstOrCreate(['name' => 'user']);
+
+    // … le reste du seeder
 }
 ```
 
-Ensuite, nous allons exécuter le seeder pour ajouter les rôles en base de données :
+N'oubliez pas le `use App\Models\Role;` en haut du fichier. Exécutez ensuite le seeder :
 
 ```sh
 php artisan db:seed
 ```
 
+::: warning Seulement la première fois !
+
+Le seeder par défaut crée aussi un utilisateur `test@example.com`. Si vous relancez `db:seed`, cette création échoue (l'email existe déjà). Pour repartir d'une base propre : `php artisan migrate:fresh --seed` (attention, cette commande **vide toute la base**).
+
+:::
+
 ### Affecter un rôle à un utilisateur lors de la création
 
-Dans la méthode `store` du contrôleur `RegisteredUserController`, nous allons ajouter le code nécessaire pour affecter un rôle à un utilisateur lors de la création :
+Dans la méthode `store` du contrôleur `RegisteredUserController`, ajoutez après la création de l'utilisateur :
 
 ```php
-// Après la création de l'utilisateur (role user)
-$user->roles()->attach(2);
+// Rôle « user » par défaut
+$user->roles()->attach(Role::where('name', 'user')->first());
 ```
 
-La méthode `attach` permet d'ajouter un rôle à un utilisateur. Elle prend en paramètre l'identifiant du rôle à ajouter. Elle va ajouter une entrée dans la table `role_user` pour faire le lien entre l'utilisateur et le rôle.
+La méthode `attach` ajoute un rôle à un utilisateur : elle insère une ligne dans la table `role_user` pour faire le lien. Nous recherchons le rôle par son nom plutôt que d'écrire son `id` en dur : rien ne garantit que le rôle `user` porte l'`id` 2 dans toutes les bases.
 
 ::: tip Code magique ?
 
-Vous avez vu le code magique ? Vous avez vu comment Laravel simplifie la gestion des relations entre les tables ? C'est ça la magie de Laravel ! C'est ça la puissance de l'ORM Eloquent !
+Une ligne, et Laravel s'occupe de la table pivot. C'est ça la puissance de l'ORM Eloquent !
 
 :::
 
 ### Afficher les rôles de l'utilisateur
 
-Pour tester, ajouter une page `/roles` qui va afficher les rôles de l'utilisateur connecté. Pour cela, vous pouvez ajouter une méthode `roles` dans le contrôleur `DashboardController` :
+Pour tester, ajoutez une page `/roles` qui affiche les rôles de l'utilisateur connecté. Vous pouvez ajouter une méthode `roles` dans le contrôleur `DashboardController` :
 
 ```php
 public function roles()
 {
     $roles = Auth::user()->roles;
+
     return view('roles', ['roles' => $roles]);
 }
 ```
 
-Je vous laisse écrire la vue `roles.blade.php` pour afficher les rôles de l'utilisateur. Cette page doit être disponible uniquement pour les utilisateurs connectés et visible dans le menu du dashboard.
+Je vous laisse écrire la vue `roles.blade.php`. Cette page doit être disponible uniquement pour les utilisateurs connectés et visible dans le menu.
+
+![Les rôles de l'utilisateur](./ressources/breeze_roles.png)
 
 ### Super bouton
 
-Dans le but de tester notre système de rôles, nous allons ajouter un super bouton dans le dashboard qui va permettre à l'utilisateur de changer de rôle. Pour cela, nous allons ajouter une méthode `glowUpAsAdmin` dans le contrôleur `DashboardController`, elle aura pour objectif de remplacer le rôle de l'utilisateur par le rôle d'administrateur.
+Pour tester notre système de rôles, nous allons ajouter un « super bouton » qui permet à l'utilisateur de devenir administrateur. Ajoutez une méthode `glowUpAsAdmin` dans le contrôleur `DashboardController`, elle remplace le rôle de l'utilisateur par le rôle d'administrateur :
 
 ```php
 public function glowUpAsAdmin()
 {
-    $user = Auth::user();
-    $user->roles()->sync([1]);
-    return redirect()->route('dashboard');
+    $admin = Role::where('name', 'admin')->first();
+    Auth::user()->roles()->sync([$admin->id]);
+
+    return redirect()->route('roles');
 }
 ```
 
 ::: tip Pourquoi sync ?
 
-`sync` est une méthode qui va synchroniser les rôles de l'utilisateur avec les rôles passés en paramètre. Cela signifie que les rôles de l'utilisateur seront remplacés par les rôles passés en paramètre.
+`sync` synchronise les rôles de l'utilisateur avec la liste passée en paramètre : les rôles absents de la liste sont retirés, les nouveaux sont ajoutés. Après l'appel, l'utilisateur n'a **que** le rôle `admin`.
 
 :::
+
+Cette action **modifie** des données : la route doit donc être en `POST` (protégée par le middleware `auth`), et le bouton doit être dans un formulaire avec `@csrf` :
+
+```php
+Route::post('/glow-up', [DashboardController::class, 'glowUpAsAdmin'])->middleware(['auth'])->name('glowUp');
+```
+
+```html
+<form method="POST" action="{{ route('glowUp') }}">
+    @csrf
+    <x-primary-button>Devenir administrateur 🚀</x-primary-button>
+</form>
+```
+
+Question :
+
+- Pourquoi ne pas avoir fait un simple lien `<a href="/glow-up">` avec une route en `GET` ?
+
+::: details Voir la réponse
+
+Une route `GET` ne doit jamais modifier de données. Un simple lien peut être déclenché sans le vouloir (une image `<img src="/glow-up">` sur un autre site, un navigateur qui précharge les liens…). En `POST`, Laravel exige le jeton CSRF : la requête ne peut venir que de **votre** formulaire.
+
+:::
+
+![Après le super bouton](./ressources/breeze_roles_admin.png)
+
+Évidemment, ce bouton n'a rien à faire dans une vraie application. Il nous servira à tester la partie suivante 😉.
 
 ## Ajouter un système de chat
 
@@ -811,23 +974,45 @@ Pour conclure ce TP, je vais vous demander d'ajouter un système de chat à votr
 
 Voici les fonctionnalités que vous devez implémenter :
 
-- Un utilisateur connecté doit pouvoir envoyer un message à tous les autres utilisateurs connectés.
-- Les messages seront disponible dans une page `/chat`, celle-ci doit être accessible depuis le dashboard de l'utilisateur. Elle doit s'intégrer visuellement à votre application (menu, etc.).
-- Les messages doivent être stockés en base de données (vous pouvez utiliser une table `messages`).
-- Les messages doivent être affichés en temps réel.
-- Les messages doivent être affichés dans l'ordre chronologique.
-- Les messages doivent contenir le nom de l'utilisateur qui l'a envoyé, la date et l'heure d'envoi, et le contenu du message.
-- Les utilisateurs avec le rôle d'administrateur doivent pouvoir supprimer les messages.
+- Un utilisateur connecté peut envoyer un message visible par tous les autres utilisateurs.
+- Les messages sont disponibles dans une page `/chat`, accessible depuis le menu. Elle doit s'intégrer visuellement à votre application (`<x-app-layout>`).
+- Les messages sont stockés en base de données (une table `messages`, liée à `users`).
+- Les messages sont affichés dans l'ordre chronologique.
+- Chaque message affiche le nom de l'utilisateur qui l'a envoyé, la date et l'heure d'envoi, et le contenu du message.
+- Les utilisateurs avec le rôle d'administrateur peuvent supprimer les messages.
 
 ::: tip Rôle d'administrateur ?
 
-Pour vérifier si un utilisateur a le rôle d'administrateur, vous pouvez utiliser la méthode `roles` du modèle `User` :
+Pour vérifier si un utilisateur a le rôle d'administrateur, vous pouvez utiliser la relation `roles` du modèle `User` :
 
 ```php
 if (Auth::user()->roles->contains('name', 'admin')) {
     // L'utilisateur a le rôle d'administrateur
 }
 ```
+
+Vous allez en avoir besoin à deux endroits (la vue pour afficher le bouton, le contrôleur pour **refuser** la suppression avec un `abort(403)`) : pourquoi ne pas en faire une méthode `isAdmin()` dans le modèle `User` ?
+
+:::
+
+Je vous laisse construire votre chat. Si vous ne savez pas par quel bout le prendre, voici une proposition d'ordre.
+
+::: details Coup de pouce : par où commencer ?
+
+1. Le modèle et la migration : `php artisan make:model Message --migration`, avec un `user_id` (comme pour `Personne`) et un champ `contenu`.
+2. Un `ChatController` avec trois méthodes : `index` (afficher la page), `store` (enregistrer un message) et `destroy` (supprimer un message).
+3. Les routes : un `GET /chat`, un `POST /sendMessage` et un `DELETE /message/{message}` (le Route Model Binding vous donne directement le message à supprimer).
+4. La vue, avec un formulaire et la liste. Pour la suppression, un formulaire avec `@csrf` et `@method('DELETE')`.
+
+Pour afficher l'heure, `$message->created_at->format('d/m/Y H:i')`. L'heure est décalée ? Laravel travaille en UTC par défaut : passez la clé `timezone` de `config/app.php` à `'Europe/Paris'`.
+
+:::
+
+Une fois le chat en place, testez-le à plusieurs.
+
+::: tip Point de contrôle
+
+Connectez-vous avec deux comptes dans deux navigateurs (ou une fenêtre de navigation privée). Les messages de l'un apparaissent chez l'autre… après avoir rechargé la page. Le compte administrateur voit les liens « Supprimer », l'autre non.
 
 :::
 
@@ -839,18 +1024,21 @@ Avant d'attaquer cette partie, nous allons réaliser ce mini TP [ici](../javascr
 
 :::
 
-Votre chat fonctionne, mais il ne se met pas à jour automatiquement. Pour cela, vous allez devoir utiliser de l'Ajax pour récupérer les messages en temps réel. Pour cela nous allons devoir découper notre code en plusieurs parties :
+Votre chat fonctionne, mais il ne se met pas à jour automatiquement. Pour cela, vous allez utiliser de l'Ajax pour récupérer régulièrement les messages. Nous allons découper notre code en plusieurs parties :
 
-- Vous devez créer une page `/getMessages` qui va retourner la liste des messages en HTML. Cette page sera utilisée pour afficher les messages en temps réel.
-- Vous devez modifier la page `/chat` pour afficher les messages en temps réel. Vous pouvez utiliser du JavaScript
+- Une page `/getMessages` qui retourne **uniquement** la liste des messages, en HTML (sans layout).
+- La page `/chat` qui affiche cette liste et la rafraîchit régulièrement grâce à un peu de JavaScript.
 
-#### Pour le JavaScript
+#### Une vue partielle
 
-En général, pour récupérer des messages, on utilise une API Rest qui retourne du JSON. Ici, nous allons faire autrement, nous allons retourner du HTML directement. C'est une approche très « Web centric » qui permet de simplifier le code JavaScript.
+En général, pour récupérer des données en Ajax, on utilise une API Rest qui retourne du JSON. Ici, nous allons faire autrement : nous allons retourner du **HTML** directement. C'est une approche très « Web centric » qui simplifie énormément le code JavaScript.
 
-Votre page `/getMessages` doit retourner un code HTML qui contient les messages (le code HTML doit être le même que celui que vous utilisez pour afficher les messages dans la page `/chat` évidemment) :
+Pour ne pas écrire deux fois le HTML d'un message, sortez la boucle d'affichage des messages dans une vue à part, par exemple `resources/views/chat/messages.blade.php` (sans `<x-app-layout>`, juste la liste). Vous l'utiliserez à deux endroits :
 
-Exemple de code HTML pour la récupération des messages :
+- Dans la page `/chat`, avec `@include('chat.messages')`.
+- Dans la méthode `getMessages` du contrôleur, qui retourne `view('chat.messages', [...])`.
+
+Exemple de HTML retourné par `/getMessages` :
 
 ```html
 <!-- Message 1 -->
@@ -868,9 +1056,9 @@ Exemple de code HTML pour la récupération des messages :
 <!-- etc. -->
 ```
 
-Grace à l'Ajax, nous allons pouvoir récupérer ce code HTML et l'ajouter à notre page `/chat` pour afficher les messages périodiquement dans notre chat. Par exemple, toutes les 15 secondes.
+#### Pour le JavaScript
 
-Voici un exemple de code JavaScript pour récupérer les messages :
+Grâce à l'Ajax, nous allons récupérer ce code HTML et le placer dans notre page `/chat`, par exemple toutes les 15 secondes. Voici un exemple de code JavaScript :
 
 ```javascript
 function getMessages() {
@@ -882,23 +1070,23 @@ function getMessages() {
 }
 
 setInterval(() => {
-    getMessages();    
+    getMessages();
 }, 15000);
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     getMessages();
 });
 ```
 
 Quelques explications :
 
-- `setInterval` permet d'exécuter une fonction toutes les 15 secondes.
-- `fetch` permet de faire une requête HTTP pour récupérer les messages.
-- `response.text()` permet de récupérer le contenu de la réponse en tant que texte.
-- `document.getElementById('messages').innerHTML = html;` permet d'ajouter le code HTML des messages à la page. Ici, `messages` est l'identifiant de la balise HTML qui contiendra les messages.
-- `document.addEventListener('DOMContentLoaded', function() { getMessages(); });` permet de récupérer les messages une première fois lorsque la page est chargée.
+- `setInterval` exécute une fonction toutes les 15 secondes.
+- `fetch` fait une requête HTTP pour récupérer les messages.
+- `response.text()` récupère le contenu de la réponse en tant que texte.
+- `document.getElementById('messages').innerHTML = html;` remplace le contenu de la balise d'identifiant `messages` par le HTML reçu.
+- `DOMContentLoaded` permet de récupérer les messages une première fois lorsque la page est chargée.
 
-Extrait du template `chat.blade.php` :
+Extrait du template `chat/index.blade.php` :
 
 ```html
 <div id="messages">
@@ -907,89 +1095,116 @@ Extrait du template `chat.blade.php` :
 </div>
 ```
 
-Les messages seront affichés dans la balise `div` avec l'identifiant `messages`.
+#### L'approche HTMX
 
-#### L'Approche HTMX ?
+HTMX est une librairie JavaScript qui permet de faire des requêtes HTTP pour récupérer du HTML et l'ajouter à la page, **sans écrire de JavaScript**. C'est une approche très simple et très efficace pour faire des applications Web modernes.
 
-HTMX est une librairie JavaScript qui permet de faire des requêtes HTTP pour récupérer du HTML et l'ajouter à la page. C'est une approche très simple et très efficace pour faire des applications Web modernes.
+Pour les curieux, je vous invite à consulter le site officiel de [HTMX](https://htmx.org/), ou mon TP sur le sujet [ici](../javascript/htmx.md).
 
-Pour les curieux, je vous invite à consulter le site officiel de [HTMX](https://htmx.org/). Ou mon TP sur le sujet [ici](../javascript/htmx.md)
-
-Pour utiliser HTMX dans votre projet, vous pouvez ajouter la librairie via un CDN :
+Pour utiliser HTMX dans votre projet, ajoutez la librairie via un CDN, par exemple à la fin de votre vue `chat/index.blade.php` (à l'intérieur de `<x-app-layout>`) :
 
 ```html
-<script src="https://unpkg.com/htmx.org@1.9.10"></script>
-<script>
-    // Permet d'ajouter le token CSRF à chaque requête AJAX,
-    // pour éviter les erreurs 419, spécifiques à Laravel.
-    document.addEventListener('DOMContentLoaded', function () {
-        document.body.addEventListener('htmx:configRequest', (event) => {
-            event.detail.headers['X-CSRF-Token'] = '{{ csrf_token() }}';
-        })
-    });
-</script>
-<style>
-    div.htmx-swapping div {
-        opacity: 0;
-        transition: opacity 1s ease-out;
-    }
-</style>
+<script src="https://unpkg.com/htmx.org@2.0.11"></script>
 ```
 
-Puis, vous pouvez utiliser HTMX pour récupérer les messages :
+Puis, utilisez HTMX pour charger les messages :
 
 ```html
-<div id="messages" hx-get="/getMessages" hx-trigger="load" />
+<div id="messages" hx-get="/getMessages" hx-trigger="load">
   Chargement des messages...
   <!-- Les messages vont remplacer ce texte automatiquement -->
 </div>
 ```
 
-Avec HTMX, vous n'avez pas besoin de JavaScript pour récupérer les messages. HTMX va s'occuper de tout pour vous.
+- `hx-get="/getMessages"` fait une requête HTTP GET pour récupérer les messages.
+- `hx-trigger="load"` déclenche cette requête lorsque la page est chargée.
+- Par défaut, HTMX remplace le contenu de la balise par la réponse.
 
-- `hx-get="/getMessages"` permet de faire une requête HTTP GET pour récupérer les messages.
-- `hx-trigger="load"` permet de charger les messages automatiquement lorsque la page est chargée.
+#### Rafraîchir les messages en (presque) temps réel
 
-::: tip C'est magique !
-
-HTMX est très intéressant pour faire des sites web ! Elle utilise une approche différente de VueJS ou React, mais elle est également très intéressante. Je vous encourage à l'essayer pour voir si elle correspond à vos besoins.
-
-:::
-
-#### Raffraichir les messages en (presque) temps réel
-
-Pour rafraîchir les messages en (presque) temps réel, vous pouvez utiliser l'attribut `hx-trigger` de HTMX. Cet attribut permet de rafraîchir une partie de la page à intervalles réguliers.
-
-Voici un exemple de code qui rafraîchit les messages toutes les 15 secondes :
+Pour rafraîchir les messages à intervalles réguliers, il suffit de changer la valeur de `hx-trigger`. Voici un exemple qui rafraîchit les messages toutes les 2 secondes :
 
 ```html
 <div id="messages" hx-get="/getMessages" hx-trigger="every 2s">
-  Chargement des messages...
-  <!-- Les messages vont remplacer ce texte automatiquement -->
+    @include('chat.messages')
 </div>
 ```
 
-#### Bonus : Et si vous faisiez l'ajout en Ajax ?
+Ici, les messages sont affichés dès le chargement grâce au `@include`, puis HTMX prend le relais toutes les 2 secondes.
 
-Pour aller plus loin, vous pouvez également ajouter un formulaire pour envoyer des messages en Ajax. Pour cela, vous pouvez utiliser HTMX pour envoyer le formulaire en Ajax.
+::: tip C'est magique !
 
-Voici un exemple de formulaire qui envoie un message en Ajax :
+HTMX utilise une approche différente de VueJS ou React, mais elle est très intéressante : le serveur reste maître du HTML. Je vous encourage à l'essayer pour voir si elle correspond à vos besoins.
+
+:::
+
+#### Bonus : et si vous faisiez l'ajout en Ajax ?
+
+Pour aller plus loin, vous pouvez également envoyer le formulaire de nouveau message en Ajax avec HTMX :
 
 ```html
-<form hx-post="/sendMessage" hx-target="#messages" hx-swap="innerHTML">
+<form method="POST" action="/sendMessage"
+      hx-post="/sendMessage" hx-target="#messages" hx-swap="innerHTML"
+      hx-on::after-request="this.reset()">
+    @csrf
     <input type="text" name="message" placeholder="Votre message">
     <button type="submit">Envoyer</button>
 </form>
 ```
 
-Ce formulaire va envoyer le message en Ajax à la route `/sendMessage` et remplacer le contenu de la balise `div` avec l'identifiant `messages` par le contenu de la réponse (qui doit être si vous avez bien suivi du code HTML, et si vous avez bien suivi le TP, la liste des messages).
+Ce formulaire envoie le message en Ajax à la route `/sendMessage`, puis remplace le contenu de la balise `#messages` par la réponse. La réponse doit donc être… la liste des messages en HTML (votre vue partielle) ! Et `hx-on::after-request` vide le champ après l'envoi.
 
-::: tip C'est à vous de jouer !
+Dans la méthode `store`, HTMX ajoute l'en-tête `HX-Request` à ses requêtes : vous pouvez ainsi retourner la vue partielle pour HTMX, et une redirection classique sinon (le formulaire fonctionne alors aussi sans JavaScript).
 
-Ici, l'idée c'est de vous laisser faire. Vous avez toutes les informations nécessaires pour ajouter un chat à votre application. C'est à vous de jouer !
+```php
+if ($request->header('HX-Request')) {
+    return view('chat.messages', [/* ... */]);
+}
+
+return redirect()->route('chat');
+```
+
+::: warning Et l'erreur 419 ?
+
+Le `@csrf` dans le formulaire suffit : HTMX envoie tous les champs du formulaire, jeton compris. Si un jour vous faites un `hx-post` **hors formulaire** (sur un bouton seul), Laravel répondra `419` faute de jeton. Il faudra alors l'ajouter en en-tête, par exemple avec <code v-pre>hx-headers='{"X-CSRF-TOKEN": "{{ csrf_token() }}"}'</code> sur la balise.
 
 :::
 
-## La suite
+Pour ma part, voici le résultat avec un compte administrateur :
 
-Breeze vous a généré (entre autres) un système de « mot de passe oublié » complet. Et vous savez **exactement** ce qu'il fait : c'est le mécanisme que vous avez codé à la main dans le TP [Le reset de mot de passe](./reset_mot_de_passe.md) (token, expiration, envoi d'email). Je vous invite d'ailleurs à comparer : explorez le code généré par Breeze et retrouvez-y les briques que vous connaissez.
+![Le chat](./ressources/breeze_chat.png)
+
+::: tip C'est à vous de jouer !
+
+Ici, l'idée c'est de vous laisser faire. Vous avez toutes les informations nécessaires pour ajouter un chat à votre application.
+
+:::
+
+## Conclusion
+
+Dans ce TP, vous avez :
+
+- Généré une authentification complète avec **Breeze**, et retrouvé dans le code généré les briques codées à la main (hash, session, middleware).
+- Découvert **Tailwind** et **Vite** (`npm run dev` pendant le développement, `npm run build` pour figer).
+- Utilisé et créé des **composants Blade** (`<x-app-layout>`, `<x-guest-layout>`, `<x-card>`, slots nommés).
+- Protégé des pages avec le middleware **`auth`**.
+- Modifié le code généré : nouveaux champs, table liée (`hasOne` / `belongsTo`), **Route Model Binding**.
+- Mis en place des **rôles** avec une table pivot (`belongsToMany`, `attach`, `sync`).
+- Rafraîchi une page en **Ajax**, avec `fetch` ou avec **HTMX**.
+
+N'oubliez pas de **commiter votre projet** !
+
+Breeze vous a également généré un système de « mot de passe oublié » complet. Et vous savez **exactement** ce qu'il fait : c'est le mécanisme que vous avez codé à la main dans le TP [Le reset de mot de passe](./reset_mot_de_passe.md) (token, expiration, envoi d'email). Je vous invite d'ailleurs à comparer : explorez `PasswordResetLinkController` et `NewPasswordController`, et retrouvez-y les briques que vous connaissez.
+
+Oui, nous avions tout codé à la main, mais Breeze le fait automatiquement : la force d'un framework, c'est de ne pas tout recoder. Vous l'utiliserez désormais **en sachant ce qu'il fait**.
+
+::: tip Le code entier, mais uniquement si vous le demandez
+
+Vous souhaitez voir mon code ? [J'ai un repository privé si nécessaire](https://github.com/c4software/laravel-auth-student).
+
+:::
+
+Pour la suite :
+
+- [Tester son application avec PHPUnit](./tests.md) : Breeze vous a fourni une vingtaine de tests, vous allez apprendre à les lire et à écrire les vôtres.
+- [Eloquent les modèles simplement](./generation_model.md) : aller plus loin avec les modèles.
