@@ -233,6 +233,10 @@ La suppression se déclenche par une simple requête **GET** (`admin.php?id=1`).
 Quand l'admin (déjà connecté) ouvre l'email, son navigateur charge l'image, donc **exécute la suppression à son insu**. C'est une faille **CSRF** (Cross-Site Request Forgery) : une requête légitime, déclenchée par un tiers.
 :::
 
+Le point clé : le navigateur joint **tout seul** le cookie de session à la requête, quel que soit le site qui la déclenche.
+
+![Parcours d'une attaque CSRF : l'admin connecté ouvre un email piégé, son navigateur charge l'image admin.php?id=1 en joignant le cookie de session, et le serveur supprime l'utilisateur](./res/tp4_auth_csrf.svg)
+
 ::: details Question : première règle à corriger ?
 Une action qui **modifie** des données ne doit **jamais** se faire en `GET`. Un `GET` doit pouvoir être rejoué sans effet de bord (par un navigateur, un antivirus, un préchargement…). Les suppressions passent en `POST`.
 :::
@@ -251,6 +255,12 @@ $_SESSION['token'] = bin2hex(random_bytes(32));
 
 Un site tiers ne connaît pas ce jeton : il ne peut donc pas forger la requête.
 :::
+
+Testez les trois versions de `admin.php` contre les deux pièges de l'attaquant. Regardez à chaque fois ce que reçoit le serveur et ce qu'il en fait :
+
+<ClientOnly>
+<AuthLab type="csrf" />
+</ClientOnly>
 
 À vous de corriger : passer en `POST` et vérifier un jeton.
 
@@ -322,6 +332,16 @@ die();
 Le premier facteur (mot de passe) validé ne doit **pas** ouvrir la session directement. Il faut une étape intermédiaire : si le mot de passe est bon, on demande le code 2FA, et on n'ouvre l'accès au dashboard **qu'après** validation du code.
 :::
 
+Voici le parcours complet. Le code n'est jamais envoyé par le serveur : le téléphone et le serveur le calculent chacun de leur côté, à partir du même secret et de l'heure.
+
+![Connexion en deux étapes : le mot de passe est vérifié par findByLogin, puis le serveur demande le code à 6 chiffres calculé par le téléphone, et ouvre le dashboard seulement si isCodeValid répond vrai. L'attaquant qui n'a que le mot de passe reste bloqué à la deuxième étape](./res/tp4_auth_2fa.svg)
+
+Connectez-vous avec le mot de passe volé, sans puis avec la 2FA. Le code du téléphone est un vrai code TOTP, recalculé toutes les 30 secondes :
+
+<ClientOnly>
+<AuthLab type="totp" />
+</ClientOnly>
+
 À vous d'intégrer la 2FA dans ce flux.
 
 ::: details Voir l'une des solutions possibles
@@ -366,6 +386,8 @@ setcookie('session', $id, [
     'samesite' => 'Strict' // non envoyé depuis un autre site (anti-CSRF)
 ]);
 ```
+
+Pour voir l'effet de `SameSite`, cochez la case correspondante dans la démo de l'[exercice 3](#exercice-3-la-faille-csrf-corriger) et relancez les pièges.
 
 **Régénérer l'identifiant de session après connexion :**
 

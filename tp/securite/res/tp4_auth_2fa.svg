@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 430" width="780" height="430" role="img" aria-label="Connexion avec double authentification : mot de passe vérifié, puis code du téléphone vérifié par isCodeValid avant le dashboard">
+<rect x="1" y="1" width="778" height="428" rx="10" fill="#ffffff" stroke="#e2e2e3"/>
+<defs><marker id="frouge" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c62828"/></marker><marker id="fbleu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3451b2"/></marker><marker id="fvert" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#18794e"/></marker></defs>
+<rect x="30" y="40" width="180" height="64" rx="8" fill="#f6f6f7" stroke="#3451b2" stroke-width="2"/>
+<text x="120.0" y="68.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f">POST /login</text>
+<text x="120.0" y="86.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c">username + password</text>
+<rect x="300" y="40" width="180" height="64" rx="8" fill="#f6f6f7" stroke="#3451b2" stroke-width="2"/>
+<text x="390.0" y="68.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f">findByLogin()</text>
+<text x="390.0" y="86.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c">premier facteur</text>
+<rect x="570" y="40" width="180" height="64" rx="8" fill="#f6f6f7" stroke="#3451b2" stroke-width="2"/>
+<text x="660.0" y="68.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f">/login?step=2fa</text>
+<text x="660.0" y="86.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c">demande le code</text>
+<rect x="570" y="190" width="180" height="64" rx="8" fill="#f6f6f7" stroke="#3451b2" stroke-width="2"/>
+<text x="660.0" y="218.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f">Téléphone</text>
+<text x="660.0" y="236.0" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12" fill="#67676c">493 027</text>
+<rect x="300" y="190" width="180" height="64" rx="8" fill="#f6f6f7" stroke="#3451b2" stroke-width="2"/>
+<text x="390.0" y="218.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f">isCodeValid($code)</text>
+<text x="390.0" y="236.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c">second facteur</text>
+<rect x="30" y="190" width="180" height="64" rx="8" fill="#f6f6f7" stroke="#18794e" stroke-width="2"/>
+<text x="120.0" y="218.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f">/dashboard</text>
+<text x="120.0" y="236.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c">session ouverte</text>
+<path d="M210 72 L296 72" fill="none" stroke="#3451b2" stroke-width="2.2" marker-end="url(#fbleu)"/>
+<circle cx="253" cy="72" r="11" fill="#3451b2"/><text x="253" y="76.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#fff">1</text>
+<path d="M480 72 L566 72" fill="none" stroke="#3451b2" stroke-width="2.2" marker-end="url(#fbleu)"/>
+<circle cx="523" cy="72" r="11" fill="#3451b2"/><text x="523" y="76.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#fff">2</text>
+<text x="523" y="124" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c">mot de passe correct</text>
+<path d="M660 104 L660 186" fill="none" stroke="#3451b2" stroke-width="2.2" marker-end="url(#fbleu)"/>
+<circle cx="660" cy="145" r="11" fill="#3451b2"/><text x="660" y="149.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#fff">3</text>
+<text x="678" y="141" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c">l&#x27;utilisateur</text>
+<text x="678" y="157" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c">lit le code</text>
+<path d="M570 222 L484 222" fill="none" stroke="#3451b2" stroke-width="2.2" marker-end="url(#fbleu)"/>
+<circle cx="527" cy="222" r="11" fill="#3451b2"/><text x="527" y="226.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#fff">4</text>
+<text x="527" y="248" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="10.5" fill="#67676c">code=493027</text>
+<path d="M300 222 L214 222" fill="none" stroke="#18794e" stroke-width="2.2" marker-end="url(#fvert)"/>
+<circle cx="257" cy="222" r="11" fill="#18794e"/><text x="257" y="226.5" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#fff">5</text>
+<text x="257" y="246" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12" fill="#18794e">true</text>
+<rect x="30" y="330" width="330" height="72" rx="8" fill="#f6f6f7" stroke="#c62828" stroke-width="2"/>
+<text x="195.0" y="362.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#1b1b1f">Attaquant avec le mot de passe volé</text>
+<text x="195.0" y="380.0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="12.5" fill="#67676c">passe l&#x27;étape 1, bloqué à l&#x27;étape 4</text>
+<path d="M390 254 L390 366 L364 366" fill="none" stroke="#c62828" stroke-width="2.2" stroke-dasharray="6 5" marker-end="url(#frouge)"/>
+<text x="400" y="312" text-anchor="start" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12" fill="#c62828">false</text>
+<rect x="430" y="330" width="320" height="72" rx="8" fill="#f6f6f7" stroke="#67676c" stroke-width="2"/>
+<text x="590" y="356" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="700" fill="#1b1b1f">Même calcul au téléphone et au serveur</text>
+<text x="590" y="380" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="12" fill="#67676c">HMAC-SHA1(secret, floor(time() / 30))</text>
+</svg>
