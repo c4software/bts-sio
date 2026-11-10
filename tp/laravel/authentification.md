@@ -55,7 +55,7 @@ Vous pouvez suivre ce TP sans lui, Breeze fait tout le travail. Mais vous perdre
 
 - Installer **Breeze** et retrouver dans le code généré les briques codées à la main dans les TP précédents.
 - Utiliser les outils du front qui arrivent avec (**Tailwind**, **Vite**, `npm`).
-- Utiliser et créer des **composants Blade** (`<x-app-layout>`, `<x-card>`).
+- Utiliser et créer des **composants Blade** (`<x-app-layout>`, `<x-card>`), et en récupérer sur **HyperUI**.
 - Protéger une page avec le middleware `auth`.
 - Modifier le code généré : champs supplémentaires, table liée, rôles (relation **many-to-many**).
 - Rafraîchir une page en Ajax avec `fetch` ou **HTMX**.
@@ -114,6 +114,8 @@ Permettant de gérer simplement l'ensemble des problématiques : inscription, co
 Breeze n'est pas la seule option. Depuis Laravel 12, Laravel met en avant de [nouveaux « starter kits »](https://laravel.com/docs/13.x/starter-kits) (React, Vue ou Livewire), proposés directement par la commande `laravel new`. Ils sont plus complets, mais reposent sur des technologies front que nous n'avons pas encore vues.
 
 Breeze, lui, ne reçoit plus de nouvelles fonctionnalités, mais il reste maintenu, compatible Laravel 13, et surtout il génère du **Blade simple et lisible**. Pour comprendre ce qui est généré, c'est le meilleur point de départ.
+
+Ces starter kits reposent sur **Fortify**, le moteur d'authentification de Laravel. Vous les découvrirez dans le TP [L'authentification avec un starter kit](./starter_kit.md), avec en prime une double authentification par application.
 
 :::
 
@@ -345,6 +347,54 @@ Le système de composants va vous permettre :
 - De rendre générique un morceau de code que vous utilisez plusieurs fois dans votre projet.
 - De penser composant plutôt que HTML copié depuis Internet.
 - De rendre « génériques » les layouts pour les partager entre les pages.
+
+:::
+
+### Des composants tout prêts : HyperUI
+
+Écrire ses composants, c'est bien. Mais pour une jolie carte, un tableau ou une alerte, inutile de partir d'une page blanche : des sites proposent des composants Tailwind **prêts à copier**. Parmi eux, [HyperUI](https://hyperui.dev/) : une collection gratuite et open source (licence MIT) de composants Tailwind, rangés en trois familles :
+
+- **Application** : pour les interfaces d'application (statistiques, tableaux, formulaires, menus…).
+- **Marketing** : pour les sites vitrines (bannières, cartes, témoignages…).
+- **Neobrutalism** : un style graphique plus marqué.
+
+Chaque composant est livré en HTML, avec un bouton pour copier le code. Pas de paquet à installer : comme votre projet utilise déjà Tailwind, il suffit de coller le HTML.
+
+Nous allons ajouter des **statistiques** sur le dashboard. Rendez-vous dans [Application > Stats](https://hyperui.dev/components/application/stats), choisissez un modèle (pour ma part, le troisième, avec un titre, une valeur et un badge d'évolution) et copiez le code d'**une seule** carte, c'est-à-dire le premier bloc `<article>…</article>`.
+
+Créez le fichier `resources/views/components/stat.blade.php` et collez-y le code copié sur HyperUI. C'est tout : le fichier contient uniquement le HTML du composant, sans `<html>` ni `<body>`.
+
+Puis utilisez-le dans `resources/views/dashboard.blade.php`, par exemple juste au-dessus du bloc blanc « You're logged in! » :
+
+```html
+<x-stat />
+```
+
+![Le composant HyperUI tel quel](./ressources/breeze_hyperui_brut.png)
+
+Ça fonctionne… mais votre composant affiche toujours « Profit » et « $240.94 ». Pour le rendre **réutilisable**, transformons ces textes en paramètres. Dans `stat.blade.php` :
+
+- Ajoutez tout en haut du fichier la ligne `@props(['titre', 'valeur'])`.
+- Remplacez le texte « Profit » par <code v-pre>{{ $titre }}</code>.
+- Remplacez le montant « $240.94 » par <code v-pre>{{ $valeur }}</code>.
+- Supprimez le badge d'évolution (le `<div>` qui contient le pourcentage), dont nous n'avons pas l'usage.
+
+`@props(['titre', 'valeur'])` déclare les **attributs** acceptés par le composant : ils deviennent les variables `$titre` et `$valeur`. Vous pouvez maintenant l'utiliser autant de fois que nécessaire :
+
+```html
+<div class="grid gap-4 md:grid-cols-2">
+    <x-stat titre="Personnes inscrites" valeur="12" />
+    <x-stat titre="Messages dans le chat" valeur="42" />
+</div>
+```
+
+Pour l'instant les valeurs sont écrites en dur. Quand le dashboard aura son contrôleur (un peu plus loin dans ce TP), vous pourrez lui passer de vraies valeurs : un attribut précédé de `:` reçoit une **expression PHP** au lieu d'un texte, par exemple `:valeur="$nbPersonnes"`.
+
+![Le composant rendu réutilisable](./ressources/breeze_hyperui_stat.png)
+
+::: tip Point de contrôle
+
+Le dashboard affiche vos deux cartes de statistiques côte à côte. Si une carte apparaît sans style, c'est que Vite n'a pas vu vos nouvelles classes : lancez `npm run dev` (ou relancez `npm run build`).
 
 :::
 
@@ -1186,7 +1236,7 @@ Dans ce TP, vous avez :
 
 - Généré une authentification complète avec **Breeze**, et retrouvé dans le code généré les briques codées à la main (hash, session, middleware).
 - Découvert **Tailwind** et **Vite** (`npm run dev` pendant le développement, `npm run build` pour figer).
-- Utilisé et créé des **composants Blade** (`<x-app-layout>`, `<x-guest-layout>`, `<x-card>`, slots nommés).
+- Utilisé et créé des **composants Blade** (`<x-app-layout>`, `<x-guest-layout>`, `<x-card>`, slots nommés), et transformé un composant **HyperUI** en `<x-stat>` réutilisable.
 - Protégé des pages avec le middleware **`auth`**.
 - Modifié le code généré : nouveaux champs, table liée (`hasOne` / `belongsTo`), **Route Model Binding**.
 - Mis en place des **rôles** avec une table pivot (`belongsToMany`, `attach`, `sync`).
