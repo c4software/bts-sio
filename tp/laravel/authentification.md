@@ -20,6 +20,16 @@ Dans les TP précédents, vous avez codé **à la main** toute la mécanique d'a
 
 Vous l'avez compris, la liste est longue… La force de Laravel, c'est justement de vous fournir l'ensemble de ces briques, dans les standards du marché, **sans tout recoder**. Dans ce TP, nous allons générer une authentification complète avec **Laravel Breeze**, puis la modifier pour l'adapter à nos besoins : un profil enrichi, des rôles, et pour finir un petit chat en Ajax.
 
+::: warning Breeze aujourd'hui : où en est-on ?
+
+Breeze a longtemps été le kit officiel de Laravel pour générer une authentification. Depuis Laravel 12, il n'apparaît plus dans la documentation officielle : Laravel oriente désormais vers les [starter kits](https://laravel.com/docs/13.x/starter-kits), proposés directement par l'installeur `laravel new` (React, Vue, Svelte ou Livewire). Ils s'appuient tous sur **Fortify** pour la partie serveur.
+
+Breeze n'est pas abandonné pour autant : il ne reçoit plus de nouvelles fonctionnalités, mais il reste maintenu et compatible avec Laravel 11, 12 et 13. Et tout ce que vous allez apprendre ici (scaffolding, composants, middleware, relations…) reste valable avec un starter kit.
+
+Pour un nouveau projet, la voie recommandée est donc le starter kit. Le TP [L'authentification avec un starter kit](./starter_kit.md) suit exactement le même parcours avec le kit Livewire, double authentification en prime.
+
+:::
+
 Dans ce TP, je vous invite à avoir en parallèle :
 
 - [L'aide-mémoire Laravel](/cheatsheets/laravel/)
@@ -109,15 +119,7 @@ Nous allons intégrer l'authentification en utilisant [Laravel Breeze](https://g
 
 Permettant de gérer simplement l'ensemble des problématiques : inscription, connexion, déconnexion, mot de passe oublié, vérification de l'email et page de profil.
 
-::: warning Nous avons plusieurs choix
-
-Breeze n'est pas la seule option. Depuis Laravel 12, Laravel met en avant de [nouveaux « starter kits »](https://laravel.com/docs/13.x/starter-kits) (React, Vue ou Livewire), proposés directement par la commande `laravel new`. Ils sont plus complets, mais reposent sur des technologies front que nous n'avons pas encore vues.
-
-Breeze, lui, ne reçoit plus de nouvelles fonctionnalités, mais il reste maintenu, compatible Laravel 13, et surtout il génère du **Blade simple et lisible**. Pour comprendre ce qui est généré, c'est le meilleur point de départ.
-
-Ces starter kits reposent sur **Fortify**, le moteur d'authentification de Laravel. Vous les découvrirez dans le TP [L'authentification avec un starter kit](./starter_kit.md), avec en prime une double authentification par application.
-
-:::
+Comme indiqué en début de TP, Breeze n'est plus la voie mise en avant par Laravel. Il reste un très bon point de départ pour apprendre : il génère du **Blade simple et lisible**, sans rien cacher, idéal pour comprendre ce qui est généré.
 
 ### Ajout de la dépendance
 
