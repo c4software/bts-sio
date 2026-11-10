@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="820" height="330" viewBox="0 0 820 330" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" markerWidth="5" markerHeight="5" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="820" height="330" fill="#ffffff"/>
+  <text x="410" y="28" text-anchor="middle" font-weight="700" font-size="15">1. À l'activation : un secret partagé, une seule fois</text>
+  <rect x="20" y="45" width="230" height="70" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="135" y="72" text-anchor="middle" font-weight="600">Serveur Laravel</text>
+  <text x="135" y="94" text-anchor="middle" font-size="12">secret chiffré en base</text>
+  <rect x="300" y="45" width="220" height="70" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="410" y="72" text-anchor="middle" font-weight="600">QR code</text>
+  <text x="410" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">GC6HI4I2RQQGVLKR</text>
+  <rect x="570" y="45" width="230" height="70" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="685" y="72" text-anchor="middle" font-weight="600">Application du téléphone</text>
+  <text x="685" y="94" text-anchor="middle" font-size="12">garde le secret</text>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="250" y1="80" x2="296" y2="80"/>
+    <line x1="520" y1="80" x2="566" y2="80"/>
+  </g>
+  <text x="410" y="170" text-anchor="middle" font-weight="700" font-size="15">2. À chaque connexion : chacun calcule le code de son côté</text>
+  <rect x="20" y="190" width="230" height="80" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="135" y="216" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">calcul(secret, heure)</text>
+  <text x="135" y="246" text-anchor="middle" font-weight="700" font-size="20">438 488</text>
+  <rect x="570" y="190" width="230" height="80" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="685" y="216" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">calcul(secret, heure)</text>
+  <text x="685" y="246" text-anchor="middle" font-weight="700" font-size="20">438 488</text>
+  <rect x="300" y="200" width="220" height="60" rx="8" fill="#ffffff" stroke="#475569" stroke-width="2"/>
+  <text x="410" y="226" text-anchor="middle" font-weight="600">Même code ?</text>
+  <text x="410" y="246" text-anchor="middle" font-size="12">alors connexion</text>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="566" y1="230" x2="524" y2="230"/>
+    <line x1="254" y1="230" x2="296" y2="230"/>
+  </g>
+  <text x="410" y="300" text-anchor="middle" font-size="12" fill="#475569">Le code change toutes les 30 secondes. Rien ne transite entre le serveur et le téléphone au moment de la connexion :</text>
+  <text x="410" y="318" text-anchor="middle" font-size="12" fill="#475569">l'utilisateur recopie simplement le code affiché.</text>
+</svg>

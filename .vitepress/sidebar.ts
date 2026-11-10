@@ -321,6 +321,7 @@ export default [
               { text: "Le reset de mot de passe", link: "/tp/laravel/reset_mot_de_passe" },
               { text: "Aller plus loin avec Laravel", link: "/tp/laravel/aller_plus_loin" },
               { text: "L'authentification avec Breeze", link: "/tp/laravel/authentification" },
+              { text: "L'authentification avec un starter kit", link: "/tp/laravel/starter_kit" },
               { text: "Eloquent les modèles simplement", link: "/tp/laravel/generation_model" },
               { text: "Tester avec PHPUnit", link: "/tp/laravel/tests" },
               { text: "Projet Micro-Messages", link: "/tp/laravel/x.md" },
