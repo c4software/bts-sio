@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="692" viewBox="0 0 900 692" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+<rect width="900" height="692" rx="12" fill="#ffffff"/>
+<text xml:space="preserve" x="28" y="30" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">mon-projet/</text>
+<text xml:space="preserve" x="28" y="56" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">├─ app/</text>
+<rect x="14" y="65" width="872" height="22" rx="5" fill="#f0fdf4" stroke="#16a34a" stroke-width="1"/>
+<rect x="14" y="65" width="5" height="22" rx="2" fill="#16a34a"/>
+<text xml:space="preserve" x="28" y="82" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│  ├─ Actions/Fortify/</text>
+<text x="390" y="82" fill="#334155">CreateNewUser, ResetUserPassword : le métier, à modifier</text>
+<rect x="14" y="91" width="872" height="22" rx="5" fill="#f0fdf4" stroke="#16a34a" stroke-width="1"/>
+<rect x="14" y="91" width="5" height="22" rx="2" fill="#16a34a"/>
+<text xml:space="preserve" x="28" y="108" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│  ├─ Concerns/</text>
+<text x="390" y="108" fill="#334155">Règles de validation partagées (mot de passe, profil)</text>
+<rect x="14" y="117" width="872" height="22" rx="5" fill="#f8fafc" stroke="#64748b" stroke-width="1"/>
+<rect x="14" y="117" width="5" height="22" rx="2" fill="#64748b"/>
+<text xml:space="preserve" x="28" y="134" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│  ├─ Http/Controllers/</text>
+<text x="390" y="134" fill="#334155">Vos contrôleurs (vide au départ)</text>
+<rect x="14" y="143" width="872" height="22" rx="5" fill="#fdf4ff" stroke="#c026d3" stroke-width="1"/>
+<rect x="14" y="143" width="5" height="22" rx="2" fill="#c026d3"/>
+<text xml:space="preserve" x="28" y="160" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│  ├─ Livewire/Actions/Logout.php</text>
+<text x="390" y="160" fill="#334155">Action de déconnexion</text>
+<rect x="14" y="169" width="872" height="22" rx="5" fill="#f0fdf4" stroke="#16a34a" stroke-width="1"/>
+<rect x="14" y="169" width="5" height="22" rx="2" fill="#16a34a"/>
+<text xml:space="preserve" x="28" y="186" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│  ├─ Models/User.php</text>
+<text x="390" y="186" fill="#334155">Trait TwoFactorAuthenticatable (2FA)</text>
+<rect x="14" y="195" width="872" height="22" rx="5" fill="#f0fdf4" stroke="#16a34a" stroke-width="1"/>
+<rect x="14" y="195" width="5" height="22" rx="2" fill="#16a34a"/>
+<text xml:space="preserve" x="28" y="212" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│  └─ Providers/FortifyServiceProvider.php</text>
+<text x="390" y="212" fill="#334155">Branche les vues sur Fortify, limites de tentatives</text>
+<rect x="14" y="221" width="872" height="22" rx="5" fill="#f0fdf4" stroke="#16a34a" stroke-width="1"/>
+<rect x="14" y="221" width="5" height="22" rx="2" fill="#16a34a"/>
+<text xml:space="preserve" x="28" y="238" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">├─ config/fortify.php</text>
+<text x="390" y="238" fill="#334155">Les fonctionnalités activées (features)</text>
+<text xml:space="preserve" x="28" y="264" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">├─ resources/</text>
+<rect x="14" y="273" width="872" height="22" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<rect x="14" y="273" width="5" height="22" rx="2" fill="#2563eb"/>
+<text xml:space="preserve" x="28" y="290" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│  ├─ css/app.css</text>
+<text x="390" y="290" fill="#334155">Tailwind : @source &#x27;../views&#x27;</text>
+<text xml:space="preserve" x="28" y="316" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│  └─ views/</text>
+<rect x="14" y="325" width="872" height="22" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<rect x="14" y="325" width="5" height="22" rx="2" fill="#2563eb"/>
+<text xml:space="preserve" x="28" y="342" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│     ├─ components/</text>
+<text x="390" y="342" fill="#334155">&lt;x-…&gt; : vos composants (x-card, x-stat)</text>
+<rect x="14" y="351" width="872" height="22" rx="5" fill="#fdf4ff" stroke="#c026d3" stroke-width="1"/>
+<rect x="14" y="351" width="5" height="22" rx="2" fill="#c026d3"/>
+<text xml:space="preserve" x="28" y="368" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│     ├─ layouts/</text>
+<text x="390" y="368" fill="#334155">&lt;x-layouts::…&gt; : app (menu latéral), auth</text>
+<rect x="14" y="377" width="872" height="22" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<rect x="14" y="377" width="5" height="22" rx="2" fill="#2563eb"/>
+<text xml:space="preserve" x="28" y="394" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│     ├─ pages/auth/</text>
+<text x="390" y="394" fill="#334155">pages::auth.login… : vues Blade branchées sur Fortify</text>
+<rect x="14" y="403" width="872" height="22" rx="5" fill="#fdf4ff" stroke="#c026d3" stroke-width="1"/>
+<rect x="14" y="403" width="5" height="22" rx="2" fill="#c026d3"/>
+<text xml:space="preserve" x="28" y="420" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│     ├─ pages/settings/⚡profile…</text>
+<text x="390" y="420" fill="#334155">pages::settings.profile… : composants Livewire (⚡)</text>
+<rect x="14" y="429" width="872" height="22" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+<rect x="14" y="429" width="5" height="22" rx="2" fill="#2563eb"/>
+<text xml:space="preserve" x="28" y="446" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│     ├─ flux/</text>
+<text x="390" y="446" fill="#334155">Icônes et surcharges des composants Flux</text>
+<rect x="14" y="455" width="872" height="22" rx="5" fill="#f8fafc" stroke="#64748b" stroke-width="1"/>
+<rect x="14" y="455" width="5" height="22" rx="2" fill="#64748b"/>
+<text xml:space="preserve" x="28" y="472" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│     └─ dashboard, welcome</text>
+<text x="390" y="472" fill="#334155">Les pages de départ</text>
+<text xml:space="preserve" x="28" y="498" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">├─ routes/</text>
+<rect x="14" y="507" width="872" height="22" rx="5" fill="#f8fafc" stroke="#64748b" stroke-width="1"/>
+<rect x="14" y="507" width="5" height="22" rx="2" fill="#64748b"/>
+<text xml:space="preserve" x="28" y="524" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│  ├─ web.php</text>
+<text x="390" y="524" fill="#334155">Vos routes (Route::get, Route::view)</text>
+<rect x="14" y="533" width="872" height="22" rx="5" fill="#fdf4ff" stroke="#c026d3" stroke-width="1"/>
+<rect x="14" y="533" width="5" height="22" rx="2" fill="#c026d3"/>
+<text xml:space="preserve" x="28" y="550" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">│  └─ settings.php</text>
+<text x="390" y="550" fill="#334155">Route::livewire(…) : les pages de réglages</text>
+<rect x="14" y="559" width="872" height="22" rx="5" fill="#f8fafc" stroke="#64748b" stroke-width="1"/>
+<rect x="14" y="559" width="5" height="22" rx="2" fill="#64748b"/>
+<text xml:space="preserve" x="28" y="576" font-family="ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0f172a">└─ tests/Feature/</text>
+<text x="390" y="576" fill="#334155">Auth/, Settings/ : une trentaine de tests</text>
+<text x="28" y="622" font-weight="700" fill="#0f172a">Légende</text>
+<rect x="28" y="638" width="18" height="16" rx="3" fill="#f0fdf4" stroke="#16a34a"/><rect x="28" y="638" width="5" height="16" rx="2" fill="#16a34a"/>
+<text x="56" y="651" fill="#334155">Fortify (authentification côté serveur)</text>
+<rect x="458" y="638" width="18" height="16" rx="3" fill="#eff6ff" stroke="#2563eb"/><rect x="458" y="638" width="5" height="16" rx="2" fill="#2563eb"/>
+<text x="486" y="651" fill="#334155">Interface : Blade, Flux, Tailwind</text>
+<rect x="28" y="664" width="18" height="16" rx="3" fill="#fdf4ff" stroke="#c026d3"/><rect x="28" y="664" width="5" height="16" rx="2" fill="#c026d3"/>
+<text x="56" y="677" fill="#334155">Livewire (composants et espaces de noms)</text>
+<rect x="458" y="664" width="18" height="16" rx="3" fill="#f8fafc" stroke="#64748b"/><rect x="458" y="664" width="5" height="16" rx="2" fill="#64748b"/>
+<text x="486" y="677" fill="#334155">Laravel classique</text>
+</svg>

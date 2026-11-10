@@ -185,7 +185,11 @@ Après l'inscription, vous arrivez sur la page `/dashboard`, avec un menu latér
 
 ### Le tour des fichiers
 
-Prenez quelques minutes pour regarder ce que contient votre projet. Côté **Fortify** :
+Prenez quelques minutes pour regarder ce que contient votre projet. Voici les dossiers et fichiers importants, classés par rôle :
+
+![L'organisation des fichiers du starter kit](./ressources/kit_arborescence.svg)
+
+Côté **Fortify** :
 
 - `config/fortify.php` : la configuration, et en bas du fichier la liste des **fonctionnalités** activées (`features`). Vous y retrouvez vos choix de l'installation.
 - `app/Providers/FortifyServiceProvider.php` : c'est ici que les vues du kit sont branchées sur Fortify (méthode `configureViews`), et que sont réglées les limitations de tentatives (`configureRateLimiting`).
@@ -196,8 +200,40 @@ Côté **interface** :
 
 - `routes/web.php` et `routes/settings.php` : vos routes (accueil, dashboard, réglages).
 - `resources/views/pages/auth/` : les vues de connexion, d'inscription, de mot de passe oublié…
-- `resources/views/pages/settings/` : les pages de réglages. Les fichiers qui commencent par `⚡` sont des **composants Livewire** : du PHP et du Blade dans le même fichier, qui se mettent à jour sans recharger la page. Nous ne les modifierons pas dans ce TP.
+- `resources/views/pages/settings/` : les pages de réglages, sous forme de composants Livewire (les fichiers `⚡`).
 - `resources/views/layouts/` et `resources/views/components/` : les layouts et les composants de l'interface (nous y revenons plus loin).
+
+### Ce qu'apporte Livewire
+
+Si vous avez déjà vu un projet Breeze, trois éléments vont vous surprendre. Tous viennent de **Livewire**, la bibliothèque qui permet d'écrire des pages dynamiques en PHP et en Blade, sans écrire de JavaScript.
+
+**Les espaces de noms `pages::` et `layouts::`.** Dans le provider de Fortify, vous lisez `view('pages::auth.login')`, et dans les vues `<x-layouts::app>`. Ce sont des raccourcis vers des dossiers, déclarés par Livewire :
+
+| Vous écrivez                | Le fichier utilisé                                  |
+| :-------------------------- | :-------------------------------------------------- |
+| `view('pages::auth.login')` | `resources/views/pages/auth/login.blade.php`        |
+| `<x-layouts::app>`          | `resources/views/layouts/app.blade.php`             |
+| `<x-layouts::auth>`         | `resources/views/layouts/auth.blade.php`            |
+
+Le `::` sépare l'espace de noms du chemin, et le `.` sépare les sous-dossiers, comme pour vos composants `<x-…>`.
+
+**Les fichiers `⚡`.** Ce sont des **composants Livewire** « mono-fichier » : en haut, une classe PHP (`new class extends Component { … }`) avec ses propriétés et ses méthodes ; en bas, le HTML en Blade. Les attributs `wire:` relient les deux : `wire:model="name"` lie un champ à la propriété `$name`, `wire:submit="updateProfileInformation"` appelle la méthode PHP du même nom à l'envoi du formulaire. Livewire fait l'aller-retour avec le serveur en Ajax et met la page à jour, sans la recharger. Le `⚡` ne fait pas partie du nom : il sert uniquement à repérer les composants d'un coup d'œil (`⚡profile.blade.php` s'appelle `pages::settings.profile`).
+
+**`Route::livewire()`.** Dans `routes/settings.php`, `Route::livewire('settings/profile', 'pages::settings.profile')` affiche un composant Livewire comme une page entière, placée automatiquement dans le layout `layouts::app`.
+
+Nous ne modifierons pas les composants Livewire dans ce TP : nos pages resteront des contrôleurs et des vues Blade classiques, que vous savez déjà écrire. Mais vous savez maintenant les lire.
+
+Question :
+
+- Ouvrez `resources/views/pages/settings/⚡profile.blade.php`. Que se passe-t-il quand on clique sur **Save** ? Retrouvez la méthode appelée et ce qu'elle fait.
+
+::: details Voir la réponse
+
+Le formulaire porte `wire:submit="updateProfileInformation"` : Livewire appelle la méthode `updateProfileInformation()` de la classe PHP, en haut du fichier. Elle valide les propriétés `$name` et `$email` (remplies par les `wire:model`), met à jour l'utilisateur (`$user->fill(...)` puis `$user->save()`), et affiche une notification avec `Flux::toast(...)`. Pas de route, pas de contrôleur, pas de redirection : tout passe par Livewire.
+
+:::
+
+### Les routes de Fortify
 
 Et les routes de connexion ? Elles ne sont pas dans `routes/web.php` : elles sont déclarées par Fortify, dans le paquet. Pour toutes les voir :
 
