@@ -128,6 +128,67 @@ Un agent de code, lui, a des outils qui agissent **sur votre projet** (lire, mod
 Pour situer un outil d'IA, posez-vous donc trois questions : quels outils a-t-il ? Où s'exécutent-ils ? Qui fait tourner la boucle ?
 :::
 
+## Les harness du moment
+
+Il existe des dizaines de harness, et il en sort de nouveaux chaque mois. Ils se rangent en trois familles, selon l'endroit où vous les utilisez.
+
+::: warning Relevé le 14 novembre 2026
+Ce paysage change très vite : des outils sont renommés, rachetés ou arrêtés en quelques mois. Par exemple, Gemini CLI a été remplacé par Antigravity CLI pour les comptes individuels le 18 juin 2026, Windsurf est devenu Devin Desktop le 2 juin 2026, et Roo Code a fermé en mai. Vérifiez sur le site de l'éditeur avant de vous lancer.
+:::
+
+### Dans le terminal
+
+| Harness | Éditeur | Modèles | Code source |
+|---|---|---|---|
+| **OpenCode** (celui de cette série) | Anomaly | plus de 75 fournisseurs, modèles locaux | ouvert (MIT) |
+| **Claude Code** | Anthropic | Claude (d'autres par un proxy) | fermé |
+| **Codex** | OpenAI | OpenAI d'abord, d'autres possibles | ouvert (Apache 2.0) |
+| **Copilot CLI** | GitHub | le catalogue Copilot, ou votre clé | fermé |
+| **Antigravity CLI** (`agy`) | Google | Gemini | fermé |
+| **Mistral Vibe** | Mistral AI | Mistral (Devstral) | ouvert (Apache 2.0) |
+| **Qwen Code** | Alibaba | Qwen d'abord, d'autres possibles | ouvert (Apache 2.0) |
+| **Kimi Code** | Moonshot AI | Kimi d'abord, d'autres possibles | ouvert (MIT) |
+| **pi** | Earendil | multi-fournisseurs, modèles locaux | ouvert (MIT) |
+| **goose** | Linux Foundation (créé par Block) | multi-fournisseurs, modèles locaux | ouvert (Apache 2.0) |
+| **Crush** | Charm | multi-fournisseurs | code source consultable |
+
+Vous croiserez aussi le nom d'**Aider**, l'un des tout premiers agents de code en terminal (2023), aujourd'hui peu maintenu.
+
+### Dans l'éditeur
+
+| Harness | Éditeur | Où |
+|---|---|---|
+| **GitHub Copilot** (mode agent) | GitHub | VS Code, JetBrains, Visual Studio… |
+| **Cursor** | Cursor | son propre éditeur, dérivé de VS Code |
+| **Cline** | Cline | extension VS Code et JetBrains, ouverte |
+| **Kilo Code** | Kilo | extension VS Code et JetBrains, ouverte |
+| **Junie** | JetBrains | les IDE JetBrains (PhpStorm, IntelliJ…) |
+| **Kiro** | AWS | son propre éditeur |
+| **Devin Desktop** (ex-Windsurf) | Cognition | son propre éditeur |
+| **Zed** | Zed Industries | agent intégré à l'éditeur, qui peut aussi accueillir d'autres agents |
+
+### Dans le cloud
+
+Vous confiez une tâche (souvent une issue GitHub) et l'agent travaille seul, dans une machine distante qui a cloné votre dépôt. Il vous rend une **pull request** à relire :
+
+- **Codex** dans le navigateur (OpenAI) ;
+- **Claude Code** sur le web (Anthropic) ;
+- l'**agent de code de GitHub Copilot**, à qui l'on assigne une issue ;
+- **Devin** (Cognition) ;
+- **OpenHands**, ouvert, que l'on peut héberger soi-même.
+
+Beaucoup d'outils existent sous plusieurs formes : Claude Code, Codex et Copilot ont chacun une version terminal, une extension d'éditeur et une version cloud. C'est le **même harness**, avec une autre interface.
+
+Questions :
+
+- Pourquoi cette série utilise-t-elle OpenCode plutôt que Claude Code ou Copilot ?
+- Quelle famille de harness vous laisse le moins voir ce qui se passe pendant le travail ?
+
+::: details Réponse
+- OpenCode est **ouvert** (on peut lire son code et ce qu'il envoie au modèle) et **multi-fournisseurs** : il se branche sur le proxy de la classe, sur des modèles gratuits (NVIDIA, AMD) ou sur un modèle local, sans abonnement. Les notions que vous y apprenez (boucle, outils, permissions, `AGENTS.md`) se retrouvent à l'identique dans les autres.
+- Le cloud : l'agent travaille seul sur une machine distante et vous ne voyez que le résultat final, la pull request. C'est pratique, mais la relecture du diff devient votre seul contrôle.
+:::
+
 ## Les briques d'un agent
 
 Un agent, c'est un modèle et un harness. Voyons maintenant chaque brique en détail : le modèle d'abord, puis tout ce que le harness lui ajoute.

@@ -147,6 +147,16 @@ C'est un agent ?
 
 ---
 
+## Les harness du moment
+
+- **Terminal** : OpenCode, Claude Code, Codex, Copilot CLI, Antigravity CLI, Mistral Vibe, Qwen Code, Kimi Code, pi, goose…
+- **Éditeur** : GitHub Copilot, Cursor, Cline, Kilo Code, Junie, Kiro, Devin Desktop, Zed…
+- **Cloud** : Codex, Claude Code sur le web, l'agent de Copilot, Devin, OpenHands… et une pull request à relire.
+
+Novembre 2026. Dans six mois, la liste aura changé.
+
+---
+
 ## Les briques d'un agent
 
 - Le **modèle** (chez un fournisseur, par une API).
