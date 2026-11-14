@@ -324,28 +324,6 @@ Pour chaque requête d'OpenCode, le proxy :
 Votre clé de proxy ne part jamais chez AMD, et la clé AMD ne part jamais chez OpenCode.
 :::
 
-## Le tableau de bord
-
-Ouvrez [http://localhost:8000/ui](http://localhost:8000/ui) dans votre navigateur. La page demande une clé : donnez celle du proxy. Après quelques requêtes, la vue **Statistiques** ressemble à ceci :
-
-![Le tableau de bord de llm-proxy, vue Statistiques : 35 requêtes, 54 111 tokens (54 041 en entrée, 70 en sortie), 5 modèles actifs (amd : 19 requêtes, nvidia : 16 requêtes), 0 erreur ; le graphique du trafic empilé par modèle et le tableau par modèle : amd/Gemma-4-31B-IT, 9 requêtes et 23 827 tokens, soit 2 647 en moyenne par requête ; nvidia/nvidia/nemotron-3.5-lightning-30b-a3b, 14 requêtes et 18 127 tokens ; amd/DeepSeek-V4.1-Flash, 8 requêtes et 256 tokens, soit 32 en moyenne](./res/proxy_tableau_de_bord.png)
-
-::: details Comment cette capture a-t-elle été faite ?
-Pour ne pas consommer de quota, elle a été prise avec deux **backends simulés**, qui imitent les catalogues de NVIDIA et d'AMD et répondent toujours « OK ». Le proxy, la configuration, les requêtes d'OpenCode et de curl, et les compteurs sont réels. Les chiffres de votre tableau de bord seront donc différents, mais pas les ordres de grandeur.
-:::
-
-Je vous laisse observer le tableau **Par modèle**, puis répondre :
-
-1. Les requêtes faites avec curl coûtent quelques dizaines de tokens. Combien coûte, en moyenne, une requête d'OpenCode, pour la même question « Réponds uniquement par le mot OK. » ?
-2. D'où vient la différence ?
-3. Avec 20 requêtes par minute chez AMD, combien de tours de boucle un agent peut-il faire par minute ? Est-ce que ça suffit pour la tâche du [TP sur l'utilisation](./utilisation.md) ?
-
-::: details Voir les réponses
-1. Autour de **2 600 tokens** d'entrée par requête dans notre capture (`Moy./req`), contre une trentaine pour curl.
-2. OpenCode envoie, **à chaque requête**, son prompt système et la description de tous ses outils (lire, écrire, exécuter…), avant même votre question. Vous l'avez vu dans [le TP sur le principe](./principe.md) : le contexte d'un agent n'est jamais vide.
-3. 20 tours de boucle par minute au maximum, une lecture de fichier ou un lancement de tests par tour. Pour une tâche qui demande 30 à 50 tours, comptez plusieurs minutes, et des erreurs `429` si l'agent va plus vite que la limite. Le proxy relaie ces erreurs ; c'est l'agent qui attend et réessaie.
-:::
-
 ## Ajouter OpenCode Go et OpenRouter
 
 NVIDIA et AMD ne sont pas les seuls fournisseurs intéressants. Deux autres méritent leur place derrière votre proxy, et ils montrent tout l'intérêt de la méthode : **une table de plus dans `config.toml`, une variable de plus dans `.env`**, et vos agents n'ont rien à changer.
@@ -453,6 +431,73 @@ Il n'y a pas de réponse unique, mais quelques repères :
 Et c'est tout l'intérêt du proxy : changer d'avis ne coûte qu'un changement de nom de modèle.
 :::
 
+## Le tableau de bord
+
+llm-proxy a sa propre interface web. Ouvrez [http://localhost:8000/ui](http://localhost:8000/ui) dans votre navigateur.
+
+::: details Comment les captures de cette partie ont-elles été faites ?
+Pour ne pas consommer de quota, elles ont été prises avec des **backends simulés**, qui imitent les catalogues de NVIDIA, d'AMD, d'OpenCode Go et d'OpenRouter et répondent par une phrase écrite à l'avance (ou « OK »). Le proxy, son interface, la configuration, les requêtes d'OpenCode et de curl et les compteurs sont réels. Les chiffres de votre tableau de bord seront donc différents, mais pas les ordres de grandeur.
+:::
+
+### Se connecter
+
+La page demande une clé : donnez celle du proxy (la valeur de `PROXY_API_KEY`).
+
+![La page de connexion de llm-proxy : un champ « Clé du proxy » et un bouton « Entrer », avec l'explication que la clé reste dans un cookie de ce navigateur, illisible par la page, et que l'on ne verra que ses propres statistiques et conversations](./res/proxy_ui_connexion.png)
+
+La clé n'est jamais mise dans l'adresse de la page : elle est vérifiée une fois, puis le navigateur garde une session qui n'en contient qu'un condensé. Et chaque clé ne voit que **ses** statistiques : c'est ce qui permet de donner une clé à chacun sans montrer la consommation des autres.
+
+### Les statistiques
+
+Après quelques requêtes avec OpenCode et curl, la vue **Statistiques** ressemble à ceci :
+
+![Le tableau de bord de llm-proxy, vue Statistiques : 34 requêtes, 50 134 tokens (50 066 en entrée, 68 en sortie), 8 modèles actifs répartis entre amd (12 requêtes), go (12), nvidia (2) et openrouter (8), 0 erreur ; le graphique du trafic empilé par modèle, la répartition des tokens, et le tableau par modèle : amd/DeepSeek-V4.1-Flash, 6 requêtes faites avec curl, 39 tokens en moyenne ; amd/Gemma-4-31B-IT, 4 requêtes d'OpenCode, 2 974 tokens en moyenne ; go/glm-5.3-flash, go/kimi-k3, nvidia/nvidia/nemotron-3.5-lightning-30b-a3b et les modèles openrouter/…:free](./res/proxy_tableau_de_bord.png)
+
+Je vous laisse observer le tableau **Par modèle**, puis répondre :
+
+1. Les requêtes faites avec curl coûtent quelques dizaines de tokens. Combien coûte, en moyenne, une requête d'OpenCode, pour la même question « Réponds uniquement par le mot OK. » ?
+2. D'où vient la différence ?
+3. Avec 20 requêtes par minute chez AMD, combien de tours de boucle un agent peut-il faire par minute ? Est-ce que ça suffit pour la tâche du [TP sur l'utilisation](./utilisation.md) ? Et avec les 50 requêtes **par jour** d'OpenRouter ?
+
+::: details Voir les réponses
+1. Autour de **3 000 tokens** d'entrée par requête dans notre capture (`Moy./req` de `amd/Gemma-4-31B-IT`, que seul OpenCode a utilisé), contre une quarantaine pour curl (`amd/DeepSeek-V4.1-Flash`).
+2. OpenCode envoie, **à chaque requête**, son prompt système et la description de tous ses outils (lire, écrire, exécuter…), avant même votre question. Vous l'avez vu dans [le TP sur le principe](./principe.md) : le contexte d'un agent n'est jamais vide.
+3. 20 tours de boucle par minute au maximum, une lecture de fichier ou un lancement de tests par tour. Pour une tâche qui demande 30 à 50 tours, comptez plusieurs minutes, et des erreurs `429` si l'agent va plus vite que la limite. Le proxy relaie ces erreurs ; c'est l'agent qui attend et réessaie. Avec 50 requêtes par jour, une seule tâche de ce genre épuise la journée.
+:::
+
+### Le chat
+
+Le tableau de bord a aussi un **chat**, pour discuter avec n'importe quel modèle du proxy sans installer d'agent. Il est désactivé par défaut, parce qu'il dépense des tokens au nom de la clé connectée. Pour l'ouvrir, ajoutez dans `data/config.toml` :
+
+```toml
+[ui]
+chat = true
+```
+
+puis `docker compose restart albert-proxy`. Choisissez un modèle en haut, et posez votre question :
+
+![Le chat de llm-proxy : en haut, le modèle Gemma-4-31B-IT choisi dans la liste ; la question « Bonjour ! Qui es-tu, et par où est passée ma question ? » ; la réponse, sous laquelle s'affichent le modèle amd/Gemma-4-31B-IT, 44 tokens en entrée et 2 en sortie, la durée (0,3 s) et les boutons Copier, Écouter et Régénérer ; à gauche, la conversation dans la liste des conversations](./res/proxy_ui_chat.png)
+
+Sous chaque réponse, le chat affiche le modèle, les tokens consommés et la durée : de quoi comparer les fournisseurs sur une même question. Les conversations sont gardées par le proxy, dans `data/` (sauf en mode **Incognito**).
+
+::: warning Ce que voit l'administrateur
+Dans votre proxy, c'est vous l'administrateur : les conversations du chat sont dans une base SQLite de `data/`, sur votre disque. Sur le proxy de la classe, c'est le serveur de votre enseignant. Même règle que pour les agents : rien de personnel ni de secret dans une conversation.
+:::
+
+### La configuration
+
+L'onglet **Configuration → Proxy** présente toute la configuration en vigueur, section par section. Par exemple, les quatre fournisseurs que vous avez déclarés :
+
+![Configuration, onglet Proxy, section Backends : quatre backends, chacun avec son nom (le préfixe) et son adresse : nvidia sur https://integrate.api.nvidia.com, amd sur https://api.tokenlab.amd.com, go sur https://opencode.ai/inference/go/openai, openrouter sur https://openrouter.ai/api ; pour chacun, les cases « clé d'API » et « partage équitable » sont cochées ; un bouton « Ajouter un backend »](./res/proxy_ui_backends.png)
+
+Et la section **.env** liste les variables que votre configuration attend, sans jamais afficher leur valeur :
+
+![Configuration, onglet Proxy, section .env : « Les secrets que le TOML référence par ${VAR} : à côté du docker-compose.yml, jamais dans le dépôt » ; la liste PROXY_API_KEY, NVIDIA_API_KEY, AMD_API_KEY, OPENCODE_GO_API_KEY et OPENROUTER_API_KEY, toutes sans valeur](./res/proxy_ui_env.png)
+
+::: tip Que se passe-t-il derrière ?
+Cette page **n'écrit rien** sur le proxy : elle part de la configuration en vigueur, vous laisse la modifier, la vérifier (bouton **Vérifier**, qui détecte une faute de frappe dans un nom de réglage), puis **télécharger** le nouveau `config.toml`. C'est à vous de remplacer `data/config.toml` et de redémarrer. Un choix de sécurité : une page web capable de réécrire la configuration d'un serveur serait une belle cible.
+:::
+
 ## Pour aller plus loin
 
 ### Partager le proxy avec un binôme
@@ -466,6 +511,10 @@ api_keys = ["${PROXY_API_KEY}", "${BINOME_API_KEY}"]
 
 Chaque clé a ses propres statistiques dans le tableau de bord, et retirer la clé de votre binôme ne change rien pour vous.
 
+Dans le tableau de bord, la section **Accès** de **Configuration → Proxy** fait la même chose : **Ajouter une clé** donne une ligne de plus (le nom de la variable, la valeur restant dans le `.env`), puis **Télécharger config.toml**.
+
+![Configuration, onglet Proxy, section Accès : « Une clé par personne : chacune a ses statistiques, sa mémoire, ses conversations », une ligne PROXY_API_KEY dont la valeur reste dans le .env, et un bouton « Ajouter une clé » ; au-dessus, le rappel que rien n'est écrit sur le proxy : il faut télécharger le fichier, remplacer data/config.toml sur l'hôte, puis redémarrer](./res/proxy_ui_acces.png)
+
 Mais vous partagez alors **vos** limites : 20 requêtes par minute chez AMD pour deux agents. Pour qu'un agent qui boucle ne prenne pas tout, le proxy propose un **partage équitable** : une part de tokens par heure et par clé, au-delà de laquelle les requêtes attendent leur tour (rien n'est refusé). C'est ce que fait le proxy de la classe :
 
 ```toml
@@ -473,6 +522,8 @@ Mais vous partagez alors **vos** limites : 20 requêtes par minute chez AMD pour
 # Tokens (entrée + sortie) par heure glissante et par clé. 0 = aucune limite.
 tokens_per_hour = 200000
 ```
+
+![Configuration, onglet Proxy, section Partage équitable : « Une part de tokens par client sur une heure glissante : au-delà, ses requêtes attendent, rien n'est refusé », la part par défaut réglée à 200000 tokens par heure, et les routes exemptées (/embeddings, /rerank, /audio/transcriptions, /ocr)](./res/proxy_ui_partage.png)
 
 Voir [la documentation du partage équitable](https://github.com/c4software/llm-proxy/blob/master/docs/tableau-de-bord.md#partage-équitable).
 
@@ -506,6 +557,7 @@ Dans ce TP bonus, vous avez changé de côté :
 - les clés des fournisseurs restent dans un `.env` ignoré par Git, la configuration ne contient que des `${VAR}`, et une variable n'entre dans un conteneur que si le service la demande ;
 - un proxy sans `api_keys` est ouvert à tous : c'est la première ligne à écrire ;
 - vos agents ne connaissent qu'une adresse et une clé, et changer de fournisseur ne les concerne plus ;
+- le tableau de bord donne les statistiques de chaque clé, un chat pour essayer les modèles, et la configuration complète (sans jamais l'écrire lui-même) ;
 - le tableau de bord montre ce que coûte vraiment un agent : des milliers de tokens par tour, avant même votre question.
 
 C'est, en plus grand (comptes, une clé par étudiant, partage équitable), ce que fait le proxy de la classe. Vous savez maintenant ce que voit son administrateur, et ce qu'il ne voit pas : relisez [ce que le proxy ne protège pas](./limites.md#vos-donnees-partent-chez-un-tiers) avec ce nouvel œil.
