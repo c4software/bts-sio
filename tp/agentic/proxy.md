@@ -1,5 +1,5 @@
 ---
-description: "Le développement agentique, TP bonus : monter son propre llm-proxy avec Docker Compose, y brancher les accès gratuits de NVIDIA et d'AMD (Token Lab), protéger le proxy par une clé, garder les clés des fournisseurs dans un .env, puis y relier OpenCode et suivre sa consommation dans le tableau de bord."
+description: "Le développement agentique, TP bonus : monter son propre llm-proxy avec Docker Compose, y brancher les accès gratuits de NVIDIA et d'AMD (Token Lab), puis OpenCode Go et OpenRouter, protéger le proxy par une clé, garder les clés des fournisseurs dans un .env, puis y relier OpenCode et suivre sa consommation dans le tableau de bord."
 ---
 
 # Le développement agentique : monter son propre proxy
@@ -16,7 +16,7 @@ Dans [le TP sur l'utilisation](./utilisation.md#brancher-un-modele), vous avez b
 
 Résultat : chaque fournisseur a **son adresse, sa clé et ses noms de modèles**, et chaque agent (OpenCode, pi, Claude Code…) doit tous les connaître. Le jour où l'accès AMD expire, il faut tout reconfigurer.
 
-C'est exactement le problème que règle [llm-proxy](https://github.com/c4software/llm-proxy), le proxy que votre enseignant fait tourner pour la classe. Dans ce TP, vous allez monter **le vôtre**, sur votre machine, avec deux fournisseurs gratuits derrière : NVIDIA et AMD.
+C'est exactement le problème que règle [llm-proxy](https://github.com/c4software/llm-proxy), le proxy que votre enseignant fait tourner pour la classe. Dans ce TP, vous allez monter **le vôtre**, sur votre machine, avec deux fournisseurs gratuits derrière (NVIDIA et AMD), puis deux autres qui valent le détour : OpenCode Go et OpenRouter.
 
 ## Prérequis
 
@@ -25,13 +25,14 @@ C'est exactement le problème que règle [llm-proxy](https://github.com/c4softwa
 - Environ 5 Go d'espace disque libre : la construction de l'image prend plusieurs minutes la première fois.
 - `git`, `curl` et `jq`.
 - Un compte **NVIDIA** avec sa clé (voir [le TP sur l'utilisation](./utilisation.md#nvidia)), et un compte **AMD AI Developer Program** (nous le créons plus bas).
+- Facultatif : un abonnement **OpenCode Go** et un compte **OpenRouter**, pour la partie qui leur est consacrée.
 
 ## Objectifs
 
 À la fin de ce TP vous saurez :
 
 - expliquer à quoi sert un proxy devant des fournisseurs de modèles ;
-- obtenir une clé d'API chez NVIDIA et chez AMD (Token Lab) ;
+- obtenir une clé d'API chez NVIDIA, AMD (Token Lab), OpenCode Go et OpenRouter, et comparer leurs limites ;
 - déployer llm-proxy avec Docker Compose ;
 - déclarer des fournisseurs compatibles OpenAI dans `data/config.toml`, sans jamais y écrire une clé ;
 - protéger le proxy par une clé et vérifier qu'il refuse les autres ;
@@ -345,6 +346,113 @@ Je vous laisse observer le tableau **Par modèle**, puis répondre :
 3. 20 tours de boucle par minute au maximum, une lecture de fichier ou un lancement de tests par tour. Pour une tâche qui demande 30 à 50 tours, comptez plusieurs minutes, et des erreurs `429` si l'agent va plus vite que la limite. Le proxy relaie ces erreurs ; c'est l'agent qui attend et réessaie.
 :::
 
+## Ajouter OpenCode Go et OpenRouter
+
+NVIDIA et AMD ne sont pas les seuls fournisseurs intéressants. Deux autres méritent leur place derrière votre proxy, et ils montrent tout l'intérêt de la méthode : **une table de plus dans `config.toml`, une variable de plus dans `.env`**, et vos agents n'ont rien à changer.
+
+| | NVIDIA | AMD Token Lab | OpenCode Go | OpenRouter |
+|---|---|---|---|---|
+| Prix | gratuit | gratuit | 10 $ par mois | modèles `:free` gratuits |
+| Limite | environ 40 requêtes / min | 20 requêtes / min, 30 jours | un budget en dollars par modèle | 20 requêtes / min, 50 par jour |
+| Point fort | les modèles Nemotron | sans carte bancaire | une trentaine de modèles récents | des centaines de modèles, une seule clé |
+
+### OpenCode Go
+
+[OpenCode Go](https://opencode.ai/docs/go/) est l'abonnement d'OpenCode : **10 $ par mois** pour une trentaine de modèles récents (GLM, Kimi, DeepSeek, Qwen, MiniMax…), choisis pour coder. Ce n'est pas gratuit, mais c'est l'un des moyens les moins chers d'utiliser de bons modèles avec un agent, et la plupart d'entre eux ne gardent **aucune donnée** (0 jour de conservation, pas d'entraînement, d'après la page de l'offre relevée le 14 novembre 2026).
+
+Les limites sont exprimées en **dollars par modèle** : chaque modèle a un budget mensuel, dont au plus 20 % sur 5 heures et 50 % sur une semaine. Un modèle épuisé n'empêche pas d'utiliser les autres.
+
+Pour la clé : connectez-vous à la [console d'OpenCode](https://opencode.ai/console), abonnez-vous à Go, puis copiez votre clé d'API. Le point d'accès compatible OpenAI est `https://opencode.ai/inference/go/openai/v1`. Dans `config.toml` :
+
+```toml
+[backends.go]
+url = "https://opencode.ai/inference/go/openai"
+api_key = "${OPENCODE_GO_API_KEY}"
+```
+
+Les modèles apparaissent alors sous le préfixe `go/` : `go/glm-5.3-flash`, `go/kimi-k3`, `go/deepseek-v4.1-flash`…
+
+::: warning Un en-tête de session obligatoire
+OpenCode Go refuse une requête qui n'a pas d'en-tête `x-opencode-session` (erreur `MissingSessionID`) : il s'en sert pour garder une même conversation sur le même serveur. OpenCode l'envoie de lui-même à chaque requête, et le proxy relaie les en-têtes du client : à travers le proxy, **OpenCode fonctionne sans rien changer**. Avec curl, en revanche, ajoutez-le vous-même :
+
+```bash
+curl -s "$LLM_PROXY_URL/v1/chat/completions" \
+  -H "Authorization: Bearer $LLM_PROXY_API_KEY" \
+  -H "x-opencode-session: essai-curl" \
+  -H "Content-Type: application/json" \
+  -d '{"model": "go/glm-5.3-flash", "messages": [{"role": "user", "content": "Réponds uniquement par le mot OK."}]}' \
+  | jq -r '.choices[0].message.content'
+```
+:::
+
+::: danger Un abonnement personnel
+OpenCode Go est un abonnement **individuel** (l'offre Go Teams existe pour les équipes, avec une limite par membre). Gardez-le pour vous : pas de clé de binôme sur un proxy qui utilise votre abonnement Go.
+:::
+
+### OpenRouter
+
+[OpenRouter](https://openrouter.ai/) est lui-même… un proxy : une seule clé et une seule adresse pour des centaines de modèles de dizaines d'éditeurs. Beaucoup sont payants, mais une partie est **gratuite** : leur nom se termine par `:free`.
+
+Pour la clé : créez un compte sur [openrouter.ai](https://openrouter.ai/), puis une clé dans **Keys** (elle commence par `sk-or-`). Le point d'accès est `https://openrouter.ai/api/v1`, compatible OpenAI :
+
+```toml
+[backends.openrouter]
+url = "https://openrouter.ai/api"
+api_key = "${OPENROUTER_API_KEY}"
+```
+
+Les modèles gratuits s'écrivent alors `openrouter/<éditeur>/<modèle>:free`, par exemple `openrouter/nvidia/nemotron-3.5-lightning:free` ou `openrouter/google/gemma-4-31b-it:free`. Pour les lister :
+
+```bash
+curl -s -H "Authorization: Bearer $LLM_PROXY_API_KEY" "$LLM_PROXY_URL/v1/models" | jq -r '.data[].id' | grep ':free'
+```
+
+::: warning Les limites des modèles gratuits
+D'après [la documentation d'OpenRouter](https://openrouter.ai/docs/api/reference/limits) (relevée le 14 novembre 2026), les modèles `:free` sont limités à **20 requêtes par minute** et **50 requêtes par jour** ; la limite passe à 1 000 par jour une fois que vous avez acheté au moins 10 crédits (environ 10 $). Pour un agent, qui fait une requête par tour de boucle, 50 par jour, c'est une petite tâche. Au-delà, OpenRouter répond `429`.
+
+Deux autres précautions :
+
+- le catalogue du proxy liste **aussi les modèles payants** d'OpenRouter : sans crédits sur le compte, ils répondent par une erreur, mais vérifiez toujours le `:free` à la fin du nom ;
+- certains modèles gratuits ne sont proposés que si vous acceptez, dans les réglages de confidentialité d'OpenRouter, que vos échanges puissent être conservés ou servir à l'entraînement. Relisez [ce qui part chez un tiers](./limites.md#vos-donnees-partent-chez-un-tiers) avant de cocher la case.
+:::
+
+### Les brancher
+
+Comme pour NVIDIA et AMD : les clés dans `.env`, transmises au conteneur par l'override.
+
+```ini
+# .env
+OPENCODE_GO_API_KEY=…
+OPENROUTER_API_KEY=sk-or-…
+```
+
+```yaml
+# docker-compose.override.yml
+services:
+  albert-proxy:
+    environment:
+      NVIDIA_API_KEY: "${NVIDIA_API_KEY}"
+      AMD_API_KEY: "${AMD_API_KEY}"
+      OPENCODE_GO_API_KEY: "${OPENCODE_GO_API_KEY}"
+      OPENROUTER_API_KEY: "${OPENROUTER_API_KEY}"
+```
+
+Puis `docker compose up -d` et un coup d'œil au journal : quatre lignes `backend … clé : injectée`. Ajoutez enfin les modèles voulus dans votre `opencode.json` (`go/glm-5.3-flash`, `openrouter/nvidia/nemotron-3.5-lightning:free`…), exactement comme les autres.
+
+::: tip Point de contrôle
+Votre proxy sert maintenant quatre fournisseurs derrière une seule adresse et une seule clé. Vérifiez avec `/v1/models` que les préfixes `nvidia/`, `amd/`, `go/` et `openrouter/` sont tous là, puis posez la question « OK » à un modèle de chacun (avec l'en-tête `x-opencode-session` pour `go/`).
+:::
+
+::: details Question : quel fournisseur choisir pour quelle tâche ?
+Il n'y a pas de réponse unique, mais quelques repères :
+
+- pour **apprendre et expérimenter**, les offres gratuites (NVIDIA, AMD, OpenRouter `:free`) suffisent, à condition d'accepter leurs limites et de lire leurs conditions sur les données ;
+- pour **une session de travail longue** avec un agent (des centaines de requêtes), les 50 requêtes par jour d'OpenRouter ou les 30 jours d'AMD ne suffisent pas : c'est là qu'un abonnement comme Go prend son sens ;
+- pour du code **qui ne doit pas sortir**, aucun de ces fournisseurs : un modèle qui tourne sur votre propre machine, derrière le même proxy.
+
+Et c'est tout l'intérêt du proxy : changer d'avis ne coûte qu'un changement de nom de modèle.
+:::
+
 ## Pour aller plus loin
 
 ### Partager le proxy avec un binôme
@@ -372,7 +480,7 @@ Voir [la documentation du partage équitable](https://github.com/c4software/llm-
 Votre clé NVIDIA ou AMD est attachée à **votre** compte : c'est vous qui répondez de ce qui passe par elle. Avant de la partager, même à travers un proxy, lisez les conditions d'utilisation du fournisseur. Et ne publiez jamais votre proxy sur Internet : un proxy ouvert, ou mal protégé, c'est une clé offerte à tout le monde.
 :::
 
-### Ajouter d'autres fournisseurs
+### Encore d'autres fournisseurs
 
 Tout fournisseur **compatible OpenAI** se branche de la même façon, avec une table `[backends.<nom>]` : un modèle qui tourne sur votre propre PC avec [llama.cpp](https://github.com/ggml-org/llama.cpp) ou [Ollama](https://ollama.com/), l'API Albert de l'État, une autre offre gratuite… Pour un serveur qui tourne sur votre machine hôte, l'adresse vue depuis le conteneur est `http://host.docker.internal:<port>` (sous Linux, ajoutez `extra_hosts: ["host.docker.internal:host-gateway"]` au service dans l'override).
 
@@ -393,7 +501,8 @@ Pensez aussi à **révoquer** vos clés NVIDIA et AMD sur leurs sites quand vous
 
 Dans ce TP bonus, vous avez changé de côté :
 
-- un proxy met **plusieurs fournisseurs derrière une seule adresse**, et le préfixe du modèle choisit le fournisseur ;
+- un proxy met **plusieurs fournisseurs derrière une seule adresse** (NVIDIA, AMD, OpenCode Go, OpenRouter…), et le préfixe du modèle choisit le fournisseur ;
+- chaque offre a ses limites (requêtes par minute, par jour, durée, budget) et ses conditions sur vos données : à comparer avant de choisir ;
 - les clés des fournisseurs restent dans un `.env` ignoré par Git, la configuration ne contient que des `${VAR}`, et une variable n'entre dans un conteneur que si le service la demande ;
 - un proxy sans `api_keys` est ouvert à tous : c'est la première ligne à écrire ;
 - vos agents ne connaissent qu'une adresse et une clé, et changer de fournisseur ne les concerne plus ;
