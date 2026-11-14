@@ -134,7 +134,7 @@ Un agent ne fait pas une requête par question, mais **une requête par tour de 
 L'accès d'essai de NVIDIA est limité à **40 requêtes par minute** (la limite couramment constatée ; NVIDIA ne publie pas de chiffre officiel). Un agent qui boucle (un test qui échoue, il corrige, relance, échoue encore…) l'atteint en moins d'une minute. Au-delà, le serveur répond `429 Too Many Requests` : l'agent attend, réessaie, ou abandonne au milieu d'une modification.
 
 ::: tip Que se passe-t-il derrière ? Les quotas dans llm-proxy
-Derrière le proxy de la classe, tout le monde partage les mêmes comptes chez les fournisseurs. Le proxy a donc deux garde-fous, décrits dans [sa documentation](https://github.com/c4software/llm-proxy/blob/main/docs/fonctionnalites.md) :
+Derrière le proxy de la classe, tout le monde partage les mêmes comptes chez les fournisseurs. Le proxy a donc deux garde-fous, décrits dans [sa documentation](https://github.com/c4software/llm-proxy/blob/master/docs/fonctionnalites.md) :
 
 - un **limiteur de quotas** pour les backends qui en ont (il est écrit pour Albert, l'API de l'État) : il retarde les requêtes pour rester sous les limites par minute et par jour du compte, et répond `429` avec un en-tête `Retry-After` quand l'attente devient trop longue ;
 - le **partage équitable** : chaque client a une part de tokens par heure glissante ; au-delà, ses requêtes **attendent** (rien n'est refusé). Un agent qui boucle ne ralentit alors que son propriétaire, pas toute la classe.
@@ -333,5 +333,7 @@ Dans ce TP, vous avez provoqué, puis appris à limiter, les principaux risques 
 - la perte de compétences : pour bien piloter un agent, il faut savoir faire sans.
 
 Pensez à commiter et à pousser votre dépôt. Le développement agentique change vite : les outils, les modèles et les offres gratuites de ces TP auront évolué dans quelques mois. Les principes, eux, resteront : comprendre ce que fait l'outil, garder la main, et rester responsable de son code. Pour suivre ces évolutions, gardez un œil sur [votre fil de veille](/tp/veille/flux.md).
+
+En avance ? Le [TP bonus](./proxy.md) vous fait monter votre propre proxy, avec NVIDIA et AMD derrière une seule adresse.
 
 👋 Si vous avez des questions, n'hésitez pas.

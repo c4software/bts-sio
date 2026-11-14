@@ -12,3 +12,4 @@ description: "Le développement agentique en slides : ce qu'est un agent de code
 - [Le principe](/tp/agentic/principe.md)
 - [Utiliser un agent](/tp/agentic/utilisation.md)
 - [Les limites](/tp/agentic/limites.md)
+- [Bonus : monter son propre proxy](/tp/agentic/proxy.md)

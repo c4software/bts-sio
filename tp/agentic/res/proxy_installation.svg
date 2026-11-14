@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="430" viewBox="0 0 900 430" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="900" height="430" rx="14" fill="#ffffff"/>
+  <text x="100" y="28" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">VOS AGENTS</text>
+  <text x="437" y="28" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">VOTRE MACHINE (DOCKER COMPOSE)</text>
+  <text x="790" y="28" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">LES FOURNISSEURS</text>
+
+  <!-- Clients -->
+  <g stroke-width="2">
+    <rect x="20" y="70" width="160" height="70" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="20" y="180" width="160" height="70" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="20" y="290" width="160" height="70" rx="10" fill="#f1f5f9" stroke="#475569"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="100" y="100" font-weight="600">OpenCode</text>
+    <text x="100" y="122" font-size="12" fill="#475569">opencode.json</text>
+    <text x="100" y="210" font-weight="600">curl</text>
+    <text x="100" y="232" font-size="12" fill="#475569">pour vérifier</text>
+    <text x="100" y="320" font-weight="600">Navigateur</text>
+    <text x="100" y="342" font-size="12" fill="#475569">tableau de bord /ui</text>
+  </g>
+
+  <!-- Machine -->
+  <rect x="255" y="45" width="365" height="340" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5"/>
+  <rect x="285" y="70" width="320" height="150" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="445" y="98" text-anchor="middle" font-weight="700" font-size="17" fill="#0f172a">llm-proxy</text>
+  <text x="445" y="118" text-anchor="middle" font-size="12" fill="#475569">http://localhost:8000</text>
+  <g font-size="13" fill="#0f172a">
+    <text x="305" y="146">1. vérifie la clé du proxy</text>
+    <text x="305" y="170">2. lit le préfixe : nvidia/… ou amd/…</text>
+    <text x="305" y="194">3. remplace la clé par celle du fournisseur</text>
+  </g>
+
+  <rect x="285" y="245" width="150" height="120" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="360" y="270" text-anchor="middle" font-weight="600" fill="#0f172a">.env</text>
+  <text x="360" y="288" text-anchor="middle" font-size="11" fill="#92400e">les secrets, jamais commité</text>
+  <g font-size="12" fill="#0f172a" font-family="ui-monospace, 'SFMono-Regular', Menlo, monospace">
+    <text x="297" y="313">PROXY_API_KEY</text>
+    <text x="297" y="333">NVIDIA_API_KEY</text>
+    <text x="297" y="353">AMD_API_KEY</text>
+  </g>
+
+  <rect x="455" y="245" width="150" height="120" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="530" y="270" text-anchor="middle" font-weight="600" fill="#0f172a">data/config.toml</text>
+  <text x="530" y="288" text-anchor="middle" font-size="11" fill="#166534">les réglages, des ${VAR}</text>
+  <g font-size="12" fill="#0f172a" font-family="ui-monospace, 'SFMono-Regular', Menlo, monospace">
+    <text x="467" y="313">[proxy]</text>
+    <text x="467" y="333">[backends.nvidia]</text>
+    <text x="467" y="353">[backends.amd]</text>
+  </g>
+  <g stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#arrow)">
+    <line x1="360" y1="245" x2="360" y2="222"/>
+    <line x1="530" y1="245" x2="530" y2="222"/>
+  </g>
+
+  <!-- Fournisseurs -->
+  <g stroke-width="2">
+    <rect x="710" y="70" width="170" height="95" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="710" y="200" width="170" height="95" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="795" y="98" font-weight="600">NVIDIA</text>
+    <text x="795" y="118" font-size="11" fill="#475569">integrate.api.nvidia.com</text>
+    <text x="795" y="136" font-size="11" fill="#475569">clé nvapi-…</text>
+    <text x="795" y="154" font-size="11" fill="#475569">environ 40 requêtes / min</text>
+    <text x="795" y="228" font-weight="600">AMD Token Lab</text>
+    <text x="795" y="248" font-size="11" fill="#475569">api.tokenlab.amd.com</text>
+    <text x="795" y="266" font-size="11" fill="#475569">clé tl-…, 30 jours</text>
+    <text x="795" y="284" font-size="11" fill="#475569">20 requêtes / min</text>
+  </g>
+
+  <!-- Flèches clients -> proxy -->
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M180,105 L283,105"/>
+    <path d="M180,215 L230,215 L230,160 L283,160"/>
+    <path d="M180,325 L245,325 L245,200 L283,200"/>
+  </g>
+  <text x="218" y="97" text-anchor="middle" font-size="11" fill="#475569">Bearer</text>
+  <text x="218" y="125" text-anchor="middle" font-size="11" fill="#475569">clé du proxy</text>
+
+  <!-- Flèches proxy -> fournisseurs -->
+  <g stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowb)">
+    <path d="M605,117 L708,117"/>
+    <path d="M605,190 L688,190 L688,247 L708,247"/>
+  </g>
+  <g font-size="11" fill="#2563eb" text-anchor="middle">
+    <text x="664" y="109">nvidia/…</text>
+    <text x="664" y="135">clé nvapi-</text>
+    <text x="648" y="182">amd/…</text>
+    <text x="648" y="208">clé tl-</text>
+  </g>
+
+  <text x="450" y="412" text-anchor="middle" font-size="13" fill="#475569">Une adresse et une clé côté agents ; les clés des fournisseurs ne quittent jamais la machine du proxy.</text>
+</svg>

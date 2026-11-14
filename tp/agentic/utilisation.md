@@ -150,9 +150,9 @@ L'accès gratuit de NVIDIA est limité en **nombre de requêtes par minute** : l
 
 AMD soutient ce cours en mettant gratuitement des modèles à disposition des étudiants, dans le cadre de son [programme universitaire](https://www.amd.com/en/corporate/university-program.html). Votre enseignant vous indique comment y accéder.
 
-Côté développeurs, le [programme AMD AI Developer](https://developer.amd.com/), gratuit et ouvert avec un compte AMD, annonce parmi ses avantages des crédits de calcul sur l'AMD Developer Cloud et un accès à une API d'inférence (Token Lab). Les modèles proposés, les quotas et les conditions évoluent : vérifiez-les sur la page du programme au moment de vous inscrire.
+Côté développeurs, le [programme AMD AI Developer](https://developer.amd.com/ai-developer-program/), gratuit et ouvert avec un compte AMD, donne accès à **Token Lab**, une API d'inférence sans carte bancaire : dans votre espace membre, **Member Perks**, puis **Cloud Credits**, puis **Token Lab**, où vous créez une clé (elle commence par `tl-`). Relevé le 14 novembre 2026 : 30 jours d'accès, un budget de points et 20 requêtes par minute ; ces conditions évoluent, vérifiez-les au moment de vous inscrire.
 
-Si l'accès que l'on vous donne est **compatible OpenAI** (une adresse qui se termine par `/v1` et une clé), il se branche exactement comme le proxy de la classe, juste en dessous : mêmes réglages, avec vos propres variables (par exemple `AMD_BASE_URL` et `AMD_API_KEY`).
+Token Lab est **compatible OpenAI** (`https://api.tokenlab.amd.com/v1`, avec des modèles comme `Gemma-4-31B-IT` ou `DeepSeek-V4.1-Flash`) : il se branche exactement comme le proxy de la classe, juste en dessous, avec vos propres variables (par exemple `AMD_BASE_URL` et `AMD_API_KEY`). Et pour réunir NVIDIA et AMD derrière une seule adresse, le [TP bonus](./proxy.md) vous fait monter votre propre proxy.
 
 ### Le proxy de la classe
 
@@ -228,7 +228,7 @@ Le proxy compte vos requêtes et vos tokens. Dans la dev-box, `devbox agent usag
 :::
 
 ::: details Et côté proxy, comment NVIDIA est-il branché ?
-Pour votre culture (c'est le travail de l'enseignant) : dans llm-proxy, un fournisseur compatible OpenAI est une table de `data/config.toml`. Le nom de la table devient le préfixe des modèles :
+Pour votre culture (c'est le travail de l'enseignant, et celui du [TP bonus](./proxy.md) si vous voulez le faire vous-même) : dans llm-proxy, un fournisseur compatible OpenAI est une table de `data/config.toml`. Le nom de la table devient le préfixe des modèles :
 
 ```toml
 [backends.nvidia]
@@ -245,7 +245,7 @@ services:
       NVIDIA_API_KEY: "${NVIDIA_API_KEY}"
 ```
 
-Au redémarrage, `GET /v1/models` du proxy liste les modèles de NVIDIA, préfixés par `nvidia/` : c'est la liste de la capture plus haut. Tous les étudiants passent alors par **la même clé NVIDIA**, et donc par la même limite de 40 requêtes par minute : c'est pour ça que le proxy donne **une clé à chaque étudiant** et un **partage équitable** (une part de tokens par heure et par étudiant). La clé NVIDIA reste sur le serveur et le proxy sait qui consomme quoi : c'est la seule façon raisonnable de la partager, nous y revenons dans [le TP sur les limites](./limites.md). Voir [sa documentation](https://github.com/c4software/llm-proxy/blob/main/docs/tableau-de-bord.md#partage-équitable).
+Au redémarrage, `GET /v1/models` du proxy liste les modèles de NVIDIA, préfixés par `nvidia/` : c'est la liste de la capture plus haut. Tous les étudiants passent alors par **la même clé NVIDIA**, et donc par la même limite de 40 requêtes par minute : c'est pour ça que le proxy donne **une clé à chaque étudiant** et un **partage équitable** (une part de tokens par heure et par étudiant). La clé NVIDIA reste sur le serveur et le proxy sait qui consomme quoi : c'est la seule façon raisonnable de la partager, nous y revenons dans [le TP sur les limites](./limites.md). Voir [sa documentation](https://github.com/c4software/llm-proxy/blob/master/docs/tableau-de-bord.md#partage-équitable).
 :::
 
 ::: tip Point de contrôle
