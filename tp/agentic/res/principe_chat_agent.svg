@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="500" viewBox="0 0 900 500" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <rect width="900" height="500" rx="14" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">Même demande : « mon test formatPrice échoue, pourquoi ? »</text>
+
+  <!-- Colonnes -->
+  <rect x="20" y="50" width="420" height="400" rx="14" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+  <rect x="460" y="50" width="420" height="400" rx="14" fill="#f8fafc" stroke="#16a34a" stroke-width="2"/>
+  <text x="230" y="80" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">Avec un chat</text>
+  <text x="230" y="101" text-anchor="middle" font-size="12" fill="#2563eb">vous êtes la boucle</text>
+  <text x="670" y="80" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">Avec un agent</text>
+  <text x="670" y="101" text-anchor="middle" font-size="12" fill="#16a34a">le harness est la boucle</text>
+
+  <!-- Pastilles colonne chat -->
+  <g stroke-width="1.5">
+    <rect x="40" y="117" width="78" height="24" rx="12" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="40" y="157" width="78" height="24" rx="12" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="40" y="197" width="78" height="24" rx="12" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="40" y="237" width="78" height="24" rx="12" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="40" y="277" width="78" height="24" rx="12" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="40" y="317" width="78" height="24" rx="12" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="40" y="357" width="78" height="24" rx="12" fill="#dbeafe" stroke="#2563eb"/>
+  </g>
+  <g text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">
+    <text x="79" y="133">Vous</text>
+    <text x="79" y="173">Chat</text>
+    <text x="79" y="213">Vous</text>
+    <text x="79" y="253">Chat</text>
+    <text x="79" y="293">Vous</text>
+    <text x="79" y="333">Vous</text>
+    <text x="79" y="373">Chat</text>
+  </g>
+  <g fill="#0f172a">
+    <text x="132" y="134">collez la question et le test</text>
+    <text x="132" y="174">« Montrez-moi src/panier.js »</text>
+    <text x="132" y="214">copiez le fichier dans la discussion</text>
+    <text x="132" y="254">propose une correction</text>
+    <text x="132" y="294">la recopiez, lancez npm test</text>
+    <text x="132" y="334">collez la nouvelle erreur…</text>
+    <text x="132" y="374">nouvelle correction, et ainsi de suite</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="#475569">
+    <text x="230" y="414">Vous faites chaque aller-retour.</text>
+    <text x="230" y="432">Le modèle ne voit que ce que vous collez.</text>
+  </g>
+
+  <!-- Pastilles colonne agent -->
+  <g stroke-width="1.5">
+    <rect x="480" y="117" width="78" height="24" rx="12" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="480" y="157" width="78" height="24" rx="12" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="480" y="197" width="78" height="24" rx="12" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="480" y="237" width="78" height="24" rx="12" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="480" y="277" width="78" height="24" rx="12" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="480" y="317" width="78" height="24" rx="12" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="480" y="357" width="78" height="24" rx="12" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">
+    <text x="519" y="133">Vous</text>
+    <text x="519" y="173">outil</text>
+    <text x="519" y="213">outil</text>
+    <text x="519" y="253">outil</text>
+    <text x="519" y="293">outil</text>
+    <text x="519" y="333">outil</text>
+    <text x="519" y="373">Réponse</text>
+  </g>
+  <text x="572" y="134" fill="#0f172a">tapez la phrase, une seule fois</text>
+  <g fill="#0f172a" font-family="ui-monospace, 'SFMono-Regular', Menlo, monospace" font-size="12">
+    <text x="572" y="174">read tests/panier.test.js</text>
+    <text x="572" y="214">shell npm test</text>
+    <text x="572" y="254">read src/panier.js</text>
+    <text x="572" y="294">edit src/panier.js</text>
+    <text x="572" y="334">shell npm test</text>
+  </g>
+  <g font-size="12" fill="#16a34a">
+    <text x="680" y="214">→ l'erreur exacte</text>
+    <text x="680" y="334">→ tout passe</text>
+  </g>
+  <text x="572" y="374" fill="#0f172a">explication, et un diff à relire</text>
+  <g text-anchor="middle" font-size="12" fill="#475569">
+    <text x="670" y="414">Le modèle demande, le harness exécute, sur votre machine.</text>
+    <text x="670" y="432">Vous relisez à la fin.</text>
+  </g>
+
+  <text x="450" y="482" text-anchor="middle" font-size="13" fill="#475569">Le modèle peut être le même des deux côtés : ce qui change, c'est le harness.</text>
+</svg>

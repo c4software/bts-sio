@@ -79,9 +79,45 @@ On ne lui demande plus un bout de code, on lui confie une **tâche** :
 
 ---
 
+## Agent = modèle + harness
+
+![Le modèle chez le fournisseur, le harness sur votre machine](/cours/sources/agentic/img/principe_harness.svg)
+
+---
+
+## Le harness
+
+- Tout ce qui entoure le modèle : **le programme que vous installez**.
+- Changer de modèle : **une ligne de configuration**.
+- Changer de harness : **changer d'agent**.
+
+---
+
+## Question
+
+« Claude Code est meilleur qu'OpenCode, parce que son modèle est meilleur. »
+
+Vrai ou faux ?
+
+---
+
+## Ce sont deux harness.
+
+- Ni l'un ni l'autre n'est un modèle.
+- Pour comparer deux harness : **même modèle**, même tâche.
+- Pour comparer deux modèles : **même harness**.
+
+---
+
 ## Autocomplétion, chat ou agent ?
 
 ![Autocomplétion, chat et agent](/cours/sources/agentic/img/principe_trois_outils.svg)
+
+---
+
+## Même demande, chat ou agent ?
+
+![Avec un chat, vous êtes la boucle ; avec un agent, le harness est la boucle](/cours/sources/agentic/img/principe_chat_agent.svg)
 
 ---
 
@@ -89,7 +125,25 @@ On ne lui demande plus un bout de code, on lui confie une **tâche** :
 
 Ce qui change : **qui agit**, et **ce que le modèle voit**.
 
+Avec un chat, **vous êtes le harness**.
+
 Un agent va beaucoup plus vite… et vous voyez beaucoup moins ce qui se passe.
+
+---
+
+## À votre avis
+
+ChatGPT cherche sur le web et exécute du Python.
+
+C'est un agent ?
+
+---
+
+## Il a un harness. Pas sur votre projet.
+
+- Ses outils tournent **chez le fournisseur**, dans un bac à sable.
+- Ils ne voient ni votre code, ni votre terminal.
+- Trois questions : **quels outils ? Où s'exécutent-ils ? Qui fait tourner la boucle ?**
 
 ---
 

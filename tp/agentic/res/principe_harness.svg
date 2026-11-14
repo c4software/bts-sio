@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="480" viewBox="0 0 900 480" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="480" rx="14" fill="#ffffff"/>
+  <text x="300" y="28" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">VOTRE MACHINE</text>
+  <text x="770" y="28" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">CHEZ LE FOURNISSEUR</text>
+
+  <!-- Machine -->
+  <rect x="20" y="40" width="560" height="390" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5"/>
+
+  <!-- Harness -->
+  <rect x="40" y="55" width="520" height="265" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="300" y="84" text-anchor="middle" font-weight="700" font-size="18" fill="#0f172a">Le harness</text>
+  <text x="300" y="104" text-anchor="middle" font-size="12" fill="#92400e">le programme autour du modèle : OpenCode, Claude Code, Codex, pi…</text>
+
+  <g fill="#ffffff" stroke="#d97706" stroke-width="1.5">
+    <rect x="55" y="120" width="155" height="85" rx="8"/>
+    <rect x="222" y="120" width="155" height="85" rx="8"/>
+    <rect x="389" y="120" width="155" height="85" rx="8"/>
+    <rect x="55" y="220" width="155" height="85" rx="8"/>
+    <rect x="222" y="220" width="155" height="85" rx="8"/>
+    <rect x="389" y="220" width="155" height="85" rx="8"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <g font-weight="600" font-size="14">
+      <text x="132" y="148">La boucle</text>
+      <text x="299" y="148">Le prompt système</text>
+      <text x="466" y="148">Les outils</text>
+      <text x="132" y="248">Les permissions</text>
+      <text x="299" y="248">Le contexte</text>
+      <text x="466" y="248">L'interface</text>
+    </g>
+    <g font-size="12" fill="#475569">
+      <text x="132" y="172">appelle le modèle,</text>
+      <text x="132" y="190">exécute, recommence</text>
+      <text x="299" y="172">ses consignes</text>
+      <text x="299" y="190">+ votre AGENTS.md</text>
+      <text x="466" y="172">décrits au modèle,</text>
+      <text x="466" y="190">exécutés ici</text>
+      <text x="132" y="272">ce qui est autorisé,</text>
+      <text x="132" y="290">ou soumis à votre accord</text>
+      <text x="299" y="272">l'historique renvoyé,</text>
+      <text x="299" y="290">la compaction</text>
+      <text x="466" y="272">le terminal, les diffs,</text>
+      <text x="466" y="290">vos validations</text>
+    </g>
+  </g>
+
+  <!-- Projet -->
+  <rect x="40" y="350" width="520" height="65" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="300" y="376" text-anchor="middle" font-weight="600" fill="#0f172a">Votre projet</text>
+  <text x="300" y="399" text-anchor="middle" font-size="12" fill="#475569">les fichiers, le terminal (npm test), Git</text>
+  <line x1="300" y1="323" x2="300" y2="347" stroke="#475569" stroke-width="2" marker-start="url(#arrowg)" marker-end="url(#arrowg)"/>
+  <text x="312" y="340" font-size="11" fill="#475569">lit, modifie, lance</text>
+
+  <!-- Modèle -->
+  <rect x="660" y="115" width="220" height="155" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="770" y="150" text-anchor="middle" font-weight="700" font-size="18" fill="#0f172a">Le modèle</text>
+  <g text-anchor="middle" font-size="13" fill="#0f172a">
+    <text x="770" y="182">lit du texte,</text>
+    <text x="770" y="200">produit la suite</text>
+    <text x="770" y="230">n'exécute rien,</text>
+    <text x="770" y="248">ne retient rien</text>
+  </g>
+  <text x="770" y="300" text-anchor="middle" font-size="12" font-weight="600" fill="#2563eb">interchangeable</text>
+  <text x="770" y="318" text-anchor="middle" font-size="12" fill="#475569">Qwen, Nemotron, Gemma, Claude…</text>
+
+  <!-- API -->
+  <g stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowb)">
+    <line x1="562" y1="165" x2="657" y2="165"/>
+    <line x1="658" y1="230" x2="563" y2="230"/>
+  </g>
+  <g font-size="11" fill="#2563eb" text-anchor="middle">
+    <text x="622" y="143">contexte</text>
+    <text x="622" y="157">+ outils</text>
+    <text x="622" y="202" font-size="12" font-weight="700">API HTTP</text>
+    <text x="622" y="250">texte, ou</text>
+    <text x="622" y="264">appel d'outil</text>
+  </g>
+
+  <text x="450" y="460" text-anchor="middle" font-size="13" fill="#475569">Changer de modèle : une ligne de configuration. Changer de harness : changer d'agent.</text>
+</svg>

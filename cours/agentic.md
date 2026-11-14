@@ -1,6 +1,6 @@
 ---
 aside: false
-description: "Le développement agentique en slides : ce qu'est un agent de code (un modèle dans une boucle), comment le piloter sur un vrai projet (décrire, planifier, relire, tester, commiter) et ses limites (hallucinations, tests complaisants, coûts, données, injections de prompt, permissions)."
+description: "Le développement agentique en slides : ce qu'est un agent de code (un modèle dans une boucle, entouré d'un harness) et ce qui le distingue d'un chat, comment le piloter sur un vrai projet (décrire, planifier, relire, tester, commiter) et ses limites (hallucinations, tests complaisants, coûts, données, injections de prompt, permissions)."
 ---
 
 # Le développement agentique

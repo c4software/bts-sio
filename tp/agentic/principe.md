@@ -1,5 +1,5 @@
 ---
-description: "Le développement agentique, le principe : ce qu'est un agent de code (un modèle de langage dans une boucle qui lit, décide, appelle des outils), ses briques (modèle, contexte, outils, permissions, AGENTS.md), les API qui le relient au modèle et ce que coûtent les tokens."
+description: "Le développement agentique, le principe : ce qu'est un agent de code (un modèle de langage dans une boucle qui lit, décide, appelle des outils), le harness qui l'entoure et ce qui le distingue d'un chat, ses briques (modèle, contexte, outils, permissions, AGENTS.md), les API qui le relient au modèle et ce que coûtent les tokens."
 ---
 
 # Le développement agentique : le principe
@@ -36,6 +36,7 @@ Les modèles que nous utilisons dans cette série sont en partie mis gratuitemen
 À la fin de ce TP vous saurez :
 
 - expliquer ce qu'est un agent de code : un modèle de langage dans une boucle ;
+- expliquer ce qu'est un **harness**, et pourquoi un chat et un agent peuvent utiliser exactement le même modèle ;
 - faire la différence entre l'autocomplétion, un chat et un agent ;
 - nommer les briques d'un agent : le modèle, le contexte et sa fenêtre, les outils, les permissions, les fichiers d'instructions comme `AGENTS.md` ;
 - lire une requête et une réponse de l'API d'un modèle, et reconnaître un appel d'outil ;
@@ -65,6 +66,32 @@ Question :
 Le modèle lui-même ne se souvient de rien : chaque appel repart de zéro. S'il « sait » qu'il a modifié un fichier, c'est uniquement parce que l'agent lui **renvoie tout l'historique** à chaque tour : sa demande de modification, et le résultat de l'outil (« fichier modifié »). Toute la mémoire de l'agent est dans ce texte renvoyé à chaque fois. Retenez-le, c'est la clé de la partie sur les tokens.
 :::
 
+### Le modèle et le harness
+
+Dans la boucle, il y a donc deux pièces bien distinctes :
+
+- le **modèle**, qui tourne chez un fournisseur et ne fait que produire du texte ;
+- tout le reste, qui tourne sur votre machine : c'est le **harness**.
+
+Le mot vient de l'anglais (le harnais, ce qui permet d'atteler un cheval et de diriger sa force) et c'est celui que vous lirez partout dans la documentation des agents. Le harness, c'est le programme que vous installez quand vous installez OpenCode ou Claude Code :
+
+![Le harness tourne sur votre machine : la boucle, le prompt système avec AGENTS.md, les outils décrits au modèle et exécutés sur place, les permissions, la gestion du contexte (historique, compaction) et l'interface (terminal, diffs, validations). Il lit, modifie et lance des commandes dans votre projet. Il parle au modèle, chez le fournisseur, par une API HTTP : il envoie le contexte et la liste des outils, il reçoit du texte ou un appel d'outil. Le modèle lit du texte et produit la suite, n'exécute rien et ne retient rien ; il est interchangeable](./res/principe_harness.svg)
+
+Le modèle apporte l'« intelligence » : comprendre la demande, choisir le bon outil, écrire le code. Le harness apporte tout ce qui transforme cette intelligence en actions : la boucle, les consignes, les outils et leur exécution, les garde-fous, la gestion de la mémoire, l'affichage. Nous détaillons chacune de ces briques [un peu plus bas](#les-briques-d-un-agent).
+
+Les deux se changent indépendamment :
+
+- **changer de modèle**, c'est une ligne de configuration : le même OpenCode peut travailler avec Qwen, Nemotron ou Claude ;
+- **changer de harness**, c'est changer d'agent : avec le même modèle, OpenCode, Claude Code et Codex n'envoient pas les mêmes consignes, ne proposent pas les mêmes outils et ne compactent pas de la même façon. Ils n'obtiennent donc pas les mêmes résultats.
+
+Question :
+
+- Un camarade affirme : « Claude Code est meilleur qu'OpenCode, parce que son modèle est meilleur. » Qu'est-ce qui est vrai, qu'est-ce qui est faux dans cette phrase ?
+
+::: details Réponse
+Il mélange les deux pièces. Claude Code et OpenCode sont deux **harness** : ni l'un ni l'autre n'est un modèle. OpenCode peut d'ailleurs utiliser les modèles Claude, et Claude Code peut être branché sur d'autres modèles par un proxy. Pour comparer honnêtement les deux, il faut leur donner **le même modèle** et la même tâche : les différences restantes viennent alors du harness (ses consignes, ses outils, ses permissions, sa façon de gérer le contexte). Et à l'inverse, pour comparer deux modèles, on garde le même harness.
+:::
+
 ## Autocomplétion, chat ou agent ?
 
 Les trois utilisent les mêmes modèles. Ce qui change, c'est **qui agit** et **ce que le modèle voit** :
@@ -81,7 +108,29 @@ Question :
 Il irait chercher lui-même ce qui lui manque : lire le fichier de test, lire `src/panier.js`, lancer `npm test` pour voir l'erreur exacte, puis proposer (ou faire) la correction et relancer les tests pour vérifier. Plusieurs tours de boucle, sans que vous ayez rien copié.
 :::
 
+Voici les deux déroulés côte à côte. Remarquez qui apparaît le plus souvent dans chaque colonne :
+
+![La même demande, « mon test formatPrice échoue, pourquoi ? », traitée de deux façons. Avec un chat, vous êtes la boucle : vous collez la question et le test, le chat demande src/panier.js, vous le copiez, il propose une correction, vous la recopiez et lancez npm test, vous collez la nouvelle erreur, et ainsi de suite ; le modèle ne voit que ce que vous collez. Avec un agent, le harness est la boucle : vous tapez la phrase une seule fois, puis le modèle demande read tests/panier.test.js, shell npm test (l'erreur exacte), read src/panier.js, edit src/panier.js, shell npm test (tout passe), et vous recevez une explication et un diff à relire](./res/principe_chat_agent.svg)
+
+Le modèle peut être strictement le même des deux côtés. Ce qui change, c'est ce qui l'entoure : dans le chat, c'est vous qui jouez le rôle du harness, à la main.
+
+Question :
+
+- ChatGPT, Le Chat ou Claude.ai savent aujourd'hui chercher sur le web, et même exécuter du code Python pour faire un calcul ou un graphique. Ce sont donc des agents ?
+
+::: details Réponse
+Une application de chat a, elle aussi, un harness : un prompt système, l'historique de la discussion renvoyé à chaque message, et parfois quelques outils (recherche web, exécution de code). La frontière est donc moins nette qu'il n'y paraît.
+
+Mais regardez **où** s'exécutent ces outils et **ce qu'ils peuvent atteindre** : ils tournent sur les serveurs du fournisseur, dans un bac à sable jetable. Ils ne voient ni votre projet, ni votre terminal, ni votre base de données. Pour votre code, c'est toujours vous qui faites les allers-retours.
+
+Un agent de code, lui, a des outils qui agissent **sur votre projet** (lire, modifier, lancer les tests, utiliser Git) et une boucle qui tourne jusqu'à ce que la tâche soit finie. Certains agents tournent d'ailleurs dans le cloud (Codex dans le navigateur, Claude Code sur le web) : ils clonent votre dépôt dans une machine distante, mais c'est bien le même principe, un harness avec des outils branchés sur votre projet.
+
+Pour situer un outil d'IA, posez-vous donc trois questions : quels outils a-t-il ? Où s'exécutent-ils ? Qui fait tourner la boucle ?
+:::
+
 ## Les briques d'un agent
+
+Un agent, c'est un modèle et un harness. Voyons maintenant chaque brique en détail : le modèle d'abord, puis tout ce que le harness lui ajoute.
 
 ### Le modèle
 
@@ -438,12 +487,16 @@ Questions de synthèse, à faire sans relire le TP :
 2. Pourquoi un agent consomme-t-il beaucoup plus de tokens qu'un chat pour la même question ?
 3. Quel champ de la réponse Chat Completions vous dit que le modèle veut un outil ?
 4. Que contient le fichier `AGENTS.md`, et quand est-il lu ?
+5. Qu'est-ce qu'un harness ? Citez trois de ses composants.
+6. Avec le même modèle, quelle est la différence entre un chat et un agent ?
 
 ::: details Réponse
 1. L'agent, sur votre machine (ou dans votre dev-box). Le modèle, lui, a seulement **demandé** l'appel ; il ne voit que le résultat que l'agent lui renvoie.
 2. Parce qu'il renvoie à chaque tour tout le contexte : ses consignes, la description de ses outils, l'historique, le contenu des fichiers lus et la sortie des commandes. Et une tâche demande souvent beaucoup de tours.
 3. `finish_reason` vaut `tool_calls`, et le message contient un tableau `tool_calls` (nom de l'outil et arguments en JSON).
 4. Les règles du projet que le modèle ne peut pas deviner (commandes, conventions, interdits). L'agent le recopie au début du contexte, à chaque tour.
+5. Tout ce qui entoure le modèle et tourne sur votre machine : le programme que vous installez (OpenCode, Claude Code…). Il contient la boucle, le prompt système (avec `AGENTS.md`), les outils et leur exécution, les permissions, la gestion du contexte (historique, compaction) et l'interface.
+6. Le harness. Avec un chat, le modèle ne voit que ce que vous collez et c'est vous qui faites la boucle (copier, lancer, revenir avec l'erreur). Avec un agent, le harness donne au modèle des outils qui agissent sur votre projet et fait tourner la boucle tout seul ; vous relisez le résultat.
 :::
 
 ## Conclusion
@@ -452,6 +505,7 @@ Dans ce TP, vous avez vu que :
 
 - un agent de code est un modèle de langage placé dans une boucle : il lit le contexte, décide, demande un outil, l'agent l'exécute et lui renvoie le résultat ;
 - le modèle n'exécute rien et ne retient rien : c'est l'agent qui agit sur votre machine et qui renvoie tout l'historique à chaque tour ;
+- un agent, c'est un modèle (chez un fournisseur, interchangeable) et un **harness** (sur votre machine) ; avec le même modèle, un chat vous laisse faire la boucle, un agent la fait à votre place, avec des outils branchés sur votre projet ;
 - un agent, c'est un modèle, un contexte limité par sa fenêtre, des outils, des permissions et des fichiers d'instructions comme `AGENTS.md` ;
 - quand la fenêtre se remplit, l'agent compacte : il remplace l'historique par un résumé, et ce qui n'y figure pas est perdu ;
 - trois API se partagent le terrain (Chat Completions, Anthropic Messages, Responses) et un proxy comme llm-proxy peut les traduire ;
