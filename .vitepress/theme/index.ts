@@ -9,7 +9,6 @@ import Contact from './components/Contact.vue'
 import ExternalIframe from './components/ExternalIframe.vue'
 import NoBreak from './components/NoBreak.vue'
 import NoPrint from './components/NoPrint.vue'
-import ProxyConfig from './components/ProxyConfig.vue'
 import Qcm from './components/Qcm.vue'
 import QuizGift from './components/QuizGift.vue'
 import Reveal from './components/Reveal.vue'
@@ -40,7 +39,6 @@ export default {
     app.component('ExternalIframe', ExternalIframe)
     app.component('NoBreak', NoBreak)
     app.component('NoPrint', NoPrint)
-    app.component('ProxyConfig', ProxyConfig)
     app.component('Qcm', Qcm)
     app.component('QuizGift', QuizGift)
     app.component('Reveal', Reveal)

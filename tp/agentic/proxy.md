@@ -38,7 +38,7 @@ C'est exactement le problème que règle [llm-proxy](https://github.com/c4softwa
 - déclarer des fournisseurs compatibles OpenAI dans `data/config.toml`, sans jamais y écrire une clé ;
 - protéger le proxy par une clé et vérifier qu'il refuse les autres ;
 - y brancher OpenCode et suivre votre consommation dans le tableau de bord ;
-- générer toute la configuration d'une nouvelle installation.
+- générer toute la configuration d'une nouvelle installation depuis le proxy lui-même.
 
 ## Le principe
 
@@ -240,7 +240,7 @@ docker compose config | grep -A6 "environment:"
 ```
 
 ::: tip Trois fichiers à écrire
-`.env`, `data/config.toml` et `docker-compose.override.yml` : écrivez-les à la main cette fois, pour savoir qui lit quoi. Pour les fois suivantes, [un générateur](#generer-sa-configuration) les écrit à votre place.
+`.env`, `data/config.toml` et `docker-compose.override.yml` : écrivez-les à la main cette fois, pour savoir qui lit quoi. Pour les fois suivantes, [le proxy les génère](#generer-sa-configuration) à son premier démarrage.
 :::
 
 ## Démarrer le proxy
@@ -521,7 +521,7 @@ services:
       OPENCODE_GO_API_KEY: "${OPENCODE_GO_API_KEY}"
 ```
 
-Puis `docker compose up -d` et un coup d'œil au journal : une ligne `backend … clé : injectée` par fournisseur. Ajoutez enfin les modèles voulus dans votre `opencode.json` (`openrouter/nvidia/nemotron-3.5-lightning:free`, `groq/openai/gpt-oss-120b`…), exactement comme les autres. [Le générateur](#generer-sa-configuration), plus bas, écrit ces trois fichiers pour la combinaison de votre choix.
+Puis `docker compose up -d` et un coup d'œil au journal : une ligne `backend … clé : injectée` par fournisseur. Ajoutez enfin les modèles voulus dans votre `opencode.json` (`openrouter/nvidia/nemotron-3.5-lightning:free`, `groq/openai/gpt-oss-120b`…), exactement comme les autres. [La page d'installation du proxy](#generer-sa-configuration), plus bas, écrit ces trois fichiers pour la combinaison de votre choix.
 
 ::: tip Point de contrôle
 Vérifiez avec `/v1/models` que chacun de vos préfixes est là, puis posez la question « OK » à un modèle de chaque fournisseur (avec l'en-tête `x-opencode-session` pour `go/`).
@@ -644,19 +644,29 @@ Le proxy parle aussi l'API Anthropic (Claude Code) et l'API Responses (Codex), e
 
 ## Générer sa configuration
 
-Vous avez écrit chaque fichier à la main, et c'est ce qu'il fallait faire une fois pour comprendre qui lit quoi. Pour une nouvelle installation, ou pour essayer une autre combinaison, ce générateur écrit les cinq morceaux d'un coup : cochez vos fournisseurs et vos options, puis copiez chaque fichier à sa place.
+Vous avez écrit chaque fichier à la main, et c'est ce qu'il fallait faire une fois pour comprendre qui lit quoi. Pour une nouvelle installation, le proxy les génère lui-même : démarré **sans** `data/config.toml`, il n'ouvre pas son API (elle répond `503 setup_required`) et son tableau de bord, sur [http://localhost:8000/ui](http://localhost:8000/ui), affiche une page d'**installation**.
 
-<ProxyConfig />
+Pour l'essayer sur votre installation, mettez votre configuration de côté, puis redémarrez :
 
-Le générateur ne fait rien que vous n'ayez vu dans ce TP. Quelques remarques :
+```bash
+mv data/config.toml data/config.toml.manuel
+docker compose up -d --force-recreate albert-proxy
+```
 
-- la clé du proxy (et celle du binôme) est tirée au hasard par votre navigateur (`crypto.randomUUID()`, comme le `uuid4()` de Python plus haut) ; l'onglet **variables** reprend la même ;
+Cochez vos fournisseurs et vos options : la page écrit le `.env`, `data/config.toml` et le `docker-compose.override.yml`, avec *Copier* et *Télécharger*. Posez-les, complétez les clés des fournisseurs dans le `.env`, puis `docker compose up -d`.
+
+La page ne fait rien que vous n'ayez vu dans ce TP. Quelques remarques :
+
+- la clé du proxy (et celle du binôme, `PROXY_API_KEY_2`) est tirée au hasard par votre navigateur ; rien n'est envoyé au proxy ni écrit par lui ;
 - le `.env` liste les variables de chaque fournisseur coché, mais **sans leur valeur** : vos clés NVIDIA, AMD… ne doivent pas transiter par une page web, même celle-ci ;
-- chaque variable du `.env` apparaît aussi dans l'override : c'est le piège de [la transmission au conteneur](#transmettre-les-cles-au-conteneur), réglé d'avance ;
-- avec Claude Code et Codex, toutes les demandes de Claude Code (qui envoie des noms de modèles Claude) partent vers le **modèle par défaut**, grâce à `default` dans `[anthropic.model_map]`.
+- chaque variable du `.env` que le `docker-compose.yml` ne transmet pas apparaît dans l'override : c'est le piège de [la transmission au conteneur](#transmettre-les-cles-au-conteneur), réglé d'avance ;
+- avec Claude Code et Codex, toutes les demandes de Claude Code (qui envoie des noms de modèles Claude) partent vers le **modèle par défaut**, grâce à `default` dans `[anthropic.model_map]` ;
+- `opencode.json` n'y est pas : une fois le proxy configuré, **Configuration → Clients** le génère d'après les modèles réellement servis.
+
+Le proxy configuré, **Configuration → Proxy** fait la même chose sur **votre** configuration : *Ajouter un fournisseur connu* dans la section Backends, puis les sections `.env` et **Override Docker**.
 
 ::: tip Point de contrôle
-Après avoir remplacé vos fichiers : `docker compose up -d`, puis le journal. Autant de lignes `backend … clé : injectée` que de fournisseurs cochés, et `auth proxy ACTIVE`, avec deux clés si vous avez coché le binôme.
+Après avoir posé vos fichiers : `docker compose up -d`, puis le journal. Autant de lignes `backend … clé : injectée` que de fournisseurs cochés, et `auth proxy ACTIVE`, avec deux clés si vous avez coché le binôme.
 :::
 
 ## Arrêter et nettoyer
