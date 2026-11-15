@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="520" viewBox="0 0 900 520" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="520" rx="14" fill="#ffffff"/>
+  <text x="75" y="28" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">VOS AGENTS</text>
+  <text x="450" y="28" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">LE CONTENEUR albert-proxy</text>
+  <text x="825" y="28" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">LES FOURNISSEURS</text>
+
+  <!-- Client et fournisseur -->
+  <rect x="15" y="90" width="120" height="180" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="75" y="130" font-weight="600">OpenCode,</text>
+    <text x="75" y="148" font-weight="600">Claude Code,</text>
+    <text x="75" y="166" font-weight="600">curl…</text>
+    <text x="75" y="200" font-size="12" fill="#475569">connaît</text>
+    <text x="75" y="216" font-size="12" fill="#475569">une adresse et</text>
+    <text x="75" y="232" font-size="12" fill="#475569">la clé du proxy</text>
+  </g>
+  <rect x="765" y="90" width="120" height="180" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="825" y="130" font-weight="600">NVIDIA, AMD,</text>
+    <text x="825" y="148" font-weight="600">OpenCode Go,</text>
+    <text x="825" y="166" font-weight="600">OpenRouter</text>
+    <text x="825" y="200" font-size="12" fill="#475569">ne voit que</text>
+    <text x="825" y="216" font-size="12" fill="#475569">la clé du</text>
+    <text x="825" y="232" font-size="12" fill="#475569">fournisseur</text>
+  </g>
+
+  <!-- Conteneur -->
+  <rect x="150" y="45" width="600" height="395" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="166" y="72" font-size="12" font-weight="700" fill="#2563eb">À L'ALLER : CINQ BRIQUES, DANS CET ORDRE</text>
+
+  <g fill="#dbeafe" stroke="#2563eb" stroke-width="1.5">
+    <rect x="166" y="85" width="104" height="115" rx="8"/>
+    <rect x="282" y="85" width="104" height="115" rx="8"/>
+    <rect x="398" y="85" width="104" height="115" rx="8"/>
+    <rect x="514" y="85" width="104" height="115" rx="8"/>
+    <rect x="630" y="85" width="104" height="115" rx="8"/>
+  </g>
+  <g fill="#2563eb">
+    <circle cx="218" cy="103" r="10"/>
+    <circle cx="334" cy="103" r="10"/>
+    <circle cx="450" cy="103" r="10"/>
+    <circle cx="566" cy="103" r="10"/>
+    <circle cx="682" cy="103" r="10"/>
+  </g>
+  <g text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">
+    <text x="218" y="107">1</text>
+    <text x="334" y="107">2</text>
+    <text x="450" y="107">3</text>
+    <text x="566" y="107">4</text>
+    <text x="682" y="107">5</text>
+  </g>
+  <g text-anchor="middle" font-weight="700" fill="#0f172a">
+    <text x="218" y="132" font-size="12">Authentification</text>
+    <text x="334" y="132">Surface</text>
+    <text x="450" y="132">Routage</text>
+    <text x="566" y="132">Porte</text>
+    <text x="682" y="132">Relais</text>
+  </g>
+  <g text-anchor="middle" font-size="11" fill="#475569">
+    <text x="218" y="154">la clé est-elle</text>
+    <text x="218" y="169">dans api_keys ?</text>
+    <text x="218" y="184">sinon : 401</text>
+    <text x="334" y="154">OpenAI, Anthropic</text>
+    <text x="334" y="169">ou Responses :</text>
+    <text x="334" y="184">tout devient chat</text>
+    <text x="450" y="154">amd/Gemma…</text>
+    <text x="450" y="169">→ [backends.amd]</text>
+    <text x="450" y="184">préfixe retiré</text>
+    <text x="566" y="154">part de tokens</text>
+    <text x="566" y="169">dépassée :</text>
+    <text x="566" y="184">on attend son tour</text>
+    <text x="682" y="154">clé du proxy</text>
+    <text x="682" y="169">→ clé du</text>
+    <text x="682" y="184">fournisseur</text>
+  </g>
+
+  <g stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowb)">
+    <line x1="137" y1="142" x2="163" y2="142"/>
+    <line x1="271" y1="142" x2="280" y2="142"/>
+    <line x1="387" y1="142" x2="396" y2="142"/>
+    <line x1="503" y1="142" x2="512" y2="142"/>
+    <line x1="619" y1="142" x2="628" y2="142"/>
+    <line x1="735" y1="142" x2="762" y2="142"/>
+  </g>
+
+  <!-- Retour -->
+  <text x="166" y="232" font-size="12" font-weight="700" fill="#16a34a">AU RETOUR</text>
+  <rect x="300" y="215" width="300" height="50" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="450" y="236" text-anchor="middle" font-weight="700" fill="#0f172a">Le robinet</text>
+  <text x="450" y="254" text-anchor="middle" font-size="11" fill="#475569">compte les tokens (stats.db), retraduit si besoin</text>
+  <g stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arrowv)">
+    <line x1="763" y1="240" x2="603" y2="240"/>
+    <line x1="297" y1="240" x2="138" y2="240"/>
+  </g>
+
+  <!-- À côté -->
+  <text x="166" y="300" font-size="12" font-weight="700" fill="#475569">À CÔTÉ DU TRAJET</text>
+  <g fill="#ffffff" stroke="#475569" stroke-width="1.5">
+    <rect x="166" y="312" width="134" height="110" rx="8"/>
+    <rect x="312" y="312" width="134" height="110" rx="8"/>
+    <rect x="458" y="312" width="134" height="110" rx="8"/>
+    <rect x="604" y="312" width="130" height="110" rx="8"/>
+  </g>
+  <g text-anchor="middle" font-weight="700" fill="#0f172a">
+    <text x="233" y="338">Le catalogue</text>
+    <text x="379" y="338">Le tableau de bord</text>
+    <text x="525" y="338">Les outils hébergés</text>
+    <text x="669" y="338">Le dossier data/</text>
+  </g>
+  <g text-anchor="middle" font-size="11" fill="#475569">
+    <text x="233" y="362">/v1/models : réunit</text>
+    <text x="233" y="377">les catalogues,</text>
+    <text x="233" y="392">ajoute les préfixes</text>
+    <text x="379" y="362">/ui : statistiques,</text>
+    <text x="379" y="377">chat, configuration</text>
+    <text x="379" y="392">(en lecture seule)</text>
+    <text x="525" y="362">web_search, ocr…</text>
+    <text x="525" y="377">exécutés par le proxy ;</text>
+    <text x="525" y="392">SearXNG pour chercher</text>
+    <text x="669" y="362">config.toml,</text>
+    <text x="669" y="377">stats.db,</text>
+    <text x="669" y="392">conversations.db</text>
+  </g>
+
+  <text x="450" y="472" text-anchor="middle" font-size="13" fill="#475569">Autour du conteneur, lus par Docker Compose : .env (les secrets)</text>
+  <text x="450" y="492" text-anchor="middle" font-size="13" fill="#475569">et docker-compose.override.yml (qui les transmet au conteneur).</text>
+</svg>

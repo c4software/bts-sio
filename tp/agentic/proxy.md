@@ -1,5 +1,5 @@
 ---
-description: "Le développement agentique, TP bonus : monter son propre llm-proxy avec Docker Compose, y brancher les accès gratuits de NVIDIA et d'AMD (Token Lab), puis OpenCode Go et OpenRouter, protéger le proxy par une clé, garder les clés des fournisseurs dans un .env, puis y relier OpenCode et suivre sa consommation dans le tableau de bord."
+description: "Le développement agentique, TP bonus : les briques d'un llm-proxy (authentification, surface, routage, partage équitable, relais, statistiques), le monter avec Docker Compose, y brancher les accès gratuits de NVIDIA et d'AMD (Token Lab), puis d'autres fournisseurs (OpenRouter, Groq, Mistral, OpenCode Go), protéger le proxy par une clé, garder les clés des fournisseurs dans un .env, puis y relier OpenCode et suivre sa consommation dans le tableau de bord."
 ---
 
 # Le développement agentique : monter son propre proxy
@@ -16,7 +16,7 @@ Dans [le TP sur l'utilisation](./utilisation.md#brancher-un-modele), vous avez b
 
 Résultat : chaque fournisseur a **son adresse, sa clé et ses noms de modèles**, et chaque agent (OpenCode, pi, Claude Code…) doit tous les connaître. Le jour où l'accès AMD expire, il faut tout reconfigurer.
 
-C'est exactement le problème que règle [llm-proxy](https://github.com/c4software/llm-proxy), le proxy que votre enseignant fait tourner pour la classe. Dans ce TP, vous allez monter **le vôtre**, sur votre machine, avec deux fournisseurs gratuits derrière (NVIDIA et AMD), puis deux autres qui valent le détour : OpenCode Go et OpenRouter.
+C'est exactement le problème que règle [llm-proxy](https://github.com/c4software/llm-proxy), le proxy que votre enseignant fait tourner pour la classe. Dans ce TP, vous allez monter **le vôtre**, sur votre machine. Vous commencerez par deux fournisseurs gratuits (NVIDIA et AMD), puis vous en ajouterez autant que vous voulez : OpenRouter, OpenCode Go, Groq, Mistral… Chacun coûte une table de configuration et une variable, rien de plus.
 
 ## Prérequis
 
@@ -24,19 +24,21 @@ C'est exactement le problème que règle [llm-proxy](https://github.com/c4softwa
 - **Docker** et **Docker Compose** sur votre machine (`docker compose version`). Revoir [le cours Docker](/cours/docker.md) si besoin.
 - Environ 5 Go d'espace disque libre : la construction de l'image prend plusieurs minutes la première fois.
 - `git`, `curl` et `jq`.
-- Un compte **NVIDIA** avec sa clé (voir [le TP sur l'utilisation](./utilisation.md#nvidia)), et un compte **AMD AI Developer Program** (nous le créons plus bas).
-- Facultatif : un abonnement **OpenCode Go** et un compte **OpenRouter**, pour la partie qui leur est consacrée.
+- Un compte **NVIDIA** et un compte **AMD AI Developer Program**, avec leurs clés (voir [le TP sur l'utilisation](./utilisation.md#brancher-un-modele)).
+- Facultatif : un compte chez **OpenRouter**, **Groq** ou **Mistral**, ou un abonnement **OpenCode Go**, pour [ajouter d'autres fournisseurs](#ajouter-d-autres-fournisseurs).
 
 ## Objectifs
 
 À la fin de ce TP vous saurez :
 
 - expliquer à quoi sert un proxy devant des fournisseurs de modèles ;
-- obtenir une clé d'API chez NVIDIA, AMD (Token Lab), OpenCode Go et OpenRouter, et comparer leurs limites ;
+- décrire les briques que traverse une requête, et retrouver celle qui a produit une erreur ;
+- obtenir une clé d'API chez plusieurs fournisseurs (NVIDIA, AMD, OpenRouter, Groq, Mistral, OpenCode Go…), et comparer leurs limites ;
 - déployer llm-proxy avec Docker Compose ;
 - déclarer des fournisseurs compatibles OpenAI dans `data/config.toml`, sans jamais y écrire une clé ;
 - protéger le proxy par une clé et vérifier qu'il refuse les autres ;
-- y brancher OpenCode et suivre votre consommation dans le tableau de bord.
+- y brancher OpenCode et suivre votre consommation dans le tableau de bord ;
+- générer toute la configuration d'une nouvelle installation.
 
 ## Le principe
 
@@ -60,6 +62,57 @@ Pour un seul agent sur une seule machine, ça marcherait (avec `{env:NVIDIA_API_
 - et si vous voulez partager l'accès (avec un binôme, avec une classe), donner sa clé NVIDIA revient à donner son compte. Avec le proxy, chacun a sa clé, que vous pouvez retirer sans toucher au reste.
 :::
 
+## Les briques du proxy
+
+Avant de l'installer, ouvrons la boîte. llm-proxy n'est pas un bloc unique : c'est une **pile Docker Compose**, et dans son conteneur principal, une suite de **briques** que chaque requête traverse dans le même ordre. Les connaître, c'est savoir **où regarder** quand quelque chose ne marche pas.
+
+### Autour du proxy : la pile
+
+| Brique | Rôle | Dans ce TP |
+|---|---|---|
+| Le service `albert-proxy` | le proxy lui-même, une application Python (FastAPI) qui écoute sur le port 8000 | on le construit et on le démarre |
+| Le service `searxng` | un moteur de recherche, utilisé seulement par l'outil `web_search` du proxy ; il n'a **pas de port** ouvert, seul le proxy peut le joindre | il tourne, on ne s'en sert pas |
+| Le dossier `data/` | le **seul** dossier où le proxy écrit : sa configuration (`config.toml`), ses statistiques (`stats.db`), les conversations du chat ; il est sur votre disque, monté dans le conteneur | on y écrit `config.toml` |
+| Le fichier `.env` | les **secrets** : la clé du proxy et celles des fournisseurs ; ignoré par Git | on le remplit |
+| `docker-compose.override.yml` | **vos** ajouts au `docker-compose.yml` du projet, fusionnés par Docker Compose ; ignoré par Git | on y transmet les clés au conteneur |
+
+### Dans le proxy : le trajet d'une requête
+
+![Le trajet d'une requête dans le conteneur albert-proxy. À l'aller, cinq briques dans l'ordre : 1, l'authentification (la clé est-elle dans api_keys ? sinon 401) ; 2, la surface (OpenAI, Anthropic ou Responses, tout devient du chat) ; 3, le routage (amd/Gemma… va vers backends.amd, préfixe retiré) ; 4, la porte (si la part de tokens est dépassée, on attend son tour) ; 5, le relais (la clé du proxy est remplacée par celle du fournisseur). Au retour, le robinet compte les tokens dans stats.db et retraduit la réponse si besoin. À côté du trajet : le catalogue /v1/models, le tableau de bord /ui, les outils hébergés avec SearXNG, et le dossier data/. Autour du conteneur, .env et docker-compose.override.yml, lus par Docker Compose](./res/proxy_briques.svg)
+
+Prenons la requête d'OpenCode pour `amd/Gemma-4-31B-IT`, brique par brique.
+
+1. **L'authentification.** La première chose que fait le proxy : lire l'en-tête `Authorization: Bearer …` et chercher la clé dans `[proxy].api_keys`. Absente ou fausse : réponse `401` (`invalid_api_key`), et la requête ne va pas plus loin. Le fournisseur n'en saura jamais rien.
+2. **La surface.** Le proxy accepte trois API (vous les avez vues dans [le TP sur le principe](./principe.md#trois-api-pour-la-meme-chose)) : Chat Completions (OpenCode, curl), Messages d'Anthropic (Claude Code) et Responses (Codex). Les deux dernières sont **traduites** en Chat Completions, la seule que parlent nos fournisseurs. Dans notre configuration minimale, seule la première est ouverte ; les autres répondent `404`.
+3. **Le routage.** Le proxy lit le champ `model` : le préfixe `amd/` désigne la table `[backends.amd]`. Il retire le préfixe (AMD reçoit `Gemma-4-31B-IT`). Préfixe inconnu : `400` (`unknown_backend_prefix`).
+4. **La porte.** Si le **partage équitable** est réglé (nous le verrons à la fin), une clé qui a déjà consommé sa part de tokens de l'heure **attend** ici son tour. Rien n'est refusé, la requête est seulement retardée. Sans réglage, la porte est grande ouverte.
+5. **Le relais.** Le proxy **remplace** l'en-tête `Authorization` par la clé AMD (lue dans `.env` au démarrage) et envoie la requête à `https://api.tokenlab.amd.com/v1/chat/completions`. Si AMD refuse cette clé, l'erreur est `upstream_auth_error` : ce n'est plus le proxy qui refuse, c'est le fournisseur.
+
+Au **retour**, la réponse traverse ce que le code du proxy appelle un « robinet » : il la laisse passer au fil de l'eau (même en flux, mot par mot), mais lit au passage le nombre de tokens consommés pour l'écrire dans `stats.db`, avec la date, le modèle, la clé et la durée, **jamais le contenu**. Pour un client Anthropic ou Responses, c'est aussi lui qui retraduit la réponse dans sa langue.
+
+À côté de ce trajet, quatre briques ne relaient rien elles-mêmes :
+
+- **le catalogue** (`/v1/models`) interroge chaque fournisseur, réunit les listes et ajoute les préfixes : c'est grâce à lui que `opencode models` voit `amd/…` et `nvidia/…` dans une seule liste ;
+- **le tableau de bord** (`/ui`) lit `stats.db` pour les statistiques, propose un chat et affiche la configuration, sans jamais la modifier ;
+- **les outils hébergés** (`web_search`, `ocr`…) sont des outils que le proxy exécute **lui-même** à la place du client, quand un modèle les appelle ; `web_search` interroge SearXNG ;
+- **le dossier `data/`** garde tout ce qui doit survivre à un redémarrage.
+
+Vous gardez ce schéma sous les yeux pour la suite : à chaque erreur, demandez-vous **quelle brique** a répondu. Pour vous entraîner, retrouvez la brique qui a produit chacune de ces réponses, et dites si la requête a atteint le fournisseur.
+
+1. `invalid_api_key`
+2. `unknown_backend_prefix`
+3. `upstream_auth_error`
+4. Une réponse correcte, mais qui arrive au bout de deux minutes, à la fin d'une longue session d'un agent.
+5. `404` sur `/v1/messages`, en essayant Claude Code.
+
+::: details Voir les réponses
+1. L'**authentification** (brique 1) : la clé du proxy est absente ou fausse. Le fournisseur n'a rien reçu.
+2. Le **routage** (brique 3) : aucune table `[backends.…]` ne porte ce préfixe. Le fournisseur n'a rien reçu.
+3. Le **relais** (brique 5) : le proxy a bien envoyé la requête, mais le **fournisseur** a refusé sa clé (clé fausse, expirée, ou pas transmise au conteneur).
+4. Probablement la **porte** (brique 4) : la clé a dépassé sa part de tokens de l'heure, et la requête a attendu son tour avant de partir. Le fournisseur l'a reçue, en retard. (Un fournisseur lent ou surchargé donne le même symptôme : le tableau de bord et le journal permettent de trancher.)
+5. La **surface** (brique 2) : la surface Anthropic n'est pas activée (`[anthropic]` absente de `config.toml`). Le fournisseur n'a rien reçu.
+:::
+
 ## Obtenir les clés des fournisseurs
 
 ### NVIDIA
@@ -68,17 +121,7 @@ Vous l'avez normalement déjà fait dans [le TP sur l'utilisation](./utilisation
 
 ### AMD (Token Lab)
 
-AMD donne un accès gratuit à son API d'inférence, **Token Lab**, aux membres de son programme développeurs. Les modèles tournent sur des cartes AMD, et il n'y a ni carte bancaire ni demande de crédits à faire :
-
-1. inscrivez-vous (gratuitement) au [AMD AI Developer Program](https://developer.amd.com/ai-developer-program/) ;
-2. dans votre espace membre, ouvrez **Member Perks**, puis **Cloud Credits**, et descendez jusqu'à **Token Lab** ;
-3. créez votre clé d'API : elle commence par `tl-`.
-
-Le point d'accès est `https://api.tokenlab.amd.com/v1`, lui aussi **compatible OpenAI**. On y trouve par exemple `Gemma-4-31B-IT`, `DeepSeek-V4.1-Flash` ou `Qwen3.8-27B`.
-
-::: warning Un accès limité dans le temps
-Relevé le 14 novembre 2026 : une clé Token Lab donne **30 jours** d'accès (prolongeables une fois de 15 jours), un budget de **points** (chaque million de tokens en coûte une fraction, selon le modèle) et **20 requêtes par minute**. Ces conditions changent souvent : vérifiez-les sur [la page du programme](https://developer.amd.com/ai-developer-program/) au moment de vous inscrire. C'est justement une bonne raison de passer par un proxy : quand l'accès expire, vous retirez une table de la configuration, et vos agents ne voient rien d'autre que des modèles en moins.
-:::
+Même chose : la création de la clé (`tl-…`) est décrite dans [le TP sur l'utilisation](./utilisation.md#amd), avec ses conditions. Le point d'accès est `https://api.tokenlab.amd.com/v1`, compatible OpenAI. L'accès s'arrête au bout de 30 jours : c'est justement une bonne raison de passer par un proxy. Quand il expire, vous retirez une table de la configuration, et vos agents ne voient rien d'autre que des modèles en moins.
 
 Avant d'aller plus loin, vérifiez que chaque clé marche **directement**, sans proxy :
 
@@ -103,7 +146,7 @@ git clone https://github.com/c4software/llm-proxy.git
 cd llm-proxy
 ```
 
-Le projet contient un `docker-compose.yml` avec deux services : le proxy (`albert-proxy`, du nom du premier fournisseur pour lequel il a été écrit) et SearXNG, un moteur de recherche qui ne sert qu'aux outils de recherche web (nous ne les utilisons pas ici).
+Vous y retrouvez [la pile](#autour-du-proxy-la-pile) décrite plus haut. Le service du proxy s'appelle `albert-proxy`, du nom du premier fournisseur pour lequel il a été écrit (Albert, l'API de l'État).
 
 ### Les secrets : le fichier `.env`
 
@@ -191,6 +234,10 @@ Vérifiez la fusion (attention, cette commande affiche les clés en clair, ne la
 ```bash
 docker compose config | grep -A6 "environment:"
 ```
+
+::: tip Trois fichiers à écrire
+`.env`, `data/config.toml` et `docker-compose.override.yml` : écrivez-les à la main cette fois, pour savoir qui lit quoi. Pour les fois suivantes, [un générateur](#generer-sa-configuration) les écrit à votre place.
+:::
 
 ## Démarrer le proxy
 
@@ -310,29 +357,89 @@ OK
 OK
 ```
 
-Passer d'AMD à NVIDIA, c'est changer de modèle dans `/models`. Et le jour où l'accès AMD expire, vous changez la ligne `"model"`, sans toucher à aucune clé.
+Passer d'AMD à NVIDIA, c'est changer de modèle dans `/models`, sans toucher à aucune clé.
 
 ::: tip Que se passe-t-il derrière ?
-Pour chaque requête d'OpenCode, le proxy :
-
-1. vérifie l'en-tête `Authorization: Bearer <clé du proxy>` ;
-2. lit le modèle demandé, `amd/Gemma-4-31B-IT`, et trouve la table `[backends.amd]` ;
-3. retire le préfixe : AMD reçoit `"model": "Gemma-4-31B-IT"` ;
-4. **remplace** l'en-tête `Authorization` par la clé AMD, puis envoie la requête à `https://api.tokenlab.amd.com/v1/chat/completions` ;
-5. relaie la réponse à OpenCode, en notant au passage la date, le modèle, le nombre de tokens et la durée (jamais le contenu).
-
-Votre clé de proxy ne part jamais chez AMD, et la clé AMD ne part jamais chez OpenCode.
+Chaque requête d'OpenCode suit [le trajet décrit plus haut](#dans-le-proxy-le-trajet-d-une-requete) : votre clé de proxy ne part jamais chez AMD, et la clé AMD ne part jamais chez OpenCode.
 :::
 
-## Ajouter OpenCode Go et OpenRouter
+## Ajouter d'autres fournisseurs
 
-NVIDIA et AMD ne sont pas les seuls fournisseurs intéressants. Deux autres méritent leur place derrière votre proxy, et ils montrent tout l'intérêt de la méthode : **une table de plus dans `config.toml`, une variable de plus dans `.env`**, et vos agents n'ont rien à changer.
+NVIDIA et AMD ne sont qu'un début. Tout fournisseur **compatible OpenAI** se met derrière votre proxy de la même façon, et c'est tout l'intérêt de la méthode : **une table de plus dans `config.toml`, une variable de plus dans `.env` et dans l'override**, et vos agents n'ont rien à changer.
 
-| | NVIDIA | AMD Token Lab | OpenCode Go | OpenRouter |
+::: warning Des offres qui changent tous les mois
+Relevé le 15 novembre 2026. Les offres gratuites apparaissent, changent de limites et disparaissent : GitHub Models a fermé fin juillet 2026, Cerebras demande désormais une carte bancaire. Vérifiez toujours la page du fournisseur avant de vous inscrire.
+:::
+
+| Fournisseur | Prix | Limites | Point fort | Préfixe dans ce TP |
 |---|---|---|---|---|
-| Prix | gratuit | gratuit | 10 $ par mois | modèles `:free` gratuits |
-| Limite | environ 40 requêtes / min | 20 requêtes / min, 30 jours | un budget en dollars par modèle | 20 requêtes / min, 50 par jour |
-| Point fort | les modèles Nemotron | sans carte bancaire | une trentaine de modèles récents | des centaines de modèles, une seule clé |
+| NVIDIA | gratuit | environ 40 requêtes / min | les modèles Nemotron | `nvidia/` |
+| AMD Token Lab | gratuit | 20 requêtes / min, 30 jours | sans carte bancaire | `amd/` |
+| OpenRouter | modèles `:free` gratuits | 20 requêtes / min, 50 par jour | des centaines de modèles, une seule clé | `openrouter/` |
+| Groq | gratuit (plan Developer) | 30 requêtes / min, 1 000 par jour, selon le modèle | très rapide | `groq/` |
+| Mistral | gratuit (plan Experiment) | affichées dans la console | un éditeur français, des modèles pour le code | `mistral/` |
+| OpenCode Go | 10 $ par mois | un budget en dollars par modèle | une trentaine de modèles récents | `go/` |
+
+Nous détaillons ci-dessous OpenRouter, Groq, Mistral et OpenCode Go. Choisissez-en un ou deux : inutile de tout ouvrir.
+
+### OpenRouter
+
+[OpenRouter](https://openrouter.ai/) est lui-même… un proxy : une seule clé et une seule adresse pour des centaines de modèles de dizaines d'éditeurs. Beaucoup sont payants, mais une partie est **gratuite** : leur nom se termine par `:free`.
+
+Pour la clé : créez un compte sur [openrouter.ai](https://openrouter.ai/), puis une clé dans **Keys** (elle commence par `sk-or-`). Le point d'accès est `https://openrouter.ai/api/v1`, compatible OpenAI :
+
+```toml
+[backends.openrouter]
+url = "https://openrouter.ai/api"
+api_key = "${OPENROUTER_API_KEY}"
+```
+
+Les modèles gratuits s'écrivent alors `openrouter/<éditeur>/<modèle>:free`, par exemple `openrouter/nvidia/nemotron-3.5-lightning:free` ou `openrouter/google/gemma-4-31b-it:free`. Pour les lister :
+
+```bash
+curl -s -H "Authorization: Bearer $LLM_PROXY_API_KEY" "$LLM_PROXY_URL/v1/models" | jq -r '.data[].id' | grep ':free'
+```
+
+::: warning Les limites des modèles gratuits
+D'après [la documentation d'OpenRouter](https://openrouter.ai/docs/api/reference/limits) (relevée le 14 novembre 2026), les modèles `:free` sont limités à **20 requêtes par minute** et **50 requêtes par jour** ; la limite passe à 1 000 par jour une fois que vous avez acheté au moins 10 crédits (environ 10 $). Pour un agent, qui fait une requête par tour de boucle, 50 par jour, c'est une petite tâche. Au-delà, OpenRouter répond `429`.
+
+Deux autres précautions :
+
+- le catalogue du proxy liste **aussi les modèles payants** d'OpenRouter : sans crédits sur le compte, ils répondent par une erreur, mais vérifiez toujours le `:free` à la fin du nom ;
+- certains modèles gratuits ne sont proposés que si vous acceptez, dans les réglages de confidentialité d'OpenRouter, que vos échanges puissent être conservés ou servir à l'entraînement. Relisez [ce qui part chez un tiers](./limites.md#vos-donnees-partent-chez-un-tiers) avant de cocher la case.
+:::
+
+### Groq
+
+[Groq](https://groq.com/) fabrique ses propres puces d'inférence : ses réponses arrivent **très vite**, ce qui se sent avec un agent qui enchaîne les tours. Son plan gratuit (**Developer**) ne demande pas de carte bancaire. Les limites dépendent du modèle : pour `openai/gpt-oss-120b`, **30 requêtes par minute**, **1 000 par jour** et 200 000 tokens par jour (d'après [sa page des limites](https://console.groq.com/docs/rate-limits), relevée le 15 novembre 2026). Les limites exactes de votre compte sont dans la console.
+
+Pour la clé : un compte sur [console.groq.com](https://console.groq.com/), puis **API Keys** (elle commence par `gsk_`). Le point d'accès compatible OpenAI est `https://api.groq.com/openai/v1` :
+
+```toml
+[backends.groq]
+url = "https://api.groq.com/openai"
+api_key = "${GROQ_API_KEY}"
+```
+
+Les modèles s'écrivent alors `groq/openai/gpt-oss-120b`, `groq/llama-3.3-70b-versatile`… Le catalogue de Groq change souvent : listez-le avec `/v1/models`, comme pour les autres.
+
+### Mistral
+
+[Mistral AI](https://mistral.ai/) est un éditeur **français** de modèles, dont certains sont faits pour le code (Codestral, Devstral). Sa plateforme d'API a un plan gratuit, **Experiment**, qui demande un numéro de téléphone vérifié mais pas de carte bancaire. Mistral ne publie plus de limites chiffrées pour ce plan : elles s'affichent dans la console, page **Limits**.
+
+Pour la clé : un compte sur [console.mistral.ai](https://console.mistral.ai/), activez le plan Experiment, puis créez une clé dans **API Keys**. Le point d'accès est `https://api.mistral.ai/v1` :
+
+```toml
+[backends.mistral]
+url = "https://api.mistral.ai"
+api_key = "${MISTRAL_API_KEY}"
+```
+
+Les modèles s'écrivent `mistral/<modèle>`, par exemple `mistral/mistral-small-latest` ou `mistral/codestral-latest`.
+
+::: warning Gratuit, mais pas sans contrepartie
+Le plan Experiment est fait pour **essayer** : d'après les conditions relevées par plusieurs comparatifs, vos échanges peuvent servir à entraîner les modèles, sauf si vous le refusez dans les réglages. C'est le cas de beaucoup d'offres gratuites (Gemini, certains modèles `:free` d'OpenRouter…). Relisez [ce qui part chez un tiers](./limites.md#vos-donnees-partent-chez-un-tiers).
+:::
 
 ### OpenCode Go
 
@@ -367,41 +474,32 @@ curl -s "$LLM_PROXY_URL/v1/chat/completions" \
 OpenCode Go est un abonnement **individuel** (l'offre Go Teams existe pour les équipes, avec une limite par membre). Gardez-le pour vous : pas de clé de binôme sur un proxy qui utilise votre abonnement Go.
 :::
 
-### OpenRouter
+### Et les autres ?
 
-[OpenRouter](https://openrouter.ai/) est lui-même… un proxy : une seule clé et une seule adresse pour des centaines de modèles de dizaines d'éditeurs. Beaucoup sont payants, mais une partie est **gratuite** : leur nom se termine par `:free`.
+Tout fournisseur compatible OpenAI se branche avec une table `[backends.<nom>]` : un modèle qui tourne sur votre propre PC avec [llama.cpp](https://github.com/ggml-org/llama.cpp) ou [Ollama](https://ollama.com/), l'API Albert de l'État, une nouvelle offre gratuite… Pour un serveur qui tourne sur votre machine hôte, l'adresse vue depuis le conteneur est `http://host.docker.internal:<port>` (sous Linux, ajoutez `extra_hosts: ["host.docker.internal:host-gateway"]` au service dans l'override).
 
-Pour la clé : créez un compte sur [openrouter.ai](https://openrouter.ai/), puis une clé dans **Keys** (elle commence par `sk-or-`). Le point d'accès est `https://openrouter.ai/api/v1`, compatible OpenAI :
+Une seule condition : l'adresse doit se terminer **juste avant** `/v1`, puisque le proxy ajoute lui-même `/v1/chat/completions`.
 
-```toml
-[backends.openrouter]
-url = "https://openrouter.ai/api"
-api_key = "${OPENROUTER_API_KEY}"
-```
-
-Les modèles gratuits s'écrivent alors `openrouter/<éditeur>/<modèle>:free`, par exemple `openrouter/nvidia/nemotron-3.5-lightning:free` ou `openrouter/google/gemma-4-31b-it:free`. Pour les lister :
-
-```bash
-curl -s -H "Authorization: Bearer $LLM_PROXY_API_KEY" "$LLM_PROXY_URL/v1/models" | jq -r '.data[].id' | grep ':free'
-```
-
-::: warning Les limites des modèles gratuits
-D'après [la documentation d'OpenRouter](https://openrouter.ai/docs/api/reference/limits) (relevée le 14 novembre 2026), les modèles `:free` sont limités à **20 requêtes par minute** et **50 requêtes par jour** ; la limite passe à 1 000 par jour une fois que vous avez acheté au moins 10 crédits (environ 10 $). Pour un agent, qui fait une requête par tour de boucle, 50 par jour, c'est une petite tâche. Au-delà, OpenRouter répond `429`.
-
-Deux autres précautions :
-
-- le catalogue du proxy liste **aussi les modèles payants** d'OpenRouter : sans crédits sur le compte, ils répondent par une erreur, mais vérifiez toujours le `:free` à la fin du nom ;
-- certains modèles gratuits ne sont proposés que si vous acceptez, dans les réglages de confidentialité d'OpenRouter, que vos échanges puissent être conservés ou servir à l'entraînement. Relisez [ce qui part chez un tiers](./limites.md#vos-donnees-partent-chez-un-tiers) avant de cocher la case.
+::: details Question : pourquoi Gemini ne se branche-t-il pas de cette façon ?
+L'API de Google AI Studio est bien compatible OpenAI, mais son point d'accès est `https://generativelanguage.googleapis.com/v1beta/openai/` : le chemin ne se termine pas par `/v1`. Avec `url = "https://generativelanguage.googleapis.com/v1beta/openai"`, le proxy appellerait `…/v1beta/openai/v1/chat/completions`, qui n'existe pas. C'est la limite de la règle « une adresse + `/v1/…` » : il faudrait un petit relais de plus, ou passer par OpenRouter, qui sert aussi les modèles Gemini.
 :::
 
 ### Les brancher
 
-Comme pour NVIDIA et AMD : les clés dans `.env`, transmises au conteneur par l'override.
+Pour chaque fournisseur ajouté, les trois mêmes gestes que pour NVIDIA et AMD :
+
+1. sa clé dans `.env` ;
+2. la même variable transmise au conteneur, dans l'override ;
+3. sa table `[backends.<nom>]` dans `data/config.toml`.
+
+Par exemple, avec OpenRouter, Groq, Mistral et OpenCode Go :
 
 ```ini
 # .env
-OPENCODE_GO_API_KEY=…
 OPENROUTER_API_KEY=sk-or-…
+GROQ_API_KEY=gsk_…
+MISTRAL_API_KEY=…
+OPENCODE_GO_API_KEY=…
 ```
 
 ```yaml
@@ -411,24 +509,27 @@ services:
     environment:
       NVIDIA_API_KEY: "${NVIDIA_API_KEY}"
       AMD_API_KEY: "${AMD_API_KEY}"
-      OPENCODE_GO_API_KEY: "${OPENCODE_GO_API_KEY}"
       OPENROUTER_API_KEY: "${OPENROUTER_API_KEY}"
+      GROQ_API_KEY: "${GROQ_API_KEY}"
+      MISTRAL_API_KEY: "${MISTRAL_API_KEY}"
+      OPENCODE_GO_API_KEY: "${OPENCODE_GO_API_KEY}"
 ```
 
-Puis `docker compose up -d` et un coup d'œil au journal : quatre lignes `backend … clé : injectée`. Ajoutez enfin les modèles voulus dans votre `opencode.json` (`go/glm-5.3-flash`, `openrouter/nvidia/nemotron-3.5-lightning:free`…), exactement comme les autres.
+Puis `docker compose up -d` et un coup d'œil au journal : une ligne `backend … clé : injectée` par fournisseur. Ajoutez enfin les modèles voulus dans votre `opencode.json` (`openrouter/nvidia/nemotron-3.5-lightning:free`, `groq/openai/gpt-oss-120b`…), exactement comme les autres. [Le générateur](#generer-sa-configuration), plus bas, écrit ces trois fichiers pour la combinaison de votre choix.
 
 ::: tip Point de contrôle
-Votre proxy sert maintenant quatre fournisseurs derrière une seule adresse et une seule clé. Vérifiez avec `/v1/models` que les préfixes `nvidia/`, `amd/`, `go/` et `openrouter/` sont tous là, puis posez la question « OK » à un modèle de chacun (avec l'en-tête `x-opencode-session` pour `go/`).
+Vérifiez avec `/v1/models` que chacun de vos préfixes est là, puis posez la question « OK » à un modèle de chaque fournisseur (avec l'en-tête `x-opencode-session` pour `go/`).
 :::
 
 ::: details Question : quel fournisseur choisir pour quelle tâche ?
 Il n'y a pas de réponse unique, mais quelques repères :
 
-- pour **apprendre et expérimenter**, les offres gratuites (NVIDIA, AMD, OpenRouter `:free`) suffisent, à condition d'accepter leurs limites et de lire leurs conditions sur les données ;
-- pour **une session de travail longue** avec un agent (des centaines de requêtes), les 50 requêtes par jour d'OpenRouter ou les 30 jours d'AMD ne suffisent pas : c'est là qu'un abonnement comme Go prend son sens ;
+- pour **apprendre et expérimenter**, les offres gratuites (NVIDIA, AMD, OpenRouter `:free`, Groq, Mistral) suffisent, à condition d'accepter leurs limites et de lire leurs conditions sur les données ;
+- pour **une session de travail longue** avec un agent (des centaines de requêtes), les 50 requêtes par jour d'OpenRouter ou les 30 jours d'AMD ne suffisent pas : on combine plusieurs offres gratuites, ou un abonnement comme Go prend son sens ;
+- pour **la vitesse**, Groq : un agent qui attend moins à chaque tour finit plus vite ;
 - pour du code **qui ne doit pas sortir**, aucun de ces fournisseurs : un modèle qui tourne sur votre propre machine, derrière le même proxy.
 
-Et c'est tout l'intérêt du proxy : changer d'avis ne coûte qu'un changement de nom de modèle.
+Et changer d'avis ne coûte qu'un changement de nom de modèle.
 :::
 
 ## Le tableau de bord
@@ -461,7 +562,7 @@ Je vous laisse observer le tableau **Par modèle**, puis répondre :
 
 ::: details Voir les réponses
 1. Autour de **3 000 tokens** d'entrée par requête dans notre capture (`Moy./req` de `amd/Gemma-4-31B-IT`, que seul OpenCode a utilisé), contre une quarantaine pour curl (`amd/DeepSeek-V4.1-Flash`).
-2. OpenCode envoie, **à chaque requête**, son prompt système et la description de tous ses outils (lire, écrire, exécuter…), avant même votre question. Vous l'avez vu dans [le TP sur le principe](./principe.md) : le contexte d'un agent n'est jamais vide.
+2. OpenCode envoie, **à chaque requête**, son prompt système et la description de ses outils, avant même votre question : c'est [ce qu'un agent envoie vraiment](./principe.md#ce-qu-un-agent-envoie-vraiment), vu dans le TP sur le principe.
 3. 20 tours de boucle par minute au maximum, une lecture de fichier ou un lancement de tests par tour. Pour une tâche qui demande 30 à 50 tours, comptez plusieurs minutes, et des erreurs `429` si l'agent va plus vite que la limite. Le proxy relaie ces erreurs ; c'est l'agent qui attend et réessaie. Avec 50 requêtes par jour, une seule tâche de ce genre épuise la journée.
 :::
 
@@ -481,12 +582,12 @@ puis `docker compose restart albert-proxy`. Choisissez un modèle en haut, et po
 Sous chaque réponse, le chat affiche le modèle, les tokens consommés et la durée : de quoi comparer les fournisseurs sur une même question. Les conversations sont gardées par le proxy, dans `data/` (sauf en mode **Incognito**).
 
 ::: warning Ce que voit l'administrateur
-Dans votre proxy, c'est vous l'administrateur : les conversations du chat sont dans une base SQLite de `data/`, sur votre disque. Sur le proxy de la classe, c'est le serveur de votre enseignant. Même règle que pour les agents : rien de personnel ni de secret dans une conversation.
+Contrairement aux requêtes de vos agents, dont le proxy ne garde que des compteurs, les conversations **du chat** sont conservées, dans une base SQLite de `data/` (sauf en Incognito). Dans votre proxy, c'est votre disque ; sur le proxy de la classe, c'est le serveur de votre enseignant. La règle reste celle du [TP sur les limites](./limites.md#vos-donnees-partent-chez-un-tiers).
 :::
 
 ### La configuration
 
-L'onglet **Configuration → Proxy** présente toute la configuration en vigueur, section par section. Par exemple, les quatre fournisseurs que vous avez déclarés :
+L'onglet **Configuration → Proxy** présente toute la configuration en vigueur, section par section. Par exemple, les fournisseurs déclarés (quatre dans notre capture) :
 
 ![Configuration, onglet Proxy, section Backends : quatre backends, chacun avec son nom (le préfixe) et son adresse : nvidia sur https://integrate.api.nvidia.com, amd sur https://api.tokenlab.amd.com, go sur https://opencode.ai/inference/go/openai, openrouter sur https://openrouter.ai/api ; pour chacun, les cases « clé d'API » et « partage équitable » sont cochées ; un bouton « Ajouter un backend »](./res/proxy_ui_backends.png)
 
@@ -515,7 +616,7 @@ Dans le tableau de bord, la section **Accès** de **Configuration → Proxy** fa
 
 ![Configuration, onglet Proxy, section Accès : « Une clé par personne : chacune a ses statistiques, sa mémoire, ses conversations », une ligne PROXY_API_KEY dont la valeur reste dans le .env, et un bouton « Ajouter une clé » ; au-dessus, le rappel que rien n'est écrit sur le proxy : il faut télécharger le fichier, remplacer data/config.toml sur l'hôte, puis redémarrer](./res/proxy_ui_acces.png)
 
-Mais vous partagez alors **vos** limites : 20 requêtes par minute chez AMD pour deux agents. Pour qu'un agent qui boucle ne prenne pas tout, le proxy propose un **partage équitable** : une part de tokens par heure et par clé, au-delà de laquelle les requêtes attendent leur tour (rien n'est refusé). C'est ce que fait le proxy de la classe :
+Mais vous partagez alors **vos** limites : 20 requêtes par minute chez AMD pour deux agents. Pour qu'un agent qui boucle ne prenne pas tout, réglez le [partage équitable](./limites.md#cout-et-quotas) vu dans le TP sur les limites (la brique 4, « la porte »), comme sur le proxy de la classe :
 
 ```toml
 [fair_share]
@@ -531,13 +632,26 @@ Voir [la documentation du partage équitable](https://github.com/c4software/llm-
 Votre clé NVIDIA ou AMD est attachée à **votre** compte : c'est vous qui répondez de ce qui passe par elle. Avant de la partager, même à travers un proxy, lisez les conditions d'utilisation du fournisseur. Et ne publiez jamais votre proxy sur Internet : un proxy ouvert, ou mal protégé, c'est une clé offerte à tout le monde.
 :::
 
-### Encore d'autres fournisseurs
-
-Tout fournisseur **compatible OpenAI** se branche de la même façon, avec une table `[backends.<nom>]` : un modèle qui tourne sur votre propre PC avec [llama.cpp](https://github.com/ggml-org/llama.cpp) ou [Ollama](https://ollama.com/), l'API Albert de l'État, une autre offre gratuite… Pour un serveur qui tourne sur votre machine hôte, l'adresse vue depuis le conteneur est `http://host.docker.internal:<port>` (sous Linux, ajoutez `extra_hosts: ["host.docker.internal:host-gateway"]` au service dans l'override).
-
 ### Les autres agents
 
 Le proxy parle aussi l'API Anthropic (Claude Code) et l'API Responses (Codex), en les traduisant. Elles sont désactivées dans notre configuration minimale : voir `[anthropic]` et `[responses]` dans `data/config.example.toml`. L'onglet **Configuration → Clients** du tableau de bord génère ensuite la configuration de Claude Code, de Codex ou de pi.
+
+## Générer sa configuration
+
+Vous avez écrit chaque fichier à la main, et c'est ce qu'il fallait faire une fois pour comprendre qui lit quoi. Pour une nouvelle installation, ou pour essayer une autre combinaison, ce générateur écrit les cinq morceaux d'un coup : cochez vos fournisseurs et vos options, puis copiez chaque fichier à sa place.
+
+<ProxyConfig />
+
+Le générateur ne fait rien que vous n'ayez vu dans ce TP. Quelques remarques :
+
+- la clé du proxy (et celle du binôme) est tirée au hasard par votre navigateur (`crypto.randomUUID()`, comme le `uuid4()` de Python plus haut) ; l'onglet **variables** reprend la même ;
+- le `.env` liste les variables de chaque fournisseur coché, mais **sans leur valeur** : vos clés NVIDIA, AMD… ne doivent pas transiter par une page web, même celle-ci ;
+- chaque variable du `.env` apparaît aussi dans l'override : c'est le piège de [la transmission au conteneur](#transmettre-les-cles-au-conteneur), réglé d'avance ;
+- avec Claude Code et Codex, toutes les demandes de Claude Code (qui envoie des noms de modèles Claude) partent vers le **modèle par défaut**, grâce à `default` dans `[anthropic.model_map]`.
+
+::: tip Point de contrôle
+Après avoir remplacé vos fichiers : `docker compose up -d`, puis le journal. Autant de lignes `backend … clé : injectée` que de fournisseurs cochés, et `auth proxy ACTIVE`, avec deux clés si vous avez coché le binôme.
+:::
 
 ## Arrêter et nettoyer
 
@@ -552,7 +666,8 @@ Pensez aussi à **révoquer** vos clés NVIDIA et AMD sur leurs sites quand vous
 
 Dans ce TP bonus, vous avez changé de côté :
 
-- un proxy met **plusieurs fournisseurs derrière une seule adresse** (NVIDIA, AMD, OpenCode Go, OpenRouter…), et le préfixe du modèle choisit le fournisseur ;
+- un proxy met **plusieurs fournisseurs derrière une seule adresse** (NVIDIA, AMD, OpenRouter, Groq, Mistral, OpenCode Go…), et le préfixe du modèle choisit le fournisseur ;
+- chaque requête traverse les mêmes briques (authentification, surface, routage, porte, relais), puis le robinet qui compte les tokens : une erreur se lit en cherchant la brique qui l'a produite ;
 - chaque offre a ses limites (requêtes par minute, par jour, durée, budget) et ses conditions sur vos données : à comparer avant de choisir ;
 - les clés des fournisseurs restent dans un `.env` ignoré par Git, la configuration ne contient que des `${VAR}`, et une variable n'entre dans un conteneur que si le service la demande ;
 - un proxy sans `api_keys` est ouvert à tous : c'est la première ligne à écrire ;
