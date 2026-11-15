@@ -282,5 +282,3 @@ Pour valider le projet, chaque point doit être fonctionnel :
 ## Conclusion
 
 Ce TP est une excellente occasion de mettre en pratique Laravel dans un contexte concret. Il vous permettra de combiner plusieurs aspects du framework tout en construisant une application web simple mais complète. Bonne chance et amusez-vous bien !
-
-La suite, ce sera [Larablog](./larablog.md), une plateforme de blog codée entièrement avec Laravel.
