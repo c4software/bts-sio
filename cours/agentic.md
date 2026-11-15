@@ -9,6 +9,7 @@ description: "Le développement agentique en slides : ce qu'est un agent de code
 <SlidesDeck src="agentic" />
 </ClientOnly>
 
+- [En plus du cours](/tp/agentic/support.md)
 - [Le principe](/tp/agentic/principe.md)
 - [Utiliser un agent](/tp/agentic/utilisation.md)
 - [Les limites](/tp/agentic/limites.md)
