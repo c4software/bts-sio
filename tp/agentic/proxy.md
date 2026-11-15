@@ -22,7 +22,7 @@ C'est exactement le problème que règle [llm-proxy](https://github.com/c4softwa
 
 - Les TP [principe](./principe.md) et [utilisation](./utilisation.md) : la boucle d'un agent, OpenCode et son `opencode.json`.
 - **Docker** et **Docker Compose** sur votre machine (`docker compose version`). Revoir [le cours Docker](/cours/docker.md) si besoin.
-- Environ 5 Go d'espace disque libre : la construction de l'image prend plusieurs minutes la première fois.
+- Environ 2 Go d'espace disque libre : l'image du proxy (un peu plus de 700 Mo) et celle de SearXNG sont téléchargées au premier démarrage.
 - `git`, `curl` et `jq`.
 - Un compte **NVIDIA** et un compte **AMD AI Developer Program**, avec leurs clés (voir [le TP sur l'utilisation](./utilisation.md#brancher-un-modele)).
 - Facultatif : un compte chez **OpenRouter**, **Groq** ou **Mistral**, ou un abonnement **OpenCode Go**, pour [ajouter d'autres fournisseurs](#ajouter-d-autres-fournisseurs).
@@ -74,7 +74,7 @@ Avant de l'installer, ouvrons la boîte. llm-proxy n'est pas un bloc unique : c'
 | Le service `searxng` | un moteur de recherche, utilisé seulement par l'outil `web_search` du proxy ; il n'a **pas de port** ouvert, seul le proxy peut le joindre | il tourne, on ne s'en sert pas |
 | Le dossier `data/` | le **seul** dossier où le proxy écrit : sa configuration (`config.toml`), ses statistiques (`stats.db`), les conversations du chat ; il est sur votre disque, monté dans le conteneur | on y écrit `config.toml` |
 | Le fichier `.env` | les **secrets** : la clé du proxy et celles des fournisseurs ; ignoré par Git | on le remplit |
-| `docker-compose.override.yml` | **vos** ajouts au `docker-compose.yml` du projet, fusionnés par Docker Compose ; ignoré par Git | on y transmet les clés au conteneur |
+| `docker-compose.override.yml` | **vos** ajouts au `docker-compose.yml` du projet, fusionnés par Docker Compose ; ignoré par Git | on y choisit l'image publiée et on y transmet les clés au conteneur |
 
 ### Dans le proxy : le trajet d'une requête
 
@@ -224,10 +224,14 @@ On ne modifie pas le fichier du projet (il serait écrasé à la prochaine mise 
 # docker-compose.override.yml
 services:
   albert-proxy:
+    # L'image publiée par le projet, plutôt que la construire sur place.
+    image: ghcr.io/c4software/llm-proxy:latest
     environment:
       NVIDIA_API_KEY: "${NVIDIA_API_KEY}"
       AMD_API_KEY: "${AMD_API_KEY}"
 ```
+
+La ligne `image:` évite une construction de plusieurs minutes : le projet publie une image prête à l'emploi, publique, à chaque nouvelle version. Sans elle, Docker Compose suit le `build:` du `docker-compose.yml` et construit l'image sur votre machine.
 
 Vérifiez la fusion (attention, cette commande affiche les clés en clair, ne la faites pas en partageant votre écran) :
 
@@ -242,10 +246,11 @@ docker compose config | grep -A6 "environment:"
 ## Démarrer le proxy
 
 ```bash
-docker compose up -d --build
+docker compose pull         # télécharge les images (proxy et SearXNG)
+docker compose up -d
 ```
 
-La première fois, la construction de l'image prend plusieurs minutes (le proxy embarque de quoi faire tourner du code dans le navigateur pour son chat). Les fois suivantes, le démarrage est immédiat.
+La première fois, le téléchargement prend une minute ou deux selon la connexion. Les fois suivantes, le démarrage est immédiat.
 
 Regardez ensuite le journal du proxy :
 
@@ -506,6 +511,7 @@ OPENCODE_GO_API_KEY=…
 # docker-compose.override.yml
 services:
   albert-proxy:
+    image: ghcr.io/c4software/llm-proxy:latest
     environment:
       NVIDIA_API_KEY: "${NVIDIA_API_KEY}"
       AMD_API_KEY: "${AMD_API_KEY}"
@@ -657,7 +663,15 @@ Après avoir remplacé vos fichiers : `docker compose up -d`, puis le journal. A
 
 ```bash
 docker compose down        # arrête le proxy ; data/ (configuration et statistiques) est gardé
-docker compose up -d       # le relance, sans reconstruire
+docker compose up -d       # le relance
+```
+
+Pour passer à une nouvelle version du proxy :
+
+```bash
+git pull                   # le docker-compose.yml et l'exemple de configuration
+docker compose pull        # la dernière image publiée
+docker compose up -d       # recrée le conteneur ; data/ est gardé
 ```
 
 Pensez aussi à **révoquer** vos clés NVIDIA et AMD sur leurs sites quand vous n'en avez plus besoin : une clé qui ne sert plus est une clé qui peut encore fuir.

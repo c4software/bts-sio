@@ -215,6 +215,8 @@ const override = computed(() => {
     '# docker-compose.override.yml',
     'services:',
     '  albert-proxy:',
+    "    # L'image publiée par le projet, plutôt que la construire sur place.",
+    '    image: ghcr.io/c4software/llm-proxy:latest',
     '    environment:',
     ...vars.map((v) => `      ${v}: "\${${v}}"`),
   ].join('\n') + '\n'
