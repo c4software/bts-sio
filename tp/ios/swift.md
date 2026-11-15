@@ -262,7 +262,7 @@ L'application s'ouvre sur l'iPhone, et le compteur augmente à chaque clic.
 :::
 
 ::: tip Que veut dire XTL-… devant le bundle ID ?
-L'application est signée sous un identifiant préfixé, `XTL-<équipe>.fr.prenom.nom.hello`. Ainsi, votre version de développement ne remplace jamais la vraie application si elle est un jour publiée sur l'App Store sous `fr.prenom.nom.hello`.
+L'application est signée sous un identifiant préfixé, `XTL-<équipe>.fr.prenom.nom.hello`. Votre version de développement ne remplace donc jamais la vraie application si elle est un jour publiée sur l'App Store sous `fr.prenom.nom.hello`.
 :::
 
 ::: details Sans câble, en Wi-Fi

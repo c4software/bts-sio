@@ -10,7 +10,7 @@ description: "Un hello world iPhone en Kotlin Multiplateforme et Compose Multipl
 
 ## Introduction
 
-Dernier épisode de la série : après [Swift](./swift.md) et [Flutter](./flutter.md), nous revenons en terrain connu avec **Kotlin**. Grâce à **Kotlin Multiplateforme** et **Compose Multiplatform**, le code Kotlin et les écrans Compose que vous écrivez pour Android peuvent aussi tourner sur iPhone.
+Dernier épisode de la série : après [Swift](./swift.md) et [Flutter](./flutter.md), nous revenons en terrain connu avec **Kotlin**. Kotlin Multiplateforme et Compose Multiplatform permettent au code et aux écrans Compose que vous écrivez pour Android de tourner aussi sur iPhone.
 
 Vous avez sans doute déjà croisé ces outils dans [l'introduction à Kotlin Multiplateforme](/tp/android/compose-multiplateforme/introduction.md). Il y avait alors une limite de taille : **la partie iOS ne se compilait que sur un Mac**. Gradle (et plus précisément Kotlin/Native) refuse de construire pour iOS sous Linux. La dev-box lève cette limite avec la commande `devbox ios xcode --kmp`, lancée depuis votre machine par le même script `devbox-build.sh` que dans le [TP Swift](./swift.md).
 
@@ -352,7 +352,7 @@ Ou, pour ne plus la retaper : `export IOS_WIFI=100.x.y.z`. C'est ainsi qu'ont é
 :::
 
 ::: tip Que veut dire XTL-… devant le bundle ID ?
-`devbox ios xcode` signe l'application sous un identifiant préfixé, `XTL-<équipe>.fr.prenom.nom.HelloKmp`. Ainsi, votre version de développement ne remplace jamais la vraie application si elle est un jour publiée sur l'App Store sous `fr.prenom.nom.HelloKmp`.
+`devbox ios xcode` signe l'application sous un identifiant préfixé, `XTL-<équipe>.fr.prenom.nom.HelloKmp`. Votre version de développement ne remplace donc jamais la vraie application si elle est un jour publiée sur l'App Store sous `fr.prenom.nom.HelloKmp`.
 :::
 
 ## À vous de jouer

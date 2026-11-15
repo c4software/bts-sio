@@ -8,11 +8,11 @@ description: "Le développement agentique, l'utilisation : installer OpenCode, l
 [[toc]]
 :::
 
-Dans [le TP précédent](./principe.md), vous avez démonté un agent : un modèle dans une boucle, des outils, un contexte qui grossit à chaque tour. Place à la pratique. Dans ce TP, vous allez installer **OpenCode**, le brancher sur un modèle (gratuit, ou celui du proxy de la classe), puis lui confier une vraie tâche sur un petit projet : ajouter les frais de livraison et les codes promo à une boutique en ligne, **avec les tests**.
+Dans [le TP précédent](./principe.md), vous avez démonté un agent : un modèle dans une boucle, des outils, un contexte qui grossit à chaque tour. Place à la pratique. Vous allez installer **OpenCode**, le brancher sur un modèle (gratuit, ou celui du proxy de la classe), puis lui confier une vraie tâche sur un petit projet : ajouter les frais de livraison et les codes promo à une boutique en ligne, avec les tests.
 
-OpenCode n'est qu'un harness parmi d'autres (voir [les harness du moment](./principe.md#les-harness-du-moment)) : nous l'avons choisi parce qu'il est libre et accepte n'importe quel fournisseur, mais la méthode de ce TP vaut pour tous, Claude Code, Codex ou Copilot compris.
+OpenCode n'est qu'un harness parmi d'autres (voir [les harness du moment](./principe.md#les-harness-du-moment)). Nous l'avons choisi parce qu'il est libre et accepte n'importe quel fournisseur, mais la méthode de ce TP vaut pour tous, Claude Code, Codex ou Copilot compris.
 
-Le but n'est pas que l'agent travaille à votre place, mais d'apprendre à **le piloter** : lui donner une tâche précise, valider son plan, relire tout ce qu'il écrit, vérifier que ça marche, et rester capable d'expliquer chaque ligne.
+Le but, ce n'est pas que l'agent travaille à votre place. C'est d'apprendre à le piloter : lui donner une tâche précise, valider son plan, relire tout ce qu'il écrit, vérifier que ça marche, et rester capable d'expliquer chaque ligne.
 
 ## Prérequis
 
@@ -33,7 +33,7 @@ Le but n'est pas que l'agent travaille à votre place, mais d'apprendre à **le 
 
 ## Installer OpenCode
 
-[OpenCode](https://opencode.ai/) est un agent de code Open Source, qui tourne dans le terminal. Nous le prenons comme exemple parce qu'il propose des **modèles gratuits** sans compte, et qu'il se branche sur à peu près n'importe quel fournisseur.
+[OpenCode](https://opencode.ai/) est un agent de code Open Source, qui tourne dans le terminal. Nous le prenons comme exemple parce qu'il propose des modèles gratuits sans compte, et qu'il se branche sur à peu près n'importe quel fournisseur.
 
 ### Dans la dev-box
 
@@ -62,7 +62,7 @@ opencode v2.2.6
 ```
 
 ::: warning OpenCode 1 ou OpenCode 2 ?
-OpenCode est passé à la version 2 à l'automne 2026, et le format de la configuration a changé (par exemple `providers` au lieu de `provider`, `permissions` au lieu de `permission`). Ce TP est écrit pour la **version 2**. Si `opencode --version` affiche `1.x`, mettez à jour (`opencode upgrade`) ; et quand vous cherchez de l'aide, vérifiez que la page concerne bien la V2 : la [documentation V2](https://opencode.ai/docs/) n'est pas la même que l'ancienne (`docs.opencode.ai`).
+OpenCode est passé à la version 2 à l'automne 2026, et le format de la configuration a changé (par exemple `providers` au lieu de `provider`, `permissions` au lieu de `permission`). Ce TP est écrit pour la version 2. Si `opencode --version` affiche `1.x`, mettez à jour (`opencode upgrade`) ; et quand vous cherchez de l'aide, vérifiez que la page concerne bien la V2 : la [documentation V2](https://opencode.ai/docs/) n'est pas la même que l'ancienne (`docs.opencode.ai`).
 :::
 
 Créez un dossier vide, placez-vous dedans et lancez `opencode` :
@@ -82,13 +82,13 @@ Les commandes à connaître :
 
 ## Brancher un modèle
 
-OpenCode ne fournit pas « son » modèle : il se branche sur un **fournisseur**. Voici les quatre que nous utilisons dans cette série :
+OpenCode ne fournit pas « son » modèle : il se branche sur un fournisseur. Voici les quatre que nous utilisons dans cette série :
 
 ![OpenCode, à gauche, relié à quatre sources de modèles : les modèles gratuits d'OpenCode (rien à faire, aucun compte, pour une durée limitée), NVIDIA build.nvidia.com (un compte et une clé, par /connect ou la variable NVIDIA_API_KEY), AMD (accès donné par AMD, par opencode.json s'il est compatible OpenAI), et le llm-proxy de l'enseignant (opencode.json avec LLM_PROXY_URL et LLM_PROXY_API_KEY)](./res/utilisation_fournisseurs.svg)
 
 ### Les modèles gratuits d'OpenCode
 
-C'est le plus simple : **il n'y a rien à faire**. Sans compte et sans clé, OpenCode propose une liste de modèles gratuits, dont le nom se termine par `free`. Pour les voir :
+C'est le plus simple : il n'y a rien à faire. Sans compte et sans clé, OpenCode propose une liste de modèles gratuits, dont le nom se termine par `free`. Pour les voir :
 
 ```bash
 opencode models | grep free
@@ -107,14 +107,14 @@ opencode/nemotron-3.5-super-vl-free
 opencode/pulse-alpha-free
 ```
 
-Cette liste change souvent : ces modèles sont gratuits **pour une durée limitée**, le temps pour leurs éditeurs de recueillir des retours. Choisissez-en un avec `/models`, ou pour une seule demande :
+Cette liste change souvent : ces modèles sont gratuits pour une durée limitée, le temps pour leurs éditeurs de recueillir des retours. Choisissez-en un avec `/models`, ou pour une seule demande :
 
 ```bash
 opencode run --model opencode/glm-5.3-flash-free "Réponds uniquement par le mot OK."
 ```
 
 ::: warning Gratuit, mais pas sans contrepartie
-D'après [la page des modèles d'OpenCode](https://opencode.ai/docs/zen/#privacy) (relevée le 8 novembre 2026) : certains modèles gratuits ne gardent rien (GLM-5.3-Flash Free et DeepSeek V4.1 Flash Free, par exemple), d'autres **conservent vos échanges et peuvent s'en servir pour entraîner leur modèle** (Big Pickle, par exemple), et certains ne sont pas disponibles dans l'Union européenne. Lisez la ligne du modèle avant de lui confier du code. Nous en reparlons dans [le TP sur les limites](./limites.md#vos-donnees-partent-chez-un-tiers).
+D'après [la page des modèles d'OpenCode](https://opencode.ai/docs/zen/#privacy) (relevée le 8 novembre 2026) : certains modèles gratuits ne gardent rien (GLM-5.3-Flash Free et DeepSeek V4.1 Flash Free, par exemple), d'autres conservent vos échanges et peuvent s'en servir pour entraîner leur modèle (Big Pickle, par exemple), et certains ne sont pas disponibles dans l'Union européenne. Lisez la ligne du modèle avant de lui confier du code. Nous en reparlons dans [le TP sur les limites](./limites.md#vos-donnees-partent-chez-un-tiers).
 :::
 
 ### NVIDIA
@@ -122,7 +122,7 @@ D'après [la page des modèles d'OpenCode](https://opencode.ai/docs/zen/#privacy
 NVIDIA propose, sur [build.nvidia.com](https://build.nvidia.com/), un accès d'essai gratuit à de nombreux modèles, dont sa famille **Nemotron**. Il faut :
 
 1. créer un compte NVIDIA sur [build.nvidia.com](https://build.nvidia.com/) ;
-2. faire vérifier votre compte : NVIDIA demande un **numéro de téléphone** pour activer l'accès à l'API ;
+2. faire vérifier votre compte : NVIDIA demande un numéro de téléphone pour activer l'accès à l'API ;
 3. générer une clé d'API (elle commence par `nvapi-`).
 
 Le point d'accès est compatible OpenAI : `https://integrate.api.nvidia.com/v1`. OpenCode connaît déjà NVIDIA : donnez-lui la clé par `/connect` (cherchez « NVIDIA »), ou par une variable d'environnement, puis choisissez un modèle :
@@ -142,29 +142,25 @@ nvidia/nvidia/nemotron-3.5-super-vl-120b-a12b
 nvidia/nvidia/nemotron-voicechat
 ```
 
-Pour coder, prenez un modèle de discussion, par exemple `nvidia/nvidia/nemotron-3.5-lightning-30b-a3b` (les `content-safety` ou `safety-guard` servent à filtrer des contenus, pas à écrire du code).
+Pour coder, prenez un modèle de discussion, par exemple `nvidia/nvidia/nemotron-3.5-lightning-30b-a3b`. Les `content-safety` ou `safety-guard` servent à filtrer des contenus, pas à écrire du code.
 
 ::: warning Une limite de débit
-L'accès gratuit de NVIDIA est limité en **nombre de requêtes par minute** : la limite couramment constatée est de **40 requêtes par minute**. NVIDIA ne publie pas de chiffre officiel : elle dépend du modèle et de la charge, et vous pouvez la voir sur la page du modèle une fois connecté. Un agent fait une requête par tour de boucle : nous verrons dans [le TP sur les limites](./limites.md#cout-et-quotas) que 40 par minute, c'est vite atteint.
+L'accès gratuit de NVIDIA est limité en nombre de requêtes par minute : la limite couramment constatée est de 40 requêtes par minute. NVIDIA ne publie pas de chiffre officiel : elle dépend du modèle et de la charge, et vous pouvez la voir sur la page du modèle une fois connecté. Un agent fait une requête par tour de boucle : nous verrons dans [le TP sur les limites](./limites.md#cout-et-quotas) que 40 par minute, c'est vite atteint.
 :::
 
 ### AMD
 
 AMD soutient ce cours en mettant gratuitement des modèles à disposition des étudiants, dans le cadre de son [programme universitaire](https://www.amd.com/en/corporate/university-program.html). Votre enseignant vous indique comment y accéder.
 
-Côté développeurs, le [programme AMD AI Developer](https://developer.amd.com/ai-developer-program/), gratuit et ouvert avec un compte AMD, donne accès à **Token Lab**, une API d'inférence sans carte bancaire : dans votre espace membre, **Member Perks**, puis **Cloud Credits**, puis **Token Lab**, où vous créez une clé (elle commence par `tl-`). Relevé le 14 novembre 2026 : **30 jours** d'accès (prolongeables une fois de 15 jours), un budget de **points** (chaque million de tokens en coûte une fraction, selon le modèle) et **20 requêtes par minute** ; ces conditions évoluent, vérifiez-les au moment de vous inscrire.
+Côté développeurs, le [programme AMD AI Developer](https://developer.amd.com/ai-developer-program/), gratuit et ouvert avec un compte AMD, donne accès à **Token Lab**, une API d'inférence sans carte bancaire : dans votre espace membre, **Member Perks**, puis **Cloud Credits**, puis **Token Lab**, où vous créez une clé (elle commence par `tl-`). Relevé le 14 novembre 2026 : 30 jours d'accès (prolongeables une fois de 15 jours), un budget de points (chaque million de tokens en coûte une fraction, selon le modèle) et 20 requêtes par minute ; ces conditions évoluent, vérifiez-les au moment de vous inscrire.
 
-Token Lab est **compatible OpenAI** (`https://api.tokenlab.amd.com/v1`, avec des modèles comme `Gemma-4-31B-IT`, `DeepSeek-V4.1-Flash` ou `Qwen3.8-27B`) : il se branche exactement comme le proxy de la classe, juste en dessous, avec vos propres variables (par exemple `AMD_BASE_URL` et `AMD_API_KEY`). Et pour réunir NVIDIA et AMD derrière une seule adresse, le [TP bonus](./proxy.md) vous fait monter votre propre proxy.
+Token Lab est compatible OpenAI (`https://api.tokenlab.amd.com/v1`, avec des modèles comme `Gemma-4-31B-IT`, `DeepSeek-V4.1-Flash` ou `Qwen3.8-27B`) : il se branche exactement comme le proxy de la classe, juste en dessous, avec vos propres variables (par exemple `AMD_BASE_URL` et `AMD_API_KEY`). Et pour réunir NVIDIA et AMD derrière une seule adresse, le [TP bonus](./proxy.md) vous fait monter votre propre proxy.
 
 ### Le proxy de la classe
 
-Votre enseignant fait tourner [llm-proxy](https://github.com/c4software/llm-proxy) (voir [le TP précédent](./principe.md#trois-api-pour-la-meme-chose)) : une seule adresse, une clé par étudiant, et plusieurs fournisseurs derrière. Il vous donne :
+Votre enseignant fait tourner [llm-proxy](https://github.com/c4software/llm-proxy) (voir [le TP précédent](./principe.md#trois-api-pour-la-meme-chose)) : une seule adresse, une clé par étudiant, et plusieurs fournisseurs derrière. Il vous donne l'adresse du proxy, votre clé, et le nom du ou des modèles à utiliser.
 
-- l'adresse du proxy ;
-- votre clé ;
-- le nom du ou des modèles à utiliser.
-
-Vous connaissez la règle depuis [le TP sur le principe](./principe.md#a-vous-de-jouer-faire-tourner-la-boucle-a-la-main) : **la clé ne va jamais dans un fichier du projet** (elle finirait dans Git, puis sur GitLab, puis chez n'importe qui). Cette fois, rendez les variables durables : mettez-les dans votre `~/.bashrc` (ou `~/.zshrc`), en dehors de tout dépôt :
+Vous connaissez la règle depuis [le TP sur le principe](./principe.md#a-vous-de-jouer-faire-tourner-la-boucle-a-la-main) : la clé ne va jamais dans un fichier du projet. Elle finirait dans Git, puis sur GitLab, puis chez n'importe qui. Cette fois, rendez les variables durables : mettez-les dans votre `~/.bashrc` (ou `~/.zshrc`), en dehors de tout dépôt :
 
 ```bash
 export LLM_PROXY_URL="https://adresse-donnee-par-l-enseignant"
@@ -179,7 +175,7 @@ curl -s -H "Authorization: Bearer $LLM_PROXY_API_KEY" "$LLM_PROXY_URL/v1/models"
 
 ![Dans un terminal : echo $LLM_PROXY_URL affiche l'adresse du proxy ; curl sur /v1/models avec la clé affiche la liste des modèles préfixés par leur backend, par exemple nvidia/nvidia/nemotron-3.5-lightning-30b-a3b ou demo/agent-demo ; le même curl sans la clé renvoie une erreur invalid_api_key](./res/utilisation_proxy_models.png)
 
-Vous reconnaissez le **préfixe** de chaque modèle : c'est le nom du backend qui le sert. Sans la clé, le proxy refuse (`invalid_api_key`).
+Vous reconnaissez le préfixe de chaque modèle : c'est le nom du backend qui le sert. Sans la clé, le proxy refuse (`invalid_api_key`).
 
 Ensuite, déclarez le proxy à OpenCode dans un fichier `opencode.json`, à la racine du projet (ou dans `~/.config/opencode/opencode.json` pour tous vos projets). Remplacez `nvidia/nvidia/nemotron-3.5-lightning-30b-a3b` par le modèle donné par votre enseignant, et la taille de contexte par la sienne :
 
@@ -207,10 +203,7 @@ Ensuite, déclarez le proxy à OpenCode dans un fichier `opencode.json`, à la r
 }
 ```
 
-- `llmproxy` est le nom que **vous** donnez au fournisseur ; le modèle s'écrit donc `llmproxy/<nom du modèle sur le proxy>`.
-- `package` dit à OpenCode de parler Chat Completions, l'API la plus répandue.
-- `{env:LLM_PROXY_URL}` est remplacé au démarrage par la variable d'environnement : le fichier ne contient **aucun secret** et peut être commité.
-- `capabilities.tools` dit à OpenCode que le modèle sait appeler des outils. Un modèle qui ne le sait pas est inutilisable par un agent.
+`llmproxy` est le nom que vous donnez au fournisseur, donc le modèle s'écrit `llmproxy/<nom du modèle sur le proxy>`. La clé `package` dit à OpenCode de parler Chat Completions, l'API la plus répandue. `{env:LLM_PROXY_URL}` est remplacé au démarrage par la variable d'environnement, le fichier ne contient donc aucun secret et peut être commité. Enfin, `capabilities.tools` dit à OpenCode que le modèle sait appeler des outils : un modèle qui ne le sait pas est inutilisable par un agent.
 
 Vérifiez qu'OpenCode a bien compris (la clé y est masquée) :
 
@@ -234,7 +227,7 @@ Pour votre culture : dans llm-proxy, chaque fournisseur est une table de `data/c
 :::
 
 ::: tip Point de contrôle
-Avant de passer à la suite, vous devez avoir **au moins un modèle qui répond**. Lancez dans un dossier vide :
+Avant de passer à la suite, vous devez avoir au moins un modèle qui répond. Lancez dans un dossier vide :
 
 ```bash
 opencode run --model <votre-modèle> "Réponds uniquement par le mot OK."
@@ -257,11 +250,11 @@ npm start    # http://localhost:3000
 
 ![La Boutique BTS : à gauche le catalogue (clé USB, câble RJ45, souris, clavier, Raspberry Pi 5, casque) avec un bouton Ajouter par produit ; à droite le panier avec trois lignes, une quantité, un prix et un bouton Retirer, puis le sous-total de 50,60 €](./res/utilisation_panier_avant.png)
 
-Avant de lancer le moindre agent, **lisez le code**. Il est court : `src/panier.js` (la logique), `public/app.js` (l'affichage), `test/panier.test.js` (les tests) et le `README.md`.
+Avant de lancer le moindre agent, lisez le code. Il est court : `src/panier.js` (la logique), `public/app.js` (l'affichage), `test/panier.test.js` (les tests) et le `README.md`.
 
 Questions :
 
-- Pourquoi les prix sont-ils stockés en **centimes** (`1290`) et pas en euros (`12.90`) ?
+- Pourquoi les prix sont-ils stockés en centimes (`1290`) et pas en euros (`12.90`) ?
 - Qu'est-ce qui garantit, dans le code actuel, que l'on ne peut pas ajouter `-1` produit au panier ? Où est-ce testé ?
 
 ::: details Réponse
@@ -270,7 +263,7 @@ Questions :
 :::
 
 ::: tip Pourquoi lire le code avant ?
-Parce que c'est **vous** qui allez juger le travail de l'agent. Si vous ne savez pas comment le projet fonctionne, vous ne pourrez pas voir qu'il a cassé quelque chose, ni qu'il a ignoré une règle du projet.
+Parce que c'est vous qui allez juger le travail de l'agent. Si vous ne savez pas comment le projet fonctionne, vous ne pourrez pas voir qu'il a cassé quelque chose, ni qu'il a ignoré une règle du projet.
 :::
 
 ## La méthode
@@ -281,7 +274,7 @@ Un agent va vite. Trop vite pour que vous suiviez si vous le laissez faire. La m
 
 ### Un dépôt Git propre d'abord
 
-Git est votre **filet de sécurité** : quoi que fasse l'agent, vous pourrez voir exactement ce qu'il a changé, et revenir en arrière.
+Git est votre filet de sécurité : quoi que fasse l'agent, vous pourrez voir exactement ce qu'il a changé, et revenir en arrière.
 
 ```bash
 git init
@@ -310,23 +303,23 @@ Voici la fonctionnalité à faire ajouter par l'agent :
 
 > **Livraison et codes promo.** La livraison coûte 4,90 € quand le sous-total est inférieur à 50 €, elle est offerte à partir de 50 €. Le client peut saisir un code promo : `BTS10` retire 10 % du sous-total, `LIVRAISON` offre la livraison. Un code inconnu affiche un message d'erreur. Le panier affiche le sous-total, la remise, la livraison et le total. Chaque règle est testée.
 
-Une bonne demande à un agent ressemble à une bonne demande à un collègue : **le quoi, pas le comment**, avec des critères pour savoir quand c'est fini. Commencez par passer en agent **Plan** (<kbd>Shift</kbd>+<kbd>Tab</kbd>) : il lit le code et propose, sans modifier les fichiers. Écrivez votre demande, en lui demandant explicitement un plan.
+Une bonne demande à un agent ressemble à une bonne demande à un collègue : le quoi, pas le comment, avec des critères pour savoir quand c'est fini. Commencez par passer en agent **Plan** (<kbd>Shift</kbd>+<kbd>Tab</kbd>) : il lit le code et propose, sans modifier les fichiers. Écrivez votre demande, en lui demandant explicitement un plan.
 
 Questions, avant de valider le plan :
 
 - Le plan respecte-t-il les règles de votre `AGENTS.md` (centimes, logique dans `src/`, tests) ?
-- La spécification ne dit pas tout. Par exemple : la livraison est-elle offerte quand le sous-total **avant** remise dépasse 50 €, ou **après** ? Le plan a-t-il tranché ? Est-ce le choix que vous voulez ?
+- La spécification ne dit pas tout. Par exemple : la livraison est-elle offerte quand le sous-total avant remise dépasse 50 €, ou après ? Le plan a-t-il tranché ? Est-ce le choix que vous voulez ?
 
 ::: details Réponse
-La spécification est ambiguë sur ce point, et c'est fréquent. Un agent tranche presque toujours **sans le dire**. Avec un panier à 50,60 € et le code `BTS10`, le sous-total après remise passe à 45,54 € : selon le choix, la livraison est offerte ou coûte 4,90 €. Aucun des deux n'est « faux » ; c'est une décision métier, qui revient au client (ou à vous), pas à l'agent. Précisez-la dans votre demande, et faites-la tester.
+La spécification est ambiguë sur ce point, et c'est fréquent. Un agent tranche presque toujours sans le dire. Avec un panier à 50,60 € et le code `BTS10`, le sous-total après remise passe à 45,54 € : selon le choix, la livraison est offerte ou coûte 4,90 €. Aucun des deux n'est « faux » ; c'est une décision métier, qui revient au client (ou à vous), pas à l'agent. Précisez-la dans votre demande, et faites-la tester.
 :::
 
-Quand le plan vous convient, repassez en agent **Build** et demandez-lui de réaliser **la première étape seulement**.
+Quand le plan vous convient, repassez en agent **Build** et demandez-lui de réaliser la première étape seulement.
 
 ![Une session OpenCode : la demande « Ajoute des codes promo au panier. Lis le code et propose-moi un plan avant de modifier quoi que ce soit. », puis l'agent qui lit un fichier (Explored: 1 read), lance npm test (6 tests, 0 échec), et propose un plan en trois points avant de demander « Je commence ? ». En bas à droite, la jauge du contexte : 6.6K (20%)](./res/utilisation_opencode_session.png)
 
 ::: tip Que montre cette capture ?
-Elle a été prise avec un **modèle de démonstration** au comportement écrit à l'avance (pour que la capture soit reproductible), branché sur OpenCode à travers llm-proxy. L'interface, les outils et la jauge sont réels : la lecture du fichier et `npm test` ont vraiment été exécutés. Remarquez la jauge en bas à droite : **6.6K (20 %)**, la part de la fenêtre de contexte déjà utilisée, après une seule demande.
+Elle a été prise avec un modèle de démonstration au comportement écrit à l'avance (pour que la capture soit reproductible), branché sur OpenCode à travers llm-proxy. L'interface, les outils et la jauge sont réels : la lecture du fichier et `npm test` ont vraiment été exécutés. Remarquez la jauge en bas à droite : 6.6K (20 %), la part de la fenêtre de contexte déjà utilisée, après une seule demande.
 :::
 
 ### Relire le diff
@@ -338,7 +331,7 @@ git status
 git diff
 ```
 
-Lisez **chaque ligne**. Pour chaque fichier modifié, vous devez pouvoir répondre : pourquoi ce changement, et que se passerait-il sans lui ?
+Lisez chaque ligne. Pour chaque fichier modifié, vous devez pouvoir répondre : pourquoi ce changement, et que se passerait-il sans lui ?
 
 Questions :
 
@@ -355,7 +348,7 @@ git clean -n         # liste les fichiers créés par l'agent (puis -f pour les 
 
 ### Tester
 
-Lancez les tests **vous-même** :
+Lancez les tests vous-même :
 
 ```bash
 npm test
@@ -363,7 +356,7 @@ npm test
 
 Ne vous contentez pas du « tous les tests passent » de l'agent : ouvrez les nouveaux tests et vérifiez qu'ils testent vraiment les règles de la spécification. Un test qui ne peut pas échouer ne prouve rien. Petite expérience : changez volontairement le prix de la livraison dans le code (`490` en `590`), relancez `npm test`. Un test doit devenir rouge. Sinon, il manque un test.
 
-Puis testez **à la main**, dans la page (`npm start`) : ajoutez des produits, essayez `BTS10`, `bts10`, `LIVRAISON`, un code inconnu, un panier vide.
+Puis testez à la main, dans la page (`npm start`) : ajoutez des produits, essayez `BTS10`, `bts10`, `LIVRAISON`, un code inconnu, un panier vide.
 
 Vous devez obtenir quelque chose qui ressemble à ceci (la présentation peut varier) :
 
@@ -374,7 +367,7 @@ Question :
 - Sur cette capture, la livraison est offerte alors que le total après remise (45,54 €) est sous 50 €. Est-ce un bug ?
 
 ::: details Réponse
-Ça dépend de la règle que vous avez choisie (voir la question sur le plan) : ici, la livraison est calculée sur le sous-total **avant** remise. Si c'est votre choix, il doit être écrit dans un test (avec un nom explicite) pour que personne ne le « corrige » par erreur. Si ce n'est pas votre choix, c'est un bug, et c'est exactement le genre d'erreur qu'un agent produit sans prévenir.
+Ça dépend de la règle que vous avez choisie (voir la question sur le plan) : ici, la livraison est calculée sur le sous-total avant remise. Si c'est votre choix, il doit être écrit dans un test, avec un nom explicite, pour que personne ne le « corrige » par erreur. Si ce n'est pas votre choix, c'est un bug, et c'est exactement le genre d'erreur qu'un agent produit sans prévenir.
 :::
 
 ### Commiter
@@ -386,7 +379,7 @@ git add .
 git commit -m "Ajoute les frais de livraison"
 ```
 
-Le message de commit, c'est **vous** qui l'écrivez : il dit ce que **vous** avez validé. Puis on recommence avec l'étape suivante du plan (les codes promo), jusqu'au bout.
+Le message de commit, c'est vous qui l'écrivez : il dit ce que vous avez validé. Puis on recommence avec l'étape suivante du plan (les codes promo), jusqu'au bout.
 
 ::: tip Point de contrôle
 À la fin de cette partie, vous avez :
@@ -409,17 +402,17 @@ Quelques consignes :
 - un commit par étape, aucun commit sans `git diff` relu ;
 - notez dans un fichier `JOURNAL.md` (que vous commitez aussi) chaque fois que vous avez refusé ou corrigé une proposition de l'agent, et pourquoi.
 
-Le challenge, pour ceux qui ont fini : faites ajouter à l'agent un test sur `formatPrice` avec un montant **négatif** (`formatPrice(-50)`), lisez le résultat, et décidez s'il faut corriger la fonction ou interdire les montants négatifs.
+Le challenge, pour ceux qui ont fini : faites ajouter à l'agent un test sur `formatPrice` avec un montant négatif (`formatPrice(-50)`), lisez le résultat, et décidez s'il faut corriger la fonction ou interdire les montants négatifs.
 
 ## Conclusion
 
 Dans ce TP, vous avez :
 
 - installé OpenCode et vérifié sa version ;
-- branché un modèle gratuit (OpenCode, NVIDIA ou AMD) ou le proxy de la classe, avec des variables d'environnement et sans aucun secret dans le projet ;
+- branché un modèle gratuit (OpenCode, NVIDIA ou AMD), ou le proxy de la classe, avec des variables d'environnement et sans aucun secret dans le projet ;
 - écrit un `AGENTS.md` pour donner à l'agent les règles du projet ;
 - suivi la méthode : décrire, planifier, relire chaque diff, tester, commiter ;
-- vu qu'un agent tranche les ambiguïtés sans prévenir, et que c'est à vous de les repérer.
+- découvert qu'un agent tranche les ambiguïtés sans prévenir, et que c'est à vous de les repérer.
 
 Pensez à pousser votre dépôt (avec son `AGENTS.md` et son `JOURNAL.md`). Dans [le dernier TP](./limites.md), nous regardons en face tout ce qui peut mal tourner : hallucinations, tests complaisants, coûts et quotas, données qui partent chez un tiers, injections de prompt et commandes destructrices.
 

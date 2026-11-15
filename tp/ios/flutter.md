@@ -10,7 +10,7 @@ description: "Un hello world iPhone en Flutter, compilé et installé depuis la 
 
 ## Introduction
 
-Après [le hello world en Swift](./swift.md), changeons d'approche : **Flutter**, le framework de Google, permet d'écrire **une seule application** pour Android, iOS et le Web, dans un seul langage, le **Dart**.
+Après [le hello world en Swift](./swift.md), changeons d'approche. **Flutter**, le framework de Google, permet d'écrire une seule application pour Android, iOS et le Web, dans un seul langage, le Dart.
 
 Sur un Mac, `flutter build ios` s'appuie sur Xcode. Ici, pas de Xcode : omarchy-apple-dev fournit des scripts qui font le même travail sous Linux. Il y a une étape de préparation un peu longue, mais une fois faite, compiler pour iOS ne prend qu'une minute.
 

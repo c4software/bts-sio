@@ -10,18 +10,11 @@ description: "Vous avez codé l'authentification à la main, place au starter ki
 [[toc]]
 :::
 
-Dans les TP précédents, vous avez codé **à la main** toute la mécanique d'authentification : [mots de passe hashés, session et middleware](./authentification_manuelle.md), puis [le reset de mot de passe](./reset_mot_de_passe.md) (token, expiration, email). Et vous avez vu que la gestion des utilisateurs est un élément complexe d'une application :
+Dans les TP précédents, vous avez codé **à la main** toute la mécanique d'authentification : [mots de passe hashés, session et middleware](./authentification_manuelle.md), puis [le reset de mot de passe](./reset_mot_de_passe.md) (token, expiration, email). Vous avez aussi constaté à quel point la gestion des utilisateurs est un élément complexe d'une application : l'authentification, limiter l'accès à certaines ressources, la sécurité des mots de passe, le mot de passe oublié, la double authentification… La liste est longue.
 
-- L'authentification.
-- Limiter l'accès à certaines ressources.
-- La sécurité des mots de passe.
-- La gestion du mot de passe oublié.
-- La double authentification.
-- …
+La force de Laravel, c'est justement de vous fournir toutes ces briques, dans les standards du marché, sans tout recoder. Nous allons donc générer une application complète avec un **starter kit**, comprendre ce qui tourne derrière (Fortify), puis la modifier pour l'adapter à nos besoins : un profil enrichi, des rôles, des composants récupérés sur HyperUI, et pour finir un petit chat en Ajax.
 
-Vous l'avez compris, la liste est longue… La force de Laravel, c'est justement de vous fournir l'ensemble de ces briques, dans les standards du marché, **sans tout recoder**. Dans ce TP, nous allons générer une application complète avec un **starter kit** de Laravel, comprendre ce qui tourne derrière (**Fortify**), puis la modifier pour l'adapter à nos besoins : un profil enrichi, des rôles, des composants récupérés sur HyperUI, et pour finir un petit chat en Ajax.
-
-Dans ce TP, je vous invite à avoir en parallèle :
+Je vous invite à garder en parallèle :
 
 - [L'aide-mémoire Laravel](/cheatsheets/laravel/)
 - [La synthèse des commandes](/cheatsheets/laravel/quick.md)
@@ -36,13 +29,9 @@ Avant de commencer, voici une présentation rapide de la partie théorie de notr
 
 ## Prérequis
 
-Ce TP repart d'un **nouveau projet** Laravel, mais il s'appuie sur ce que vous avez construit dans la chaîne des TP Laravel :
+Ce TP repart d'un nouveau projet Laravel, mais il s'appuie sur ce que vous avez construit dans la chaîne des TP Laravel : créer un projet avec ses routes, ses contrôleurs et ses vues ([TP introduction](./introduction.md)), les migrations, les modèles et les relations ([TP base de données](./base_de_donnees.md)), et le fonctionnement d'une authentification, hash, session, middleware ([TP Comprendre l'authentification](./authentification_manuelle.md)).
 
-- Créer un projet, des routes, des contrôleurs et des vues ([TP introduction](./introduction.md)).
-- Les migrations, les modèles et les relations ([TP base de données](./base_de_donnees.md)).
-- Le fonctionnement d'une authentification : hash, session, middleware ([TP Comprendre l'authentification](./authentification_manuelle.md)).
-
-Il vous faut également **Node.js** (et donc `npm`) sur votre poste : le starter kit en a besoin pour compiler l'interface. Si vous ne l'avez pas, vous pouvez le télécharger [ici](https://nodejs.org/).
+Il vous faut également **Node.js** (et donc `npm`) sur votre poste : le starter kit en a besoin pour compiler l'interface. Si vous ne l'avez pas, téléchargez-le [ici](https://nodejs.org/).
 
 ::: details Vous n'avez pas fait le TP Comprendre l'authentification ?
 
@@ -54,14 +43,14 @@ Vous pouvez suivre ce TP sans lui, le starter kit fait tout le travail. Mais vou
 
 À la fin de ce TP vous saurez :
 
-- Créer un projet avec un **starter kit** (`laravel new`) et expliquer le rôle de **Fortify**.
+- Créer un projet avec un starter kit (`laravel new`) et expliquer le rôle de **Fortify**.
 - Retrouver dans le code généré les briques codées à la main dans les TP précédents.
-- Utiliser les outils du front qui arrivent avec (**Tailwind**, **Vite**, `npm`).
-- Utiliser et créer des **composants Blade** (`<x-layouts::app>`, `<x-card>`), et en récupérer sur **HyperUI**.
+- Utiliser les outils du front qui arrivent avec : Tailwind, Vite, `npm`.
+- Utiliser et créer des composants Blade (`<x-layouts::app>`, `<x-card>`), et en récupérer sur HyperUI.
 - Protéger une page avec le middleware `auth`.
-- Modifier le code généré : champs supplémentaires, table liée, rôles (relation **many-to-many**).
-- Expliquer le fonctionnement d'une double authentification **TOTP** (QR code, codes de récupération).
-- Rafraîchir une page en Ajax avec `fetch` ou **HTMX**.
+- Modifier le code généré : champs supplémentaires, table liée, rôles (relation many-to-many).
+- Expliquer le fonctionnement d'une double authentification TOTP (QR code, codes de récupération).
+- Rafraîchir une page en Ajax avec `fetch` ou HTMX.
 
 ## Breeze, starter kits et Fortify
 
@@ -74,9 +63,9 @@ Si vous avez suivi des tutoriels Laravel, vous avez sûrement croisé **Breeze**
 | Svelte       | Svelte + TypeScript (via Inertia)                |
 | **Livewire** | **Blade**, avec les composants **Flux**          |
 
-Nous allons utiliser le kit **Livewire** : ses vues sont en Blade, ce que vous connaissez déjà.
+Nous prendrons le kit **Livewire** : ses vues sont en Blade, ce que vous connaissez déjà.
 
-Et la partie serveur ? Tous les kits s'appuient sur le même moteur : **Laravel Fortify**. Fortify fournit les routes, les contrôleurs et toute la sécurité (limitation des tentatives, reset du mot de passe, double authentification…), mais **aucune vue** : on parle de paquet « headless » (sans tête : sans interface). Le kit, lui, fournit les vues et les branche sur Fortify.
+Et la partie serveur ? Tous les kits s'appuient sur le même moteur, **Laravel Fortify**. Fortify fournit les routes, les contrôleurs et toute la sécurité (limitation des tentatives, reset du mot de passe, double authentification…), mais aucune vue : on parle de paquet « headless », sans tête, sans interface. Le kit, lui, fournit les vues et les branche sur Fortify.
 
 ![Ce que génère le kit, ce que fournit Fortify](./ressources/kit_fortify.svg)
 
@@ -148,12 +137,7 @@ composer run dev
 
 ## Installer la Laravel Debugbar
 
-Vous avez remarqué que les pages d'erreurs de Laravel sont toujours pleines de bonnes informations. Avec Laravel nous pouvons avoir « encore mieux » : une extension qui ajoute une barre en bas de votre site (uniquement le temps du développement) et qui vous permet de voir :
-
-- Les requêtes SQL réalisées par l'ORM.
-- Les vues affichées.
-- Le contenu de la session.
-- …
+Vous avez remarqué que les pages d'erreurs de Laravel sont toujours pleines de bonnes informations. Avec Laravel on peut faire « encore mieux » : une extension qui ajoute une barre en bas de votre site, uniquement le temps du développement, et qui vous montre les requêtes SQL réalisées par l'ORM, les vues affichées, le contenu de la session…
 
 Pour l'installer, dans le dossier de votre projet :
 
@@ -1111,7 +1095,7 @@ Extrait du template `chat/index.blade.php` :
 
 #### L'approche HTMX
 
-HTMX est une librairie JavaScript qui permet de faire des requêtes HTTP pour récupérer du HTML et l'ajouter à la page, **sans écrire de JavaScript**. C'est une approche très simple et très efficace pour faire des applications Web modernes.
+HTMX est une librairie JavaScript qui fait des requêtes HTTP pour récupérer du HTML et l'ajouter à la page, sans écrire une ligne de JavaScript. L'approche est simple, et elle suffit largement pour une application Web moderne.
 
 Pour les curieux, je vous invite à consulter le site officiel de [HTMX](https://htmx.org/), ou mon TP sur le sujet [ici](../javascript/htmx.md).
 
@@ -1286,21 +1270,21 @@ Dans les deux cas, les règles de sécurité sont les mêmes : expiration courte
 
 Dans ce TP, vous avez :
 
-- Créé un projet avec un **starter kit** (`laravel new`), et compris le rôle de **Fortify**, le moteur qui tourne derrière.
-- Retrouvé dans le code généré les briques codées à la main (hash, session, middleware, limitation des tentatives).
-- Découvert **Tailwind** et **Vite** (`composer run dev` pendant le développement, `npm run build` pour figer).
-- Utilisé et créé des **composants Blade** (`<x-layouts::app>`, `<x-card>`, les composants Flux), et transformé un composant **HyperUI** en `<x-stat>` réutilisable.
-- Protégé des pages avec le middleware **`auth`**.
-- Modifié le code généré : nouveaux champs dans l'action `CreateNewUser`, table liée (`hasOne` / `belongsTo`), **Route Model Binding**.
-- Mis en place des **rôles** avec une table pivot (`belongsToMany`, `attach`, `sync`).
-- Rafraîchi une page en **Ajax**, avec `fetch` ou avec **HTMX**.
-- Utilisé et compris une double authentification **TOTP** (QR code, codes de récupération, `password.confirm`).
+- créé un projet avec un starter kit (`laravel new`) et identifié le rôle de Fortify, le moteur qui tourne derrière ;
+- retrouvé dans le code généré les briques que vous aviez écrites à la main (hash, session, middleware, limitation des tentatives) ;
+- découvert Tailwind et Vite, `composer run dev` pendant le développement et `npm run build` pour figer ;
+- utilisé et créé des composants Blade (`<x-layouts::app>`, `<x-card>`, les composants Flux), et transformé un composant HyperUI en `<x-stat>` réutilisable ;
+- protégé des pages avec le middleware `auth` ;
+- modifié le code généré : un champ de plus dans l'action `CreateNewUser`, une table liée (`hasOne` / `belongsTo`), le Route Model Binding ;
+- monté des rôles avec une table pivot (`belongsToMany`, `attach`, `sync`) ;
+- rafraîchi une page en Ajax, avec `fetch` ou avec HTMX ;
+- activé et compris une double authentification TOTP (QR code, codes de récupération, `password.confirm`).
 
-N'oubliez pas de **commiter votre projet** !
+N'oubliez pas de commiter votre projet !
 
-Le kit vous a également généré un système de « mot de passe oublié » complet. Et vous savez **exactement** ce qu'il fait : c'est le mécanisme que vous avez codé à la main dans le TP [Le reset de mot de passe](./reset_mot_de_passe.md) (token, expiration, envoi d'email). Testez-le : avec `MAIL_MAILER=log` dans votre `.env`, l'email n'est pas envoyé mais écrit dans `storage/logs/laravel.log`, lien de reset compris.
+Le kit vous a également généré un système de « mot de passe oublié » complet, et vous savez exactement ce qu'il fait : c'est le mécanisme que vous avez codé à la main dans le TP [Le reset de mot de passe](./reset_mot_de_passe.md) (token, expiration, envoi d'email). Testez-le : avec `MAIL_MAILER=log` dans votre `.env`, l'email n'est pas envoyé mais écrit dans `storage/logs/laravel.log`, lien de reset compris.
 
-Oui, nous avions tout codé à la main, mais le kit et Fortify le font automatiquement : la force d'un framework, c'est de ne pas tout recoder. Vous l'utiliserez désormais **en sachant ce qu'il fait**.
+Oui, nous avions tout codé à la main. Le kit et Fortify le font désormais à notre place, et c'est bien le rôle d'un framework que de ne pas tout recoder. La différence, c'est qu'aujourd'hui vous l'utilisez en sachant ce qu'il fait.
 
 ::: details Le code entier, mais uniquement après avoir essayé
 

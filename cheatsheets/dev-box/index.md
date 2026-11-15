@@ -4,7 +4,7 @@ description: "La dev-box : un environnement de développement complet (PHP, Lara
 
 # La dev-box : votre environnement de développement dans Docker
 
-Document présentant l'installation et l'utilisation de la dev-box, votre environnement de développement complet dans Docker.
+Comment on l'installe, comment on s'en sert, et quoi faire quand ça résiste.
 
 ::: details Sommaire
 [[toc]]
@@ -24,7 +24,7 @@ Un conteneur n'est pas une machine virtuelle : il partage le noyau de votre mach
 
 ### Que contient la dev-box ?
 
-La dev-box contient les éléments suivants :
+Voici ce qu'elle contient :
 
 - Des environnements de développement à installer en une commande (`devbox dev-env`) : PHP et Composer, Laravel, Symfony, Node.js, Python, Java, Go, Rust, .NET, Flutter, des outils audio et vidéo, etc.
 - Des bases de données à la demande (`devbox dbs`) : MariaDB, MySQL, PostgreSQL, Redis, MongoDB, SQL Server.
@@ -37,14 +37,13 @@ La dev-box contient les éléments suivants :
 
 ### Pourquoi c'est intéressant ?
 
-- **Le même environnement pour tout le monde.** Fini le « chez moi ça marche » : toute la classe a les mêmes versions.
-- **Rien à installer sur votre machine**, à part Docker. L'installation tient en une commande, et vous voulez tout supprimer ? Un dossier à effacer, et c'est tout.
-- **Vous installez uniquement ce dont vous avez besoin.** Un menu, vous cochez Laravel et Python, c'est prêt.
-- **Vos données survivent.** Votre dossier personnel et vos projets sont stockés dans des volumes : mettre à jour la dev-box ne supprime rien.
-- **Vous travaillez comme sur un vrai serveur Linux.** SSH, terminal, services : les réflexes que vous prenez ici sont ceux que vous utiliserez en production (voir par exemple [Installer Docker sur une Debian](/cheatsheets/serveur/debian-docker.md)).
-- **Votre environnement vous suit partout.** Avec Tailscale, vous retrouvez la même dev-box depuis le lycée, chez vous ou sur une tablette (voir [Votre dev-box partout avec Tailscale](#votre-dev-box-partout-avec-tailscale)).
-- **Une seule commande à retenir : `devbox`.** Elle liste tout ce que la dev-box sait faire, avec un menu.
-- **Rien ne se met à jour dans votre dos.** La dev-box vous prévient quand une mise à jour est disponible, c'est vous qui décidez quand l'appliquer.
+Le premier bénéfice, c'est que toute la classe a exactement les mêmes versions. Fini le « chez moi ça marche ». Sur votre machine, en revanche, il n'y a rien à installer à part Docker : l'installation tient en une commande, et pour tout supprimer il suffit d'effacer un dossier. Vous n'installez que ce dont vous avez besoin, Laravel et Python par exemple, en les cochant dans un menu.
+
+Votre dossier personnel et vos projets vivent dans des volumes, donc mettre à jour la dev-box ne supprime rien, et rien ne se met à jour dans votre dos : la dev-box vous prévient quand une nouvelle version sort, et c'est vous qui décidez du moment.
+
+Une seule commande est à retenir, `devbox`. Elle liste tout ce que la dev-box sait faire, avec un menu.
+
+Enfin, vous travaillez comme sur un vrai serveur Linux : SSH, terminal, services. Les réflexes pris ici sont ceux de la production (voir par exemple [Installer Docker sur une Debian](/cheatsheets/serveur/debian-docker.md)), et avec Tailscale votre environnement vous suit partout, du lycée à votre salon, en passant par une tablette (voir [Votre dev-box partout avec Tailscale](#votre-dev-box-partout-avec-tailscale)).
 
 ## Prérequis
 
@@ -349,7 +348,7 @@ Pour que ça fonctionne, il faut assouplir certaines protections du conteneur (`
 
 ## Au-delà de PHP
 
-La dev-box ne se limite pas au développement web en PHP. Voici ce que vous pouvez faire d'autre, sans rien installer sur votre machine.
+La dev-box ne se limite pas au PHP. Ce qui suit se tente sans rien installer sur votre machine.
 
 ### D'autres langages
 
@@ -560,9 +559,7 @@ C'est [Tailscale](https://tailscale.com/) qui rend ça possible.
 
 Tailscale crée un **réseau privé** (un VPN) entre vos appareils, où qu'ils soient. Chaque machine y reçoit un nom : votre dev-box s'appelle simplement `dev-box`. Vous installez Tailscale sur votre ordinateur (ou votre téléphone), la dev-box a déjà Tailscale intégré, et les deux se voient comme s'ils étaient sur le même réseau local.
 
-- **Rien à ouvrir sur votre box Internet** : aucun port n'est publié, la dev-box n'est pas visible depuis Internet.
-- **Pas de clé SSH à copier** : c'est votre compte Tailscale qui vous authentifie.
-- **Gratuit** pour un usage personnel.
+Rien à ouvrir sur votre box Internet : aucun port n'est publié, la dev-box reste invisible depuis l'extérieur. Pas besoin non plus de copier une clé SSH d'une machine à l'autre, c'est votre compte Tailscale qui vous authentifie. Et c'est gratuit pour un usage personnel.
 
 ::: tip Et Headscale ?
 
@@ -596,11 +593,13 @@ Selon les réglages de votre compte, Tailscale peut vous demander de confirmer l
 
 ### Ce que Tailscale vous apporte en plus
 
-- **Voir vos sites sans rien configurer.** Un serveur lancé avec `--host=0.0.0.0` est directement accessible sur `http://dev-box:8000` depuis toutes vos machines, sans `compose.override.yaml`.
-- **Partager un site en cours de développement.** `devbox serve 8000` publie le port sur votre réseau Tailscale et affiche l'adresse à ouvrir, même pour un serveur qui n'écoute que sur `127.0.0.1`. `devbox serve off 8000` arrête le partage.
-- **Envoyer des fichiers entre vos machines.** `devbox tailscale send` envoie un fichier vers un autre de vos appareils (un menu vous demande lequel), `devbox tailscale receive` réceptionne ceux qu'on vous envoie dans `~/inbox`. Dans le gestionnaire de fichiers `yazi`, le raccourci `c` puis `t` fait la même chose.
+D'abord, vos sites sont accessibles sans rien configurer : un serveur lancé avec `--host=0.0.0.0` se retrouve sur `http://dev-box:8000` depuis toutes vos machines, sans `compose.override.yaml`.
 
-- **Partager un dossier entre vos machines.** `devbox tailscale share` partage le dossier courant avec vos autres machines (Taildrive), `devbox tailscale open` parcourt les partages des autres dans `yazi`, et `devbox tailscale get` en copie les fichiers dans le dossier courant. `devbox tailscale unshare` arrête le partage. Votre réseau Tailscale doit l'autoriser : les lignes à ajouter sont dans la page d'accès citée ci-dessous.
+Pour montrer un site en cours de développement à quelqu'un, `devbox serve 8000` publie le port sur votre réseau Tailscale et affiche l'adresse à ouvrir, même si le serveur n'écoute que sur `127.0.0.1`. On arrête avec `devbox serve off 8000`.
+
+Entre vos machines, `devbox tailscale send` envoie un fichier vers un autre de vos appareils (un menu vous demande lequel) et `devbox tailscale receive` réceptionne ceux qu'on vous envoie dans `~/inbox`. Dans le gestionnaire de fichiers `yazi`, le raccourci `c` puis `t` fait la même chose.
+
+Pour un dossier entier, `devbox tailscale share` le partage avec vos autres machines (Taildrive), `devbox tailscale open` parcourt les partages des autres dans `yazi`, et `devbox tailscale get` en copie les fichiers dans le dossier courant. `devbox tailscale unshare` arrête le partage. Votre réseau Tailscale doit l'autoriser : les lignes à ajouter sont dans la page d'accès citée ci-dessous.
 
 Tous les détails (auth key, Headscale, règles d'accès) sont dans la page [accès à la box](https://github.com/c4software/dev-box/blob/main/docs/access.md) du dépôt.
 
@@ -777,19 +776,14 @@ docker exec -it -u dev dev-box zsh -l
 
 ### Est-ce Open Source ?
 
-Oui la dev-box est Open Source, vous pouvez retrouver le code source sur GitHub :
+Oui, la dev-box est Open Source et tout son code est sur GitHub :
 
 - [La dev-box](https://github.com/c4software/dev-box) et sa [documentation](https://github.com/c4software/dev-box/tree/main/docs) : [personnalisation](https://github.com/c4software/dev-box/blob/main/docs/customization.md), [commandes](https://github.com/c4software/dev-box/blob/main/docs/commands.md), [dépannage](https://github.com/c4software/dev-box/blob/main/docs/troubleshooting.md)
 - [La configuration du terminal (dotarchy)](https://github.com/c4software/dotarchy)
 
 ### Comment puis-je contribuer ?
 
-Vous pouvez contribuer de plusieurs manières :
-
-- En utilisant la dev-box et en remontant les bugs.
-- En remontant les bugs sur GitHub.
-- En proposant des améliorations sur GitHub.
-- En proposant des améliorations sur le Slack de la classe.
+La première façon de contribuer, c'est d'utiliser la dev-box et de me remonter ce qui ne marche pas, de préférence directement sur GitHub. Les idées d'amélioration sont les bienvenues au même endroit, ou sur le Slack de la classe.
 
 👋 Si vous avez des questions, n'hésitez pas.
 

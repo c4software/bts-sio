@@ -12,7 +12,7 @@ description: "Développer pour iPhone et iPad sans Mac : préparer la dev-box (S
 
 Jusqu'ici, nos applications mobiles tournaient sur Android. Pour viser aussi l'iPhone, il y a normalement un passage obligé : **un Mac avec Xcode**. Pas de Mac, pas d'application iOS… Enfin, ça, c'était avant 😄
 
-Dans cette série de TP, nous allons créer, compiler et installer des applications iPhone **depuis Linux**, dans la [dev-box](/cheatsheets/dev-box/). Le même petit « hello world » sera écrit trois fois, avec trois technologies différentes :
+Dans cette série de TP, nous créons, compilons et installons des applications iPhone depuis Linux, dans la [dev-box](/cheatsheets/dev-box/). Le même petit « hello world », écrit trois fois avec trois technologies différentes :
 
 1. [en Swift (SwiftUI)](./swift.md), le langage natif d'Apple ;
 2. [en Flutter](./flutter.md), le framework multiplateforme de Google ;
@@ -70,7 +70,7 @@ C'est un choix de sécurité d'Apple : sur iPhone, **aucun code ne s'exécute sa
 Conséquence pour nous : impossible d'installer une application sur un iPhone sans compte Apple, même gratuit.
 :::
 
-Voici le chemin que suivra votre code dans les trois TP :
+Le chemin que suivra votre code dans les trois TP :
 
 ```
 Votre code (Swift, Dart ou Kotlin)
@@ -295,11 +295,10 @@ Le même état s'affiche depuis votre machine, avec `./devbox-build.sh status`. 
 
 Votre dev-box est maintenant une machine de développement iOS :
 
-- le compilateur Swift tourne sous Linux ;
-- le SDK iOS a été extrait de Xcode, une fois pour toutes ;
+- le compilateur Swift tourne sous Linux, et le SDK iOS a été extrait de Xcode une fois pour toutes ;
 - la dev-box signe vos applications avec votre compte Apple ;
-- l'iPhone est relié à la dev-box, par câble ou en Wi-Fi ;
-- `devbox-build.sh` compile et installe vos applications depuis votre machine.
+- l'iPhone est relié à elle, par câble ou en Wi-Fi ;
+- il ne vous reste qu'à lancer `devbox-build.sh` depuis votre machine pour compiler et installer.
 
 Place au code ! Je vous conseille de commencer par [le hello world en Swift](./swift.md) : c'est le plus rapide à compiler, et il vous permettra de vérifier que toute la chaîne fonctionne avant de passer à [Flutter](./flutter.md) et à [Kotlin Multiplateforme](./kmp.md).
 
