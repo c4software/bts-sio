@@ -2,13 +2,15 @@
 description: "Le développement agentique, l'utilisation : installer OpenCode, le brancher sur un modèle gratuit (OpenCode, NVIDIA, AMD) ou sur le proxy de la classe, puis lui faire ajouter une fonctionnalité et ses tests à un petit projet JavaScript avec une méthode : décrire, planifier, relire chaque diff, tester, commiter."
 ---
 
-# Le développement agentique : utiliser un agent
+# Le développement agentique : utiliser un agent (OpenCode)
 
 ::: details Sommaire
 [[toc]]
 :::
 
 Dans [le TP précédent](./principe.md), vous avez démonté un agent : un modèle dans une boucle, des outils, un contexte qui grossit à chaque tour. Place à la pratique. Dans ce TP, vous allez installer **OpenCode**, le brancher sur un modèle (gratuit, ou celui du proxy de la classe), puis lui confier une vraie tâche sur un petit projet : ajouter les frais de livraison et les codes promo à une boutique en ligne, **avec les tests**.
+
+OpenCode n'est qu'un harness parmi d'autres (voir [les harness du moment](./principe.md#les-harness-du-moment)) : nous l'avons choisi parce qu'il est libre et accepte n'importe quel fournisseur, mais la méthode de ce TP vaut pour tous, Claude Code, Codex ou Copilot compris.
 
 Le but n'est pas que l'agent travaille à votre place, mais d'apprendre à **le piloter** : lui donner une tâche précise, valider son plan, relire tout ce qu'il écrit, vérifier que ça marche, et rester capable d'expliquer chaque ligne.
 

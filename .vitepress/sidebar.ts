@@ -29,7 +29,7 @@ export default [
     items: [
       { text: "Le cours (slides)", link: "/cours/agentic.md" },
       { text: "Le principe", link: "/tp/agentic/principe.md" },
-      { text: "Utiliser un agent", link: "/tp/agentic/utilisation.md" },
+      { text: "Utiliser un agent (OpenCode)", link: "/tp/agentic/utilisation.md" },
       { text: "Les limites", link: "/tp/agentic/limites.md" },
       { text: "Bonus : monter son proxy", link: "/tp/agentic/proxy.md" }
     ]
