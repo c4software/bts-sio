@@ -314,22 +314,38 @@ export default [
             text: "Les TP",
             collapsed: true,
             items: [
-              { text: "Transition vers Laravel", link: "/tp/php/tp6.md" },
-              { text: "Introduction à Laravel", link: "/tp/laravel/introduction" },
-              { text: "Introduction base de données et ORM", link: "/tp/laravel/base_de_donnees" },
-              { text: "Comprendre l'authentification", link: "/tp/laravel/authentification_manuelle" },
-              { text: "La double authentification (2FA)", link: "/tp/laravel/2fa" },
-              { text: "Le reset de mot de passe", link: "/tp/laravel/reset_mot_de_passe" },
-              { text: "Aller plus loin avec Laravel", link: "/tp/laravel/aller_plus_loin" },
-              { text: "L'authentification avec Breeze", link: "/tp/laravel/authentification" },
-              { text: "L'authentification avec un starter kit", link: "/tp/laravel/starter_kit" },
-              { text: "Eloquent les modèles simplement", link: "/tp/laravel/generation_model" },
-              { text: "Tester avec PHPUnit", link: "/tp/laravel/tests" },
-              { text: "Projet Micro-Messages", link: "/tp/laravel/x.md" },
-              { text: "Projet - Larablog", link: "/tp/laravel/larablog.md" },
-              { text: "Larablog 2.0 (Ajax & VueJS)", link: "/tp/javascript/tp6.md" },
-              { text: "Des API avec Laravel", link: "/tp/laravel/api_produit" },
-              { text: "Déployer un site Laravel", link: "/tp/ops/deployer-laravel.md" }
+              {
+                text: "Découvrir Laravel", collapsed: true, items: [
+                  { text: "Transition vers Laravel", link: "/tp/php/tp6.md" },
+                  { text: "Introduction à Laravel", link: "/tp/laravel/introduction" },
+                  { text: "Introduction base de données et ORM", link: "/tp/laravel/base_de_donnees" },
+                  { text: "Comprendre l'authentification", link: "/tp/laravel/authentification_manuelle" },
+                  { text: "La double authentification (2FA)", link: "/tp/laravel/2fa" },
+                  { text: "Le reset de mot de passe", link: "/tp/laravel/reset_mot_de_passe" },
+                  { text: "Aller plus loin avec Laravel", link: "/tp/laravel/aller_plus_loin" }
+                ]
+              },
+              {
+                text: "L'authentification clé en main", collapsed: true, items: [
+                  { text: "L'authentification avec Breeze", link: "/tp/laravel/authentification" },
+                  { text: "L'authentification avec un starter kit", link: "/tp/laravel/starter_kit" }
+                ]
+              },
+              {
+                text: "Approfondir", collapsed: true, items: [
+                  { text: "Eloquent les modèles simplement", link: "/tp/laravel/generation_model" },
+                  { text: "Tester avec PHPUnit", link: "/tp/laravel/tests" },
+                  { text: "Des API avec Laravel", link: "/tp/laravel/api_produit" },
+                  { text: "Déployer un site Laravel", link: "/tp/ops/deployer-laravel.md" }
+                ]
+              },
+              {
+                text: "Les projets", collapsed: true, items: [
+                  { text: "Projet Micro-Messages", link: "/tp/laravel/x.md" },
+                  { text: "Projet - Larablog", link: "/tp/laravel/larablog.md" },
+                  { text: "Larablog 2.0 (Ajax & VueJS)", link: "/tp/javascript/tp6.md" }
+                ]
+              }
             ]
           }
         ]
