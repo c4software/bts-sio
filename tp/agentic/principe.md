@@ -233,7 +233,7 @@ OpenCode en déclare une douzaine : `read`, `edit`, `write`, `glob`, `grep`, `sh
 Puisque c'est l'agent qui exécute, c'est lui qui décide de ce qui est autorisé : lire oui, modifier sur demande, `git push` jamais, etc. Ce sont les **permissions**. Chaque agent a les siennes, avec des valeurs par défaut plus ou moins prudentes.
 
 ::: warning Lisez les réglages par défaut
-Dans OpenCode, la règle de base est « tout est autorisé », sauf la lecture des fichiers `.env` qui demande votre accord ([documentation des permissions](https://opencode.ai/docs/permissions/)). Concrètement, un agent OpenCode non configuré peut lancer `rm -rf` sur un dossier de votre projet sans vous demander votre avis. Nous l'avons vérifié, et nous verrons dans [le TP sur les limites](./limites.md#des-permissions-trop-larges) comment le restreindre.
+Dans OpenCode, la règle de base est « tout est autorisé », sauf la lecture des fichiers `.env` qui demande votre accord ([documentation des permissions](https://opencode.ai/docs/permissions/)). Ce que cela permet, et comment le restreindre, est démontré dans [le TP sur les limites](./limites.md#des-permissions-trop-larges).
 :::
 
 ### Les fichiers d'instructions : AGENTS.md

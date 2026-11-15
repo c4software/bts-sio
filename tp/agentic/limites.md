@@ -105,24 +105,18 @@ Vous l'avez vu dans [le TP sur le principe](./principe.md#ce-qu-un-agent-envoie-
 
 ![Courbe du contexte envoyé à chaque tour, sur quinze tours : il part d'environ 6 000 tokens, monte par paliers (un gros fichier lu, une longue sortie de tests) jusqu'à 28 000 tokens, près de la fenêtre de 32 768 tokens ; au tour 13, une compaction le fait retomber à 9 000 tokens, un résumé remplaçant l'historique et des détails étant perdus](./res/limites_contexte.svg)
 
-Avant d'atteindre la limite, l'agent **compacte** : il demande au modèle un résumé de la conversation, et repart de ce résumé (OpenCode a un agent dédié à ça, `compaction`). Le résumé est forcément incomplet : une consigne donnée au début, une décision prise en route, le contenu exact d'un fichier peuvent disparaître. Et même avant la compaction, un modèle exploite moins bien les informations noyées au milieu d'un très long contexte.
+Avant d'atteindre la limite, l'agent **compacte** : il repart d'un résumé, comme vous l'avez vu dans [le TP sur le principe](./principe.md#un-contexte-limite-la-compaction) (OpenCode a un agent dédié à ça, `compaction`). Le risque, c'est ce qui disparaît **sans prévenir** : une consigne donnée au début, une décision prise en route, le contenu exact d'un fichier. Et même avant la compaction, un modèle exploite moins bien les informations noyées au milieu d'un très long contexte.
 
 Les symptômes : l'agent oublie une règle qu'il respectait au début, relit des fichiers déjà lus, refait une erreur déjà corrigée, ou devient lent (et cher).
 
-Questions :
-
-- Dans OpenCode, où voyez-vous la place prise dans la fenêtre de contexte ? (Revoyez la capture de session du TP précédent.)
-- Pourquoi une règle écrite dans `AGENTS.md` résiste-t-elle mieux à la compaction qu'une règle donnée au début de la conversation ?
+Question : dans OpenCode, où voyez-vous la place prise dans la fenêtre de contexte ? (Revoyez la capture de session du TP précédent.)
 
 ::: details Réponse
-- En bas à droite de l'interface, à côté du nombre de tokens : `6.6K (20%)` dans la capture, soit 20 % de la fenêtre utilisés.
-- `AGENTS.md` est **réinjecté au début du contexte à chaque tour**, il ne fait pas partie de l'historique que l'on résume. Une consigne donnée au fil de la conversation, elle, peut être résumée, déformée ou oubliée.
+En bas à droite de l'interface, à côté du nombre de tokens : `6.6K (20%)` dans la capture, soit 20 % de la fenêtre utilisés.
 :::
 
 ::: tip La parade
-- **Une session par tâche** : une tâche finie et commitée, on repart d'une session neuve.
-- Des demandes ciblées (« lis `src/panier.js` ») plutôt que « regarde tout le projet ».
-- Les règles durables dans `AGENTS.md`, court.
+Les [bons réflexes du TP sur le principe](./principe.md#un-contexte-limite-la-compaction) (une session par tâche, les règles durables dans `AGENTS.md` ou dans les tests), plus un : des demandes ciblées (« lis `src/panier.js` ») plutôt que « regarde tout le projet », pour que le contexte grossisse moins vite.
 :::
 
 ## Coût et quotas
@@ -131,7 +125,7 @@ Un agent ne fait pas une requête par question, mais **une requête par tour de 
 
 ![Requêtes par minute, en ordres de grandeur : vous dans un chat, environ 4 ; un agent sur une petite tâche, environ 15 ; un agent qui boucle sur un test qui échoue, environ 48, au-delà de la limite de 40 par minute de l'essai NVIDIA ; 30 étudiants qui partagent une seule clé, 240, très au-delà. Au-delà de la limite, le serveur répond 429 et l'agent attend ou échoue](./res/limites_quota.svg)
 
-L'accès d'essai de NVIDIA est limité à **40 requêtes par minute** (la limite couramment constatée ; NVIDIA ne publie pas de chiffre officiel). Un agent qui boucle (un test qui échoue, il corrige, relance, échoue encore…) l'atteint en moins d'une minute. Au-delà, le serveur répond `429 Too Many Requests` : l'agent attend, réessaie, ou abandonne au milieu d'une modification.
+L'accès d'essai de NVIDIA est limité à environ **40 requêtes par minute** (voir [le TP sur l'utilisation](./utilisation.md#nvidia)). Un agent qui boucle (un test qui échoue, il corrige, relance, échoue encore…) l'atteint en moins d'une minute. Au-delà, le serveur répond `429 Too Many Requests` : l'agent attend, réessaie, ou abandonne au milieu d'une modification.
 
 ::: tip Que se passe-t-il derrière ? Les quotas dans llm-proxy
 Derrière le proxy de la classe, tout le monde partage les mêmes comptes chez les fournisseurs. Le proxy a donc deux garde-fous, décrits dans [sa documentation](https://github.com/c4software/llm-proxy/blob/master/docs/fonctionnalites.md) :
@@ -143,7 +137,7 @@ Derrière le proxy de la classe, tout le monde partage les mêmes comptes chez l
 Et en échange d'un service gratuit, qu'avez-vous donné ?
 
 - **un numéro de téléphone**, pour NVIDIA : c'est un identifiant fort, qui vous relie à votre usage ;
-- **vos données**, pour certains modèles gratuits : la page d'OpenCode indique, modèle par modèle, lesquels conservent les échanges et s'en servent pour entraîner leur modèle, et pour les modèles gratuits de NVIDIA : « *Trial use only, do not submit personal or confidential data. Your use is logged* » ([OpenCode, section Privacy](https://opencode.ai/docs/zen/#privacy)) ;
+- **vos données**, pour certains modèles gratuits (voir [l'avertissement du TP sur l'utilisation](./utilisation.md#les-modeles-gratuits-d-opencode)), et pour ceux de NVIDIA, d'après la même page d'OpenCode : « *Trial use only, do not submit personal or confidential data. Your use is logged* » ([OpenCode, section Privacy](https://opencode.ai/docs/zen/#privacy)) ;
 - et une **dépendance** : l'offre est gratuite « pour une durée limitée », le modèle peut disparaître du jour au lendemain (la liste d'OpenCode change d'une semaine à l'autre).
 
 Questions :
@@ -152,8 +146,8 @@ Questions :
 - Un service gratuit est-il forcément « payé » par vos données ? Citez un contre-exemple de ce TP.
 
 ::: details Réponse
-- La limite de débit est par clé : 30 étudiants, c'est 30 fois plus de requêtes pour la même limite, donc des `429` pour tout le monde. Et une seule clé, c'est aussi une seule ligne dans les statistiques : impossible de savoir qui consomme quoi, ni de couper un seul utilisateur. D'où une clé par étudiant sur le proxy, et un partage équitable par compte : la clé NVIDIA du TP précédent n'est jamais distribuée, seul le proxy s'en sert.
-- Non : certains modèles gratuits d'OpenCode annoncent ne rien conserver ni entraîner (GLM-5.3-Flash Free, DeepSeek V4.1 Flash Free), le temps d'une promotion. Et les modèles mis à disposition par AMD pour ce cours relèvent d'un programme universitaire. Mais la règle reste de **lire les conditions** à chaque fois : elles changent.
+- La limite de débit est par clé : 30 étudiants, c'est 30 fois plus de requêtes pour la même limite, donc des `429` pour tout le monde. Et une seule clé, c'est aussi une seule ligne dans les statistiques : impossible de savoir qui consomme quoi, ni de couper un seul utilisateur. D'où une clé par étudiant sur le proxy, et le partage équitable vu plus haut : la clé NVIDIA du TP précédent n'est jamais distribuée, seul le proxy s'en sert.
+- Non : certains modèles gratuits d'OpenCode annoncent ne rien conserver ni entraîner ([voir le TP sur l'utilisation](./utilisation.md#les-modeles-gratuits-d-opencode)), le temps d'une promotion. Et les modèles mis à disposition par AMD pour ce cours relèvent d'un programme universitaire. Mais la règle reste de **lire les conditions** à chaque fois : elles changent.
 :::
 
 ## Vos données partent chez un tiers
@@ -168,11 +162,11 @@ Ce qui pose problème :
 - **le code de l'entreprise** : en stage ou en alternance, le code ne vous appartient pas. L'envoyer à un service tiers sans autorisation peut violer votre convention ou votre contrat. Demandez toujours quels outils sont autorisés ;
 - **les données personnelles** : une base de clients, même « de test », copiée dans le projet et lue par l'agent, c'est un transfert de données personnelles à un tiers, encadré par le **RGPD** (voir [la CNIL sur l'IA](https://www.cnil.fr/fr/intelligence-artificielle)).
 
-Et que voit le proxy de la classe ? Il **relaie** le contenu (il le voit donc passer), mais d'après son code il ne **conserve** qu'une ligne par requête : la date, le modèle, le nombre de tokens, la durée, le statut et un condensé de la clé, jamais le texte. Voici le tableau de bord tel que le voit un étudiant, après les essais faits pour écrire ces TP :
+Et que voit le proxy de la classe ? Il **relaie** le contenu (il le voit donc passer), mais d'après son code il ne **conserve** qu'une ligne par requête : la date, le modèle, le nombre de tokens, la durée, le statut et un condensé de la clé, jamais le texte (seul le chat de son tableau de bord garde les conversations, comme une application de chat). Voici le tableau de bord tel que le voit un étudiant, après les essais faits pour écrire ces TP :
 
 ![Le tableau de bord de llm-proxy, vue Statistiques : 34 requêtes, 126 502 tokens (125 262 en entrée, 1 240 en sortie), 2 modèles actifs, 3 erreurs ; un graphique du trafic par heure et le détail par modèle (demo/agent-demo : 31 requêtes, 125 262 tokens d'entrée). En bas à gauche, la clé connectée n'apparaît que sous forme de condensé](./res/limites_proxy_stats.png)
 
-Remarquez le rapport entrée/sortie : **125 262 tokens envoyés pour 1 240 reçus**. Les réponses du modèle de démonstration sont très courtes, mais l'entrée est bien celle qu'envoie OpenCode : c'est la signature d'un agent, qui renvoie tout son contexte à chaque tour.
+Au passage, le rapport entrée/sortie (**125 262 tokens envoyés pour 1 240 reçus**) est la signature d'un agent, qui [renvoie tout son contexte à chaque tour](./principe.md#ce-qu-un-agent-envoie-vraiment).
 
 ::: warning Ce que le proxy ne protège pas
 Le proxy ne garde pas vos messages, mais le **fournisseur** qui est derrière les reçoit en entier. Et l'administrateur d'un proxy peut toujours activer des journaux plus bavards (llm-proxy a par exemple une option de trace qui note les outils appelés et un extrait de leurs arguments). Ne confiez à aucun agent ce que vous ne pourriez pas montrer à votre enseignant.
