@@ -4,7 +4,7 @@ aside: false
 ---
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { withBase } from 'vitepress'
 
 const quizzes = ref([])
@@ -48,6 +48,29 @@ onMounted(async () => {
   } catch {
     error.value = true
   }
+
+  // Sélection initiale depuis l'URL (?quiz=...) pour partager une thématique.
+  const param = new URLSearchParams(window.location.search).get('quiz')
+  if (param) {
+    if (param === ALL_PARAM) {
+      selected.value = '__all__'
+    } else {
+      const quiz = quizzes.value.find(q => q.src === param || q.src === 'quiz-' + param)
+      if (quiz) selected.value = quiz.src
+    }
+  }
+})
+
+// Paramètre d'URL court : « quiz-android-compose » devient « android-compose ».
+const ALL_PARAM = 'melange'
+const toParam = src => src === '__all__' ? ALL_PARAM : src.replace(/^quiz-/, '')
+
+// Met à jour l'URL à chaque changement de thématique, sans recharger la page.
+watch(selected, value => {
+  const url = new URL(window.location.href)
+  if (value) url.searchParams.set('quiz', toParam(value))
+  else url.searchParams.delete('quiz')
+  window.history.replaceState(window.history.state, '', url)
 })
 </script>
 
