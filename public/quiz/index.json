@@ -92,7 +92,7 @@
   {
     "src": "quiz-securite-owasp",
     "title": "Sécurité des applications (OWASP)",
-    "questions": 40
+    "questions": 80
   },
   {
     "src": "quiz-vuejs",

