@@ -2,9 +2,35 @@
   <div class="quiz" v-if="quiz">
     <h2 v-if="!hideTitle">{{ quiz.title }}</h2>
 
+    <div class="options">
+      <div class="mode" role="radiogroup" aria-label="Ordre des questions">
+        <label>
+          <input type="radio" value="random" v-model="mode" @change="changeMode" />
+          Tirage aléatoire
+        </label>
+        <label>
+          <input type="radio" value="ordered" v-model="mode" @change="changeMode" />
+          Dans l'ordre
+        </label>
+      </div>
+      <label v-if="mode === 'ordered'" class="serie">
+        Série :
+        <select v-model="serie" @change="changeSerie">
+          <option v-for="(s, si) in series" :key="si" :value="si + 1">
+            {{ si + 1 }} (questions {{ s.from }} à {{ s.to }})
+          </option>
+        </select>
+      </label>
+      <p v-if="mode === 'random'" class="progress">
+        Questions déjà vues : {{ seenCount }} / {{ quiz.questions.length }}
+        <span v-if="wrongCount"> · {{ wrongCount }} à retravailler (reproposées en priorité)</span>
+        <button v-if="seenCount" type="button" class="link" @click="forget">Oublier</button>
+      </p>
+    </div>
+
     <div v-for="(q, qi) in questions" :key="qi" class="question" :class="stateClass(qi)">
       <p class="question-title">
-        <strong>Question {{ qi + 1 }}</strong>
+        <strong>Question {{ q.number || qi + 1 }}</strong>
         <span v-if="q.title"> — {{ q.title }}</span>
         <span v-if="q.origin" class="origin">{{ q.origin }}</span>
       </p>
@@ -95,7 +121,10 @@
     <div class="actions">
       <p v-if="corrected" class="score">Score : {{ score }} / {{ questions.length }}</p>
       <button v-if="!corrected" @click="correct">Valider mes réponses</button>
-      <button v-else @click="reset">Recommencer</button>
+      <template v-else>
+        <button @click="reset">{{ mode === 'random' ? 'Nouveau tirage' : 'Recommencer la série' }}</button>
+        <button v-if="mode === 'ordered' && serie < series.length" @click="nextSerie">Série suivante</button>
+      </template>
     </div>
   </div>
   <div v-else class="quiz">
@@ -243,6 +272,8 @@ function parseQuestion(chunk) {
     .trim()
 
   const question = {
+    // Identifiant technique (ex. « PHP-L1-Q3 ») : sert à mémoriser les questions vues
+    id: title.split(' ')[0] || text,
     title: displayTitle(title),
     text,
     images,
@@ -279,16 +310,86 @@ function parseGift(source) {
   }
 }
 
-// --- Composant ---
+// --- Hasard ---
 
-function shuffle(array) {
+// Entier aléatoire dans [0, max[ : crypto si disponible (meilleure qualité
+// que Math.random), sans biais de modulo.
+function randomInt(max) {
+  if (typeof crypto === 'undefined' || !crypto.getRandomValues) {
+    return Math.floor(Math.random() * max)
+  }
+  const limit = Math.floor(0x100000000 / max) * max
+  const buffer = new Uint32Array(1)
+  do {
+    crypto.getRandomValues(buffer)
+  } while (buffer[0] >= limit)
+  return buffer[0] % max
+}
+
+// Générateur déterministe (mulberry32) initialisé par une chaîne : en mode
+// « dans l'ordre », les propositions sont mélangées toujours de la même façon
+// (sinon la bonne réponse, souvent écrite en premier dans le .gift, serait
+// toujours en tête).
+function seeded(text) {
+  let h = 2166136261
+  for (let i = 0; i < text.length; i++) {
+    h = Math.imul(h ^ text.charCodeAt(i), 16777619)
+  }
+  return (max) => {
+    h = (h + 0x6d2b79f5) | 0
+    let t = Math.imul(h ^ (h >>> 15), 1 | h)
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+    return Math.floor((((t ^ (t >>> 14)) >>> 0) / 4294967296) * max)
+  }
+}
+
+function shuffle(array, rand = randomInt) {
   const copy = [...array]
   for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
+    const j = rand(i + 1)
     ;[copy[i], copy[j]] = [copy[j], copy[i]]
   }
   return copy
 }
+
+// Mélange en alternant les groupes (thématiques) : en mode multi, un tirage
+// de 10 questions couvre 10 thématiques différentes quand c'est possible.
+function interleave(questions, groupOf) {
+  const groups = {}
+  for (const q of shuffle(questions)) {
+    ;(groups[groupOf(q)] ||= []).push(q)
+  }
+  const queues = shuffle(Object.values(groups))
+  const result = []
+  while (queues.some((g) => g.length)) {
+    for (const g of queues) if (g.length) result.push(g.shift())
+  }
+  return result
+}
+
+// --- Historique (localStorage) ---
+// Pour chaque question : vue dans le cycle en cours (s) et ratée (w).
+// L'historique est commun à tous les quiz, le mode « Mélange » en profite.
+
+const STORAGE_KEY = 'quiz-gift:historique'
+
+function loadHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}
+  } catch {
+    return {}
+  }
+}
+
+function saveHistory(history) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history))
+  } catch {
+    // Navigation privée ou stockage plein : le tirage reste aléatoire
+  }
+}
+
+// --- Composant ---
 
 export default {
   name: 'QuizGift',
@@ -301,16 +402,45 @@ export default {
     limit: { type: Number, default: 10 }
   },
   data() {
-    return { quiz: null, questions: [], answers: [], corrected: false, error: false }
+    return {
+      quiz: null,
+      questions: [],
+      answers: [],
+      corrected: false,
+      error: false,
+      // « random » : tirage aléatoire ; « ordered » : questions dans l'ordre du fichier, par série
+      mode: 'random',
+      serie: 1,
+      history: {}
+    }
   },
   computed: {
     score() {
       return this.questions.filter((_, qi) => this.isCorrect(qi)).length
+    },
+    series() {
+      const total = this.quiz ? this.quiz.questions.length : 0
+      const count = Math.ceil(total / this.limit)
+      return Array.from({ length: count }, (_, i) => ({
+        from: i * this.limit + 1,
+        to: Math.min((i + 1) * this.limit, total)
+      }))
+    },
+    seenCount() {
+      return this.quiz ? this.quiz.questions.filter((q) => this.history[q.key]?.s).length : 0
+    },
+    wrongCount() {
+      return this.quiz ? this.quiz.questions.filter((q) => this.history[q.key]?.w).length : 0
     }
   },
   async mounted() {
     try {
       this.quiz = this.multi ? await this.loadAll() : await this.loadOne(this.src)
+      this.quiz.questions.forEach((q, i) => {
+        q.number = i + 1
+      })
+      this.history = loadHistory()
+      this.readUrl()
       this.setup()
     } catch {
       this.error = true
@@ -323,7 +453,11 @@ export default {
     async loadOne(src) {
       const response = await fetch(withBase(`/quiz/${src}.gift`))
       if (!response.ok) throw new Error(response.statusText)
-      return parseGift(await response.text())
+      const quiz = parseGift(await response.text())
+      quiz.questions.forEach((q) => {
+        q.key = `${src}:${q.id}`
+      })
+      return quiz
     },
     // Rassemble les questions de tous les quiz du manifeste,
     // chaque question garde la thématique dont elle provient.
@@ -337,15 +471,75 @@ export default {
       )
       return { title: 'Toutes les thématiques', questions }
     },
+    // Paramètre ?serie=N : mode « dans l'ordre » sur la série N (lien partageable)
+    readUrl() {
+      const param = new URLSearchParams(window.location.search).get('serie')
+      const serie = parseInt(param, 10)
+      if (serie >= 1 && serie <= this.series.length) {
+        this.mode = 'ordered'
+        this.serie = serie
+      }
+    },
+    writeUrl() {
+      const url = new URL(window.location.href)
+      if (this.mode === 'ordered') url.searchParams.set('serie', this.serie)
+      else url.searchParams.delete('serie')
+      window.history.replaceState(window.history.state, '', url)
+    },
+    changeMode() {
+      this.writeUrl()
+      this.setup()
+    },
+    changeSerie() {
+      this.writeUrl()
+      this.setup()
+    },
+    nextSerie() {
+      this.serie++
+      this.changeSerie()
+    },
+    // Ordre de priorité du tirage : questions jamais vues (les ratées d'un
+    // cycle précédent en tête), puis ratées, puis les autres. Quand toutes ont
+    // été vues, un nouveau cycle commence : on couvre ainsi toute la banque en
+    // un minimum de tentatives.
+    draw() {
+      const pool = this.quiz.questions
+      const seen = (q) => this.history[q.key]?.s
+      const wrong = (q) => this.history[q.key]?.w
+      const order = (list) => (this.multi ? interleave(list, (q) => q.origin) : shuffle(list))
+      const prioritize = (list) => [...order(list.filter(wrong)), ...order(list.filter((q) => !wrong(q)))]
+
+      let picked = prioritize(pool.filter((q) => !seen(q))).slice(0, this.limit)
+      if (picked.length < this.limit) {
+        // Cycle terminé : on oublie les questions vues (celles de ce tirage
+        // seront marquées juste après)
+        for (const q of pool) if (this.history[q.key]) this.history[q.key].s = 0
+        const rest = prioritize(pool.filter((q) => !picked.includes(q)))
+        picked = [...picked, ...rest.slice(0, this.limit - picked.length)]
+      }
+      for (const q of picked) {
+        this.history[q.key] = { ...this.history[q.key], s: 1 }
+      }
+      saveHistory(this.history)
+      // Ordre d'affichage : mélangé, sans regrouper les ratées en tête
+      return order(picked)
+    },
     setup() {
-      // Tirage aléatoire de `limit` questions à chaque tentative
-      this.questions = shuffle(this.quiz.questions).slice(0, this.limit).map((q) => {
-        const question = { ...q }
+      const ordered = this.mode === 'ordered'
+      const start = (this.serie - 1) * this.limit
+      const picked = ordered
+        ? this.quiz.questions.slice(start, start + this.limit)
+        : this.draw()
+
+      this.questions = picked.map((q) => {
+        const question = { ...q, number: ordered ? q.number : null }
+        // Dans l'ordre : mélange des propositions fixe, identique pour tous
+        const rand = ordered ? seeded(q.key) : randomInt
         if (q.options) {
-          question.shuffled = shuffle(q.options)
+          question.shuffled = shuffle(q.options, rand)
         }
         if (q.type === 'matching') {
-          question.shuffledRights = shuffle(q.rights)
+          question.shuffledRights = shuffle(q.rights, rand)
         }
         return question
       })
@@ -356,6 +550,11 @@ export default {
         return null
       })
       this.corrected = false
+    },
+    forget() {
+      for (const q of this.quiz.questions) delete this.history[q.key]
+      this.history = { ...this.history }
+      saveHistory(this.history)
     },
     answered(qi) {
       const a = this.answers[qi]
@@ -420,6 +619,15 @@ export default {
     },
     correct() {
       this.corrected = true
+      // Les questions ratées seront reproposées en priorité aux prochains tirages
+      this.questions.forEach((q, qi) => {
+        const entry = { s: 1, ...this.history[q.key] }
+        if (this.isCorrect(qi)) delete entry.w
+        else entry.w = 1
+        this.history[q.key] = entry
+      })
+      this.history = { ...this.history }
+      saveHistory(this.history)
     },
     reset() {
       this.setup()
@@ -431,6 +639,41 @@ export default {
 <style scoped>
 .quiz {
   margin: 16px 0;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  margin: 12px 0;
+  font-size: 0.95em;
+}
+
+.mode {
+  display: flex;
+  gap: 16px;
+}
+
+.progress {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--vp-c-text-2);
+  font-size: 0.9em;
+}
+
+button.link {
+  border: none;
+  background: none;
+  color: var(--vp-c-brand-1);
+  padding: 0 0 0 8px;
+  font-size: 1em;
+  text-decoration: underline;
+}
+
+button.link:hover {
+  background: none;
+  color: var(--vp-c-brand-2);
 }
 
 .question {
@@ -552,6 +795,10 @@ button {
   padding: 8px 20px;
   border-radius: 6px;
   font-size: 1em;
+}
+
+.actions button + button {
+  margin-left: 12px;
 }
 
 button:hover {

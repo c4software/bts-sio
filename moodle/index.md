@@ -66,10 +66,13 @@ const ALL_PARAM = 'melange'
 const toParam = src => src === '__all__' ? ALL_PARAM : src.replace(/^quiz-/, '')
 
 // Met à jour l'URL à chaque changement de thématique, sans recharger la page.
-watch(selected, value => {
+// La série (?serie=N, gérée par QuizGift) ne vaut que pour la thématique de
+// départ : on la retire quand l'étudiant en choisit une autre.
+watch(selected, (value, previous) => {
   const url = new URL(window.location.href)
   if (value) url.searchParams.set('quiz', toParam(value))
   else url.searchParams.delete('quiz')
+  if (previous) url.searchParams.delete('serie')
   window.history.replaceState(window.history.state, '', url)
 })
 </script>
@@ -79,7 +82,7 @@ watch(selected, value => {
 Ces quiz vous permettent de vérifier vos connaissances sur les différentes thématiques du cours. Ils ne sont pas notés : entraînez-vous autant de fois que nécessaire.
 
 ::: tip Comment ça marche ?
-Choisissez une thématique, répondez aux questions, puis validez pour obtenir votre score et les explications. À chaque tentative, 10 questions sont tirées au hasard dans la banque de la thématique : refaites le quiz plusieurs fois pour tout couvrir. Le mode « Mélange » pioche dans l'ensemble des thématiques, idéal pour réviser en fin d'année. Vous retrouverez une partie de ces questions dans les évaluations sur Moodle.
+Choisissez une thématique, répondez aux questions, puis validez pour obtenir votre score et les explications. À chaque tentative, 10 questions sont tirées au hasard dans la banque de la thématique : celles que vous n'avez pas encore vues passent en premier, puis celles que vous avez ratées. Refaites le quiz plusieurs fois pour tout couvrir. Vous préférez avancer pas à pas ? Choisissez « Dans l'ordre » puis la série de questions à travailler. Le mode « Mélange » pioche dans l'ensemble des thématiques, idéal pour réviser en fin d'année. Vous retrouverez une partie de ces questions dans les évaluations sur Moodle.
 :::
 
 <ClientOnly>
